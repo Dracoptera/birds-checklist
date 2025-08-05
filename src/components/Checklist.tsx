@@ -257,7 +257,7 @@ const Checklist: React.FC = () => {
                 }}
               >
                 <Box sx={{ position: 'relative' }}>
-                  <BirdImage bird={bird} height={350} compact={false} />
+                  <BirdImage bird={bird} height={450} compact={false} />
                   <Box
                     sx={{
                       position: 'absolute',
