@@ -36,6 +36,7 @@ const Checklist: React.FC = () => {
     family: '',
     habitat: '',
     departamento: '',
+    commonness: '',
     searchTerm: '',
   });
 
@@ -62,6 +63,17 @@ const Checklist: React.FC = () => {
     return Array.from(departamentos).sort();
   }, []);
 
+  const uniqueCommonness = useMemo(() => {
+    const commonness = new Set<string>();
+    uruguayBirds.forEach(bird => {
+      commonness.add(bird.commonness);
+    });
+    return Array.from(commonness).sort((a, b) => {
+      const order = ['abundante', 'común', 'poco común', 'rara', 'muy rara'];
+      return order.indexOf(a) - order.indexOf(b);
+    });
+  }, []);
+
   const filteredBirds = useMemo(() => {
     return uruguayBirds.filter(bird => {
       const observation = state.observations[bird.id];
@@ -86,6 +98,9 @@ const Checklist: React.FC = () => {
       // Filter by departamento
       if (filters.departamento && (!bird.departamentos || !bird.departamentos.includes(filters.departamento))) return false;
       
+      // Filter by commonness
+      if (filters.commonness && bird.commonness !== filters.commonness) return false;
+      
       // Filter by search term
       if (filters.searchTerm) {
         const searchLower = filters.searchTerm.toLowerCase();
@@ -97,6 +112,12 @@ const Checklist: React.FC = () => {
       }
       
       return true;
+    }).sort((a, b) => {
+      // Sort by commonness (most common first)
+      const commonnessOrder = ['abundante', 'común', 'poco común', 'rara', 'muy rara'];
+      const aIndex = commonnessOrder.indexOf(a.commonness);
+      const bIndex = commonnessOrder.indexOf(b.commonness);
+      return aIndex - bIndex;
     });
   }, [state.observations, filters]);
 
@@ -215,6 +236,22 @@ const Checklist: React.FC = () => {
                 <MenuItem value="">Todos</MenuItem>
                 {uniqueDepartamentos.map(departamento => (
                   <MenuItem key={departamento} value={departamento}>{departamento}</MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          </Grid>
+          
+          <Grid item xs={12} sm={6} md={3}>
+            <FormControl fullWidth size="small">
+              <InputLabel>Abundancia</InputLabel>
+              <Select
+                value={filters.commonness}
+                label="Abundancia"
+                onChange={(e) => handleFilterChange('commonness', e.target.value)}
+              >
+                <MenuItem value="">Todas</MenuItem>
+                {uniqueCommonness.map(commonness => (
+                  <MenuItem key={commonness} value={commonness}>{commonness}</MenuItem>
                 ))}
               </Select>
             </FormControl>
@@ -375,6 +412,15 @@ const Checklist: React.FC = () => {
                         variant="outlined"
                       />
                     ))}
+                  </Box>
+                  
+                  <Box sx={{ display: 'flex', gap: 1, mb: 2, flexWrap: 'wrap' }}>
+                    <Chip 
+                      label={bird.commonness} 
+                      size="small" 
+                      color="secondary" 
+                      variant="filled"
+                    />
                   </Box>
                   
                   {observation.observations.length > 0 && (

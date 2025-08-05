@@ -15,6 +15,7 @@ export interface Bird {
   order: string;
   habitat: string[];
   status: 'resident' | 'migratory' | 'visitor' | 'rare';
+  commonness: 'abundante' | 'común' | 'poco común' | 'rara' | 'muy rara';
   departamentos?: string[];
   imageUrl?: string;
   ebirdEmbedUrl?: string;
@@ -31,6 +32,7 @@ export const uruguayBirds: Bird[] = [
     order: 'Passeriformes',
     habitat: ['urbana', 'rural', 'pradera'],
     status: 'resident',
+    commonness: 'abundante',
     departamentos: ['Montevideo', 'Canelones', 'San José', 'Colonia', 'Soriano', 'Río Negro', 'Paysandú', 'Salto', 'Artigas', 'Rivera', 'Tacuarembó', 'Durazno', 'Flores', 'Florida', 'Lavalleja', 'Maldonado', 'Rocha', 'Treinta y Tres', 'Cerro Largo'],
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/79992301/embed',
     variations: [
@@ -58,6 +60,7 @@ export const uruguayBirds: Bird[] = [
     order: 'Passeriformes',
     habitat: ['urbana', 'rural', 'forest'],
     status: 'resident',
+    commonness: 'abundante',
     departamentos: ['Montevideo', 'Canelones', 'San José', 'Colonia', 'Soriano', 'Río Negro', 'Paysandú', 'Salto', 'Artigas', 'Rivera', 'Tacuarembó', 'Durazno', 'Flores', 'Florida', 'Lavalleja', 'Maldonado', 'Rocha', 'Treinta y Tres', 'Cerro Largo'],
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/422648911/embed'
   },
@@ -69,6 +72,7 @@ export const uruguayBirds: Bird[] = [
     order: 'Passeriformes',
     habitat: ['urbana', 'rural', 'pradera'],
     status: 'resident',
+    commonness: 'abundante',
     departamentos: ['Montevideo', 'Canelones', 'San José', 'Colonia', 'Soriano', 'Río Negro', 'Paysandú', 'Salto', 'Artigas', 'Rivera', 'Tacuarembó', 'Durazno', 'Flores', 'Florida', 'Lavalleja', 'Maldonado', 'Rocha', 'Treinta y Tres', 'Cerro Largo'],
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/86257841/embed'
   },
@@ -80,6 +84,7 @@ export const uruguayBirds: Bird[] = [
     order: 'Passeriformes',
     habitat: ['urbana', 'rural', 'forest', 'wetland'],
     status: 'resident',
+    commonness: 'abundante',
     departamentos: ['Montevideo', 'Canelones', 'San José', 'Colonia', 'Soriano', 'Río Negro', 'Paysandú', 'Salto', 'Artigas', 'Rivera', 'Tacuarembó', 'Durazno', 'Flores', 'Florida', 'Lavalleja', 'Maldonado', 'Rocha', 'Treinta y Tres', 'Cerro Largo'],
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/89968521/embed'
   },
@@ -91,6 +96,7 @@ export const uruguayBirds: Bird[] = [
     order: 'Passeriformes',
     habitat: ['urbana', 'rural'],
     status: 'resident',
+    commonness: 'abundante',
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/191279631/embed'
   },
   {
@@ -101,6 +107,7 @@ export const uruguayBirds: Bird[] = [
     order: 'Passeriformes',
     habitat: ['urbana', 'rural'],
     status: 'resident',
+    commonness: 'común',
     imageUrl: 'https://images.unsplash.com/photo-1552728089-57bdde30beb3?w=400&h=300&fit=crop'
   },
 
@@ -113,6 +120,7 @@ export const uruguayBirds: Bird[] = [
     order: 'Anseriformes',
     habitat: ['wetland', 'coastal'],
     status: 'resident',
+    commonness: 'poco común',
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/79992301/embed'
   },
   {
@@ -122,7 +130,8 @@ export const uruguayBirds: Bird[] = [
     family: 'Anatidae',
     order: 'Anseriformes',
     habitat: ['wetland', 'coastal'],
-    status: 'resident'
+    status: 'resident',
+    commonness: 'rara'
   },
   {
     id: 'white-faced-whistling-duck',
@@ -131,7 +140,8 @@ export const uruguayBirds: Bird[] = [
     family: 'Anatidae',
     order: 'Anseriformes',
     habitat: ['wetland', 'coastal'],
-    status: 'resident'
+    status: 'resident',
+    commonness: 'común'
   },
   {
     id: 'brazilian-teal',
@@ -140,7 +150,8 @@ export const uruguayBirds: Bird[] = [
     family: 'Anatidae',
     order: 'Anseriformes',
     habitat: ['wetland', 'coastal'],
-    status: 'resident'
+    status: 'resident',
+    commonness: 'común'
   },
 
   // Ciconiiformes - Storks and Herons
@@ -151,7 +162,8 @@ export const uruguayBirds: Bird[] = [
     family: 'Ciconiidae',
     order: 'Ciconiiformes',
     habitat: ['wetland', 'coastal'],
-    status: 'resident'
+    status: 'resident',
+    commonness: 'poco común'
   },
   {
     id: 'cocoi-heron',
@@ -160,7 +172,8 @@ export const uruguayBirds: Bird[] = [
     family: 'Ardeidae',
     order: 'Ciconiiformes',
     habitat: ['wetland', 'coastal'],
-    status: 'resident'
+    status: 'resident',
+    commonness: 'común'
   },
 
   // Accipitriformes - Birds of Prey
@@ -171,7 +184,8 @@ export const uruguayBirds: Bird[] = [
     family: 'Cathartidae',
     order: 'Accipitriformes',
     habitat: ['rural', 'pradera', 'forest'],
-    status: 'resident'
+    status: 'resident',
+    commonness: 'abundante'
   },
 
   {
@@ -181,7 +195,8 @@ export const uruguayBirds: Bird[] = [
     family: 'Accipitridae',
     order: 'Accipitriformes',
     habitat: ['urbana', 'rural', 'forest'],
-    status: 'resident'
+    status: 'resident',
+    commonness: 'común'
   },
 
   // Charadriiformes - Shorebirds
@@ -193,6 +208,7 @@ export const uruguayBirds: Bird[] = [
     order: 'Charadriiformes',
     habitat: ['pradera', 'rural', 'urbana'],
     status: 'resident',
+    commonness: 'abundante',
     imageUrl: 'https://images.unsplash.com/photo-1552728089-57bdde30beb3?w=400&h=300&fit=crop'
   },
 
@@ -204,7 +220,8 @@ export const uruguayBirds: Bird[] = [
     family: 'Columbidae',
     order: 'Columbiformes',
     habitat: ['urbana', 'rural', 'forest'],
-    status: 'resident'
+    status: 'resident',
+    commonness: 'común'
   },
   {
     id: 'spot-winged-pigeon',
@@ -213,7 +230,8 @@ export const uruguayBirds: Bird[] = [
     family: 'Columbidae',
     order: 'Columbiformes',
     habitat: ['forest', 'rural'],
-    status: 'resident'
+    status: 'resident',
+    commonness: 'poco común'
   },
   {
     id: 'eared-dove',
@@ -222,7 +240,8 @@ export const uruguayBirds: Bird[] = [
     family: 'Columbidae',
     order: 'Columbiformes',
     habitat: ['urbana', 'rural', 'pradera'],
-    status: 'resident'
+    status: 'resident',
+    commonness: 'abundante'
   },
 
   // Psittaciformes - Parrots
@@ -233,7 +252,8 @@ export const uruguayBirds: Bird[] = [
     family: 'Psittacidae',
     order: 'Psittaciformes',
     habitat: ['urbana', 'rural', 'forest'],
-    status: 'resident'
+    status: 'resident',
+    commonness: 'común'
   },
   {
     id: 'turquoise-fronted-parrot',
@@ -242,7 +262,8 @@ export const uruguayBirds: Bird[] = [
     family: 'Psittacidae',
     order: 'Psittaciformes',
     habitat: ['forest', 'rural'],
-    status: 'resident'
+    status: 'resident',
+    commonness: 'poco común'
   },
 
   // Piciformes - Woodpeckers
@@ -253,7 +274,8 @@ export const uruguayBirds: Bird[] = [
     family: 'Picidae',
     order: 'Piciformes',
     habitat: ['pradera', 'rural'],
-    status: 'resident'
+    status: 'resident',
+    commonness: 'común'
   },
 
   // Coraciiformes - Kingfishers
@@ -264,7 +286,8 @@ export const uruguayBirds: Bird[] = [
     family: 'Alcedinidae',
     order: 'Coraciiformes',
     habitat: ['wetland', 'coastal'],
-    status: 'resident'
+    status: 'resident',
+    commonness: 'poco común'
   },
 ];
 

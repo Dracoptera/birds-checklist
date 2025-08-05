@@ -30,6 +30,7 @@ export interface FilterOptions {
   family: string;
   habitat: string;
   departamento: string;
+  commonness: string;
   searchTerm: string;
 }
 
