@@ -14,14 +14,19 @@ import {
   List as ListIcon,
   BarChart as BarChartIcon,
   Refresh as RefreshIcon,
+  DarkMode as DarkModeIcon,
+  LightMode as LightModeIcon,
 } from '@mui/icons-material';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useUserData } from '../contexts/UserDataContext';
+import { useTheme } from '../contexts/ThemeContext';
+import DataManager from './DataManager';
 
 const Header: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { state, resetData } = useUserData();
+  const { isDarkMode, toggleTheme } = useTheme();
 
   const handleReset = () => {
     if (window.confirm('¿Estás seguro de que quieres reiniciar todos tus datos? Esta acción no se puede deshacer.')) {
@@ -103,6 +108,18 @@ const Header: React.FC = () => {
           >
             Estadísticas
           </Button>
+
+          <Tooltip title={isDarkMode ? "Cambiar a modo claro" : "Cambiar a modo oscuro"}>
+            <IconButton
+              color="inherit"
+              onClick={toggleTheme}
+              size="small"
+            >
+              {isDarkMode ? <LightModeIcon /> : <DarkModeIcon />}
+            </IconButton>
+          </Tooltip>
+
+          <DataManager />
 
           <Tooltip title="Reiniciar datos">
             <IconButton

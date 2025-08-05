@@ -1,39 +1,19 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { ThemeProvider as MuiThemeProvider } from '@mui/material/styles';
 import { CssBaseline, Container } from '@mui/material';
 import Header from './components/Header';
 import Checklist from './components/Checklist';
 import Statistics from './components/Statistics';
 import BirdDetail from './components/BirdDetail';
 import { UserDataProvider } from './contexts/UserDataContext';
+import { ThemeProvider, useTheme } from './contexts/ThemeContext';
 
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: '#2e7d32', // Green color for nature/birding theme
-    },
-    secondary: {
-      main: '#1976d2', // Blue for water/birds
-    },
-    background: {
-      default: '#f5f5f5',
-    },
-  },
-  typography: {
-    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
-    h4: {
-      fontWeight: 600,
-    },
-    h5: {
-      fontWeight: 600,
-    },
-  },
-});
+function AppContent() {
+  const { theme } = useTheme();
 
-function App() {
   return (
-    <ThemeProvider theme={theme}>
+    <MuiThemeProvider theme={theme}>
       <CssBaseline />
       <UserDataProvider>
         <Router>
@@ -47,6 +27,14 @@ function App() {
           </Container>
         </Router>
       </UserDataProvider>
+    </MuiThemeProvider>
+  );
+}
+
+function App() {
+  return (
+    <ThemeProvider>
+      <AppContent />
     </ThemeProvider>
   );
 }

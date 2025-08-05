@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useReducer, useEffect } from 'react';
+import React, { createContext, useContext, useReducer, useEffect, useState } from 'react';
 import { uruguayBirds } from '../data/uruguayBirds';
 import { UserData, BirdObservation, ObservationDetail } from '../types';
 
@@ -139,30 +139,47 @@ interface UserDataContextType {
   addObservation: (birdId: string, observation: Omit<ObservationDetail, 'id'>) => void;
   removeObservation: (birdId: string, observationId: string) => void;
   resetData: () => void;
+  exportData: () => void;
+  importData: (data: UserData) => void;
 }
 
 const UserDataContext = createContext<UserDataContextType | undefined>(undefined);
 
 export function UserDataProvider({ children }: { children: React.ReactNode }) {
   const [state, dispatch] = useReducer(userDataReducer, initialState);
+  const [hasLoadedData, setHasLoadedData] = useState(false);
 
   // Load data from localStorage on mount
   useEffect(() => {
     const savedData = localStorage.getItem('uruguayBirdingData');
+    console.log('Loading saved data:', savedData);
     if (savedData) {
       try {
         const parsedData = JSON.parse(savedData);
+        console.log('Parsed data:', parsedData);
         dispatch({ type: 'LOAD_DATA', data: parsedData });
+        setHasLoadedData(true);
       } catch (error) {
         console.error('Error loading saved data:', error);
       }
+    } else {
+      console.log('No saved data found');
+      setHasLoadedData(true);
     }
   }, []);
 
   // Save data to localStorage whenever state changes
   useEffect(() => {
-    localStorage.setItem('uruguayBirdingData', JSON.stringify(state));
-  }, [state]);
+    // Only save after we've loaded data and if we have actual data
+    if (hasLoadedData && (Object.keys(state.observations).length > 0 || state.totalSeen > 0 || state.totalWithPhotos > 0)) {
+      console.log('Saving state to localStorage:', state);
+      localStorage.setItem('uruguayBirdingData', JSON.stringify(state));
+    } else if (!hasLoadedData) {
+      console.log('Not saving yet - still loading data');
+    } else {
+      console.log('Not saving initial state to localStorage');
+    }
+  }, [state, hasLoadedData]);
 
   const toggleSeen = (birdId: string) => {
     dispatch({ type: 'TOGGLE_SEEN', birdId });
@@ -188,6 +205,30 @@ export function UserDataProvider({ children }: { children: React.ReactNode }) {
     dispatch({ type: 'RESET_DATA' });
   };
 
+  const exportData = () => {
+    const dataToExport = {
+      ...state,
+      exportDate: new Date().toISOString(),
+      version: '1.0',
+    };
+    
+    const dataStr = JSON.stringify(dataToExport, null, 2);
+    const dataBlob = new Blob([dataStr], { type: 'application/json' });
+    const url = URL.createObjectURL(dataBlob);
+    
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `uruguay-birding-checklist-${new Date().toISOString().split('T')[0]}.json`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  };
+
+  const importData = (data: UserData) => {
+    dispatch({ type: 'LOAD_DATA', data });
+  };
+
   const value: UserDataContextType = {
     state,
     dispatch,
@@ -196,6 +237,8 @@ export function UserDataProvider({ children }: { children: React.ReactNode }) {
     addObservation,
     removeObservation,
     resetData,
+    exportData,
+    importData,
   };
 
   return (
