@@ -1,8 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ThemeProvider as MuiThemeProvider } from '@mui/material/styles';
-import { CssBaseline, Container } from '@mui/material';
+import { CssBaseline, Container, Box } from '@mui/material';
 import Header from './components/Header';
+import Footer from './components/Footer';
 import Checklist from './components/Checklist';
 import Statistics from './components/Statistics';
 import BirdDetail from './components/BirdDetail';
@@ -17,14 +18,21 @@ function AppContent() {
       <CssBaseline />
       <UserDataProvider>
         <Router>
-          <Header />
-          <Container maxWidth="lg" sx={{ mt: 2, mb: 4 }}>
-            <Routes>
-              <Route path="/" element={<Checklist />} />
-              <Route path="/statistics" element={<Statistics />} />
-              <Route path="/bird/:birdId" element={<BirdDetail />} />
-            </Routes>
-          </Container>
+          <Box sx={{ 
+            display: 'flex', 
+            flexDirection: 'column', 
+            minHeight: '100vh' 
+          }}>
+            <Header />
+            <Container maxWidth="lg" sx={{ mt: 2, mb: 4, flex: 1 }}>
+              <Routes>
+                <Route path="/" element={<Checklist />} />
+                <Route path="/statistics" element={<Statistics />} />
+                <Route path="/bird/:birdId" element={<BirdDetail />} />
+              </Routes>
+            </Container>
+            <Footer />
+          </Box>
         </Router>
       </UserDataProvider>
     </MuiThemeProvider>

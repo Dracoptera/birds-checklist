@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   AppBar,
   Toolbar,
@@ -16,22 +16,33 @@ import {
   Refresh as RefreshIcon,
   DarkMode as DarkModeIcon,
   LightMode as LightModeIcon,
+  Help as HelpIcon,
 } from '@mui/icons-material';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useUserData } from '../contexts/UserDataContext';
 import { useTheme } from '../contexts/ThemeContext';
 import DataManager from './DataManager';
+import HelpModal from './HelpModal';
 
 const Header: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { state, resetData } = useUserData();
   const { isDarkMode, toggleTheme } = useTheme();
+  const [helpModalOpen, setHelpModalOpen] = useState(false);
 
   const handleReset = () => {
     if (window.confirm('¿Estás seguro de que quieres reiniciar todos tus datos? Esta acción no se puede deshacer.')) {
       resetData();
     }
+  };
+
+  const handleHelpOpen = () => {
+    setHelpModalOpen(true);
+  };
+
+  const handleHelpClose = () => {
+    setHelpModalOpen(false);
   };
 
   return (
@@ -130,8 +141,20 @@ const Header: React.FC = () => {
               <RefreshIcon />
             </IconButton>
           </Tooltip>
+
+          <Tooltip title="Ayuda">
+            <IconButton
+              color="inherit"
+              onClick={handleHelpOpen}
+              size="small"
+            >
+              <HelpIcon />
+            </IconButton>
+          </Tooltip>
         </Box>
       </Toolbar>
+      
+      <HelpModal open={helpModalOpen} onClose={handleHelpClose} />
     </AppBar>
   );
 };
