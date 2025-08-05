@@ -14,6 +14,7 @@ import {
   IconButton,
   Tooltip,
   Paper,
+  Button,
 } from '@mui/material';
 import {
   Visibility as VisibilityIcon,
@@ -39,6 +40,7 @@ const Checklist: React.FC = () => {
     commonness: '',
     searchTerm: '',
   });
+  const [displayCount, setDisplayCount] = useState(10);
 
   const birdsByOrder = useMemo(() => getBirdsByOrder(), []);
   const birdsByFamily = useMemo(() => getBirdsByFamily(), []);
@@ -123,6 +125,7 @@ const Checklist: React.FC = () => {
 
   const handleFilterChange = (field: keyof FilterOptions, value: string) => {
     setFilters(prev => ({ ...prev, [field]: value }));
+    setDisplayCount(10); // Reset to show first 10 birds when filters change
   };
 
   const getBirdObservation = (birdId: string) => {
@@ -272,12 +275,12 @@ const Checklist: React.FC = () => {
 
       {/* Results count */}
       <Typography variant="body2" color="text.secondary" gutterBottom>
-        Mostrando {filteredBirds.length} de {uruguayBirds.length} especies
+        Mostrando {Math.min(displayCount, filteredBirds.length)} de {filteredBirds.length} especies
       </Typography>
 
       {/* Bird list */}
       <Grid container spacing={2}>
-        {filteredBirds.map(bird => {
+        {filteredBirds.slice(0, displayCount).map(bird => {
           const observation = getBirdObservation(bird.id);
           
           return (
@@ -436,6 +439,19 @@ const Checklist: React.FC = () => {
           );
         })}
       </Grid>
+      
+      {/* Show more button */}
+      {displayCount < filteredBirds.length && (
+        <Box sx={{ textAlign: 'center', mt: 3 }}>
+          <Button
+            variant="outlined"
+            onClick={() => setDisplayCount(prev => prev + 10)}
+            sx={{ px: 4, py: 1.5 }}
+          >
+            Mostrar más
+          </Button>
+        </Box>
+      )}
       
       {filteredBirds.length === 0 && (
         <Box sx={{ textAlign: 'center', py: 4 }}>
