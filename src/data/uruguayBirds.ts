@@ -29,7 +29,7 @@ export const uruguayBirds: Bird[] = [
     scientificName: 'Furnarius rufus',
     family: 'Furnariidae',
     order: 'Passeriformes',
-    habitat: ['urban', 'rural', 'grassland'],
+    habitat: ['urbana', 'rural', 'pradera'],
     status: 'resident',
     departamentos: ['Montevideo', 'Canelones', 'San José', 'Colonia', 'Soriano', 'Río Negro', 'Paysandú', 'Salto', 'Artigas', 'Rivera', 'Tacuarembó', 'Durazno', 'Flores', 'Florida', 'Lavalleja', 'Maldonado', 'Rocha', 'Treinta y Tres', 'Cerro Largo'],
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/79992301/embed',
@@ -56,7 +56,7 @@ export const uruguayBirds: Bird[] = [
     scientificName: 'Troglodytes musculus',
     family: 'Troglodytidae',
     order: 'Passeriformes',
-    habitat: ['urban', 'rural', 'forest'],
+    habitat: ['urbana', 'rural', 'forest'],
     status: 'resident',
     departamentos: ['Montevideo', 'Canelones', 'San José', 'Colonia', 'Soriano', 'Río Negro', 'Paysandú', 'Salto', 'Artigas', 'Rivera', 'Tacuarembó', 'Durazno', 'Flores', 'Florida', 'Lavalleja', 'Maldonado', 'Rocha', 'Treinta y Tres', 'Cerro Largo'],
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/422648911/embed'
@@ -67,7 +67,7 @@ export const uruguayBirds: Bird[] = [
     scientificName: 'Mimus saturninus',
     family: 'Mimidae',
     order: 'Passeriformes',
-    habitat: ['urban', 'rural', 'grassland'],
+    habitat: ['urbana', 'rural', 'pradera'],
     status: 'resident',
     departamentos: ['Montevideo', 'Canelones', 'San José', 'Colonia', 'Soriano', 'Río Negro', 'Paysandú', 'Salto', 'Artigas', 'Rivera', 'Tacuarembó', 'Durazno', 'Flores', 'Florida', 'Lavalleja', 'Maldonado', 'Rocha', 'Treinta y Tres', 'Cerro Largo'],
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/86257841/embed'
@@ -78,55 +78,10 @@ export const uruguayBirds: Bird[] = [
     scientificName: 'Pitangus sulphuratus',
     family: 'Tyrannidae',
     order: 'Passeriformes',
-    habitat: ['urban', 'rural', 'forest', 'wetland'],
+    habitat: ['urbana', 'rural', 'forest', 'wetland'],
     status: 'resident',
     departamentos: ['Montevideo', 'Canelones', 'San José', 'Colonia', 'Soriano', 'Río Negro', 'Paysandú', 'Salto', 'Artigas', 'Rivera', 'Tacuarembó', 'Durazno', 'Flores', 'Florida', 'Lavalleja', 'Maldonado', 'Rocha', 'Treinta y Tres', 'Cerro Largo'],
-    ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/79992301/embed'
-  },
-  {
-    id: 'eastern-meadowlark',
-    commonName: 'Loica',
-    scientificName: 'Sturnella magna',
-    family: 'Icteridae',
-    order: 'Passeriformes',
-    habitat: ['grassland', 'rural'],
-    status: 'resident',
-    departamentos: ['Montevideo', 'Canelones', 'San José', 'Colonia', 'Soriano', 'Río Negro', 'Paysandú', 'Salto', 'Artigas', 'Rivera', 'Tacuarembó', 'Durazno', 'Flores', 'Florida', 'Lavalleja', 'Maldonado', 'Rocha', 'Treinta y Tres', 'Cerro Largo'],
-    imageUrl: 'https://images.unsplash.com/photo-1552728089-57bdde30beb3?w=400&h=300&fit=crop'
-  },
-  {
-    id: 'saffron-finch',
-    commonName: 'Chingolo azafrán',
-    scientificName: 'Sicalis flaveola',
-    family: 'Thraupidae',
-    order: 'Passeriformes',
-    habitat: ['urban', 'rural', 'grassland'],
-    status: 'resident',
-    departamentos: ['Montevideo', 'Canelones', 'San José', 'Colonia', 'Soriano', 'Río Negro', 'Paysandú', 'Salto', 'Artigas', 'Rivera', 'Tacuarembó', 'Durazno', 'Flores', 'Florida', 'Lavalleja', 'Maldonado', 'Rocha', 'Treinta y Tres', 'Cerro Largo'],
-    imageUrl: 'https://images.unsplash.com/photo-1552728089-57bdde30beb3?w=400&h=300&fit=crop',
-    variations: [
-      {
-        id: 'male',
-        name: 'Macho',
-        description: 'Macho con plumaje amarillo brillante',
-        imageUrl: 'https://images.unsplash.com/photo-1552728089-57bdde30beb3?w=400&h=300&fit=crop',
-        characteristics: ['Cabeza y pecho amarillo brillante', 'Dorso oliváceo', 'Pico cónico']
-      },
-      {
-        id: 'female',
-        name: 'Hembra',
-        description: 'Hembra con plumaje más apagado',
-        imageUrl: 'https://images.unsplash.com/photo-1552728089-57bdde30beb3?w=400&h=300&fit=crop',
-        characteristics: ['Plumaje más apagado', 'Menos amarillo', 'Rayas en el dorso']
-      },
-      {
-        id: 'juvenile',
-        name: 'Juvenil',
-        description: 'Plumaje juvenil indistinto',
-        imageUrl: 'https://images.unsplash.com/photo-1552728089-57bdde30beb3?w=400&h=300&fit=crop',
-        characteristics: ['Plumaje pardo', 'Rayas en el pecho', 'Pico más claro']
-      }
-    ]
+    ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/89968521/embed'
   },
   {
     id: 'house-sparrow',
@@ -134,9 +89,9 @@ export const uruguayBirds: Bird[] = [
     scientificName: 'Passer domesticus',
     family: 'Passeridae',
     order: 'Passeriformes',
-    habitat: ['urban', 'rural'],
+    habitat: ['urbana', 'rural'],
     status: 'resident',
-    imageUrl: 'https://images.unsplash.com/photo-1552728089-57bdde30beb3?w=400&h=300&fit=crop'
+    ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/191279631/embed'
   },
   {
     id: 'european-starling',
@@ -144,7 +99,7 @@ export const uruguayBirds: Bird[] = [
     scientificName: 'Sturnus vulgaris',
     family: 'Sturnidae',
     order: 'Passeriformes',
-    habitat: ['urban', 'rural'],
+    habitat: ['urbana', 'rural'],
     status: 'resident',
     imageUrl: 'https://images.unsplash.com/photo-1552728089-57bdde30beb3?w=400&h=300&fit=crop'
   },
@@ -215,7 +170,7 @@ export const uruguayBirds: Bird[] = [
     scientificName: 'Cathartes aura',
     family: 'Cathartidae',
     order: 'Accipitriformes',
-    habitat: ['rural', 'grassland', 'forest'],
+    habitat: ['rural', 'pradera', 'forest'],
     status: 'resident'
   },
 
@@ -225,7 +180,7 @@ export const uruguayBirds: Bird[] = [
     scientificName: 'Rupornis magnirostris',
     family: 'Accipitridae',
     order: 'Accipitriformes',
-    habitat: ['urban', 'rural', 'forest'],
+    habitat: ['urbana', 'rural', 'forest'],
     status: 'resident'
   },
 
@@ -236,7 +191,7 @@ export const uruguayBirds: Bird[] = [
     scientificName: 'Vanellus chilensis',
     family: 'Charadriidae',
     order: 'Charadriiformes',
-    habitat: ['grassland', 'rural', 'urban'],
+    habitat: ['pradera', 'rural', 'urbana'],
     status: 'resident',
     imageUrl: 'https://images.unsplash.com/photo-1552728089-57bdde30beb3?w=400&h=300&fit=crop'
   },
@@ -248,7 +203,7 @@ export const uruguayBirds: Bird[] = [
     scientificName: 'Patagioenas picazuro',
     family: 'Columbidae',
     order: 'Columbiformes',
-    habitat: ['urban', 'rural', 'forest'],
+    habitat: ['urbana', 'rural', 'forest'],
     status: 'resident'
   },
   {
@@ -266,7 +221,7 @@ export const uruguayBirds: Bird[] = [
     scientificName: 'Zenaida auriculata',
     family: 'Columbidae',
     order: 'Columbiformes',
-    habitat: ['urban', 'rural', 'grassland'],
+    habitat: ['urbana', 'rural', 'pradera'],
     status: 'resident'
   },
 
@@ -277,7 +232,7 @@ export const uruguayBirds: Bird[] = [
     scientificName: 'Myiopsitta monachus',
     family: 'Psittacidae',
     order: 'Psittaciformes',
-    habitat: ['urban', 'rural', 'forest'],
+    habitat: ['urbana', 'rural', 'forest'],
     status: 'resident'
   },
   {
@@ -297,7 +252,7 @@ export const uruguayBirds: Bird[] = [
     scientificName: 'Colaptes campestris',
     family: 'Picidae',
     order: 'Piciformes',
-    habitat: ['grassland', 'rural'],
+    habitat: ['pradera', 'rural'],
     status: 'resident'
   },
 
