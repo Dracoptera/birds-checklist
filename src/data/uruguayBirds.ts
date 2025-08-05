@@ -1,3 +1,12 @@
+export interface BirdVariation {
+  id: string;
+  name: string;
+  description?: string;
+  imageUrl?: string;
+  ebirdEmbedUrl?: string;
+  characteristics?: string[];
+}
+
 export interface Bird {
   id: string;
   commonName: string;
@@ -6,8 +15,10 @@ export interface Bird {
   order: string;
   habitat: string[];
   status: 'resident' | 'migratory' | 'visitor' | 'rare';
+  departamentos?: string[];
   imageUrl?: string;
   ebirdEmbedUrl?: string;
+  variations?: BirdVariation[];
 }
 
 export const uruguayBirds: Bird[] = [
@@ -20,17 +31,35 @@ export const uruguayBirds: Bird[] = [
     order: 'Passeriformes',
     habitat: ['urban', 'rural', 'grassland'],
     status: 'resident',
-    ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/79992301/embed'
+    departamentos: ['Montevideo', 'Canelones', 'San José', 'Colonia', 'Soriano', 'Río Negro', 'Paysandú', 'Salto', 'Artigas', 'Rivera', 'Tacuarembó', 'Durazno', 'Flores', 'Florida', 'Lavalleja', 'Maldonado', 'Rocha', 'Treinta y Tres', 'Cerro Largo'],
+    ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/79992301/embed',
+    variations: [
+      {
+        id: 'adult',
+        name: 'Adulto',
+        description: 'Plumaje completo del adulto',
+        ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/79992301/embed',
+        characteristics: ['Plumaje rufo uniforme', 'Pico negro', 'Patas grises']
+      },
+      {
+        id: 'juvenile',
+        name: 'Juvenil',
+        description: 'Plumaje juvenil más pálido',
+        ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/422648911/embed',
+        characteristics: ['Plumaje más pálido', 'Pico más claro', 'Menos contraste']
+      }
+    ]
   },
   {
     id: 'southern-house-wren',
-    commonName: 'Ratona común',
-    scientificName: 'Troglodytes aedon',
+    commonName: 'Ratonera',
+    scientificName: 'Troglodytes musculus',
     family: 'Troglodytidae',
     order: 'Passeriformes',
     habitat: ['urban', 'rural', 'forest'],
     status: 'resident',
-    ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/79992301/embed'
+    departamentos: ['Montevideo', 'Canelones', 'San José', 'Colonia', 'Soriano', 'Río Negro', 'Paysandú', 'Salto', 'Artigas', 'Rivera', 'Tacuarembó', 'Durazno', 'Flores', 'Florida', 'Lavalleja', 'Maldonado', 'Rocha', 'Treinta y Tres', 'Cerro Largo'],
+    ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/422648911/embed'
   },
   {
     id: 'chalk-browed-mockingbird',
@@ -40,7 +69,8 @@ export const uruguayBirds: Bird[] = [
     order: 'Passeriformes',
     habitat: ['urban', 'rural', 'grassland'],
     status: 'resident',
-    imageUrl: 'https://images.unsplash.com/photo-1552728089-57bdde30beb3?w=400&h=300&fit=crop'
+    departamentos: ['Montevideo', 'Canelones', 'San José', 'Colonia', 'Soriano', 'Río Negro', 'Paysandú', 'Salto', 'Artigas', 'Rivera', 'Tacuarembó', 'Durazno', 'Flores', 'Florida', 'Lavalleja', 'Maldonado', 'Rocha', 'Treinta y Tres', 'Cerro Largo'],
+    ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/86257841/embed'
   },
   {
     id: 'great-kiskadee',
@@ -50,6 +80,7 @@ export const uruguayBirds: Bird[] = [
     order: 'Passeriformes',
     habitat: ['urban', 'rural', 'forest', 'wetland'],
     status: 'resident',
+    departamentos: ['Montevideo', 'Canelones', 'San José', 'Colonia', 'Soriano', 'Río Negro', 'Paysandú', 'Salto', 'Artigas', 'Rivera', 'Tacuarembó', 'Durazno', 'Flores', 'Florida', 'Lavalleja', 'Maldonado', 'Rocha', 'Treinta y Tres', 'Cerro Largo'],
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/79992301/embed'
   },
   {
@@ -60,6 +91,7 @@ export const uruguayBirds: Bird[] = [
     order: 'Passeriformes',
     habitat: ['grassland', 'rural'],
     status: 'resident',
+    departamentos: ['Montevideo', 'Canelones', 'San José', 'Colonia', 'Soriano', 'Río Negro', 'Paysandú', 'Salto', 'Artigas', 'Rivera', 'Tacuarembó', 'Durazno', 'Flores', 'Florida', 'Lavalleja', 'Maldonado', 'Rocha', 'Treinta y Tres', 'Cerro Largo'],
     imageUrl: 'https://images.unsplash.com/photo-1552728089-57bdde30beb3?w=400&h=300&fit=crop'
   },
   {
@@ -70,7 +102,31 @@ export const uruguayBirds: Bird[] = [
     order: 'Passeriformes',
     habitat: ['urban', 'rural', 'grassland'],
     status: 'resident',
-    imageUrl: 'https://images.unsplash.com/photo-1552728089-57bdde30beb3?w=400&h=300&fit=crop'
+    departamentos: ['Montevideo', 'Canelones', 'San José', 'Colonia', 'Soriano', 'Río Negro', 'Paysandú', 'Salto', 'Artigas', 'Rivera', 'Tacuarembó', 'Durazno', 'Flores', 'Florida', 'Lavalleja', 'Maldonado', 'Rocha', 'Treinta y Tres', 'Cerro Largo'],
+    imageUrl: 'https://images.unsplash.com/photo-1552728089-57bdde30beb3?w=400&h=300&fit=crop',
+    variations: [
+      {
+        id: 'male',
+        name: 'Macho',
+        description: 'Macho con plumaje amarillo brillante',
+        imageUrl: 'https://images.unsplash.com/photo-1552728089-57bdde30beb3?w=400&h=300&fit=crop',
+        characteristics: ['Cabeza y pecho amarillo brillante', 'Dorso oliváceo', 'Pico cónico']
+      },
+      {
+        id: 'female',
+        name: 'Hembra',
+        description: 'Hembra con plumaje más apagado',
+        imageUrl: 'https://images.unsplash.com/photo-1552728089-57bdde30beb3?w=400&h=300&fit=crop',
+        characteristics: ['Plumaje más apagado', 'Menos amarillo', 'Rayas en el dorso']
+      },
+      {
+        id: 'juvenile',
+        name: 'Juvenil',
+        description: 'Plumaje juvenil indistinto',
+        imageUrl: 'https://images.unsplash.com/photo-1552728089-57bdde30beb3?w=400&h=300&fit=crop',
+        characteristics: ['Plumaje pardo', 'Rayas en el pecho', 'Pico más claro']
+      }
+    ]
   },
   {
     id: 'house-sparrow',
@@ -151,24 +207,6 @@ export const uruguayBirds: Bird[] = [
     habitat: ['wetland', 'coastal'],
     status: 'resident'
   },
-  {
-    id: 'great-egret',
-    commonName: 'Garceta grande',
-    scientificName: 'Ardea alba',
-    family: 'Ardeidae',
-    order: 'Ciconiiformes',
-    habitat: ['wetland', 'coastal'],
-    status: 'resident'
-  },
-  {
-    id: 'snowy-egret',
-    commonName: 'Garceta nívea',
-    scientificName: 'Egretta thula',
-    family: 'Ardeidae',
-    order: 'Ciconiiformes',
-    habitat: ['wetland', 'coastal'],
-    status: 'resident'
-  },
 
   // Accipitriformes - Birds of Prey
   {
@@ -180,24 +218,7 @@ export const uruguayBirds: Bird[] = [
     habitat: ['rural', 'grassland', 'forest'],
     status: 'resident'
   },
-  {
-    id: 'black-vulture',
-    commonName: 'Jote cabeza roja',
-    scientificName: 'Coragyps atratus',
-    family: 'Cathartidae',
-    order: 'Accipitriformes',
-    habitat: ['rural', 'grassland', 'forest'],
-    status: 'resident'
-  },
-  {
-    id: 'savanna-hawk',
-    commonName: 'Gavilán colorado',
-    scientificName: 'Buteogallus meridionalis',
-    family: 'Accipitridae',
-    order: 'Accipitriformes',
-    habitat: ['grassland', 'rural'],
-    status: 'resident'
-  },
+
   {
     id: 'roadside-hawk',
     commonName: 'Gavilán caminero',
@@ -218,24 +239,6 @@ export const uruguayBirds: Bird[] = [
     habitat: ['grassland', 'rural', 'urban'],
     status: 'resident',
     imageUrl: 'https://images.unsplash.com/photo-1552728089-57bdde30beb3?w=400&h=300&fit=crop'
-  },
-  {
-    id: 'kelp-gull',
-    commonName: 'Gaviota cocinera',
-    scientificName: 'Larus dominicanus',
-    family: 'Laridae',
-    order: 'Charadriiformes',
-    habitat: ['coastal', 'urban'],
-    status: 'resident'
-  },
-  {
-    id: 'brown-hooded-gull',
-    commonName: 'Gaviota capucho café',
-    scientificName: 'Chroicocephalus maculipennis',
-    family: 'Laridae',
-    order: 'Charadriiformes',
-    habitat: ['coastal', 'wetland'],
-    status: 'resident'
   },
 
   // Columbiformes - Pigeons and Doves
@@ -289,15 +292,6 @@ export const uruguayBirds: Bird[] = [
 
   // Piciformes - Woodpeckers
   {
-    id: 'white-fronted-woodpecker',
-    commonName: 'Carpintero de frente blanca',
-    scientificName: 'Melanerpes cactorum',
-    family: 'Picidae',
-    order: 'Piciformes',
-    habitat: ['forest', 'rural'],
-    status: 'resident'
-  },
-  {
     id: 'campo-flicker',
     commonName: 'Carpintero campestre',
     scientificName: 'Colaptes campestris',
@@ -317,15 +311,6 @@ export const uruguayBirds: Bird[] = [
     habitat: ['wetland', 'coastal'],
     status: 'resident'
   },
-  {
-    id: 'amazon-kingfisher',
-    commonName: 'Martín pescador mediano',
-    scientificName: 'Chloroceryle amazona',
-    family: 'Alcedinidae',
-    order: 'Coraciiformes',
-    habitat: ['wetland', 'coastal'],
-    status: 'resident'
-  }
 ];
 
 export const getBirdsByOrder = () => {

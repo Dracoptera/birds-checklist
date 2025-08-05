@@ -29,6 +29,7 @@ export interface FilterOptions {
   order: string;
   family: string;
   habitat: string;
+  departamento: string;
   searchTerm: string;
 }
 

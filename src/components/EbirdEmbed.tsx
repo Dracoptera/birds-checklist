@@ -5,12 +5,14 @@ interface EbirdEmbedProps {
   embedUrl: string;
   height?: number | string;
   width?: number | string;
+  compact?: boolean;
 }
 
 const EbirdEmbed: React.FC<EbirdEmbedProps> = ({ 
   embedUrl, 
   height = 415, 
-  width = '100%' 
+  width = '100%',
+  compact = true
 }) => {
   return (
     <Box
@@ -20,6 +22,14 @@ const EbirdEmbed: React.FC<EbirdEmbedProps> = ({
         position: 'relative',
         overflow: 'hidden',
         borderRadius: 1,
+        ...(compact && {
+          '& iframe': {
+            transform: 'scale(0.85)',
+            transformOrigin: 'top left',
+            width: '117.6%', // 100% / 0.85 to compensate for scale
+            height: '117.6%', // 100% / 0.85 to compensate for scale
+          }
+        })
       }}
     >
       <iframe

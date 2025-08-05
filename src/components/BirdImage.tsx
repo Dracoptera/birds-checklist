@@ -8,16 +8,18 @@ interface BirdImageProps {
   bird: Bird;
   height?: number | string;
   showPlaceholder?: boolean;
+  compact?: boolean;
 }
 
 const BirdImage: React.FC<BirdImageProps> = ({ 
   bird, 
   height = 315, 
-  showPlaceholder = true 
+  showPlaceholder = true,
+  compact = true
 }) => {
   // Priority: eBird embed > regular image > placeholder
   if (bird.ebirdEmbedUrl) {
-    return <EbirdEmbed embedUrl={bird.ebirdEmbedUrl} height={height} />;
+    return <EbirdEmbed embedUrl={bird.ebirdEmbedUrl} height={height} compact={compact} />;
   }
 
   if (bird.imageUrl) {

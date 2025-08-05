@@ -9,6 +9,7 @@ import {
   IconButton,
   Tooltip,
 } from '@mui/material';
+import robinImage from '../assets/index/robin.png';
 import {
   List as ListIcon,
   BarChart as BarChartIcon,
@@ -31,27 +32,52 @@ const Header: React.FC = () => {
   return (
     <AppBar position="static" elevation={2}>
       <Toolbar>
-        <Typography
-          variant="h6"
-          component="div"
-          sx={{ flexGrow: 1, cursor: 'pointer' }}
+        <Box
+          sx={{ 
+            flexGrow: 1, 
+            cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            gap: 1
+          }}
           onClick={() => navigate('/')}
         >
-          🦅 Checklist de Aves de Uruguay
-        </Typography>
+          <img 
+            src={robinImage} 
+            alt="Robin" 
+            style={{ 
+              width: '32px', 
+              height: '32px',
+              objectFit: 'contain'
+            }} 
+          />
+          <Typography variant="h6" component="div">
+            Checklist de Aves de Uruguay
+          </Typography>
+        </Box>
 
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
           <Chip
             label={`${state.totalSeen} vistas`}
             color="secondary"
             size="small"
-            variant="outlined"
+            variant="filled"
+            sx={{ 
+              backgroundColor: 'rgba(255,255,255,0.9)',
+              color: 'text.primary',
+              fontWeight: 'bold'
+            }}
           />
           <Chip
             label={`${state.totalWithPhotos} con fotos`}
             color="primary"
             size="small"
-            variant="outlined"
+            variant="filled"
+            sx={{ 
+              backgroundColor: 'rgba(255,255,255,0.9)',
+              color: 'text.primary',
+              fontWeight: 'bold'
+            }}
           />
 
           <Button

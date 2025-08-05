@@ -29,11 +29,17 @@ import {
   CalendarToday as CalendarIcon,
   LocationOn as LocationIcon,
   Notes as NotesIcon,
+  Info as InfoIcon,
+  Nature as NatureIcon,
+  Map as MapIcon,
+  VolumeUp as VolumeIcon,
+  Timeline as TimelineIcon,
 } from '@mui/icons-material';
 import { useParams, useNavigate } from 'react-router-dom';
 import { uruguayBirds } from '../data/uruguayBirds';
 import { useUserData } from '../contexts/UserDataContext';
 import BirdImage from './BirdImage';
+import BirdVariations from './BirdVariations';
 
 const BirdDetail: React.FC = () => {
   const { birdId } = useParams<{ birdId: string }>();
@@ -96,7 +102,7 @@ const BirdDetail: React.FC = () => {
       </Button>
 
       <Card sx={{ mb: 3 }}>
-        <BirdImage bird={bird} height={415} />
+        <BirdImage bird={bird} height={500} compact={false} />
         <CardContent>
           <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', mb: 2 }}>
             <Box>
@@ -147,6 +153,25 @@ const BirdDetail: React.FC = () => {
             </Grid>
           </Grid>
 
+          {bird.departamentos && bird.departamentos.length > 0 && (
+            <Box sx={{ mb: 2 }}>
+              <Typography variant="subtitle2" gutterBottom>
+                Departamentos:
+              </Typography>
+              <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
+                {bird.departamentos.map(departamento => (
+                  <Chip 
+                    key={departamento} 
+                    label={departamento} 
+                    size="small" 
+                    color="info" 
+                    variant="outlined"
+                  />
+                ))}
+              </Box>
+            </Box>
+          )}
+
           <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
             <Chip 
               label={observation?.seen ? 'Visto' : 'No visto'} 
@@ -161,6 +186,20 @@ const BirdDetail: React.FC = () => {
           </Box>
         </CardContent>
       </Card>
+
+      {/* Variations Section */}
+      {bird.variations && bird.variations.length > 0 && (
+        <Paper sx={{ p: 2, mb: 3 }}>
+          <BirdVariations 
+            variations={bird.variations} 
+            height={400}
+            onVariationChange={(variation) => {
+              console.log('Selected variation:', variation);
+              // Here you could track which variation was viewed
+            }}
+          />
+        </Paper>
+      )}
 
       {/* Observations Section */}
       <Paper sx={{ p: 2 }}>
@@ -249,6 +288,142 @@ const BirdDetail: React.FC = () => {
           </Box>
         )}
       </Paper>
+
+      {/* Additional Information Sections */}
+      <Grid container spacing={3} sx={{ mt: 2 }}>
+        {/* Description Section */}
+        <Grid item xs={12} md={6}>
+          <Paper sx={{ p: 2 }}>
+            <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+              <InfoIcon sx={{ mr: 1, color: 'primary.main' }} />
+              <Typography variant="h6">Descripción</Typography>
+            </Box>
+            <Typography variant="body2" paragraph>
+              Esta especie se caracteriza por su plumaje distintivo y comportamiento único. 
+              Los adultos presentan dimorfismo sexual, con los machos exhibiendo colores más vibrantes 
+              durante la época reproductiva.
+            </Typography>
+            <Typography variant="body2" paragraph>
+              Su canto es melodioso y puede ser escuchado principalmente durante las primeras horas 
+              de la mañana y al atardecer. La especie es conocida por su adaptabilidad a diferentes 
+              hábitats y su capacidad de migración estacional.
+            </Typography>
+          </Paper>
+        </Grid>
+
+        {/* Behavior Section */}
+        <Grid item xs={12} md={6}>
+          <Paper sx={{ p: 2 }}>
+            <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+              <NatureIcon sx={{ mr: 1, color: 'primary.main' }} />
+              <Typography variant="h6">Comportamiento</Typography>
+            </Box>
+            <Typography variant="body2" paragraph>
+              <strong>Alimentación:</strong> Principalmente insectívora, aunque también consume 
+              semillas y frutos pequeños durante el invierno.
+            </Typography>
+            <Typography variant="body2" paragraph>
+              <strong>Reproducción:</strong> Construye nidos en cavidades naturales o artificiales. 
+              La época de cría se extiende de septiembre a diciembre.
+            </Typography>
+            <Typography variant="body2">
+              <strong>Social:</strong> Generalmente solitaria, pero puede formar pequeñas bandadas 
+              durante la migración.
+            </Typography>
+          </Paper>
+        </Grid>
+
+        {/* Distribution Section */}
+        <Grid item xs={12} md={6}>
+          <Paper sx={{ p: 2 }}>
+            <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+              <MapIcon sx={{ mr: 1, color: 'primary.main' }} />
+              <Typography variant="h6">Distribución en Uruguay</Typography>
+            </Box>
+            <Typography variant="body2" paragraph>
+              <strong>Presencia:</strong> Residente común en todo el territorio uruguayo.
+            </Typography>
+            <Typography variant="body2" paragraph>
+              <strong>Hábitats preferidos:</strong> Bosques ribereños, parques urbanos, 
+              y áreas con vegetación densa.
+            </Typography>
+            <Typography variant="body2">
+              <strong>Conservación:</strong> Estado de conservación favorable, 
+              población estable en la región.
+            </Typography>
+          </Paper>
+        </Grid>
+
+        {/* Sounds Section */}
+        <Grid item xs={12} md={6}>
+          <Paper sx={{ p: 2 }}>
+            <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+              <VolumeIcon sx={{ mr: 1, color: 'primary.main' }} />
+              <Typography variant="h6">Sonidos</Typography>
+            </Box>
+            <Typography variant="body2" paragraph>
+              <strong>Canto:</strong> Serie de notas musicales ascendentes, 
+              seguida de un trino característico.
+            </Typography>
+            <Typography variant="body2" paragraph>
+              <strong>Llamadas:</strong> Notas cortas y agudas para comunicación 
+              entre individuos.
+            </Typography>
+            <Typography variant="body2">
+              <strong>Época:</strong> Más vocal durante la primavera y verano, 
+              especialmente al amanecer.
+            </Typography>
+          </Paper>
+        </Grid>
+
+        {/* Seasonal Patterns */}
+        <Grid item xs={12}>
+          <Paper sx={{ p: 2 }}>
+            <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+              <TimelineIcon sx={{ mr: 1, color: 'primary.main' }} />
+              <Typography variant="h6">Patrones Estacionales</Typography>
+            </Box>
+            <Grid container spacing={2}>
+              <Grid item xs={12} sm={6} md={3}>
+                <Typography variant="subtitle2" color="primary" gutterBottom>
+                  Primavera
+                </Typography>
+                <Typography variant="body2" paragraph>
+                  Llegada de migrantes, inicio de la época reproductiva, 
+                  mayor actividad vocal y territorial.
+                </Typography>
+              </Grid>
+              <Grid item xs={12} sm={6} md={3}>
+                <Typography variant="subtitle2" color="primary" gutterBottom>
+                  Verano
+                </Typography>
+                <Typography variant="body2" paragraph>
+                  Cría activa, alimentación de pichones, 
+                  menor actividad vocal pero mayor presencia.
+                </Typography>
+              </Grid>
+              <Grid item xs={12} sm={6} md={3}>
+                <Typography variant="subtitle2" color="primary" gutterBottom>
+                  Otoño
+                </Typography>
+                <Typography variant="body2" paragraph>
+                  Preparación para migración, formación de bandadas, 
+                  cambio en hábitos alimentarios.
+                </Typography>
+              </Grid>
+              <Grid item xs={12} sm={6} md={3}>
+                <Typography variant="subtitle2" color="primary" gutterBottom>
+                  Invierno
+                </Typography>
+                <Typography variant="body2" paragraph>
+                  Población reducida, menor actividad, 
+                  concentración en áreas con recursos alimentarios.
+                </Typography>
+              </Grid>
+            </Grid>
+          </Paper>
+        </Grid>
+      </Grid>
 
       {/* Add Observation Dialog */}
       <Dialog open={isAddDialogOpen} onClose={() => setIsAddDialogOpen(false)} maxWidth="sm" fullWidth>

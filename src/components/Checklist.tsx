@@ -35,6 +35,7 @@ const Checklist: React.FC = () => {
     order: '',
     family: '',
     habitat: '',
+    departamento: '',
     searchTerm: '',
   });
 
@@ -49,6 +50,16 @@ const Checklist: React.FC = () => {
       bird.habitat.forEach(h => habitats.add(h));
     });
     return Array.from(habitats).sort();
+  }, []);
+
+  const uniqueDepartamentos = useMemo(() => {
+    const departamentos = new Set<string>();
+    uruguayBirds.forEach(bird => {
+      if (bird.departamentos) {
+        bird.departamentos.forEach(d => departamentos.add(d));
+      }
+    });
+    return Array.from(departamentos).sort();
   }, []);
 
   const filteredBirds = useMemo(() => {
@@ -71,6 +82,9 @@ const Checklist: React.FC = () => {
       
       // Filter by habitat
       if (filters.habitat && !bird.habitat.includes(filters.habitat)) return false;
+      
+      // Filter by departamento
+      if (filters.departamento && (!bird.departamentos || !bird.departamentos.includes(filters.departamento))) return false;
       
       // Filter by search term
       if (filters.searchTerm) {
@@ -191,6 +205,22 @@ const Checklist: React.FC = () => {
           </Grid>
           
           <Grid item xs={12} sm={6} md={3}>
+            <FormControl fullWidth size="small">
+              <InputLabel>Departamento</InputLabel>
+              <Select
+                value={filters.departamento}
+                label="Departamento"
+                onChange={(e) => handleFilterChange('departamento', e.target.value)}
+              >
+                <MenuItem value="">Todos</MenuItem>
+                {uniqueDepartamentos.map(departamento => (
+                  <MenuItem key={departamento} value={departamento}>{departamento}</MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          </Grid>
+          
+          <Grid item xs={12} sm={6} md={3}>
             <TextField
               fullWidth
               size="small"
@@ -227,7 +257,7 @@ const Checklist: React.FC = () => {
                 }}
               >
                 <Box sx={{ position: 'relative' }}>
-                  <BirdImage bird={bird} height={315} />
+                  <BirdImage bird={bird} height={350} />
                   <Box
                     sx={{
                       position: 'absolute',
@@ -279,7 +309,19 @@ const Checklist: React.FC = () => {
                 </Box>
                 <CardContent sx={{ p: 2 }}>
                   <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', mb: 2 }}>
-                    <Typography variant="h6" component="div" sx={{ fontWeight: 'bold' }}>
+                    <Typography 
+                      variant="h6" 
+                      component="div" 
+                      sx={{ 
+                        fontWeight: 'bold',
+                        cursor: 'pointer',
+                        '&:hover': {
+                          color: 'primary.main',
+                          textDecoration: 'underline'
+                        }
+                      }}
+                      onClick={() => navigate(`/bird/${bird.id}`)}
+                    >
                       {bird.commonName}
                     </Typography>
                     {!bird.imageUrl && (
