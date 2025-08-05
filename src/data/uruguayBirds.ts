@@ -14,7 +14,7 @@ export interface Bird {
   family: string;
   order: string;
   habitat: string[];
-  status: 'resident' | 'migratory' | 'visitor' | 'rare';
+  status: 'residente' | 'migratoria' | 'visitante';
   commonness: 'abundante' | 'común' | 'poco común' | 'rara' | 'muy rara';
   departamentos?: string[];
   imageUrl?: string;
@@ -31,7 +31,7 @@ export const uruguayBirds: Bird[] = [
     family: 'Furnariidae',
     order: 'Passeriformes',
     habitat: ['urbana', 'rural', 'pradera'],
-    status: 'resident',
+    status: 'residente',
     commonness: 'abundante',
     departamentos: ['Montevideo', 'Canelones', 'San José', 'Colonia', 'Soriano', 'Río Negro', 'Paysandú', 'Salto', 'Artigas', 'Rivera', 'Tacuarembó', 'Durazno', 'Flores', 'Florida', 'Lavalleja', 'Maldonado', 'Rocha', 'Treinta y Tres', 'Cerro Largo'],
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/79992301/embed',
@@ -59,7 +59,7 @@ export const uruguayBirds: Bird[] = [
     family: 'Troglodytidae',
     order: 'Passeriformes',
     habitat: ['urbana', 'rural', 'forest'],
-    status: 'resident',
+    status: 'residente',
     commonness: 'abundante',
     departamentos: ['Montevideo', 'Canelones', 'San José', 'Colonia', 'Soriano', 'Río Negro', 'Paysandú', 'Salto', 'Artigas', 'Rivera', 'Tacuarembó', 'Durazno', 'Flores', 'Florida', 'Lavalleja', 'Maldonado', 'Rocha', 'Treinta y Tres', 'Cerro Largo'],
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/422648911/embed'
@@ -71,7 +71,7 @@ export const uruguayBirds: Bird[] = [
     family: 'Mimidae',
     order: 'Passeriformes',
     habitat: ['urbana', 'rural', 'pradera'],
-    status: 'resident',
+    status: 'residente',
     commonness: 'abundante',
     departamentos: ['Montevideo', 'Canelones', 'San José', 'Colonia', 'Soriano', 'Río Negro', 'Paysandú', 'Salto', 'Artigas', 'Rivera', 'Tacuarembó', 'Durazno', 'Flores', 'Florida', 'Lavalleja', 'Maldonado', 'Rocha', 'Treinta y Tres', 'Cerro Largo'],
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/86257841/embed'
@@ -83,7 +83,7 @@ export const uruguayBirds: Bird[] = [
     family: 'Tyrannidae',
     order: 'Passeriformes',
     habitat: ['urbana', 'rural', 'forest', 'wetland'],
-    status: 'resident',
+    status: 'residente',
     commonness: 'abundante',
     departamentos: ['Montevideo', 'Canelones', 'San José', 'Colonia', 'Soriano', 'Río Negro', 'Paysandú', 'Salto', 'Artigas', 'Rivera', 'Tacuarembó', 'Durazno', 'Flores', 'Florida', 'Lavalleja', 'Maldonado', 'Rocha', 'Treinta y Tres', 'Cerro Largo'],
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/89968521/embed'
@@ -95,7 +95,7 @@ export const uruguayBirds: Bird[] = [
     family: 'Passeridae',
     order: 'Passeriformes',
     habitat: ['urbana', 'rural'],
-    status: 'resident',
+    status: 'residente',
     commonness: 'abundante',
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/191279631/embed'
   },
@@ -106,7 +106,7 @@ export const uruguayBirds: Bird[] = [
     family: 'Sturnidae',
     order: 'Passeriformes',
     habitat: ['urbana', 'rural'],
-    status: 'resident',
+    status: 'residente',
     commonness: 'común',
     imageUrl: 'https://images.unsplash.com/photo-1552728089-57bdde30beb3?w=400&h=300&fit=crop'
   },
@@ -119,7 +119,7 @@ export const uruguayBirds: Bird[] = [
     family: 'Anatidae',
     order: 'Anseriformes',
     habitat: ['wetland', 'coastal'],
-    status: 'resident',
+    status: 'residente',
     commonness: 'poco común',
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/79992301/embed'
   },
@@ -130,7 +130,7 @@ export const uruguayBirds: Bird[] = [
     family: 'Anatidae',
     order: 'Anseriformes',
     habitat: ['wetland', 'coastal'],
-    status: 'resident',
+    status: 'residente',
     commonness: 'rara'
   },
   {
@@ -140,7 +140,7 @@ export const uruguayBirds: Bird[] = [
     family: 'Anatidae',
     order: 'Anseriformes',
     habitat: ['wetland', 'coastal'],
-    status: 'resident',
+    status: 'residente',
     commonness: 'común'
   },
   {
@@ -150,7 +150,7 @@ export const uruguayBirds: Bird[] = [
     family: 'Anatidae',
     order: 'Anseriformes',
     habitat: ['wetland', 'coastal'],
-    status: 'resident',
+    status: 'residente',
     commonness: 'común'
   },
 
@@ -162,7 +162,7 @@ export const uruguayBirds: Bird[] = [
     family: 'Ciconiidae',
     order: 'Ciconiiformes',
     habitat: ['wetland', 'coastal'],
-    status: 'resident',
+    status: 'residente',
     commonness: 'poco común'
   },
   {
@@ -172,7 +172,7 @@ export const uruguayBirds: Bird[] = [
     family: 'Ardeidae',
     order: 'Ciconiiformes',
     habitat: ['wetland', 'coastal'],
-    status: 'resident',
+    status: 'residente',
     commonness: 'común'
   },
 
@@ -184,7 +184,7 @@ export const uruguayBirds: Bird[] = [
     family: 'Cathartidae',
     order: 'Accipitriformes',
     habitat: ['rural', 'pradera', 'forest'],
-    status: 'resident',
+    status: 'residente',
     commonness: 'abundante'
   },
 
@@ -195,7 +195,7 @@ export const uruguayBirds: Bird[] = [
     family: 'Accipitridae',
     order: 'Accipitriformes',
     habitat: ['urbana', 'rural', 'forest'],
-    status: 'resident',
+    status: 'residente',
     commonness: 'común'
   },
 
@@ -207,7 +207,7 @@ export const uruguayBirds: Bird[] = [
     family: 'Charadriidae',
     order: 'Charadriiformes',
     habitat: ['pradera', 'rural', 'urbana'],
-    status: 'resident',
+    status: 'residente',
     commonness: 'abundante',
     imageUrl: 'https://images.unsplash.com/photo-1552728089-57bdde30beb3?w=400&h=300&fit=crop'
   },
@@ -220,7 +220,7 @@ export const uruguayBirds: Bird[] = [
     family: 'Columbidae',
     order: 'Columbiformes',
     habitat: ['urbana', 'rural', 'forest'],
-    status: 'resident',
+    status: 'residente',
     commonness: 'común'
   },
   {
@@ -230,7 +230,7 @@ export const uruguayBirds: Bird[] = [
     family: 'Columbidae',
     order: 'Columbiformes',
     habitat: ['forest', 'rural'],
-    status: 'resident',
+    status: 'residente',
     commonness: 'poco común'
   },
   {
@@ -240,7 +240,7 @@ export const uruguayBirds: Bird[] = [
     family: 'Columbidae',
     order: 'Columbiformes',
     habitat: ['urbana', 'rural', 'pradera'],
-    status: 'resident',
+    status: 'residente',
     commonness: 'abundante'
   },
 
@@ -252,7 +252,7 @@ export const uruguayBirds: Bird[] = [
     family: 'Psittacidae',
     order: 'Psittaciformes',
     habitat: ['urbana', 'rural', 'forest'],
-    status: 'resident',
+    status: 'residente',
     commonness: 'común'
   },
   {
@@ -262,7 +262,7 @@ export const uruguayBirds: Bird[] = [
     family: 'Psittacidae',
     order: 'Psittaciformes',
     habitat: ['forest', 'rural'],
-    status: 'resident',
+    status: 'residente',
     commonness: 'poco común'
   },
 
@@ -274,7 +274,7 @@ export const uruguayBirds: Bird[] = [
     family: 'Picidae',
     order: 'Piciformes',
     habitat: ['pradera', 'rural'],
-    status: 'resident',
+    status: 'residente',
     commonness: 'común'
   },
 
@@ -286,7 +286,7 @@ export const uruguayBirds: Bird[] = [
     family: 'Alcedinidae',
     order: 'Coraciiformes',
     habitat: ['wetland', 'coastal'],
-    status: 'resident',
+    status: 'residente',
     commonness: 'poco común'
   },
 ];
