@@ -67,7 +67,13 @@ const Header: React.FC = () => {
               objectFit: 'contain'
             }} 
           />
-          <Typography variant="h6" component="div">
+          <Typography 
+            variant="h6" 
+            component="div"
+            sx={{ 
+              display: { xs: 'none', sm: 'block' } // Hide on mobile, show on small screens and up
+            }}
+          >
             Aves de Uruguay
           </Typography>
         </Box>
@@ -84,7 +90,9 @@ const Header: React.FC = () => {
               backgroundColor: location.pathname === '/' ? 'rgba(255,255,255,0.1)' : 'transparent'
             }}
           >
-            Checklist
+            <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+              Checklist
+            </Box>
           </Button>
 
           <Button
@@ -96,7 +104,9 @@ const Header: React.FC = () => {
               backgroundColor: location.pathname === '/statistics' ? 'rgba(255,255,255,0.1)' : 'transparent'
             }}
           >
-            Estadísticas
+            <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+              Estadísticas
+            </Box>
           </Button>
 
           {/* <Tooltip title={isDarkMode ? "Cambiar a modo claro" : "Cambiar a modo oscuro"}>

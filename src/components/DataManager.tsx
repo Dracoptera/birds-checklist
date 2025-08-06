@@ -118,7 +118,9 @@ const DataManager: React.FC = () => {
           }
         }}
       >
-        Gestionar Datos
+        <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+          Gestionar Datos
+        </Box>
       </Button>
 
       <Dialog open={isDialogOpen} onClose={() => setIsDialogOpen(false)} maxWidth="sm" fullWidth>
