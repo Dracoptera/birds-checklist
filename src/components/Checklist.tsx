@@ -384,7 +384,7 @@ const Checklist: React.FC = () => {
                         <PhotoCameraIcon />
                       </IconButton>
                     </Tooltip>
-                    <Tooltip title="Agregar observación">
+                    {/* <Tooltip title="Agregar observación">
                       <IconButton
                         size="small"
                         onClick={() => navigate(`/bird/${bird.id}`)}
@@ -395,7 +395,7 @@ const Checklist: React.FC = () => {
                       >
                         <AddIcon />
                       </IconButton>
-                    </Tooltip>
+                    </Tooltip> */}
                   </Box>
                 </Box>
                 <CardContent sx={{ p: 2 }}>
@@ -405,13 +405,13 @@ const Checklist: React.FC = () => {
                       component="div" 
                       sx={{ 
                         fontWeight: 'bold',
-                        cursor: 'pointer',
-                        '&:hover': {
-                          color: 'primary.main',
-                          textDecoration: 'underline'
-                        }
+                        // cursor: 'pointer',
+                        // '&:hover': {
+                        //   color: 'primary.main',
+                        //   textDecoration: 'underline'
+                        // }
                       }}
-                      onClick={() => navigate(`/bird/${bird.id}`)}
+                      // onClick={() => navigate(`/bird/${bird.id}`)}
                     >
                       {bird.commonName}
                     </Typography>
@@ -440,14 +440,14 @@ const Checklist: React.FC = () => {
                             <PhotoCameraIcon />
                           </IconButton>
                         </Tooltip>
-                        <Tooltip title="Agregar observación">
+                        {/* <Tooltip title="Agregar observación">
                           <IconButton
                             size="small"
                             onClick={() => navigate(`/bird/${bird.id}`)}
                           >
                             <AddIcon />
                           </IconButton>
-                        </Tooltip>
+                        </Tooltip> */}
                       </Box>
                     )}
                   </Box>
