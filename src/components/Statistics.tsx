@@ -266,7 +266,7 @@ const Statistics: React.FC = () => {
         <Grid item xs={12}>
           <Paper sx={{ p: 2 }}>
             <Typography variant="h6" gutterBottom>
-              Observaciones Recientes
+              Observaciones Detalladas Recientes
             </Typography>
             {recentObservations.length > 0 ? (
               <List dense>

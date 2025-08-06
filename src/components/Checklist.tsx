@@ -151,9 +151,7 @@ const Checklist: React.FC = () => {
 
   return (
     <Box>
-      <Typography variant="h4" gutterBottom>
-        Checklist de Aves
-      </Typography>
+
       
       {/* Filters */}
       <Paper sx={{ p: 2, mb: 3 }}>

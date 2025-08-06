@@ -35,22 +35,6 @@ export const uruguayBirds: Bird[] = [
     commonness: 'abundante',
     departamentos: ['Montevideo', 'Canelones', 'San José', 'Colonia', 'Soriano', 'Río Negro', 'Paysandú', 'Salto', 'Artigas', 'Rivera', 'Tacuarembó', 'Durazno', 'Flores', 'Florida', 'Lavalleja', 'Maldonado', 'Rocha', 'Treinta y Tres', 'Cerro Largo'],
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/314971271/embed',
-    variations: [
-      {
-        id: 'adult',
-        name: 'Adulto',
-        description: 'Plumaje completo del adulto',
-        ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/79992301/embed',
-        characteristics: ['Plumaje rufo uniforme', 'Pico negro', 'Patas grises']
-      },
-      {
-        id: 'juvenile',
-        name: 'Juvenil',
-        description: 'Plumaje juvenil más pálido',
-        ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/422648911/embed',
-        characteristics: ['Plumaje más pálido', 'Pico más claro', 'Menos contraste']
-      }
-    ]
   },
   {
     id: 'southern-house-wren',
@@ -235,17 +219,8 @@ export const uruguayBirds: Bird[] = [
     order: 'Psittaciformes',
     habitat: ['urbana', 'rural', 'bosque'],
     status: 'residente',
-    commonness: 'común'
-  },
-  {
-    id: 'turquoise-fronted-parrot',
-    commonName: 'Loro hablador',
-    scientificName: 'Amazona aestiva',
-    family: 'Psittacidae',
-    order: 'Psittaciformes',
-    habitat: ['bosque', 'rural'],
-    status: 'residente',
-    commonness: 'poco común'
+    commonness: 'abundante',
+    ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/638497548/embed'
   },
 
   // Piciformes - Woodpeckers
@@ -257,7 +232,8 @@ export const uruguayBirds: Bird[] = [
     order: 'Piciformes',
     habitat: ['pradera', 'rural'],
     status: 'residente',
-    commonness: 'común'
+    commonness: 'común',
+    ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/627431204/embed'
   },
 
   // Coraciiformes - Kingfishers
@@ -269,7 +245,8 @@ export const uruguayBirds: Bird[] = [
     order: 'Coraciiformes',
     habitat: ['humedal', 'costa'],
     status: 'residente',
-    commonness: 'poco común'
+    commonness: 'poco común',
+    ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/174809481/embed'
   },
 ];
 
