@@ -73,28 +73,7 @@ const Header: React.FC = () => {
         </Box>
 
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-          <Chip
-            label={`${state.totalSeen} vistas`}
-            color="secondary"
-            size="small"
-            variant="filled"
-            sx={{ 
-              backgroundColor: 'rgba(255,255,255,0.9)',
-              color: 'text.primary',
-              fontWeight: 'bold'
-            }}
-          />
-          <Chip
-            label={`${state.totalWithPhotos} con fotos`}
-            color="primary"
-            size="small"
-            variant="filled"
-            sx={{ 
-              backgroundColor: 'rgba(255,255,255,0.9)',
-              color: 'text.primary',
-              fontWeight: 'bold'
-            }}
-          />
+
 
           <Button
             color="inherit"
@@ -120,7 +99,7 @@ const Header: React.FC = () => {
             Estadísticas
           </Button>
 
-          <Tooltip title={isDarkMode ? "Cambiar a modo claro" : "Cambiar a modo oscuro"}>
+          {/* <Tooltip title={isDarkMode ? "Cambiar a modo claro" : "Cambiar a modo oscuro"}>
             <IconButton
               color="inherit"
               onClick={toggleTheme}
@@ -128,7 +107,7 @@ const Header: React.FC = () => {
             >
               {isDarkMode ? <LightModeIcon /> : <DarkModeIcon />}
             </IconButton>
-          </Tooltip>
+          </Tooltip> */}
 
           <DataManager />
 

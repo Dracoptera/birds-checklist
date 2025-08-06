@@ -22,7 +22,7 @@ import {
   Add as AddIcon,
 } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
-import { uruguayBirds, getBirdsByOrder, getBirdsByFamily } from '../data/uruguayBirds';
+import { uruguayBirds, getBirdsByOrder } from '../data/uruguayBirds';
 import { useUserData } from '../contexts/UserDataContext';
 import { FilterOptions } from '../types';
 import BirdImage from './BirdImage';
