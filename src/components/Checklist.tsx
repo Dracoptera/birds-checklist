@@ -15,11 +15,17 @@ import {
   Tooltip,
   Paper,
   Button,
+  Collapse,
+  useMediaQuery,
+  useTheme,
 } from '@mui/material';
 import {
   Visibility as VisibilityIcon,
   PhotoCamera as PhotoCameraIcon,
   Add as AddIcon,
+  FilterList as FilterIcon,
+  ExpandMore as ExpandMoreIcon,
+  ExpandLess as ExpandLessIcon,
 } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import { uruguayBirds, getBirdsByOrder } from '../data/uruguayBirds';
@@ -29,6 +35,8 @@ import BirdImage from './BirdImage';
 
 const Checklist: React.FC = () => {
   const navigate = useNavigate();
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const { state, toggleSeen, togglePhoto } = useUserData();
   const [filters, setFilters] = useState<FilterOptions>({
     seen: 'all',
@@ -41,6 +49,7 @@ const Checklist: React.FC = () => {
     searchTerm: '',
   });
   const [displayCount, setDisplayCount] = useState(9);
+  const [filtersOpen, setFiltersOpen] = useState(!isMobile); // Open by default on desktop, closed on mobile
 
   const birdsByOrder = useMemo(() => getBirdsByOrder(), []);
   // const birdsByFamily = useMemo(() => getBirdsByFamily(), []);
@@ -154,11 +163,39 @@ const Checklist: React.FC = () => {
 
       
       {/* Filters */}
-      <Paper sx={{ p: 2, mb: 3 }}>
-        <Typography variant="h6" gutterBottom>
-          Filtros
-        </Typography>
-        <Grid container spacing={2}>
+      <Paper sx={{ mb: 3 }}>
+        <Box 
+          sx={{ 
+            p: 2, 
+            cursor: isMobile ? 'pointer' : 'default',
+            display: 'flex', 
+            alignItems: 'center', 
+            justifyContent: 'space-between',
+            borderBottom: isMobile ? '1px solid' : 'none',
+            borderColor: 'divider'
+          }}
+          onClick={() => isMobile && setFiltersOpen(!filtersOpen)}
+        >
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+            <FilterIcon />
+            <Typography variant="h6">
+              Filtros
+            </Typography>
+            {isMobile && (
+              <Typography variant="body2" color="text.secondary">
+                ({Object.values(filters).filter(v => v && v !== 'all').length} activos)
+              </Typography>
+            )}
+          </Box>
+          {isMobile && (
+            <IconButton size="small">
+              {filtersOpen ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+            </IconButton>
+          )}
+        </Box>
+        <Collapse in={filtersOpen}>
+          <Box sx={{ p: 2, pt: isMobile ? 1 : 2 }}>
+            <Grid container spacing={2}>
           <Grid item xs={12} sm={6} md={3}>
             <FormControl fullWidth size="small">
               <InputLabel>Estado</InputLabel>
@@ -275,7 +312,9 @@ const Checklist: React.FC = () => {
               Limpiar filtros
             </Button>
           </Grid>
-        </Grid>
+            </Grid>
+          </Box>
+        </Collapse>
       </Paper>
 
       {/* Results count */}
