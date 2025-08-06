@@ -34,7 +34,7 @@ export const uruguayBirds: Bird[] = [
     status: 'residente',
     commonness: 'abundante',
     departamentos: ['Montevideo', 'Canelones', 'San José', 'Colonia', 'Soriano', 'Río Negro', 'Paysandú', 'Salto', 'Artigas', 'Rivera', 'Tacuarembó', 'Durazno', 'Flores', 'Florida', 'Lavalleja', 'Maldonado', 'Rocha', 'Treinta y Tres', 'Cerro Largo'],
-    ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/79992301/embed',
+    ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/314971271/embed',
     variations: [
       {
         id: 'adult',

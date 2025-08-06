@@ -331,7 +331,9 @@ const Checklist: React.FC = () => {
                       <IconButton
                         size="small"
                         onClick={() => {
+                          // Always toggle photo status
                           togglePhoto(bird.id);
+                          // If not seen, mark as seen
                           if (!observation.seen) {
                             toggleSeen(bird.id);
                           }
