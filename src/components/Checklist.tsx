@@ -409,27 +409,28 @@ const Checklist: React.FC = () => {
                 </Box>
                 <CardContent sx={{ p: 2 }}>
                   <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', mb: 2 }}>
-                    <Typography 
-                      variant="h6" 
-                      component="div" 
-                      sx={{ 
-                        fontWeight: 'bold',
-                        // cursor: 'pointer',
-                        // '&:hover': {
-                        //   color: 'primary.main',
-                        //   textDecoration: 'underline'
-                        // }
-                      }}
-                      // onClick={() => navigate(`/bird/${bird.id}`)}
-                    >
-                      {bird.commonName}
-                    </Typography>
+                    <Box>
+                      <Typography 
+                        variant="h6" 
+                        component="div" 
+                        sx={{ 
+                          fontWeight: 'bold',
+                          // cursor: 'pointer',
+                          // '&:hover': {
+                          //   color: 'primary.main',
+                          //   textDecoration: 'underline'
+                          // }
+                        }}
+                        // onClick={() => navigate(`/bird/${bird.id}`)}
+                      >
+                        {bird.commonName}
+                      </Typography>
+                      <Typography variant="body2" color="text.secondary" sx={{ fontStyle: 'italic' }}>
+                        {bird.scientificName}
+                      </Typography>
+                    </Box>
                     {/* Removed all buttons from card content - only keep buttons on images */}
                   </Box>
-                  
-                  <Typography variant="body2" color="text.secondary" sx={{ fontStyle: 'italic', mb: 2 }}>
-                    {bird.scientificName}
-                  </Typography>
                   
                   <Box sx={{ display: 'flex', gap: 1, mb: 2, flexWrap: 'wrap' }}>
                     <Chip label={bird.family} size="small" variant="outlined" />
