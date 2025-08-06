@@ -58,11 +58,11 @@ export const uruguayBirds: Bird[] = [
     scientificName: 'Troglodytes musculus',
     family: 'Troglodytidae',
     order: 'Passeriformes',
-    habitat: ['urbana', 'rural', 'forest'],
+    habitat: ['urbana', 'rural', 'bosque'],
     status: 'residente',
     commonness: 'abundante',
     departamentos: ['Montevideo', 'Canelones', 'San José', 'Colonia', 'Soriano', 'Río Negro', 'Paysandú', 'Salto', 'Artigas', 'Rivera', 'Tacuarembó', 'Durazno', 'Flores', 'Florida', 'Lavalleja', 'Maldonado', 'Rocha', 'Treinta y Tres', 'Cerro Largo'],
-    ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/422648911/embed'
+    ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/613154785/embed'
   },
   {
     id: 'chalk-browed-mockingbird',
@@ -74,7 +74,7 @@ export const uruguayBirds: Bird[] = [
     status: 'residente',
     commonness: 'abundante',
     departamentos: ['Montevideo', 'Canelones', 'San José', 'Colonia', 'Soriano', 'Río Negro', 'Paysandú', 'Salto', 'Artigas', 'Rivera', 'Tacuarembó', 'Durazno', 'Flores', 'Florida', 'Lavalleja', 'Maldonado', 'Rocha', 'Treinta y Tres', 'Cerro Largo'],
-    ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/86257841/embed'
+    ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/638497654/embed'
   },
   {
     id: 'great-kiskadee',
@@ -82,11 +82,11 @@ export const uruguayBirds: Bird[] = [
     scientificName: 'Pitangus sulphuratus',
     family: 'Tyrannidae',
     order: 'Passeriformes',
-    habitat: ['urbana', 'rural', 'forest', 'wetland'],
+    habitat: ['urbana', 'rural', 'bosque', 'humedal'],
     status: 'residente',
     commonness: 'abundante',
     departamentos: ['Montevideo', 'Canelones', 'San José', 'Colonia', 'Soriano', 'Río Negro', 'Paysandú', 'Salto', 'Artigas', 'Rivera', 'Tacuarembó', 'Durazno', 'Flores', 'Florida', 'Lavalleja', 'Maldonado', 'Rocha', 'Treinta y Tres', 'Cerro Largo'],
-    ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/89968521/embed'
+    ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/638497636/embed'
   },
   {
     id: 'house-sparrow',
@@ -108,20 +108,20 @@ export const uruguayBirds: Bird[] = [
     habitat: ['urbana', 'rural'],
     status: 'residente',
     commonness: 'común',
-    imageUrl: 'https://images.unsplash.com/photo-1552728089-57bdde30beb3?w=400&h=300&fit=crop'
+    ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/158542881/embed'
   },
 
   // Anseriformes - Waterfowl
   {
     id: 'black-necked-swan',
-    commonName: 'Cisne de cuello negro',
+    commonName: 'Cisne cuello negro',
     scientificName: 'Cygnus melancoryphus',
     family: 'Anatidae',
     order: 'Anseriformes',
-    habitat: ['wetland', 'coastal'],
+    habitat: ['humedal', 'costa'],
     status: 'residente',
     commonness: 'poco común',
-    ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/79992301/embed'
+    ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/548065331/embed'
   },
   {
     id: 'coscoroba-swan',
@@ -129,9 +129,10 @@ export const uruguayBirds: Bird[] = [
     scientificName: 'Coscoroba coscoroba',
     family: 'Anatidae',
     order: 'Anseriformes',
-    habitat: ['wetland', 'coastal'],
+    habitat: ['humedal', 'costa'],
     status: 'residente',
-    commonness: 'rara'
+    commonness: 'rara',
+    ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/259009971/embed'
   },
   {
     id: 'white-faced-whistling-duck',
@@ -139,7 +140,7 @@ export const uruguayBirds: Bird[] = [
     scientificName: 'Dendrocygna viduata',
     family: 'Anatidae',
     order: 'Anseriformes',
-    habitat: ['wetland', 'coastal'],
+    habitat: ['humedal', 'costa'],
     status: 'residente',
     commonness: 'común'
   },
@@ -149,7 +150,7 @@ export const uruguayBirds: Bird[] = [
     scientificName: 'Amazonetta brasiliensis',
     family: 'Anatidae',
     order: 'Anseriformes',
-    habitat: ['wetland', 'coastal'],
+    habitat: ['humedal', 'costa'],
     status: 'residente',
     commonness: 'común'
   },
@@ -161,7 +162,7 @@ export const uruguayBirds: Bird[] = [
     scientificName: 'Mycteria americana',
     family: 'Ciconiidae',
     order: 'Ciconiiformes',
-    habitat: ['wetland', 'coastal'],
+    habitat: ['humedal', 'costa'],
     status: 'residente',
     commonness: 'poco común'
   },
@@ -171,22 +172,12 @@ export const uruguayBirds: Bird[] = [
     scientificName: 'Ardea cocoi',
     family: 'Ardeidae',
     order: 'Ciconiiformes',
-    habitat: ['wetland', 'coastal'],
+    habitat: ['humedal', 'costa'],
     status: 'residente',
     commonness: 'común'
   },
 
   // Accipitriformes - Birds of Prey
-  {
-    id: 'turkey-vulture',
-    commonName: 'Jote cabeza negra',
-    scientificName: 'Cathartes aura',
-    family: 'Cathartidae',
-    order: 'Accipitriformes',
-    habitat: ['rural', 'pradera', 'forest'],
-    status: 'residente',
-    commonness: 'abundante'
-  },
 
   {
     id: 'roadside-hawk',
@@ -194,7 +185,7 @@ export const uruguayBirds: Bird[] = [
     scientificName: 'Rupornis magnirostris',
     family: 'Accipitridae',
     order: 'Accipitriformes',
-    habitat: ['urbana', 'rural', 'forest'],
+    habitat: ['urbana', 'rural', 'bosque'],
     status: 'residente',
     commonness: 'común'
   },
@@ -219,7 +210,7 @@ export const uruguayBirds: Bird[] = [
     scientificName: 'Patagioenas picazuro',
     family: 'Columbidae',
     order: 'Columbiformes',
-    habitat: ['urbana', 'rural', 'forest'],
+    habitat: ['urbana', 'rural', 'bosque'],
     status: 'residente',
     commonness: 'común'
   },
@@ -229,7 +220,7 @@ export const uruguayBirds: Bird[] = [
     scientificName: 'Patagioenas maculosa',
     family: 'Columbidae',
     order: 'Columbiformes',
-    habitat: ['forest', 'rural'],
+    habitat: ['bosque', 'rural'],
     status: 'residente',
     commonness: 'poco común'
   },
@@ -251,7 +242,7 @@ export const uruguayBirds: Bird[] = [
     scientificName: 'Myiopsitta monachus',
     family: 'Psittacidae',
     order: 'Psittaciformes',
-    habitat: ['urbana', 'rural', 'forest'],
+    habitat: ['urbana', 'rural', 'bosque'],
     status: 'residente',
     commonness: 'común'
   },
@@ -261,7 +252,7 @@ export const uruguayBirds: Bird[] = [
     scientificName: 'Amazona aestiva',
     family: 'Psittacidae',
     order: 'Psittaciformes',
-    habitat: ['forest', 'rural'],
+    habitat: ['bosque', 'rural'],
     status: 'residente',
     commonness: 'poco común'
   },
@@ -285,7 +276,7 @@ export const uruguayBirds: Bird[] = [
     scientificName: 'Megaceryle torquata',
     family: 'Alcedinidae',
     order: 'Coraciiformes',
-    habitat: ['wetland', 'coastal'],
+    habitat: ['humedal', 'costa'],
     status: 'residente',
     commonness: 'poco común'
   },

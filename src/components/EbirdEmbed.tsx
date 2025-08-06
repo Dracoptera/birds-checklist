@@ -10,7 +10,7 @@ interface EbirdEmbedProps {
 
 const EbirdEmbed: React.FC<EbirdEmbedProps> = ({ 
   embedUrl, 
-  height = 415, 
+  height = 400, 
   width = '100%',
   compact = true
 }) => {
