@@ -299,14 +299,19 @@ const BirdDetail: React.FC = () => {
               <Typography variant="h6">Descripción</Typography>
             </Box>
             <Typography variant="body2" paragraph>
-              Esta especie se caracteriza por su plumaje distintivo y comportamiento único. 
-              Los adultos presentan dimorfismo sexual, con los machos exhibiendo colores más vibrantes 
-              durante la época reproductiva.
+              {bird.description?.general || 
+                'Esta especie se caracteriza por su plumaje distintivo y comportamiento único. ' +
+                'Los adultos presentan dimorfismo sexual, con los machos exhibiendo colores más vibrantes ' +
+                'durante la época reproductiva.'
+              }
             </Typography>
             <Typography variant="body2" paragraph>
-              Su canto es melodioso y puede ser escuchado principalmente durante las primeras horas 
-              de la mañana y al atardecer. La especie es conocida por su adaptabilidad a diferentes 
-              hábitats y su capacidad de migración estacional.
+              {bird.description?.behavior?.feeding ? 
+                `Alimentación: ${bird.description.behavior.feeding}` :
+                'Su canto es melodioso y puede ser escuchado principalmente durante las primeras horas ' +
+                'de la mañana y al atardecer. La especie es conocida por su adaptabilidad a diferentes ' +
+                'hábitats y su capacidad de migración estacional.'
+              }
             </Typography>
           </Paper>
         </Grid>
@@ -319,16 +324,16 @@ const BirdDetail: React.FC = () => {
               <Typography variant="h6">Comportamiento</Typography>
             </Box>
             <Typography variant="body2" paragraph>
-              <strong>Alimentación:</strong> Principalmente insectívora, aunque también consume 
-              semillas y frutos pequeños durante el invierno.
+              <strong>Alimentación:</strong> {bird.description?.behavior?.feeding || 
+                'Principalmente insectívora, aunque también consume semillas y frutos pequeños durante el invierno.'}
             </Typography>
             <Typography variant="body2" paragraph>
-              <strong>Reproducción:</strong> Construye nidos en cavidades naturales o artificiales. 
-              La época de cría se extiende de septiembre a diciembre.
+              <strong>Reproducción:</strong> {bird.description?.behavior?.reproduction || 
+                'Construye nidos en cavidades naturales o artificiales. La época de cría se extiende de septiembre a diciembre.'}
             </Typography>
             <Typography variant="body2">
-              <strong>Social:</strong> Generalmente solitaria, pero puede formar pequeñas bandadas 
-              durante la migración.
+              <strong>Social:</strong> {bird.description?.behavior?.social || 
+                'Generalmente solitaria, pero puede formar pequeñas bandadas durante la migración.'}
             </Typography>
           </Paper>
         </Grid>
@@ -341,15 +346,16 @@ const BirdDetail: React.FC = () => {
               <Typography variant="h6">Distribución en Uruguay</Typography>
             </Box>
             <Typography variant="body2" paragraph>
-              <strong>Presencia:</strong> Residente común en todo el territorio uruguayo.
+              <strong>Presencia:</strong> {bird.description?.distribution?.presence || 
+                'Residente común en todo el territorio uruguayo.'}
             </Typography>
             <Typography variant="body2" paragraph>
-              <strong>Hábitats preferidos:</strong> Bosques ribereños, parques urbanos, 
-              y áreas con vegetación densa.
+              <strong>Hábitats preferidos:</strong> {bird.description?.distribution?.preferredHabitats || 
+                'Bosques ribereños, parques urbanos, y áreas con vegetación densa.'}
             </Typography>
             <Typography variant="body2">
-              <strong>Conservación:</strong> Estado de conservación favorable, 
-              población estable en la región.
+              <strong>Conservación:</strong> {bird.description?.distribution?.conservation || 
+                'Estado de conservación favorable, población estable en la región.'}
             </Typography>
           </Paper>
         </Grid>
@@ -362,16 +368,16 @@ const BirdDetail: React.FC = () => {
               <Typography variant="h6">Sonidos</Typography>
             </Box>
             <Typography variant="body2" paragraph>
-              <strong>Canto:</strong> Serie de notas musicales ascendentes, 
-              seguida de un trino característico.
+              <strong>Canto:</strong> {bird.description?.sounds?.song || 
+                'Serie de notas musicales ascendentes, seguida de un trino característico.'}
             </Typography>
             <Typography variant="body2" paragraph>
-              <strong>Llamadas:</strong> Notas cortas y agudas para comunicación 
-              entre individuos.
+              <strong>Llamadas:</strong> {bird.description?.sounds?.calls || 
+                'Notas cortas y agudas para comunicación entre individuos.'}
             </Typography>
             <Typography variant="body2">
-              <strong>Época:</strong> Más vocal durante la primavera y verano, 
-              especialmente al amanecer.
+              <strong>Época:</strong> {bird.description?.sounds?.season || 
+                'Más vocal durante la primavera y verano, especialmente al amanecer.'}
             </Typography>
           </Paper>
         </Grid>
@@ -389,8 +395,8 @@ const BirdDetail: React.FC = () => {
                   Primavera
                 </Typography>
                 <Typography variant="body2" paragraph>
-                  Llegada de migrantes, inicio de la época reproductiva, 
-                  mayor actividad vocal y territorial.
+                  {bird.description?.seasonalPatterns?.spring || 
+                    'Llegada de migrantes, inicio de la época reproductiva, mayor actividad vocal y territorial.'}
                 </Typography>
               </Grid>
               <Grid item xs={12} sm={6} md={3}>
@@ -398,8 +404,8 @@ const BirdDetail: React.FC = () => {
                   Verano
                 </Typography>
                 <Typography variant="body2" paragraph>
-                  Cría activa, alimentación de pichones, 
-                  menor actividad vocal pero mayor presencia.
+                  {bird.description?.seasonalPatterns?.summer || 
+                    'Cría activa, alimentación de pichones, menor actividad vocal pero mayor presencia.'}
                 </Typography>
               </Grid>
               <Grid item xs={12} sm={6} md={3}>
@@ -407,8 +413,8 @@ const BirdDetail: React.FC = () => {
                   Otoño
                 </Typography>
                 <Typography variant="body2" paragraph>
-                  Preparación para migración, formación de bandadas, 
-                  cambio en hábitos alimentarios.
+                  {bird.description?.seasonalPatterns?.autumn || 
+                    'Preparación para migración, formación de bandadas, cambio en hábitos alimentarios.'}
                 </Typography>
               </Grid>
               <Grid item xs={12} sm={6} md={3}>
@@ -416,8 +422,8 @@ const BirdDetail: React.FC = () => {
                   Invierno
                 </Typography>
                 <Typography variant="body2" paragraph>
-                  Población reducida, menor actividad, 
-                  concentración en áreas con recursos alimentarios.
+                  {bird.description?.seasonalPatterns?.winter || 
+                    'Población reducida, menor actividad, concentración en áreas con recursos alimentarios.'}
                 </Typography>
               </Grid>
             </Grid>

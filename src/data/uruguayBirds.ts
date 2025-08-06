@@ -20,6 +20,31 @@ export interface Bird {
   imageUrl?: string;
   ebirdEmbedUrl?: string;
   variations?: BirdVariation[];
+  // Detailed information for bird detail page
+  description?: {
+    general?: string;
+    behavior?: {
+      feeding?: string;
+      reproduction?: string;
+      social?: string;
+    };
+    distribution?: {
+      presence?: string;
+      preferredHabitats?: string;
+      conservation?: string;
+    };
+    sounds?: {
+      song?: string;
+      calls?: string;
+      season?: string;
+    };
+    seasonalPatterns?: {
+      spring?: string;
+      summer?: string;
+      autumn?: string;
+      winter?: string;
+    };
+  };
 }
 
 export const uruguayBirds: Bird[] = [
@@ -35,6 +60,30 @@ export const uruguayBirds: Bird[] = [
     commonness: 'abundante',
     departamentos: ['Montevideo', 'Canelones', 'San José', 'Colonia', 'Soriano', 'Río Negro', 'Paysandú', 'Salto', 'Artigas', 'Rivera', 'Tacuarembó', 'Durazno', 'Flores', 'Florida', 'Lavalleja', 'Maldonado', 'Rocha', 'Treinta y Tres', 'Cerro Largo'],
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/314971271/embed',
+    description: {
+      general: 'El Hornero es una de las aves más emblemáticas de Uruguay, conocida por construir nidos de barro en forma de horno. Su plumaje es principalmente rufo (rojizo-marrón) con partes inferiores más claras. Es un ave territorial y muy vocal, especialmente durante la época reproductiva.',
+      behavior: {
+        feeding: 'Principalmente insectívoro, busca alimento en el suelo y en la vegetación baja. Consume insectos, arañas, larvas y ocasionalmente semillas pequeñas.',
+        reproduction: 'Construye nidos de barro en forma de horno, generalmente en postes, árboles o estructuras humanas. La época de cría se extiende de agosto a diciembre, con 2-3 nidadas por temporada.',
+        social: 'Generalmente en parejas territoriales durante la reproducción. Fuera de la época reproductiva puede formar pequeñas bandadas familiares.'
+      },
+      distribution: {
+        presence: 'Residente común en todo el territorio uruguayo, desde áreas urbanas hasta zonas rurales.',
+        preferredHabitats: 'Se adapta a diversos hábitats: parques urbanos, campos abiertos, bordes de bosques y áreas rurales con árboles dispersos.',
+        conservation: 'Estado de conservación favorable. Es una especie abundante y bien adaptada a ambientes modificados por el hombre.'
+      },
+      sounds: {
+        song: 'Canto melodioso y repetitivo, compuesto por notas ascendentes y descendentes. El macho canta desde perchas elevadas para defender territorio.',
+        calls: 'Llamadas de contacto cortas y agudas, y un llamado de alarma más fuerte cuando detecta depredadores.',
+        season: 'Más vocal durante la primavera y verano, especialmente al amanecer y atardecer.'
+      },
+      seasonalPatterns: {
+        spring: 'Inicio de la época reproductiva, construcción de nidos, mayor actividad vocal y territorial.',
+        summer: 'Cría activa, alimentación de pichones, menor actividad vocal pero mayor presencia.',
+        autumn: 'Finalización de la reproducción, formación de bandadas familiares, preparación para el invierno.',
+        winter: 'Menor actividad vocal, concentración en áreas con recursos alimentarios, comportamiento más gregario.'
+      }
+    }
   },
   {
     id: 'southern-house-wren',
