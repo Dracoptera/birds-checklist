@@ -138,30 +138,31 @@ const BirdDetail: React.FC = () => {
             </Box>
           </Box>
 
-          <Grid container spacing={2} sx={{ mb: 2 }}>
-            <Grid item xs={12} sm={6}>
-              <Chip label={bird.family} color="primary" variant="outlined" sx={{ mr: 1, mb: 1 }} />
-              <Chip label={bird.order} color="secondary" variant="outlined" sx={{ mr: 1, mb: 1 }} />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              {bird.habitat.map(habitat => (
-                <Chip 
-                  key={habitat} 
-                  label={habitat} 
-                  size="small" 
-                  sx={{ mr: 1, mb: 1 }}
-                />
-              ))}
-            </Grid>
-          </Grid>
-
-          <Box sx={{ mb: 2, display: 'flex', alignItems: 'center', gap: 1 }}>
-            <Icon>
-              {bird.origin === 'autóctona' ? <NatureIcon color="success" /> : <ImportContactsIcon color="error" />}
-            </Icon>
-            <Typography variant="body2" color={bird.origin === 'autóctona' ? 'success' : 'error'}>
-              {bird.origin}
-            </Typography>
+          <Box sx={{ display: 'flex', gap: 1, mb: 2, flexWrap: 'wrap' }}>
+            <Chip label={bird.family} color="primary" variant="outlined" />
+            <Chip label={bird.order} color="secondary" variant="outlined" />
+            {bird.habitat.map(habitat => (
+              <Chip 
+                key={habitat} 
+                label={habitat} 
+                size="small" 
+                color="primary" 
+                variant="outlined"
+              />
+            ))}
+            <Chip 
+              label={bird.size || 'Tamaño no especificado'}
+              size="small" 
+              color="info" 
+              variant="filled"
+            />
+            <Chip 
+              label={bird.origin}
+              size="small" 
+              color={bird.origin === 'autóctona' ? 'success' : 'error'}
+              variant="filled"
+              icon={bird.origin === 'autóctona' ? <NatureIcon /> : <ImportContactsIcon />}
+            />
           </Box>
 
           {bird.departamentos && bird.departamentos.length > 0 && (
@@ -198,9 +199,40 @@ const BirdDetail: React.FC = () => {
         </CardContent>
       </Card>
 
+            {/* Simplified Information Sections */}
+      <Grid container spacing={3} sx={{ mt: 2 }}>
+        {/* Description Section */}
+        <Grid item xs={12} md={6}>
+          <Paper sx={{ p: 2 }}>
+            <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+              <InfoIcon sx={{ mr: 1, color: 'primary.main' }} />
+              <Typography variant="h6">Descripción</Typography>
+            </Box>
+            <Typography variant="body2" paragraph>
+              {bird.description?.general || 
+                'Esta especie presenta características únicas que la distinguen en el ecosistema uruguayo. Su comportamiento adaptativo y sus interacciones con el ambiente la convierten en una especie de gran interés para observadores de aves y naturalistas.'}
+            </Typography>
+          </Paper>
+        </Grid>
+
+        {/* Curiosities Section */}
+        <Grid item xs={12} md={6}>
+          <Paper sx={{ p: 2 }}>
+            <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+              <InfoIcon sx={{ mr: 1, color: 'primary.main' }} />
+              <Typography variant="h6">Curiosidades</Typography>
+            </Box>
+            <Typography variant="body2" paragraph>
+              {bird.description?.curiosities || 
+                'Esta especie presenta características fascinantes que la hacen única en el ecosistema uruguayo. Su comportamiento adaptativo y sus interacciones con el ambiente la convierten en una especie de gran interés para observadores de aves y naturalistas.'}
+            </Typography>
+          </Paper>
+        </Grid>
+      </Grid>
+
       {/* Variations Section */}
       {bird.variations && bird.variations.length > 0 && (
-        <Paper sx={{ p: 2, mb: 3 }}>
+        <Paper sx={{ p: 2, mb: 3, mt: 3 }}>
           <BirdVariations 
             variations={bird.variations} 
             height={400}
@@ -213,7 +245,7 @@ const BirdDetail: React.FC = () => {
       )}
 
       {/* Observations Section */}
-      <Paper sx={{ p: 2 }}>
+      <Paper sx={{ p: 2, mt: 3 }}>
         <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
           <Typography variant="h6">
             Observaciones ({observation?.observations.length || 0})
@@ -222,6 +254,10 @@ const BirdDetail: React.FC = () => {
             variant="contained"
             startIcon={<AddIcon />}
             onClick={() => setIsAddDialogOpen(true)}
+            disabled={!observation?.seen}
+            sx={{
+              opacity: !observation?.seen ? 0.6 : 1
+            }}
           >
             Agregar Observación
           </Button>
@@ -292,143 +328,17 @@ const BirdDetail: React.FC = () => {
               variant="outlined"
               startIcon={<AddIcon />}
               onClick={() => setIsAddDialogOpen(true)}
-              sx={{ mt: 2 }}
+              disabled={!observation?.seen}
+              sx={{ 
+                mt: 2,
+                opacity: !observation?.seen ? 0.6 : 1
+              }}
             >
               Agregar Primera Observación
             </Button>
           </Box>
         )}
       </Paper>
-
-      {/* Additional Information Sections */}
-      <Grid container spacing={3} sx={{ mt: 2 }}>
-        {/* Description Section */}
-        <Grid item xs={12} md={6}>
-          <Paper sx={{ p: 2 }}>
-            <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-              <InfoIcon sx={{ mr: 1, color: 'primary.main' }} />
-              <Typography variant="h6">Descripción</Typography>
-            </Box>
-            <Typography variant="body2" paragraph>
-              {bird.description?.general || 
-                    '🚧 No hay información cargada. 🚧'
-              }
-            </Typography>
-            <Typography variant="body2" paragraph>
-              {bird.description?.behavior?.feeding ? 
-                `🚧 No hay información cargada. 🚧` :
-                '🚧 No hay información cargada. 🚧'
-              }
-            </Typography>
-          </Paper>
-        </Grid>
-
-        {/* Behavior Section */}
-        <Grid item xs={12} md={6}>
-          <Paper sx={{ p: 2 }}>
-            <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-              <NatureIcon sx={{ mr: 1, color: 'primary.main' }} />
-              <Typography variant="h6">Comportamiento</Typography>
-            </Box>
-            <Typography variant="body2" paragraph>
-              <strong>Alimentación:</strong> {bird.description?.behavior?.feeding || 
-                '🚧 No hay información cargada. 🚧'}
-            </Typography>
-            <Typography variant="body2" paragraph>
-              <strong>Reproducción:</strong> {bird.description?.behavior?.reproduction || 
-                '🚧 No hay información cargada. 🚧'}
-            </Typography>
-            <Typography variant="body2">
-              <strong>Social:</strong> {bird.description?.behavior?.social || 
-                  'Generalmente solitaria, pero puede formar pequeñas bandadas durante la migración.'}
-            </Typography>
-          </Paper>
-        </Grid>
-
-        {/* Distribution Section */}
-        <Grid item xs={12} md={6}>
-          <Paper sx={{ p: 2 }}>
-            <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-              <MapIcon sx={{ mr: 1, color: 'primary.main' }} />
-              <Typography variant="h6">Distribución en Uruguay</Typography>
-            </Box>
-            <Typography variant="body2" paragraph>
-              <strong>Presencia:</strong> {bird.description?.distribution?.presence || 
-                '🚧 No hay información cargada. 🚧'}
-            </Typography>
-            <Typography variant="body2" paragraph>
-              <strong>Hábitats preferidos:</strong> {bird.description?.distribution?.preferredHabitats || 
-                '🚧 No hay información cargada. 🚧'}
-            </Typography>
-            <Typography variant="body2">
-              <strong>Conservación:</strong> {bird.description?.distribution?.conservation || 
-                '🚧 No hay información cargada. 🚧'}
-            </Typography>
-          </Paper>
-        </Grid>
-
-        {/* Curiosities Section */}
-        <Grid item xs={12} md={6}>
-          <Paper sx={{ p: 2 }}>
-            <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-              <InfoIcon sx={{ mr: 1, color: 'primary.main' }} />
-              <Typography variant="h6">Curiosidades</Typography>
-            </Box>
-            <Typography variant="body2" paragraph>
-              {bird.description?.curiosities || 
-                'Esta especie presenta características fascinantes que la hacen única en el ecosistema uruguayo. Su comportamiento adaptativo y sus interacciones con el ambiente la convierten en una especie de gran interés para observadores de aves y naturalistas.'}
-            </Typography>
-          </Paper>
-        </Grid>
-
-        {/* Seasonal Patterns */}
-        <Grid item xs={12}>
-          <Paper sx={{ p: 2 }}>
-            <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-              <TimelineIcon sx={{ mr: 1, color: 'primary.main' }} />
-              <Typography variant="h6">Patrones Estacionales</Typography>
-            </Box>
-            <Grid container spacing={2}>
-              <Grid item xs={12} sm={6} md={3}>
-                <Typography variant="subtitle2" color="primary" gutterBottom>
-                  Primavera 🌸
-                </Typography>
-                <Typography variant="body2" paragraph>
-                  {bird.description?.seasonalPatterns?.spring || 
-                    '🚧 No hay información cargada. 🚧'}
-                </Typography>
-              </Grid>
-              <Grid item xs={12} sm={6} md={3}>
-                <Typography variant="subtitle2" color="primary" gutterBottom>
-                  Verano 🌞
-                </Typography>
-                <Typography variant="body2" paragraph>
-                  {bird.description?.seasonalPatterns?.summer || 
-                    '🚧 No hay información cargada. 🚧'}
-                </Typography>
-              </Grid>
-              <Grid item xs={12} sm={6} md={3}>
-                <Typography variant="subtitle2" color="primary" gutterBottom>
-                  Otoño 🍂
-                </Typography>
-                <Typography variant="body2" paragraph>
-                  {bird.description?.seasonalPatterns?.autumn || 
-                    '🚧 No hay información cargada. 🚧'}
-                </Typography>
-              </Grid>
-              <Grid item xs={12} sm={6} md={3}>
-                <Typography variant="subtitle2" color="primary" gutterBottom>
-                  Invierno ❄️
-                </Typography>
-                <Typography variant="body2" paragraph>
-                  {bird.description?.seasonalPatterns?.winter || 
-                    '🚧 No hay información cargada. 🚧'}
-                </Typography>
-              </Grid>
-            </Grid>
-          </Paper>
-        </Grid>
-      </Grid>
 
       {/* Add Observation Dialog */}
       <Dialog open={isAddDialogOpen} onClose={() => setIsAddDialogOpen(false)} maxWidth="sm" fullWidth>

@@ -17,6 +17,7 @@ export interface Bird {
   habitat: string[];
   status: 'residente' | 'migratoria invernal' | 'migratoria estival' | 'visitante';
   commonness: 'abundante' | 'común' | 'poco común' | 'rara' | 'muy rara';
+  size?: string;
   origin: 'autóctona' | 'introducida';
   departamentos?: string[];
   imageUrl?: string;
@@ -58,6 +59,7 @@ export const uruguayBirds: Bird[] = [
     status: 'residente',
     origin: 'autóctona',
     commonness: 'abundante',
+    size: '15-17 cm',
     departamentos: ['Montevideo', 'Canelones', 'San José', 'Colonia', 'Soriano', 'Río Negro', 'Paysandú', 'Salto', 'Artigas', 'Rivera', 'Tacuarembó', 'Durazno', 'Flores', 'Florida', 'Lavalleja', 'Maldonado', 'Rocha', 'Treinta y Tres', 'Cerro Largo'],
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/314971271/embed',
     description: {
