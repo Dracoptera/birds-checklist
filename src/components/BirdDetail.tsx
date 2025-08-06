@@ -356,24 +356,16 @@ const BirdDetail: React.FC = () => {
           </Paper>
         </Grid>
 
-        {/* Sounds Section */}
+        {/* Curiosities Section */}
         <Grid item xs={12} md={6}>
           <Paper sx={{ p: 2 }}>
             <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-              <VolumeIcon sx={{ mr: 1, color: 'primary.main' }} />
-              <Typography variant="h6">Sonidos</Typography>
+              <InfoIcon sx={{ mr: 1, color: 'primary.main' }} />
+              <Typography variant="h6">Curiosidades</Typography>
             </Box>
             <Typography variant="body2" paragraph>
-              <strong>Canto:</strong> {bird.description?.sounds?.song || 
-                '🚧 No hay información cargada. 🚧'}
-            </Typography>
-            <Typography variant="body2" paragraph>
-              <strong>Llamadas:</strong> {bird.description?.sounds?.calls || 
-                '🚧 No hay información cargada. 🚧'}
-            </Typography>
-            <Typography variant="body2">
-              <strong>Época:</strong> {bird.description?.sounds?.season || 
-                '🚧 No hay información cargada. 🚧'}
+              {bird.description?.curiosities || 
+                'Esta especie presenta características fascinantes que la hacen única en el ecosistema uruguayo. Su comportamiento adaptativo y sus interacciones con el ambiente la convierten en una especie de gran interés para observadores de aves y naturalistas.'}
             </Typography>
           </Paper>
         </Grid>

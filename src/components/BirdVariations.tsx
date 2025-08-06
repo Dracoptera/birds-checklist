@@ -35,6 +35,7 @@ const BirdVariations: React.FC<BirdVariationsProps> = ({
   const mockBird = {
     id: 'variation',
     commonName: selectedVariation.name,
+    englishName: '',
     scientificName: '',
     family: '',
     order: '',

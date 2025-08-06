@@ -10,6 +10,7 @@ export interface BirdVariation {
 export interface Bird {
   id: string;
   commonName: string;
+  englishName: string;
   scientificName: string;
   family: string;
   order: string;
@@ -33,11 +34,7 @@ export interface Bird {
       preferredHabitats?: string;
       conservation?: string;
     };
-    sounds?: {
-      song?: string;
-      calls?: string;
-      season?: string;
-    };
+    curiosities?: string;
     seasonalPatterns?: {
       spring?: string;
       summer?: string;
@@ -50,12 +47,13 @@ export interface Bird {
 export const uruguayBirds: Bird[] = [
   // Passeriformes - Passerines
   {
-    id: 'rufous-hornero',
+    id: 'hornero',
     commonName: 'Hornero',
+    englishName: 'Rufous Hornero',
     scientificName: 'Furnarius rufus',
     family: 'Furnariidae',
     order: 'Passeriformes',
-    habitat: ['ciudad', 'sierras', 'pradera'],
+    habitat: ['ciudad', 'monte', 'pradera'],
     status: 'residente',
     commonness: 'abundante',
     departamentos: ['Montevideo', 'Canelones', 'San José', 'Colonia', 'Soriano', 'Río Negro', 'Paysandú', 'Salto', 'Artigas', 'Rivera', 'Tacuarembó', 'Durazno', 'Flores', 'Florida', 'Lavalleja', 'Maldonado', 'Rocha', 'Treinta y Tres', 'Cerro Largo'],
@@ -72,11 +70,7 @@ export const uruguayBirds: Bird[] = [
         preferredHabitats: 'Se adapta a diversos hábitats: parques urbanos, campos abiertos, bordes de montes y áreas sierrases con árboles dispersos.',
         conservation: 'Estado de conservación favorable. Es una especie abundante y bien adaptada a ambientes modificados por el hombre.'
       },
-      sounds: {
-        song: 'Canto melodioso y repetitivo, compuesto por notas ascendentes y descendentes. El macho canta desde perchas elevadas para defender territorio.',
-        calls: 'Llamadas de contacto cortas y agudas, y un llamado de alarma más fuerte cuando detecta depredadores.',
-        season: 'Más vocal durante la primavera y verano, especialmente al amanecer y atardecer.'
-      },
+      curiosities: 'El Hornero es el ave nacional de Argentina y símbolo de la construcción y el trabajo. Su nido de barro puede tardar hasta 18 días en construirse y es tan resistente que puede durar varios años. Curiosamente, cada año construyen un nido nuevo, ya que nunca reutilizan el anterior. Su canto melodioso es considerado un presagio de buen tiempo por los pobladores rurales.',
       seasonalPatterns: {
         spring: 'Inicio de la época reproductiva, construcción de nidos, mayor actividad vocal y territorial.',
         summer: 'Cría activa, alimentación de pichones, menor actividad vocal pero mayor presencia.',
@@ -86,20 +80,22 @@ export const uruguayBirds: Bird[] = [
     }
   },
   {
-    id: 'southern-house-wren',
+    id: 'ratonera',
     commonName: 'Ratonera',
+    englishName: 'Southern House Wren',
     scientificName: 'Troglodytes musculus',
     family: 'Troglodytidae',
     order: 'Passeriformes',
-    habitat: ['ciudad', 'sierras', 'monte'],
+    habitat: ['ciudad', 'pradera', 'monte'],
     status: 'residente',
     commonness: 'abundante',
     departamentos: ['Montevideo', 'Canelones', 'San José', 'Colonia', 'Soriano', 'Río Negro', 'Paysandú', 'Salto', 'Artigas', 'Rivera', 'Tacuarembó', 'Durazno', 'Flores', 'Florida', 'Lavalleja', 'Maldonado', 'Rocha', 'Treinta y Tres', 'Cerro Largo'],
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/613154785/embed'
   },
   {
-    id: 'chalk-browed-mockingbird',
+    id: 'calandria',
     commonName: 'Calandria',
+    englishName: 'Chalk-Browed Mockingbird',
     scientificName: 'Mimus saturninus',
     family: 'Mimidae',
     order: 'Passeriformes',
@@ -107,11 +103,32 @@ export const uruguayBirds: Bird[] = [
     status: 'residente',
     commonness: 'abundante',
     departamentos: ['Montevideo', 'Canelones', 'San José', 'Colonia', 'Soriano', 'Río Negro', 'Paysandú', 'Salto', 'Artigas', 'Rivera', 'Tacuarembó', 'Durazno', 'Flores', 'Florida', 'Lavalleja', 'Maldonado', 'Rocha', 'Treinta y Tres', 'Cerro Largo'],
-    ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/638497654/embed'
+    ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/638497654/embed',
+    description: {
+      general: 'La Calandria es un ave muy común en Uruguay, conocida por su habilidad para imitar el canto de otras aves. Su plumaje es principalmente gris y blanco, con un pico largo y negro.',
+      behavior: {
+        feeding: 'Omnívora, consume insectos, semillas, frutas y ocasionalmente pichones y huevos de otras aves.',
+        reproduction: 'Monógama. Pone 3 a 4 huevos.',
+        social: 'Generalmente en parejas territoriales durante la reproducción. Fuera de la época reproductiva puede formar pequeñas bandadas familiares.'
+      },
+      distribution: {
+        presence: 'Residente común en todo el territorio uruguayo, desde áreas ciudads hasta zonas sierrases.',
+        preferredHabitats: 'Se adapta a diversos hábitats: parques urbanos, campos abiertos, bordes de montes y áreas sierrases con árboles dispersos.',
+        conservation: 'Estado de conservación favorable. Es una especie abundante y bien adaptada a ambientes modificados por el hombre.'
+      },
+      curiosities: 'Es comúnmente parastada por el Tordo Común.',
+      seasonalPatterns: {
+        spring: 'Inicio de la época reproductiva. Nidificación.',
+        summer: 'Nidificación.',
+        autumn: 'Finalización de la reproducción, formación de bandadas familiares, preparación para el invierno.',
+        winter: 'Menor actividad vocal, concentración en áreas con recursos alimentarios, comportamiento más gregario.'
+      }
+    }
   },
   {
-    id: 'great-kiskadee',
+    id: 'benteveo',
     commonName: 'Benteveo',
+    englishName: 'Great Kiskadee',
     scientificName: 'Pitangus sulphuratus',
     family: 'Tyrannidae',
     order: 'Passeriformes',
@@ -122,8 +139,9 @@ export const uruguayBirds: Bird[] = [
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/638497636/embed'
   },
   {
-    id: 'house-sparrow',
+    id: 'gorrión',
     commonName: 'Gorrión',
+    englishName: 'House Sparrow',
     scientificName: 'Passer domesticus',
     family: 'Passeridae',
     order: 'Passeriformes',
@@ -133,8 +151,9 @@ export const uruguayBirds: Bird[] = [
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/191279631/embed'
   },
   {
-    id: 'european-starling',
+    id: 'estornino-pinto',
     commonName: 'Estornino pinto',
+    englishName: 'European Starling',
     scientificName: 'Sturnus vulgaris',
     family: 'Sturnidae',
     order: 'Passeriformes',
@@ -146,8 +165,9 @@ export const uruguayBirds: Bird[] = [
 
   // Anseriformes - Waterfowl
   {
-    id: 'black-necked-swan',
+    id: 'cisne-cuello-negro',
     commonName: 'Cisne cuello negro',
+    englishName: 'Black-Necked Swan',
     scientificName: 'Cygnus melancoryphus',
     family: 'Anatidae',
     order: 'Anseriformes',
@@ -157,8 +177,9 @@ export const uruguayBirds: Bird[] = [
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/548065331/embed'
   },
   {
-    id: 'coscoroba-swan',
+    id: 'coscoroba',
     commonName: 'Coscoroba',
+    englishName: 'Coscoroba Swan',
     scientificName: 'Coscoroba coscoroba',
     family: 'Anatidae',
     order: 'Anseriformes',
@@ -168,8 +189,9 @@ export const uruguayBirds: Bird[] = [
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/259009971/embed'
   },
   {
-    id: 'brazilian-teal',
+    id: 'pato-barcino',
     commonName: 'Pato barcino',
+    englishName: 'Brazilian Teal',
     scientificName: 'Amazonetta brasiliensis',
     family: 'Anatidae',
     order: 'Anseriformes',
@@ -181,8 +203,9 @@ export const uruguayBirds: Bird[] = [
 
   // Ciconiiformes - Storks and Herons
   {
-    id: 'cocoi-heron',
+    id: 'garza-mora',
     commonName: 'Garza mora',
+    englishName: 'Cocoi Heron',
     scientificName: 'Ardea cocoi',
     family: 'Ardeidae',
     order: 'Ciconiiformes',
@@ -195,8 +218,9 @@ export const uruguayBirds: Bird[] = [
   // Accipitriformes - Birds of Prey
 
   {
-    id: 'roadside-hawk',
+    id: 'gavilan-comun',
     commonName: 'Gavilán común',
+    englishName: 'Roadside Hawk',
     scientificName: 'Rupornis magnirostris',
     family: 'Accipitridae',
     order: 'Accipitriformes',
@@ -224,8 +248,9 @@ export const uruguayBirds: Bird[] = [
 
   // Charadriiformes - Shorebirds
   {
-    id: 'southern-lapwing',
+    id: 'tero',
     commonName: 'Tero',
+    englishName: 'Southern Lapwing',
     scientificName: 'Vanellus chilensis',
     family: 'Charadriidae',
     order: 'Charadriiformes',
@@ -237,8 +262,9 @@ export const uruguayBirds: Bird[] = [
 
   // Columbiformes - Pigeons and Doves
   {
-    id: 'spot-winged-pigeon',
+    id: 'paloma-ala-manchada',
     commonName: 'Paloma ala manchada',
+    englishName: 'Spot-Winged Pigeon',
     scientificName: 'Patagioenas maculosa',
     family: 'Columbidae',
     order: 'Columbiformes',
@@ -248,8 +274,9 @@ export const uruguayBirds: Bird[] = [
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/617404122/embed'
   },
   {
-    id: 'eared-dove',
+    id: 'torcaza',
     commonName: 'Torcaza',
+    englishName: 'Eared Dove',
     scientificName: 'Zenaida auriculata',
     family: 'Columbidae',
     order: 'Columbiformes',
@@ -261,8 +288,9 @@ export const uruguayBirds: Bird[] = [
 
   // Psittaciformes - Parrots
   {
-    id: 'monk-parakeet',
-    commonName: 'Cotorra',
+    id: 'cotorra-monja',
+    commonName: 'Cotorra monja',
+    englishName: 'Monk Parakeet',
     scientificName: 'Myiopsitta monachus',
     family: 'Psittacidae',
     order: 'Psittaciformes',
@@ -274,8 +302,9 @@ export const uruguayBirds: Bird[] = [
 
   // Piciformes - Woodpeckers
   {
-    id: 'campo-flicker',
+    id: 'carpintero-campestre',
     commonName: 'Carpintero campestre',
+    englishName: 'Campo Flicker',
     scientificName: 'Colaptes campestris',
     family: 'Picidae',
     order: 'Piciformes',
@@ -287,8 +316,9 @@ export const uruguayBirds: Bird[] = [
 
   // Coraciiformes - Kingfishers
   {
-    id: 'ringed-kingfisher',
+    id: 'martin-pescador-grande',
     commonName: 'Martín pescador grande',
+    englishName: 'Ringed Kingfisher',
     scientificName: 'Megaceryle torquata',
     family: 'Alcedinidae',
     order: 'Coraciiformes',
