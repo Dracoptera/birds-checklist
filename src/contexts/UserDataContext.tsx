@@ -170,14 +170,12 @@ export function UserDataProvider({ children }: { children: React.ReactNode }) {
 
   // Save data to localStorage whenever state changes
   useEffect(() => {
-    // Only save after we've loaded data and if we have actual data
-    if (hasLoadedData && (Object.keys(state.observations).length > 0 || state.totalSeen > 0 || state.totalWithPhotos > 0)) {
+    // Only save after we've loaded data
+    if (hasLoadedData) {
       console.log('Saving state to localStorage:', state);
       localStorage.setItem('uruguayBirdingData', JSON.stringify(state));
-    } else if (!hasLoadedData) {
-      console.log('Not saving yet - still loading data');
     } else {
-      console.log('Not saving initial state to localStorage');
+      console.log('Not saving yet - still loading data');
     }
   }, [state, hasLoadedData]);
 
@@ -227,6 +225,8 @@ export function UserDataProvider({ children }: { children: React.ReactNode }) {
 
   const importData = (data: UserData) => {
     dispatch({ type: 'LOAD_DATA', data });
+    // Force save the imported data to localStorage immediately
+    localStorage.setItem('uruguayBirdingData', JSON.stringify(data));
   };
 
   const value: UserDataContextType = {
