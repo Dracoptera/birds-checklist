@@ -135,16 +135,6 @@ export const uruguayBirds: Bird[] = [
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/259009971/embed'
   },
   {
-    id: 'white-faced-whistling-duck',
-    commonName: 'Pato silbón cara blanca',
-    scientificName: 'Dendrocygna viduata',
-    family: 'Anatidae',
-    order: 'Anseriformes',
-    habitat: ['humedal', 'costa'],
-    status: 'residente',
-    commonness: 'común'
-  },
-  {
     id: 'brazilian-teal',
     commonName: 'Pato barcino',
     scientificName: 'Amazonetta brasiliensis',
@@ -152,20 +142,11 @@ export const uruguayBirds: Bird[] = [
     order: 'Anseriformes',
     habitat: ['humedal', 'costa'],
     status: 'residente',
-    commonness: 'común'
+    commonness: 'común',
+    ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/620010230/embed'
   },
 
   // Ciconiiformes - Storks and Herons
-  {
-    id: 'wood-stork',
-    commonName: 'Tuyuyú',
-    scientificName: 'Mycteria americana',
-    family: 'Ciconiidae',
-    order: 'Ciconiiformes',
-    habitat: ['humedal', 'costa'],
-    status: 'residente',
-    commonness: 'poco común'
-  },
   {
     id: 'cocoi-heron',
     commonName: 'Garza mora',
@@ -174,20 +155,38 @@ export const uruguayBirds: Bird[] = [
     order: 'Ciconiiformes',
     habitat: ['humedal', 'costa'],
     status: 'residente',
-    commonness: 'común'
+    commonness: 'común',
+    ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/469277011/embed'
   },
 
   // Accipitriformes - Birds of Prey
 
   {
     id: 'roadside-hawk',
-    commonName: 'Gavilán caminero',
+    commonName: 'Gavilán común',
     scientificName: 'Rupornis magnirostris',
     family: 'Accipitridae',
     order: 'Accipitriformes',
     habitat: ['urbana', 'rural', 'bosque'],
     status: 'residente',
-    commonness: 'común'
+    commonness: 'común',
+    ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/568347481/embed',
+    variations: [
+      {
+        id: 'adult',
+        name: 'Adulto',
+        description: 'Plumaje completo del adulto',
+        ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/612501251/embed',
+        characteristics: ['Plumaje rufo uniforme', 'Pico negro', 'Patas grises']
+      },
+      {
+        id: 'juvenile',
+        name: 'Juvenil',
+        description: 'Plumaje juvenil más pálido',
+        ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/448561191/embed',
+        characteristics: ['Plumaje más pálido', 'Pico más claro', 'Menos contraste']
+      }
+    ]
   },
 
   // Charadriiformes - Shorebirds
@@ -200,20 +199,10 @@ export const uruguayBirds: Bird[] = [
     habitat: ['pradera', 'rural', 'urbana'],
     status: 'residente',
     commonness: 'abundante',
-    imageUrl: 'https://images.unsplash.com/photo-1552728089-57bdde30beb3?w=400&h=300&fit=crop'
+    ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/442325471/embed'
   },
 
   // Columbiformes - Pigeons and Doves
-  {
-    id: 'picazuro-pigeon',
-    commonName: 'Paloma picazuró',
-    scientificName: 'Patagioenas picazuro',
-    family: 'Columbidae',
-    order: 'Columbiformes',
-    habitat: ['urbana', 'rural', 'bosque'],
-    status: 'residente',
-    commonness: 'común'
-  },
   {
     id: 'spot-winged-pigeon',
     commonName: 'Paloma ala manchada',
@@ -222,7 +211,8 @@ export const uruguayBirds: Bird[] = [
     order: 'Columbiformes',
     habitat: ['bosque', 'rural'],
     status: 'residente',
-    commonness: 'poco común'
+    commonness: 'poco común',
+    ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/617404122/embed'
   },
   {
     id: 'eared-dove',
@@ -232,7 +222,8 @@ export const uruguayBirds: Bird[] = [
     order: 'Columbiformes',
     habitat: ['urbana', 'rural', 'pradera'],
     status: 'residente',
-    commonness: 'abundante'
+    commonness: 'abundante',
+    ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/617987187/embed'
   },
 
   // Psittaciformes - Parrots

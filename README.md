@@ -187,6 +187,12 @@ Este es un proyecto personal, pero las sugerencias son bienvenidas. Si quieres c
 
 Este proyecto es de uso personal y educativo.
 
+### Bugs conocidos
+
+- Dar click en el icono de Cámara (Visto con foto) no auto-selecciona el "Visto".
+- No es posible agregar Observaciones detalladas en la página del ave si no se dio click al icono de "Visto" antes.
+- Utilizar el botón de "Reiniciar datos" no reinicia todo al refrescar la página.
+
 ## Contacto
 
 Para preguntas o sugerencias sobre la aplicación, puedes contactar al desarrollador.
