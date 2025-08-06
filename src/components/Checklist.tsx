@@ -43,7 +43,7 @@ const Checklist: React.FC = () => {
   const [displayCount, setDisplayCount] = useState(9);
 
   const birdsByOrder = useMemo(() => getBirdsByOrder(), []);
-  const birdsByFamily = useMemo(() => getBirdsByFamily(), []);
+  // const birdsByFamily = useMemo(() => getBirdsByFamily(), []);
   
   const uniqueOrders = useMemo(() => Object.keys(birdsByOrder), [birdsByOrder]);
   // const uniqueFamilies = useMemo(() => Object.keys(birdsByFamily), [birdsByFamily]);

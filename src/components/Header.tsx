@@ -68,7 +68,7 @@ const Header: React.FC = () => {
             }} 
           />
           <Typography variant="h6" component="div">
-            Checklist de Aves de Uruguay
+            Aves de Uruguay
           </Typography>
         </Box>
 
