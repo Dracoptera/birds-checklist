@@ -15,7 +15,7 @@ export interface Bird {
   family: string;
   order: string;
   habitat: string[];
-  status: 'residente' | 'migratoria' | 'visitante';
+  status: 'residente' | 'migratoria invernal' | 'migratoria estival' | 'visitante';
   commonness: 'abundante' | 'común' | 'poco común' | 'rara' | 'muy rara';
   departamentos?: string[];
   imageUrl?: string;
