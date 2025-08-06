@@ -18,6 +18,7 @@ import {
   Collapse,
   useMediaQuery,
   useTheme,
+  Icon,
 } from '@mui/material';
 import {
   Visibility as VisibilityIcon,
@@ -26,6 +27,8 @@ import {
   FilterList as FilterIcon,
   ExpandMore as ExpandMoreIcon,
   ExpandLess as ExpandLessIcon,
+  Nature as NatureIcon,
+  ImportContacts as ImportContactsIcon,
 } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import { uruguayBirds, getBirdsByOrder } from '../data/uruguayBirds';
@@ -451,6 +454,13 @@ const Checklist: React.FC = () => {
                       size="small" 
                       color="secondary" 
                       variant="filled"
+                    />
+                    <Chip 
+                      label={bird.origin}
+                      size="small" 
+                      color={bird.origin === 'autóctona' ? 'success' : 'error'}
+                      variant="filled"
+                      icon={bird.origin === 'autóctona' ? <NatureIcon /> : <ImportContactsIcon />}
                     />
                   </Box>
                   
