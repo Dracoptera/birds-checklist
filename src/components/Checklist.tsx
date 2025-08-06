@@ -46,7 +46,7 @@ const Checklist: React.FC = () => {
   const birdsByFamily = useMemo(() => getBirdsByFamily(), []);
   
   const uniqueOrders = useMemo(() => Object.keys(birdsByOrder), [birdsByOrder]);
-  const uniqueFamilies = useMemo(() => Object.keys(birdsByFamily), [birdsByFamily]);
+  // const uniqueFamilies = useMemo(() => Object.keys(birdsByFamily), [birdsByFamily]);
   const uniqueHabitats = useMemo(() => {
     const habitats = new Set<string>();
     uruguayBirds.forEach(bird => {
