@@ -104,7 +104,7 @@ const BirdDetail: React.FC = () => {
       </Button>
 
       <Card sx={{ mb: 3 }}>
-        <BirdImage bird={bird} height={500} compact={false} />
+        <BirdImage bird={bird} height={550} compact={false} />
         <CardContent>
           <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', mb: 2 }}>
             <Box>
