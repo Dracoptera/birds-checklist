@@ -332,10 +332,10 @@ const Checklist: React.FC = () => {
               <Card 
                 sx={{ 
                   height: '100%',
-                  border: observation.seen ? '2px solid #4caf50' : '1px solid #e0e0e0',
+                  border: observation.seen ? '4px solid #4caf50' : '1px solid #e0e0e0',
                   '&:hover': {
                     boxShadow: 3,
-                    transform: 'translateY(-2px)',
+                    transform: 'translateY(-4px)',
                     transition: 'all 0.2s ease-in-out',
                   }
                 }}

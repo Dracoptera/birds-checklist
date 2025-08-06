@@ -189,9 +189,17 @@ Este proyecto es de uso personal y educativo.
 
 ### Bugs conocidos
 
-- Dar click en el icono de Cámara (Visto con foto) no auto-selecciona el "Visto".
+- Dar click en el icono de Cámara (Visto con foto) no auto-selecciona el "Visto". Tampoco dentro de la página del ave.
 - No es posible agregar Observaciones detalladas en la página del ave si no se dio click al icono de "Visto" antes.
-- Utilizar el botón de "Reiniciar datos" no reinicia todo al refrescar la página.
+- Al tener ambos checks, se puede remover el de "Visto" que es pre-requisito de "Con Foto"
+- El calendario elige el día previo al seleccionado; y deja elegir fechas futuras
+
+### Futuras funcionalidades
+
+- Agregar mapas de distribución por especie
+- Agregar filtros por temporada para aves migratorias
+- Mejorar las Variaciones dentro de cada especie
+- Agregar estatus de conservación y filtros acordes
 
 ## Contacto
 

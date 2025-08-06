@@ -300,17 +300,13 @@ const BirdDetail: React.FC = () => {
             </Box>
             <Typography variant="body2" paragraph>
               {bird.description?.general || 
-                'Esta especie se caracteriza por su plumaje distintivo y comportamiento único. ' +
-                'Los adultos presentan dimorfismo sexual, con los machos exhibiendo colores más vibrantes ' +
-                'durante la época reproductiva.'
+                    '🚧 No hay información cargada. 🚧'
               }
             </Typography>
             <Typography variant="body2" paragraph>
               {bird.description?.behavior?.feeding ? 
-                `Alimentación: ${bird.description.behavior.feeding}` :
-                'Su canto es melodioso y puede ser escuchado principalmente durante las primeras horas ' +
-                'de la mañana y al atardecer. La especie es conocida por su adaptabilidad a diferentes ' +
-                'hábitats y su capacidad de migración estacional.'
+                `🚧 No hay información cargada. 🚧` :
+                '🚧 No hay información cargada. 🚧'
               }
             </Typography>
           </Paper>
@@ -325,15 +321,15 @@ const BirdDetail: React.FC = () => {
             </Box>
             <Typography variant="body2" paragraph>
               <strong>Alimentación:</strong> {bird.description?.behavior?.feeding || 
-                'Principalmente insectívora, aunque también consume semillas y frutos pequeños durante el invierno.'}
+                '🚧 No hay información cargada. 🚧'}
             </Typography>
             <Typography variant="body2" paragraph>
               <strong>Reproducción:</strong> {bird.description?.behavior?.reproduction || 
-                'Construye nidos en cavidades naturales o artificiales. La época de cría se extiende de septiembre a diciembre.'}
+                '🚧 No hay información cargada. 🚧'}
             </Typography>
             <Typography variant="body2">
               <strong>Social:</strong> {bird.description?.behavior?.social || 
-                'Generalmente solitaria, pero puede formar pequeñas bandadas durante la migración.'}
+                  'Generalmente solitaria, pero puede formar pequeñas bandadas durante la migración.'}
             </Typography>
           </Paper>
         </Grid>
@@ -347,15 +343,15 @@ const BirdDetail: React.FC = () => {
             </Box>
             <Typography variant="body2" paragraph>
               <strong>Presencia:</strong> {bird.description?.distribution?.presence || 
-                'Residente común en todo el territorio uruguayo.'}
+                '🚧 No hay información cargada. 🚧'}
             </Typography>
             <Typography variant="body2" paragraph>
               <strong>Hábitats preferidos:</strong> {bird.description?.distribution?.preferredHabitats || 
-                'Bosques ribereños, parques urbanos, y áreas con vegetación densa.'}
+                '🚧 No hay información cargada. 🚧'}
             </Typography>
             <Typography variant="body2">
               <strong>Conservación:</strong> {bird.description?.distribution?.conservation || 
-                'Estado de conservación favorable, población estable en la región.'}
+                '🚧 No hay información cargada. 🚧'}
             </Typography>
           </Paper>
         </Grid>
@@ -369,15 +365,15 @@ const BirdDetail: React.FC = () => {
             </Box>
             <Typography variant="body2" paragraph>
               <strong>Canto:</strong> {bird.description?.sounds?.song || 
-                'Serie de notas musicales ascendentes, seguida de un trino característico.'}
+                '🚧 No hay información cargada. 🚧'}
             </Typography>
             <Typography variant="body2" paragraph>
               <strong>Llamadas:</strong> {bird.description?.sounds?.calls || 
-                'Notas cortas y agudas para comunicación entre individuos.'}
+                '🚧 No hay información cargada. 🚧'}
             </Typography>
             <Typography variant="body2">
               <strong>Época:</strong> {bird.description?.sounds?.season || 
-                'Más vocal durante la primavera y verano, especialmente al amanecer.'}
+                '🚧 No hay información cargada. 🚧'}
             </Typography>
           </Paper>
         </Grid>
@@ -396,7 +392,7 @@ const BirdDetail: React.FC = () => {
                 </Typography>
                 <Typography variant="body2" paragraph>
                   {bird.description?.seasonalPatterns?.spring || 
-                    'Llegada de migrantes, inicio de la época reproductiva, mayor actividad vocal y territorial.'}
+                    '🚧 No hay información cargada. 🚧'}
                 </Typography>
               </Grid>
               <Grid item xs={12} sm={6} md={3}>
@@ -405,7 +401,7 @@ const BirdDetail: React.FC = () => {
                 </Typography>
                 <Typography variant="body2" paragraph>
                   {bird.description?.seasonalPatterns?.summer || 
-                    'Cría activa, alimentación de pichones, menor actividad vocal pero mayor presencia.'}
+                    '🚧 No hay información cargada. 🚧'}
                 </Typography>
               </Grid>
               <Grid item xs={12} sm={6} md={3}>
@@ -414,7 +410,7 @@ const BirdDetail: React.FC = () => {
                 </Typography>
                 <Typography variant="body2" paragraph>
                   {bird.description?.seasonalPatterns?.autumn || 
-                    'Preparación para migración, formación de bandadas, cambio en hábitos alimentarios.'}
+                    '🚧 No hay información cargada. 🚧'}
                 </Typography>
               </Grid>
               <Grid item xs={12} sm={6} md={3}>
@@ -423,7 +419,7 @@ const BirdDetail: React.FC = () => {
                 </Typography>
                 <Typography variant="body2" paragraph>
                   {bird.description?.seasonalPatterns?.winter || 
-                    'Población reducida, menor actividad, concentración en áreas con recursos alimentarios.'}
+                    '🚧 No hay información cargada. 🚧'}
                 </Typography>
               </Grid>
             </Grid>

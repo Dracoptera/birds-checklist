@@ -9,7 +9,7 @@ import {
   IconButton,
   Tooltip,
 } from '@mui/material';
-import robinImage from '../assets/index/robin.png';
+import kiskadeeImage from '../assets/index/great-kiskadee.png';
 import {
   List as ListIcon,
   BarChart as BarChartIcon,
@@ -59,8 +59,8 @@ const Header: React.FC = () => {
           onClick={() => navigate('/')}
         >
           <img 
-            src={robinImage} 
-            alt="Robin" 
+            src={kiskadeeImage} 
+            alt="Benteveo" 
             style={{ 
               width: '32px', 
               height: '32px',
