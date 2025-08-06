@@ -42,6 +42,7 @@ const BirdVariations: React.FC<BirdVariationsProps> = ({
     habitat: [],
     status: 'residente' as const,
     commonness: 'común' as const,
+    origin: 'autóctona' as const,
     imageUrl: selectedVariation.imageUrl,
     ebirdEmbedUrl: selectedVariation.ebirdEmbedUrl,
   };

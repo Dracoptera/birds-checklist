@@ -17,6 +17,7 @@ export interface Bird {
   habitat: string[];
   status: 'residente' | 'migratoria invernal' | 'migratoria estival' | 'visitante';
   commonness: 'abundante' | 'común' | 'poco común' | 'rara' | 'muy rara';
+  origin: 'autóctona' | 'introducida';
   departamentos?: string[];
   imageUrl?: string;
   ebirdEmbedUrl?: string;
@@ -55,6 +56,7 @@ export const uruguayBirds: Bird[] = [
     order: 'Passeriformes',
     habitat: ['ciudad', 'monte', 'pradera'],
     status: 'residente',
+    origin: 'autóctona',
     commonness: 'abundante',
     departamentos: ['Montevideo', 'Canelones', 'San José', 'Colonia', 'Soriano', 'Río Negro', 'Paysandú', 'Salto', 'Artigas', 'Rivera', 'Tacuarembó', 'Durazno', 'Flores', 'Florida', 'Lavalleja', 'Maldonado', 'Rocha', 'Treinta y Tres', 'Cerro Largo'],
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/314971271/embed',
@@ -66,8 +68,8 @@ export const uruguayBirds: Bird[] = [
         social: 'Generalmente en parejas territoriales durante la reproducción. Fuera de la época reproductiva puede formar pequeñas bandadas familiares.'
       },
       distribution: {
-        presence: 'Residente común en todo el territorio uruguayo, desde áreas ciudads hasta zonas sierrases.',
-        preferredHabitats: 'Se adapta a diversos hábitats: parques urbanos, campos abiertos, bordes de montes y áreas sierrases con árboles dispersos.',
+        presence: 'Residente común en todo el territorio uruguayo, desde áreas ciudads hasta zonas sierraes.',
+        preferredHabitats: 'Se adapta a diversos hábitats: parques urbanos, campos abiertos, bordes de montes y áreas sierraes con árboles dispersos.',
         conservation: 'Estado de conservación favorable. Es una especie abundante y bien adaptada a ambientes modificados por el hombre.'
       },
       curiosities: 'El Hornero es el ave nacional de Argentina y símbolo de la construcción y el trabajo. Su nido de barro puede tardar hasta 18 días en construirse y es tan resistente que puede durar varios años. Curiosamente, cada año construyen un nido nuevo, ya que nunca reutilizan el anterior. Su canto melodioso es considerado un presagio de buen tiempo por los pobladores rurales.',
@@ -88,6 +90,7 @@ export const uruguayBirds: Bird[] = [
     order: 'Passeriformes',
     habitat: ['ciudad', 'pradera', 'monte'],
     status: 'residente',
+    origin: 'autóctona',
     commonness: 'abundante',
     departamentos: ['Montevideo', 'Canelones', 'San José', 'Colonia', 'Soriano', 'Río Negro', 'Paysandú', 'Salto', 'Artigas', 'Rivera', 'Tacuarembó', 'Durazno', 'Flores', 'Florida', 'Lavalleja', 'Maldonado', 'Rocha', 'Treinta y Tres', 'Cerro Largo'],
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/613154785/embed'
@@ -99,8 +102,9 @@ export const uruguayBirds: Bird[] = [
     scientificName: 'Mimus saturninus',
     family: 'Mimidae',
     order: 'Passeriformes',
-    habitat: ['ciudad', 'sierras', 'pradera'],
+    habitat: ['ciudad', 'sierra', 'pradera'],
     status: 'residente',
+    origin: 'autóctona',
     commonness: 'abundante',
     departamentos: ['Montevideo', 'Canelones', 'San José', 'Colonia', 'Soriano', 'Río Negro', 'Paysandú', 'Salto', 'Artigas', 'Rivera', 'Tacuarembó', 'Durazno', 'Flores', 'Florida', 'Lavalleja', 'Maldonado', 'Rocha', 'Treinta y Tres', 'Cerro Largo'],
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/638497654/embed',
@@ -112,8 +116,8 @@ export const uruguayBirds: Bird[] = [
         social: 'Generalmente en parejas territoriales durante la reproducción. Fuera de la época reproductiva puede formar pequeñas bandadas familiares.'
       },
       distribution: {
-        presence: 'Residente común en todo el territorio uruguayo, desde áreas ciudads hasta zonas sierrases.',
-        preferredHabitats: 'Se adapta a diversos hábitats: parques urbanos, campos abiertos, bordes de montes y áreas sierrases con árboles dispersos.',
+        presence: 'Residente común en todo el territorio uruguayo, desde áreas ciudads hasta zonas sierraes.',
+        preferredHabitats: 'Se adapta a diversos hábitats: parques urbanos, campos abiertos, bordes de montes y áreas sierraes con árboles dispersos.',
         conservation: 'Estado de conservación favorable. Es una especie abundante y bien adaptada a ambientes modificados por el hombre.'
       },
       curiosities: 'Es comúnmente parastada por el Tordo Común.',
@@ -132,8 +136,9 @@ export const uruguayBirds: Bird[] = [
     scientificName: 'Pitangus sulphuratus',
     family: 'Tyrannidae',
     order: 'Passeriformes',
-    habitat: ['ciudad', 'sierras', 'monte', 'bañado'],
+    habitat: ['ciudad', 'sierra', 'monte', 'bañado'],
     status: 'residente',
+    origin: 'autóctona',
     commonness: 'abundante',
     departamentos: ['Montevideo', 'Canelones', 'San José', 'Colonia', 'Soriano', 'Río Negro', 'Paysandú', 'Salto', 'Artigas', 'Rivera', 'Tacuarembó', 'Durazno', 'Flores', 'Florida', 'Lavalleja', 'Maldonado', 'Rocha', 'Treinta y Tres', 'Cerro Largo'],
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/638497636/embed'
@@ -145,8 +150,9 @@ export const uruguayBirds: Bird[] = [
     scientificName: 'Passer domesticus',
     family: 'Passeridae',
     order: 'Passeriformes',
-    habitat: ['ciudad', 'sierras'],
+    habitat: ['ciudad', 'sierra'],
     status: 'residente',
+    origin: 'introducida',
     commonness: 'abundante',
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/191279631/embed'
   },
@@ -157,8 +163,9 @@ export const uruguayBirds: Bird[] = [
     scientificName: 'Sturnus vulgaris',
     family: 'Sturnidae',
     order: 'Passeriformes',
-    habitat: ['ciudad', 'sierras'],
+    habitat: ['ciudad', 'sierra'],
     status: 'residente',
+    origin: 'introducida',
     commonness: 'común',
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/158542881/embed'
   },
@@ -173,6 +180,7 @@ export const uruguayBirds: Bird[] = [
     order: 'Anseriformes',
     habitat: ['bañado', 'costa'],
     status: 'residente',
+    origin: 'introducida',
     commonness: 'poco común',
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/548065331/embed'
   },
@@ -185,6 +193,7 @@ export const uruguayBirds: Bird[] = [
     order: 'Anseriformes',
     habitat: ['bañado', 'costa'],
     status: 'residente',
+    origin: 'introducida',
     commonness: 'rara',
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/259009971/embed'
   },
@@ -197,6 +206,7 @@ export const uruguayBirds: Bird[] = [
     order: 'Anseriformes',
     habitat: ['bañado', 'costa'],
     status: 'residente',
+    origin: 'introducida',
     commonness: 'común',
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/620010230/embed'
   },
@@ -211,6 +221,7 @@ export const uruguayBirds: Bird[] = [
     order: 'Ciconiiformes',
     habitat: ['bañado', 'costa'],
     status: 'residente',
+    origin: 'introducida',
     commonness: 'común',
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/469277011/embed'
   },
@@ -224,8 +235,9 @@ export const uruguayBirds: Bird[] = [
     scientificName: 'Rupornis magnirostris',
     family: 'Accipitridae',
     order: 'Accipitriformes',
-    habitat: ['ciudad', 'sierras', 'monte'],
+    habitat: ['ciudad', 'sierra', 'monte'],
     status: 'residente',
+    origin: 'autóctona',
     commonness: 'común',
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/568347481/embed',
     variations: [
@@ -254,8 +266,9 @@ export const uruguayBirds: Bird[] = [
     scientificName: 'Vanellus chilensis',
     family: 'Charadriidae',
     order: 'Charadriiformes',
-    habitat: ['pradera', 'sierras', 'ciudad'],
+    habitat: ['pradera', 'sierra', 'ciudad'],
     status: 'residente',
+    origin: 'autóctona',
     commonness: 'abundante',
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/442325471/embed'
   },
@@ -268,8 +281,9 @@ export const uruguayBirds: Bird[] = [
     scientificName: 'Patagioenas maculosa',
     family: 'Columbidae',
     order: 'Columbiformes',
-    habitat: ['monte', 'sierras'],
+    habitat: ['monte', 'sierra'],
     status: 'residente',
+    origin: 'autóctona',
     commonness: 'poco común',
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/617404122/embed'
   },
@@ -280,8 +294,9 @@ export const uruguayBirds: Bird[] = [
     scientificName: 'Zenaida auriculata',
     family: 'Columbidae',
     order: 'Columbiformes',
-    habitat: ['ciudad', 'sierras', 'pradera'],
+    habitat: ['ciudad', 'sierra', 'pradera'],
     status: 'residente',
+    origin: 'autóctona',
     commonness: 'abundante',
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/617987187/embed'
   },
@@ -294,8 +309,9 @@ export const uruguayBirds: Bird[] = [
     scientificName: 'Myiopsitta monachus',
     family: 'Psittacidae',
     order: 'Psittaciformes',
-    habitat: ['ciudad', 'sierras', 'monte'],
+    habitat: ['ciudad', 'sierra', 'monte'],
     status: 'residente',
+    origin: 'autóctona',
     commonness: 'abundante',
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/638497548/embed'
   },
@@ -308,8 +324,9 @@ export const uruguayBirds: Bird[] = [
     scientificName: 'Colaptes campestris',
     family: 'Picidae',
     order: 'Piciformes',
-    habitat: ['pradera', 'sierras'],
+    habitat: ['pradera', 'sierra'],
     status: 'residente',
+    origin: 'autóctona',
     commonness: 'común',
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/627431204/embed'
   },
@@ -324,6 +341,7 @@ export const uruguayBirds: Bird[] = [
     order: 'Coraciiformes',
     habitat: ['bañado', 'costa'],
     status: 'residente',
+    origin: 'autóctona',
     commonness: 'poco común',
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/174809481/embed'
   },

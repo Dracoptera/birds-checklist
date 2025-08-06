@@ -20,6 +20,7 @@ import {
   Tooltip,
   Paper,
   Divider,
+  Icon,
 } from '@mui/material';
 import {
   Visibility as VisibilityIcon,
@@ -34,6 +35,7 @@ import {
   Map as MapIcon,
   VolumeUp as VolumeIcon,
   Timeline as TimelineIcon,
+  ImportContacts as ImportContactsIcon,
 } from '@mui/icons-material';
 import { useParams, useNavigate } from 'react-router-dom';
 import { uruguayBirds } from '../data/uruguayBirds';
@@ -152,6 +154,15 @@ const BirdDetail: React.FC = () => {
               ))}
             </Grid>
           </Grid>
+
+          <Box sx={{ mb: 2, display: 'flex', alignItems: 'center', gap: 1 }}>
+            <Icon>
+              {bird.origin === 'autóctona' ? <NatureIcon color="success" /> : <ImportContactsIcon color="error" />}
+            </Icon>
+            <Typography variant="body2" color={bird.origin === 'autóctona' ? 'success' : 'error'}>
+              {bird.origin}
+            </Typography>
+          </Box>
 
           {bird.departamentos && bird.departamentos.length > 0 && (
             <Box sx={{ mb: 2 }}>
