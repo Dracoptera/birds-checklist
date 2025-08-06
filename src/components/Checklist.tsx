@@ -40,7 +40,7 @@ const Checklist: React.FC = () => {
     commonness: '',
     searchTerm: '',
   });
-  const [displayCount, setDisplayCount] = useState(10);
+  const [displayCount, setDisplayCount] = useState(9);
 
   const birdsByOrder = useMemo(() => getBirdsByOrder(), []);
   const birdsByFamily = useMemo(() => getBirdsByFamily(), []);
@@ -91,9 +91,6 @@ const Checklist: React.FC = () => {
       // Filter by order
       if (filters.order && bird.order !== filters.order) return false;
       
-      // Filter by family
-      if (filters.family && bird.family !== filters.family) return false;
-      
       // Filter by habitat
       if (filters.habitat && !bird.habitat.includes(filters.habitat)) return false;
       
@@ -125,7 +122,21 @@ const Checklist: React.FC = () => {
 
   const handleFilterChange = (field: keyof FilterOptions, value: string) => {
     setFilters(prev => ({ ...prev, [field]: value }));
-    setDisplayCount(10); // Reset to show first 10 birds when filters change
+    setDisplayCount(9); // Reset to show first 9 birds when filters change
+  };
+
+  const handleClearFilters = () => {
+    setFilters({
+      seen: 'all',
+      hasPhoto: 'all',
+      order: '',
+      family: '',
+      habitat: '',
+      departamento: '',
+      commonness: '',
+      searchTerm: '',
+    });
+    setDisplayCount(9);
   };
 
   const getBirdObservation = (birdId: string) => {
@@ -198,22 +209,6 @@ const Checklist: React.FC = () => {
           
           <Grid item xs={12} sm={6} md={3}>
             <FormControl fullWidth size="small">
-              <InputLabel>Familia</InputLabel>
-              <Select
-                value={filters.family}
-                label="Familia"
-                onChange={(e) => handleFilterChange('family', e.target.value)}
-              >
-                <MenuItem value="">Todas</MenuItem>
-                {uniqueFamilies.map(family => (
-                  <MenuItem key={family} value={family}>{family}</MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-          </Grid>
-          
-          <Grid item xs={12} sm={6} md={3}>
-            <FormControl fullWidth size="small">
               <InputLabel>Hábitat</InputLabel>
               <Select
                 value={filters.habitat}
@@ -270,6 +265,18 @@ const Checklist: React.FC = () => {
               placeholder="Nombre, científico o familia..."
             />
           </Grid>
+          
+          <Grid item xs={12} sm={6} md={3}>
+            <Button
+              variant="outlined"
+              onClick={handleClearFilters}
+              fullWidth
+              size="small"
+              sx={{ height: '40px' }}
+            >
+              Limpiar filtros
+            </Button>
+          </Grid>
         </Grid>
       </Paper>
 
@@ -297,7 +304,7 @@ const Checklist: React.FC = () => {
                 }}
               >
                 <Box sx={{ position: 'relative' }}>
-                  <BirdImage bird={bird} height={450} compact={false} />
+                  <BirdImage bird={bird} height={380} compact={false} />
                   <Box
                     sx={{
                       position: 'absolute',
@@ -323,7 +330,12 @@ const Checklist: React.FC = () => {
                     <Tooltip title={observation.hasPhoto ? 'Marcar como sin foto' : 'Marcar como con foto'}>
                       <IconButton
                         size="small"
-                        onClick={() => togglePhoto(bird.id)}
+                        onClick={() => {
+                          togglePhoto(bird.id);
+                          if (!observation.seen) {
+                            toggleSeen(bird.id);
+                          }
+                        }}
                         color={observation.hasPhoto ? 'primary' : 'default'}
                         sx={{ 
                           backgroundColor: 'rgba(255,255,255,0.9)',
@@ -378,7 +390,12 @@ const Checklist: React.FC = () => {
                         <Tooltip title={observation.hasPhoto ? 'Marcar como sin foto' : 'Marcar como con foto'}>
                           <IconButton
                             size="small"
-                            onClick={() => togglePhoto(bird.id)}
+                            onClick={() => {
+                              togglePhoto(bird.id);
+                              if (!observation.seen) {
+                                toggleSeen(bird.id);
+                              }
+                            }}
                             color={observation.hasPhoto ? 'primary' : 'default'}
                           >
                             <PhotoCameraIcon />
@@ -445,7 +462,7 @@ const Checklist: React.FC = () => {
         <Box sx={{ textAlign: 'center', mt: 3 }}>
           <Button
             variant="outlined"
-            onClick={() => setDisplayCount(prev => prev + 10)}
+            onClick={() => setDisplayCount(prev => prev + 9)}
             sx={{ px: 4, py: 1.5 }}
           >
             Mostrar más
