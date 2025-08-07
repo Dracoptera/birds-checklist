@@ -393,6 +393,7 @@ const BirdDetail: React.FC = () => {
               height="431"
               frameBorder="0" 
               allowFullScreen
+              title={`Grabación de sonido de ${bird.commonName}`}
               style={{ 
                 maxWidth: '800px',
                 minHeight: '300px',
