@@ -104,11 +104,18 @@ const BirdDetail: React.FC = () => {
       </Button>
 
       <Card sx={{ mb: 3 }}>
-        <BirdImage bird={bird} height={600} compact={false} />
+        <Box sx={{ 
+          height: { xs: 300, sm: 400, md: 500, lg: 600 },
+          '& .MuiBox-root': {
+            height: '100% !important'
+          }
+        }}>
+          <BirdImage bird={bird} height="100%" compact={false} />
+        </Box>
         <CardContent>
-          <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', mb: 3 }}>
+          <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, justifyContent: 'space-between', alignItems: { xs: 'flex-start', sm: 'flex-start' }, mb: 3 }}>
             <Box>
-              <Box sx={{ display: 'flex', alignItems: 'baseline', gap: 2, mb: 1 }}>
+              <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, alignItems: { xs: 'flex-start', sm: 'baseline' }, gap: { xs: 0, sm: 2 }, mb: 1 }}>
                 <Typography variant="h4">
                   {bird.commonName}
                 </Typography>
@@ -159,7 +166,7 @@ const BirdDetail: React.FC = () => {
           </Box>
 
           {/* Family/Order and Habitat row */}
-          <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
+          <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, justifyContent: 'space-between', alignItems: { xs: 'flex-start', sm: 'center' }, mb: 2, gap: { xs: 2, sm: 0 } }}>
             <Box sx={{ display: 'flex', gap: 1 }}>
               <Chip label={bird.family} color="primary" variant="outlined" />
               <Chip label={bird.order} color="secondary" variant="outlined" />
@@ -178,8 +185,8 @@ const BirdDetail: React.FC = () => {
           </Box>
 
           {/* Commonness, Status and Origin row */}
-          <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
-            <Box sx={{ display: 'flex', gap: 1 }}>
+          <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, justifyContent: 'space-between', alignItems: { xs: 'flex-start', sm: 'center' }, mb: 2, gap: { xs: 2, sm: 0 } }}>
+            <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
               <Chip 
                 label={bird.commonness} 
                 size="small" 
