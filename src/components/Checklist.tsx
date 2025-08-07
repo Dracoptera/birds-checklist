@@ -415,13 +415,13 @@ const Checklist: React.FC = () => {
                         component="div" 
                         sx={{ 
                           fontWeight: 'bold',
-                          // cursor: 'pointer',
-                          // '&:hover': {
-                          //   color: 'primary.main',
-                          //   textDecoration: 'underline'
-                          // }
+                          cursor: 'pointer',
+                          '&:hover': {
+                            color: 'primary.main',
+                            textDecoration: 'underline'
+                          }
                         }}
-                        // onClick={() => navigate(`/bird/${bird.id}`)}
+                        onClick={() => navigate(`/bird/${bird.id}`)}
                       >
                         {bird.commonName}
                       </Typography>
