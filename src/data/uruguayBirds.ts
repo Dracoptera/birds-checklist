@@ -305,8 +305,8 @@ export const uruguayBirds: Bird[] = [
 
   // Psittaciformes - Parrots
   {
-    id: 'cotorra-monja',
-    commonName: 'Cotorra monja',
+    id: 'cotorra',
+    commonName: 'Cotorra',
     englishName: 'Monk Parakeet',
     scientificName: 'Myiopsitta monachus',
     family: 'Psittacidae',
@@ -321,7 +321,7 @@ export const uruguayBirds: Bird[] = [
   // Piciformes - Woodpeckers
   {
     id: 'carpintero-campestre',
-    commonName: 'Carpintero campestre',
+    commonName: 'Carpintero de campo',
     englishName: 'Campo Flicker',
     scientificName: 'Colaptes campestris',
     family: 'Picidae',

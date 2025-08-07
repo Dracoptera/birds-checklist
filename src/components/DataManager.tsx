@@ -61,10 +61,11 @@ const DataManager: React.FC = () => {
             acc[birdId] = {
               seen: observation.seen,
               hasPhoto: observation.hasPhoto,
+              observations: observation.observations, // Include detailed observations
             };
           }
           return acc;
-        }, {} as { [birdId: string]: { seen: boolean; hasPhoto: boolean } }),
+        }, {} as { [birdId: string]: { seen: boolean; hasPhoto: boolean; observations: any[] } }),
         totalSeen: state.totalSeen,
         totalWithPhotos: state.totalWithPhotos,
         lastUpdated: state.lastUpdated,

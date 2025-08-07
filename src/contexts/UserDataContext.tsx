@@ -212,10 +212,11 @@ export function UserDataProvider({ children }: { children: React.ReactNode }) {
           acc[birdId] = {
             seen: observation.seen,
             hasPhoto: observation.hasPhoto,
+            observations: observation.observations, // Include detailed observations
           };
         }
         return acc;
-      }, {} as { [birdId: string]: { seen: boolean; hasPhoto: boolean } }),
+      }, {} as { [birdId: string]: { seen: boolean; hasPhoto: boolean; observations: ObservationDetail[] } }),
       totalSeen: state.totalSeen,
       totalWithPhotos: state.totalWithPhotos,
       lastUpdated: state.lastUpdated,
@@ -256,7 +257,7 @@ export function UserDataProvider({ children }: { children: React.ReactNode }) {
               bird,
               seen: (minimalObs as any).seen || false,
               hasPhoto: (minimalObs as any).hasPhoto || false,
-              observations: [], // Reset observations when importing minimal data
+              observations: (minimalObs as any).observations || [], // Preserve detailed observations
             };
           }
         });
