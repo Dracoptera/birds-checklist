@@ -38,7 +38,7 @@ const BirdVariations: React.FC<BirdVariationsProps> = ({
             family: '',
             order: '',
             habitat: [],
-            status: 'residente 🏠' as const,
+            status: '🏠 residente' as const,
             commonness: 'común' as const,
             origin: 'autóctona' as const,
             imageUrl: variation.imageUrl,

@@ -15,7 +15,7 @@ export interface Bird {
   family: string;
   order: string;
   habitat: string[];
-  status: 'residente 🏠' | 'migratoria invernal ❄️' | 'migratoria estival 🌞' | 'visitante 🌍';
+  status: '🏠 residente' | 'migratoria invernal ❄️' | 'migratoria estival 🌞' | 'visitante 🌍';
   commonness: 'abundante' | 'común' | 'poco común' | 'rara' | 'muy rara';
   size?: string;
   origin: 'autóctona' | 'introducida';
@@ -57,7 +57,7 @@ export const uruguayBirds: Bird[] = [
     family: 'Furnariidae',
     order: 'Passeriformes (Pájaros)',
     habitat: ['ciudad 🌆', 'monte 🌲', 'pradera 🌿'],
-    status: 'residente 🏠',
+    status: '🏠 residente',
     origin: 'autóctona',
     commonness: 'abundante',
     size: '15-17 cm',
@@ -93,7 +93,7 @@ export const uruguayBirds: Bird[] = [
     family: 'Troglodytidae',
     order: 'Passeriformes (Pájaros)',
     habitat: ['ciudad 🌆', 'pradera 🌿', 'monte 🌲'],
-    status: 'residente 🏠',
+    status: '🏠 residente',
     origin: 'autóctona',
     commonness: 'abundante',
     departamentos: ['Montevideo', 'Canelones', 'San José', 'Colonia', 'Soriano', 'Río Negro', 'Paysandú', 'Salto', 'Artigas', 'Rivera', 'Tacuarembó', 'Durazno', 'Flores', 'Florida', 'Lavalleja', 'Maldonado', 'Rocha', 'Treinta y Tres', 'Cerro Largo'],
@@ -107,7 +107,7 @@ export const uruguayBirds: Bird[] = [
     family: 'Mimidae',
     order: 'Passeriformes (Pájaros)',
     habitat: ['ciudad 🌆', 'sierra 🏔️', 'pradera 🌿'],
-    status: 'residente 🏠',
+    status: '🏠 residente',
     origin: 'autóctona',
     commonness: 'abundante',
     departamentos: ['Montevideo', 'Canelones', 'San José', 'Colonia', 'Soriano', 'Río Negro', 'Paysandú', 'Salto', 'Artigas', 'Rivera', 'Tacuarembó', 'Durazno', 'Flores', 'Florida', 'Lavalleja', 'Maldonado', 'Rocha', 'Treinta y Tres', 'Cerro Largo'],
@@ -142,7 +142,7 @@ export const uruguayBirds: Bird[] = [
     family: 'Tyrannidae',
     order: 'Passeriformes (Pájaros)',
     habitat: ['ciudad 🌆', 'sierra 🏔️', 'monte 🌲', 'bañado 💧'],
-    status: 'residente 🏠',
+    status: '🏠 residente',
     origin: 'autóctona',
     commonness: 'abundante',
     departamentos: ['Montevideo', 'Canelones', 'San José', 'Colonia', 'Soriano', 'Río Negro', 'Paysandú', 'Salto', 'Artigas', 'Rivera', 'Tacuarembó', 'Durazno', 'Flores', 'Florida', 'Lavalleja', 'Maldonado', 'Rocha', 'Treinta y Tres', 'Cerro Largo'],
@@ -156,7 +156,7 @@ export const uruguayBirds: Bird[] = [
     family: 'Passeridae',
     order: 'Passeriformes (Pájaros)',
     habitat: ['ciudad 🌆', 'sierra 🏔️'],
-    status: 'residente 🏠',
+    status: '🏠 residente',
     origin: 'introducida',
     commonness: 'abundante',
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/191279631/embed'
@@ -169,7 +169,7 @@ export const uruguayBirds: Bird[] = [
     family: 'Sturnidae',
     order: 'Passeriformes (Pájaros)',
     habitat: ['ciudad 🌆', 'sierra 🏔️'],
-    status: 'residente 🏠',
+    status: '🏠 residente',
     origin: 'introducida',
     commonness: 'común',
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/158542881/embed'
@@ -184,7 +184,7 @@ export const uruguayBirds: Bird[] = [
     family: 'Anatidae',
     order: 'Anseriformes (Patos, Cisnes y Chajás)',
     habitat: ['bañado 💧', 'costa 🌊'],
-    status: 'residente 🏠',
+    status: '🏠 residente',
     origin: 'introducida',
     commonness: 'poco común',
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/548065331/embed'
@@ -197,7 +197,7 @@ export const uruguayBirds: Bird[] = [
     family: 'Anatidae',
     order: 'Anseriformes (Patos, Cisnes y Chajás)',
     habitat: ['bañado 💧', 'costa 🌊'],
-    status: 'residente 🏠',
+    status: '🏠 residente',
     origin: 'introducida',
     commonness: 'rara',
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/259009971/embed'
@@ -210,7 +210,7 @@ export const uruguayBirds: Bird[] = [
     family: 'Anatidae',
     order: 'Anseriformes (Patos, Cisnes y Chajás)',
     habitat: ['bañado 💧', 'costa 🌊'],
-    status: 'residente 🏠',
+    status: '🏠 residente',
     origin: 'introducida',
     commonness: 'común',
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/620010230/embed'
@@ -225,7 +225,7 @@ export const uruguayBirds: Bird[] = [
     family: 'Ardeidae',
     order: 'Pelecaniformes (Garzas, Cuervillos y Espátulas)',
     habitat: ['bañado 💧', 'costa 🌊'],
-    status: 'residente 🏠',
+    status: '🏠 residente',
     origin: 'introducida',
     commonness: 'común',
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/469277011/embed'
@@ -241,7 +241,7 @@ export const uruguayBirds: Bird[] = [
     family: 'Accipitridae',
     order: 'Accipitriformes (Águilas y Gavilanes)',
     habitat: ['ciudad 🌆', 'sierra 🏔️', 'monte 🌲'],
-    status: 'residente 🏠',
+    status: '🏠 residente',
     origin: 'autóctona',
     commonness: 'común',
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/568347481/embed',
@@ -272,7 +272,7 @@ export const uruguayBirds: Bird[] = [
     family: 'Charadriidae',
     order: 'Charadriiformes (Playeras)',
     habitat: ['pradera 🌿', 'sierra 🏔️', 'ciudad 🌆'],
-    status: 'residente 🏠',
+    status: '🏠 residente',
     origin: 'autóctona',
     commonness: 'abundante',
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/442325471/embed'
@@ -287,7 +287,7 @@ export const uruguayBirds: Bird[] = [
     family: 'Columbidae',
     order: 'Columbiformes (Palomas)',
     habitat: ['monte 🌲', 'sierra 🏔️'],
-    status: 'residente 🏠',
+    status: '🏠 residente',
     origin: 'autóctona',
     commonness: 'poco común',
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/617404122/embed'
@@ -300,7 +300,7 @@ export const uruguayBirds: Bird[] = [
     family: 'Columbidae',
     order: 'Columbiformes (Palomas)',
     habitat: ['ciudad 🌆', 'sierra 🏔️', 'pradera 🌿'],
-    status: 'residente 🏠',
+    status: '🏠 residente',
     origin: 'autóctona',
     commonness: 'abundante',
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/617987187/embed'
@@ -315,7 +315,7 @@ export const uruguayBirds: Bird[] = [
     family: 'Psittacidae',
     order: 'Psittaciformes (Loros)',
     habitat: ['ciudad 🌆', 'sierra 🏔️', 'monte 🌲'],
-    status: 'residente 🏠',
+    status: '🏠 residente',
     origin: 'autóctona',
     commonness: 'abundante',
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/638497548/embed'
@@ -330,7 +330,7 @@ export const uruguayBirds: Bird[] = [
     family: 'Picidae',
     order: 'Piciformes (Carpinteros)',
     habitat: ['pradera 🌿', 'sierra 🏔️'],
-    status: 'residente 🏠',
+    status: '🏠 residente',
     origin: 'autóctona',
     commonness: 'común',
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/627431204/embed'
@@ -345,7 +345,7 @@ export const uruguayBirds: Bird[] = [
     family: 'Alcedinidae',
     order: 'Coraciiformes (Martín pescador)',
     habitat: ['bañado 💧', 'costa 🌊'],
-    status: 'residente 🏠',
+    status: '🏠 residente',
     origin: 'autóctona',
     commonness: 'poco común',
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/174809481/embed'

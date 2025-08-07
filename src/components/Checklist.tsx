@@ -408,70 +408,7 @@ const Checklist: React.FC = () => {
                   }
                 }}
               >
-                <Box sx={{ position: 'relative' }}>
-                  <BirdImage bird={bird} height={420} compact={true} />
-                  <Box
-                    sx={{
-                      position: 'absolute',
-                      top: 8,
-                      right: 8,
-                      display: 'flex',
-                      gap: 0.5,
-                    }}
-                  >
-                    <Tooltip title={observation.seen ? 'Marcar como no visto' : 'Marcar como visto'}>
-                      <IconButton
-                        size="small"
-                        onClick={() => toggleSeen(bird.id)}
-                        color={observation.seen ? 'success' : 'default'}
-                        sx={{ 
-                          backgroundColor: 'rgba(255,255,255,0.9)',
-                          '&:hover': { backgroundColor: 'rgba(255,255,255,1)' }
-                        }}
-                      >
-                        <VisibilityIcon />
-                      </IconButton>
-                    </Tooltip>
-                    <Tooltip title={
-                      !observation.seen 
-                        ? 'Primero marca como visto' 
-                        : observation.hasPhoto 
-                          ? 'Marcar como sin foto' 
-                          : 'Marcar como con foto'
-                    }>
-                      <IconButton
-                        size="small"
-                        onClick={() => {
-                          // Only allow photo toggle if already seen
-                          if (observation.seen) {
-                            togglePhoto(bird.id);
-                          }
-                        }}
-                        color={observation.hasPhoto ? 'primary' : 'default'}
-                        disabled={!observation.seen}
-                        sx={{ 
-                          backgroundColor: 'rgba(255,255,255,0.9)',
-                          '&:hover': { backgroundColor: 'rgba(255,255,255,1)' },
-                          opacity: !observation.seen ? 0.5 : 1
-                        }}
-                      >
-                        <PhotoCameraIcon />
-                      </IconButton>
-                    </Tooltip>
-                    {/* <Tooltip title="Agregar observación">
-                      <IconButton
-                        size="small"
-                        onClick={() => navigate(`/bird/${bird.id}`)}
-                        sx={{ 
-                          backgroundColor: 'rgba(255,255,255,0.9)',
-                          '&:hover': { backgroundColor: 'rgba(255,255,255,1)' }
-                        }}
-                      >
-                        <AddIcon />
-                      </IconButton>
-                    </Tooltip> */}
-                  </Box>
-                </Box>
+                <BirdImage bird={bird} height={420} compact={true} />
                 <CardContent sx={{ p: 2 }}>
                   <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', mb: 2 }}>
                     <Box>
@@ -494,7 +431,42 @@ const Checklist: React.FC = () => {
                         {bird.scientificName}
                       </Typography>
                     </Box>
-                    {/* Removed all buttons from card content - only keep buttons on images */}
+                    
+                    <Box sx={{ display: 'flex', gap: 1, alignItems: 'flex-start' }}>
+                      <Tooltip title={observation.seen ? 'Marcar como no visto' : 'Marcar como visto'}>
+                        <IconButton
+                          size="small"
+                          onClick={() => toggleSeen(bird.id)}
+                          color={observation.seen ? 'success' : 'default'}
+                        >
+                          <VisibilityIcon />
+                        </IconButton>
+                      </Tooltip>
+                      <Tooltip title={
+                        !observation.seen 
+                          ? 'Primero marca como visto' 
+                          : observation.hasPhoto 
+                            ? 'Marcar como sin foto' 
+                            : 'Marcar como con foto'
+                      }>
+                        <IconButton
+                          size="small"
+                          onClick={() => {
+                            // Only allow photo toggle if already seen
+                            if (observation.seen) {
+                              togglePhoto(bird.id);
+                            }
+                          }}
+                          color={observation.hasPhoto ? 'primary' : 'default'}
+                          disabled={!observation.seen}
+                          sx={{
+                            opacity: !observation.seen ? 0.5 : 1
+                          }}
+                        >
+                          <PhotoCameraIcon />
+                        </IconButton>
+                      </Tooltip>
+                    </Box>
                   </Box>
                   
                   <Box sx={{ display: 'flex', gap: 1, mb: 2, flexWrap: 'wrap' }}>
