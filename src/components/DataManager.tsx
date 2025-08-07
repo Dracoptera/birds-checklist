@@ -53,14 +53,26 @@ const DataManager: React.FC = () => {
     }
 
     try {
-      // Create the data to export directly from state
-      const dataToExport = {
-        ...state,
+      // Create minimal data for email backup (same as export)
+      const minimalData = {
+        observations: Object.entries(state.observations).reduce((acc, [birdId, observation]) => {
+          // Only include birds that have been seen or have photos
+          if (observation.seen || observation.hasPhoto) {
+            acc[birdId] = {
+              seen: observation.seen,
+              hasPhoto: observation.hasPhoto,
+            };
+          }
+          return acc;
+        }, {} as { [birdId: string]: { seen: boolean; hasPhoto: boolean } }),
+        totalSeen: state.totalSeen,
+        totalWithPhotos: state.totalWithPhotos,
+        lastUpdated: state.lastUpdated,
         exportDate: new Date().toISOString(),
         version: '1.0',
       };
       
-      const jsonData = JSON.stringify(dataToExport, null, 2);
+      const jsonData = JSON.stringify(minimalData, null, 2);
       
       // Create the email content
       const subject = encodeURIComponent('Respaldo de Checklist de Aves - Uruguay Birding');

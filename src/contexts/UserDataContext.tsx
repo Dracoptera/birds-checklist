@@ -204,13 +204,26 @@ export function UserDataProvider({ children }: { children: React.ReactNode }) {
   };
 
   const exportData = () => {
-    const dataToExport = {
-      ...state,
+    // Create a minimal export with only essential data
+    const minimalData = {
+      observations: Object.entries(state.observations).reduce((acc, [birdId, observation]) => {
+        // Only include birds that have been seen or have photos
+        if (observation.seen || observation.hasPhoto) {
+          acc[birdId] = {
+            seen: observation.seen,
+            hasPhoto: observation.hasPhoto,
+          };
+        }
+        return acc;
+      }, {} as { [birdId: string]: { seen: boolean; hasPhoto: boolean } }),
+      totalSeen: state.totalSeen,
+      totalWithPhotos: state.totalWithPhotos,
+      lastUpdated: state.lastUpdated,
       exportDate: new Date().toISOString(),
       version: '1.0',
     };
     
-    const dataStr = JSON.stringify(dataToExport, null, 2);
+    const dataStr = JSON.stringify(minimalData, null, 2);
     const dataBlob = new Blob([dataStr], { type: 'application/json' });
     const url = URL.createObjectURL(dataBlob);
     
@@ -224,9 +237,46 @@ export function UserDataProvider({ children }: { children: React.ReactNode }) {
   };
 
   const importData = (data: UserData) => {
-    dispatch({ type: 'LOAD_DATA', data });
+    // Handle both old format (with full bird objects) and new minimal format
+    let processedData: UserData;
+    
+    if (data.observations && Object.keys(data.observations).length > 0) {
+      const firstObservation = Object.values(data.observations)[0];
+      
+      // Check if this is the new minimal format (only has seen/hasPhoto properties)
+      if (typeof firstObservation === 'object' && 'seen' in firstObservation && !('bird' in firstObservation)) {
+        // Convert minimal format back to full format
+        const fullObservations: { [birdId: string]: BirdObservation } = {};
+        
+        Object.entries(data.observations).forEach(([birdId, minimalObs]) => {
+          const bird = uruguayBirds.find(b => b.id === birdId);
+          if (bird) {
+            fullObservations[birdId] = {
+              birdId,
+              bird,
+              seen: (minimalObs as any).seen || false,
+              hasPhoto: (minimalObs as any).hasPhoto || false,
+              observations: [], // Reset observations when importing minimal data
+            };
+          }
+        });
+        
+        processedData = {
+          ...data,
+          observations: fullObservations,
+        };
+      } else {
+        // Old format - use as is
+        processedData = data;
+      }
+    } else {
+      // Empty data or invalid format
+      processedData = data;
+    }
+    
+    dispatch({ type: 'LOAD_DATA', data: processedData });
     // Force save the imported data to localStorage immediately
-    localStorage.setItem('uruguayBirdingData', JSON.stringify(data));
+    localStorage.setItem('uruguayBirdingData', JSON.stringify(processedData));
   };
 
   const value: UserDataContextType = {
