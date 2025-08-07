@@ -131,11 +131,26 @@ const BirdDetail: React.FC = () => {
                   <VisibilityIcon />
                 </IconButton>
               </Tooltip>
-              <Tooltip title={observation?.hasPhoto ? 'Marcar como sin foto' : 'Marcar como con foto'}>
+              <Tooltip title={
+                !observation?.seen 
+                  ? 'Primero marca como visto' 
+                  : observation?.hasPhoto 
+                    ? 'Marcar como sin foto' 
+                    : 'Marcar como con foto'
+              }>
                 <IconButton
                   size="large"
-                  onClick={() => togglePhoto(birdId!)}
+                  onClick={() => {
+                    // Only allow photo toggle if already seen
+                    if (observation?.seen) {
+                      togglePhoto(birdId!);
+                    }
+                  }}
                   color={observation?.hasPhoto ? 'primary' : 'default'}
+                  disabled={!observation?.seen}
+                  sx={{
+                    opacity: !observation?.seen ? 0.5 : 1
+                  }}
                 >
                   <PhotoCameraIcon />
                 </IconButton>
