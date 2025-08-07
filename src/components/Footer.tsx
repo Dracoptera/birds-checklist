@@ -17,7 +17,7 @@ const Footer: React.FC = () => {
       }}
     >
              <Typography variant="body2" color="text.secondary" sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 1 }}>
-         © 2025 Checklist de Aves de Uruguay 
+         © 2025 Mi Lista de Aves de Uruguay 
          <img 
            src={uruguay} 
            alt="Uruguay" 

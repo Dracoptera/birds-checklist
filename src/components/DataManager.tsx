@@ -78,7 +78,7 @@ const DataManager: React.FC = () => {
       // Create the email content
       const subject = encodeURIComponent('Respaldo de Checklist de Aves - Uruguay Birding');
       const body = encodeURIComponent(
-        `Hola,\n\nAdjunto encontrarás el respaldo de tu checklist de aves de Uruguay.\n\n` +
+        `Hola,\n\nAdjunto encontrarás el respaldo de tu lista de aves de Uruguay.\n\n` +
         `Estadísticas:\n` +
         `- Aves vistas: ${state.totalSeen}\n` +
         `- Con fotos: ${state.totalWithPhotos}\n` +

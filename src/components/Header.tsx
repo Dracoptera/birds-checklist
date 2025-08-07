@@ -74,7 +74,7 @@ const Header: React.FC = () => {
               display: { xs: 'none', sm: 'block' } // Hide on mobile, show on small screens and up
             }}
           >
-            Aves de Uruguay - Mi Lista
+            Mi Lista de Aves de Uruguay
           </Typography>
         </Box>
 
