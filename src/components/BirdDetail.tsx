@@ -104,66 +104,72 @@ const BirdDetail: React.FC = () => {
       </Button>
 
       <Card sx={{ mb: 3 }}>
-        <Box sx={{ 
-          height: { xs: 300, sm: 400, md: 500, lg: 600 },
-          '& .MuiBox-root': {
-            height: '100% !important'
-          }
-        }}>
-          <BirdImage bird={bird} height="100%" compact={false} />
-        </Box>
-        <CardContent>
-          <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, justifyContent: 'space-between', alignItems: { xs: 'flex-start', sm: 'flex-start' }, mb: 2 }}>
-            <Box>
-              <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, alignItems: { xs: 'flex-start', sm: 'baseline' }, gap: { xs: 0, sm: 2 }, mb: 1 }}>
-                <Typography variant="h4">
-                  {bird.commonName}
-                </Typography>
-                <Typography variant="h6" color="text.secondary" sx={{ fontStyle: 'italic' }}>
-                  {bird.scientificName}
+        <Box sx={{ position: 'relative' }}>
+          <BirdImage bird={bird} height={750} compact={false} />
+          <Box
+            sx={{
+              position: 'absolute',
+              bottom: 0,
+              left: 0,
+              right: 0,
+              background: 'linear-gradient(transparent, rgba(255,255,255,0.9) 20%, rgba(255,255,255,1) 40%)',
+              paddingTop: '0px',
+              paddingBottom: '0px',
+              paddingLeft: '16px',
+              paddingRight: '16px',
+            }}
+          >
+            <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, justifyContent: 'space-between', alignItems: { xs: 'flex-start', sm: 'flex-start' }, mb: 2 }}>
+              <Box>
+                <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, alignItems: { xs: 'flex-start', sm: 'baseline' }, gap: { xs: 0, sm: 2 }, mb: 1 }}>
+                  <Typography variant="h4">
+                    {bird.commonName}
+                  </Typography>
+                  <Typography variant="h6" color="text.secondary" sx={{ fontStyle: 'italic' }}>
+                    {bird.scientificName}
+                  </Typography>
+                </Box>
+                <Typography variant="body2" color="text.secondary">
+                  {bird.size || 'Tamaño no especificado'}
                 </Typography>
               </Box>
-              <Typography variant="body2" color="text.secondary">
-                {bird.size || 'Tamaño no especificado'}
-              </Typography>
+              
+              <Box sx={{ display: 'flex', gap: 1, alignItems: 'flex-start' }}>
+                <Tooltip title={observation?.seen ? 'Marcar como no visto' : 'Marcar como visto'}>
+                  <IconButton
+                    size="medium"
+                    onClick={() => toggleSeen(birdId!)}
+                    color={observation?.seen ? 'success' : 'default'}
+                  >
+                    <VisibilityIcon />
+                  </IconButton>
+                </Tooltip>
+                <Tooltip title={
+                  !observation?.seen 
+                    ? 'Primero marca como visto' 
+                    : observation?.hasPhoto 
+                      ? 'Marcar como sin foto' 
+                      : 'Marcar como con foto'
+                }>
+                  <IconButton
+                    size="medium"
+                    onClick={() => {
+                      // Only allow photo toggle if already seen
+                      if (observation?.seen) {
+                        togglePhoto(birdId!);
+                      }
+                    }}
+                    color={observation?.hasPhoto ? 'primary' : 'default'}
+                    disabled={!observation?.seen}
+                    sx={{
+                      opacity: !observation?.seen ? 0.5 : 1
+                    }}
+                  >
+                    <PhotoCameraIcon />
+                  </IconButton>
+                </Tooltip>
+              </Box>
             </Box>
-            
-            <Box sx={{ display: 'flex', gap: 1, alignItems: 'flex-start' }}>
-              <Tooltip title={observation?.seen ? 'Marcar como no visto' : 'Marcar como visto'}>
-                <IconButton
-                  size="medium"
-                  onClick={() => toggleSeen(birdId!)}
-                  color={observation?.seen ? 'success' : 'default'}
-                >
-                  <VisibilityIcon />
-                </IconButton>
-              </Tooltip>
-              <Tooltip title={
-                !observation?.seen 
-                  ? 'Primero marca como visto' 
-                  : observation?.hasPhoto 
-                    ? 'Marcar como sin foto' 
-                    : 'Marcar como con foto'
-              }>
-                <IconButton
-                  size="medium"
-                  onClick={() => {
-                    // Only allow photo toggle if already seen
-                    if (observation?.seen) {
-                      togglePhoto(birdId!);
-                    }
-                  }}
-                  color={observation?.hasPhoto ? 'primary' : 'default'}
-                  disabled={!observation?.seen}
-                  sx={{
-                    opacity: !observation?.seen ? 0.5 : 1
-                  }}
-                >
-                  <PhotoCameraIcon />
-                </IconButton>
-              </Tooltip>
-            </Box>
-          </Box>
 
           {/* Family/Order and Habitat row */}
           <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, justifyContent: 'space-between', alignItems: { xs: 'flex-start', sm: 'center' }, mb: 2, gap: { xs: 2, sm: 0 } }}>
@@ -240,7 +246,8 @@ const BirdDetail: React.FC = () => {
               icon={<PhotoCameraIcon />}
             />
           </Box>
-        </CardContent>
+        </Box>
+      </Box>
       </Card>
 
             {/* Simplified Information Sections */}
@@ -254,7 +261,7 @@ const BirdDetail: React.FC = () => {
             </Box>
             <Typography variant="body2" paragraph>
               {bird.description?.general || 
-                'Esta especie presenta características únicas que la distinguen en el ecosistema uruguayo. Su comportamiento adaptativo y sus interacciones con el ambiente la convierten en una especie de gran interés para observadores de aves y naturalistas.'}
+                'Descripción no especificada.'}
             </Typography>
           </Paper>
         </Grid>
@@ -268,7 +275,7 @@ const BirdDetail: React.FC = () => {
             </Box>
             <Typography variant="body2" paragraph>
               {bird.description?.curiosities || 
-                'Esta especie presenta características fascinantes que la hacen única en el ecosistema uruguayo. Su comportamiento adaptativo y sus interacciones con el ambiente la convierten en una especie de gran interés para observadores de aves y naturalistas.'}
+                'Curiosidades no especificadas.'}
             </Typography>
           </Paper>
         </Grid>
