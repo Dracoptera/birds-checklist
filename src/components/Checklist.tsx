@@ -397,126 +397,140 @@ const Checklist: React.FC = () => {
           
           return (
             <Grid item xs={12} sm={6} md={6} lg={4} key={bird.id}>
-              <Card 
-                sx={{ 
-                  height: '100%',
-                  border: observation.seen ? '4px solid #4caf50' : '1px solid #e0e0e0',
-                  '&:hover': {
-                    boxShadow: 3,
-                    transform: 'translateY(-4px)',
-                    transition: 'all 0.2s ease-in-out',
-                  }
-                }}
-              >
-                <BirdImage bird={bird} height={420} compact={true} />
-                <CardContent sx={{ p: 2 }}>
-                  <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', mb: 2 }}>
-                    <Box>
-                      <Typography 
-                        variant="h6" 
-                        component="div" 
-                        sx={{ 
-                          fontWeight: 'bold',
-                          cursor: 'pointer',
-                          '&:hover': {
-                            color: 'primary.main',
-                            textDecoration: 'underline'
-                          }
-                        }}
-                        onClick={() => navigate(`/bird/${bird.id}`)}
-                      >
-                        {bird.commonName}
-                      </Typography>
-                      <Typography variant="body2" color="text.secondary" sx={{ fontStyle: 'italic' }}>
-                        {bird.scientificName}
-                      </Typography>
-                    </Box>
-                    
-                    <Box sx={{ display: 'flex', gap: 1, alignItems: 'flex-start' }}>
-                      <Tooltip title={observation.seen ? 'Marcar como no visto' : 'Marcar como visto'}>
-                        <IconButton
-                          size="small"
-                          onClick={() => toggleSeen(bird.id)}
-                          color={observation.seen ? 'success' : 'default'}
-                        >
-                          <VisibilityIcon />
-                        </IconButton>
-                      </Tooltip>
-                      <Tooltip title={
-                        !observation.seen 
-                          ? 'Primero marca como visto' 
-                          : observation.hasPhoto 
-                            ? 'Marcar como sin foto' 
-                            : 'Marcar como con foto'
-                      }>
-                        <IconButton
-                          size="small"
-                          onClick={() => {
-                            // Only allow photo toggle if already seen
-                            if (observation.seen) {
-                              togglePhoto(bird.id);
-                            }
-                          }}
-                          color={observation.hasPhoto ? 'primary' : 'default'}
-                          disabled={!observation.seen}
-                          sx={{
-                            opacity: !observation.seen ? 0.5 : 1
-                          }}
-                        >
-                          <PhotoCameraIcon />
-                        </IconButton>
-                      </Tooltip>
-                    </Box>
-                  </Box>
-                  
-                  <Box sx={{ display: 'flex', gap: 1, mb: 2, flexWrap: 'wrap' }}>
-                    <Chip label={bird.order} size="small" variant="outlined" />
-                    <Chip label={bird.family} size="small" variant="outlined" />
-                  </Box>
-                  
-                  <Box sx={{ display: 'flex', gap: 1, mb: 2, flexWrap: 'wrap' }}>
-                    {bird.habitat.map(habitat => (
-                      <Chip 
-                        key={habitat} 
-                        label={habitat} 
-                        size="small" 
-                        color="primary" 
-                        variant="outlined"
-                      />
-                    ))}
-                  </Box>
-                  
-                  <Box sx={{ display: 'flex', gap: 1, mb: 2, flexWrap: 'wrap' }}>
-                    <Chip 
-                      label={bird.commonness} 
-                      size="small" 
-                      color="secondary" 
-                      variant="filled"
-                    />
-                    <Chip 
-                      label={bird.status}
-                      size="small" 
-                      color="info" 
-                      variant="filled"
-                    />
-                    <Chip 
-                      label={bird.origin}
-                      size="small" 
-                      color={bird.origin === 'autóctona' ? 'success' : 'error'}
-                      variant="filled"
-                      icon={bird.origin === 'autóctona' ? <NatureIcon /> : <ImportContactsIcon />}
-                    />
-                  </Box>
-                  
-                  {observation.observations.length > 0 && (
-                    <Box sx={{ mt: 2 }}>
-                      <Typography variant="body2" color="text.secondary">
-                        {observation.observations.length} observación{observation.observations.length !== 1 ? 'es' : ''}
-                      </Typography>
-                    </Box>
-                  )}
-                </CardContent>
-              </Card>
+                             <Card 
+                 sx={{ 
+                   height: '100%',
+                   border: observation.seen ? '4px solid #4caf50' : '1px solid #e0e0e0',
+                   '&:hover': {
+                     boxShadow: 3,
+                     transform: 'translateY(-4px)',
+                     transition: 'all 0.2s ease-in-out',
+                   }
+                 }}
+               >
+                 <Box sx={{ position: 'relative' }}>
+                   <BirdImage bird={bird} height={560} compact={true} />
+                   <Box
+                     sx={{
+                       position: 'absolute',
+                       bottom: 0,
+                       left: 0,
+                       right: 0,
+                       background: 'linear-gradient(transparent, rgba(255,255,255,0.9) 20%, rgba(255,255,255,1) 40%)',
+                       paddingTop: '0px',
+                       paddingBottom: '0px',
+                       paddingLeft: '16px',
+                       paddingRight: '16px',
+                     }}
+                   >
+                     <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', mb: 2 }}>
+                       <Box>
+                         <Typography 
+                           variant="h6" 
+                           component="div" 
+                           sx={{ 
+                             fontWeight: 'bold',
+                             cursor: 'pointer',
+                             '&:hover': {
+                               color: 'primary.main',
+                               textDecoration: 'underline'
+                             }
+                           }}
+                           onClick={() => navigate(`/bird/${bird.id}`)}
+                         >
+                           {bird.commonName}
+                         </Typography>
+                         <Typography variant="body2" color="text.secondary" sx={{ fontStyle: 'italic' }}>
+                           {bird.scientificName}
+                         </Typography>
+                       </Box>
+                       
+                       <Box sx={{ display: 'flex', gap: 1, alignItems: 'flex-start' }}>
+                         <Tooltip title={observation.seen ? 'Marcar como no visto' : 'Marcar como visto'}>
+                           <IconButton
+                             size="small"
+                             onClick={() => toggleSeen(bird.id)}
+                             color={observation.seen ? 'success' : 'default'}
+                           >
+                             <VisibilityIcon />
+                           </IconButton>
+                         </Tooltip>
+                         <Tooltip title={
+                           !observation.seen 
+                             ? 'Primero marca como visto' 
+                             : observation.hasPhoto 
+                               ? 'Marcar como sin foto' 
+                               : 'Marcar como con foto'
+                         }>
+                           <IconButton
+                             size="small"
+                             onClick={() => {
+                               // Only allow photo toggle if already seen
+                               if (observation.seen) {
+                                 togglePhoto(bird.id);
+                               }
+                             }}
+                             color={observation.hasPhoto ? 'primary' : 'default'}
+                             disabled={!observation.seen}
+                             sx={{
+                               opacity: !observation.seen ? 0.5 : 1
+                             }}
+                           >
+                             <PhotoCameraIcon />
+                           </IconButton>
+                         </Tooltip>
+                       </Box>
+                     </Box>
+                     
+                     <Box sx={{ display: 'flex', gap: 1, mb: 2, flexWrap: 'wrap' }}>
+                       <Chip label={bird.order} size="small" variant="outlined" />
+                       <Chip label={bird.family} size="small" variant="outlined" />
+                     </Box>
+                     
+                     <Box sx={{ display: 'flex', gap: 1, mb: 2, flexWrap: 'wrap' }}>
+                       {bird.habitat.map(habitat => (
+                         <Chip 
+                           key={habitat} 
+                           label={habitat} 
+                           size="small" 
+                           color="primary" 
+                           variant="outlined"
+                         />
+                       ))}
+                     </Box>
+                     
+                     <Box sx={{ display: 'flex', gap: 1, mb: 2, flexWrap: 'wrap' }}>
+                       <Chip 
+                         label={bird.commonness} 
+                         size="small" 
+                         color="secondary" 
+                         variant="filled"
+                       />
+                       <Chip 
+                         label={bird.status}
+                         size="small" 
+                         color="info" 
+                         variant="filled"
+                       />
+                       <Chip 
+                         label={bird.origin}
+                         size="small" 
+                         color={bird.origin === 'autóctona' ? 'success' : 'error'}
+                         variant="filled"
+                         icon={bird.origin === 'autóctona' ? <NatureIcon /> : <ImportContactsIcon />}
+                       />
+                     </Box>
+                     
+                     {observation.observations.length > 0 && (
+                       <Box sx={{ mt: 2 }}>
+                         <Typography variant="body2" color="text.secondary">
+                           {observation.observations.length} observación{observation.observations.length !== 1 ? 'es' : ''}
+                         </Typography>
+                       </Box>
+                     )}
+                   </Box>
+                                   </Box>
+                </Card>
             </Grid>
           );
         })}
