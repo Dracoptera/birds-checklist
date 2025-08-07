@@ -403,20 +403,7 @@ const Checklist: React.FC = () => {
             />
           </Grid>
           
-          <Grid item xs={12} sm={6} md={3}>
-            <FormControl fullWidth size="small">
-              <InputLabel>Ordenar por</InputLabel>
-              <Select
-                value={filters.sortBy}
-                label="Ordenar por"
-                onChange={(e) => handleFilterChange('sortBy', e.target.value)}
-              >
-                <MenuItem value="commonness">Por abundancia</MenuItem>
-                <MenuItem value="alphabetical">Alfabéticamente</MenuItem>
-                <MenuItem value="order">Por orden taxonómico</MenuItem>
-              </Select>
-            </FormControl>
-          </Grid>
+
           
           <Grid item xs={12}>
             <Box sx={{ display: 'flex', justifyContent: 'center' }}>
@@ -435,10 +422,30 @@ const Checklist: React.FC = () => {
         </Collapse>
       </Paper>
 
-      {/* Results count */}
-      <Typography variant="body2" color="text.secondary" gutterBottom>
-        Mostrando {Math.min(displayCount, filteredBirds.length)} de {filteredBirds.length} especies
-      </Typography>
+      {/* Results count and Sort */}
+      <Box sx={{ 
+        display: 'flex', 
+        justifyContent: 'space-between', 
+        alignItems: 'center',
+        mb: 2
+      }}>
+        <Typography variant="body2" color="text.secondary">
+          Mostrando {Math.min(displayCount, filteredBirds.length)} de {filteredBirds.length} especies
+        </Typography>
+
+        <FormControl size="small" sx={{ width: 200 }}>
+          <InputLabel>Ordenar por</InputLabel>
+          <Select
+            value={filters.sortBy}
+            label="Ordenar por"
+            onChange={(e) => handleFilterChange('sortBy', e.target.value)}
+          >
+            <MenuItem value="commonness">Por abundancia</MenuItem>
+            <MenuItem value="alphabetical">Alfabéticamente</MenuItem>
+            <MenuItem value="order">Por orden taxonómico</MenuItem>
+          </Select>
+        </FormControl>
+      </Box>
 
       {/* Bird list */}
       <Grid container spacing={2}>
