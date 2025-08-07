@@ -97,6 +97,20 @@ const BirdDetail: React.FC = () => {
     }
   };
 
+  const handleChipClick = (filterType: string, value: string) => {
+    const params = new URLSearchParams();
+    params.set(filterType, value);
+    navigate(`/?${params.toString()}`);
+  };
+
+  const clickableChipStyle = {
+    cursor: 'pointer',
+    '&:hover': {
+      transform: 'scale(1.05)',
+      transition: 'transform 0.2s ease-in-out',
+    }
+  };
+
   return (
     <Box>
       <Button onClick={() => navigate('/')} sx={{ mb: 2 }}>
@@ -190,8 +204,18 @@ const BirdDetail: React.FC = () => {
           {/* Family/Order and Habitat row */}
           <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, justifyContent: 'space-between', alignItems: { xs: 'flex-start', sm: 'center' }, mb: 2, gap: { xs: 2, sm: 0 } }}>
             <Box sx={{ display: 'flex', gap: 1 }}>
-              <Chip label={bird.order} color="primary" variant="outlined" />
-              <Chip label={bird.family} color="secondary" variant="outlined" />
+              <Chip 
+                label={bird.order} 
+                color="primary" 
+                variant="outlined" 
+                onClick={() => handleChipClick('order', bird.order)}
+                sx={clickableChipStyle}
+              />
+              <Chip 
+                label={bird.family} 
+                color="secondary" 
+                variant="outlined" 
+              />
             </Box>
             <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
               {bird.habitat.map(habitat => (
@@ -201,6 +225,8 @@ const BirdDetail: React.FC = () => {
                   size="small" 
                   color="primary" 
                   variant="outlined"
+                  onClick={() => handleChipClick('habitat', habitat)}
+                  sx={clickableChipStyle}
                 />
               ))}
             </Box>
@@ -214,12 +240,16 @@ const BirdDetail: React.FC = () => {
                 size="small" 
                 color="secondary" 
                 variant="filled"
+                onClick={() => handleChipClick('commonness', bird.commonness)}
+                sx={clickableChipStyle}
               />
               <Chip 
                 label={bird.status}
                 size="small" 
                 color="info" 
                 variant="filled"
+                onClick={() => handleChipClick('status', bird.status)}
+                sx={clickableChipStyle}
               />
             </Box>
             <Chip 
@@ -264,6 +294,8 @@ const BirdDetail: React.FC = () => {
                  size="medium" 
                  color="info" 
                  variant="outlined"
+                 onClick={() => handleChipClick('departamento', departamento)}
+                 sx={clickableChipStyle}
                />
              ))}
            </Box>

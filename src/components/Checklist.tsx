@@ -30,7 +30,7 @@ import {
   Nature as NatureIcon,
   ImportContacts as ImportContactsIcon,
 } from '@mui/icons-material';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { uruguayBirds, getBirdsByOrder } from '../data/uruguayBirds';
 import { useUserData } from '../contexts/UserDataContext';
 import { FilterOptions } from '../types';
@@ -38,21 +38,26 @@ import BirdImage from './BirdImage';
 
 const Checklist: React.FC = () => {
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const { state, toggleSeen, togglePhoto } = useUserData();
-  const [filters, setFilters] = useState<FilterOptions>({
-    seen: 'all',
-    hasPhoto: 'all',
-    order: '',
-    family: '',
-    habitat: '',
-    departamento: '',
-    commonness: '',
-    status: '',
-    searchTerm: '',
-    sortBy: 'commonness',
-  });
+  
+  // Initialize filters from URL parameters
+  const initialFilters: FilterOptions = {
+    seen: (searchParams.get('seen') as 'all' | 'seen' | 'not-seen') || 'all',
+    hasPhoto: (searchParams.get('hasPhoto') as 'all' | 'with-photo' | 'without-photo') || 'all',
+    order: searchParams.get('order') || '',
+    family: searchParams.get('family') || '',
+    habitat: searchParams.get('habitat') || '',
+    departamento: searchParams.get('departamento') || '',
+    commonness: searchParams.get('commonness') || '',
+    status: searchParams.get('status') || '',
+    searchTerm: searchParams.get('searchTerm') || '',
+    sortBy: (searchParams.get('sortBy') as 'commonness' | 'alphabetical' | 'order') || 'commonness',
+  };
+  
+  const [filters, setFilters] = useState<FilterOptions>(initialFilters);
   const [displayCount, setDisplayCount] = useState(9);
   const [filtersOpen, setFiltersOpen] = useState(!isMobile); // Open by default on desktop, closed on mobile
 
@@ -166,6 +171,15 @@ const Checklist: React.FC = () => {
   const handleFilterChange = (field: keyof FilterOptions, value: string) => {
     setFilters(prev => ({ ...prev, [field]: value }));
     setDisplayCount(9); // Reset to show first 9 birds when filters change
+    
+    // Update URL parameters
+    const newSearchParams = new URLSearchParams(searchParams);
+    if (value && value !== 'all') {
+      newSearchParams.set(field, value);
+    } else {
+      newSearchParams.delete(field);
+    }
+    setSearchParams(newSearchParams);
   };
 
   const handleClearFilters = () => {
@@ -182,6 +196,7 @@ const Checklist: React.FC = () => {
       sortBy: 'commonness',
     });
     setDisplayCount(9);
+    setSearchParams({}); // Clear all URL parameters
   };
 
   const getBirdObservation = (birdId: string) => {
