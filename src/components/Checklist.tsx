@@ -49,6 +49,7 @@ const Checklist: React.FC = () => {
     habitat: '',
     departamento: '',
     commonness: '',
+    status: '',
     searchTerm: '',
   });
   const [displayCount, setDisplayCount] = useState(9);
@@ -88,6 +89,14 @@ const Checklist: React.FC = () => {
     });
   }, []);
 
+  const uniqueStatuses = useMemo(() => {
+    const statuses = new Set<string>();
+    uruguayBirds.forEach(bird => {
+      statuses.add(bird.status);
+    });
+    return Array.from(statuses).sort();
+  }, []);
+
   const filteredBirds = useMemo(() => {
     return uruguayBirds.filter(bird => {
       const observation = state.observations[bird.id];
@@ -111,6 +120,9 @@ const Checklist: React.FC = () => {
       
       // Filter by commonness
       if (filters.commonness && bird.commonness !== filters.commonness) return false;
+      
+      // Filter by status
+      if (filters.status && bird.status !== filters.status) return false;
       
       // Filter by search term
       if (filters.searchTerm) {
@@ -146,6 +158,7 @@ const Checklist: React.FC = () => {
       habitat: '',
       departamento: '',
       commonness: '',
+      status: '',
       searchTerm: '',
     });
     setDisplayCount(9);
@@ -294,6 +307,22 @@ const Checklist: React.FC = () => {
           </Grid>
           
           <Grid item xs={12} sm={6} md={3}>
+            <FormControl fullWidth size="small">
+              <InputLabel>Estado</InputLabel>
+              <Select
+                value={filters.status}
+                label="Estado"
+                onChange={(e) => handleFilterChange('status', e.target.value)}
+              >
+                <MenuItem value="">Todos</MenuItem>
+                {uniqueStatuses.map(status => (
+                  <MenuItem key={status} value={status}>{status}</MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          </Grid>
+          
+          <Grid item xs={12} sm={6} md={3}>
             <TextField
               fullWidth
               size="small"
@@ -304,16 +333,17 @@ const Checklist: React.FC = () => {
             />
           </Grid>
           
-          <Grid item xs={12} sm={6} md={3}>
-            <Button
-              variant="outlined"
-              onClick={handleClearFilters}
-              fullWidth
-              size="small"
-              sx={{ height: '40px' }}
-            >
-              Limpiar filtros
-            </Button>
+          <Grid item xs={12}>
+            <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+              <Button
+                variant="outlined"
+                onClick={handleClearFilters}
+                size="small"
+                sx={{ height: '40px', px: 4 }}
+              >
+                Limpiar filtros
+              </Button>
+            </Box>
           </Grid>
             </Grid>
           </Box>

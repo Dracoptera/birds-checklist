@@ -1,5 +1,6 @@
 import React from 'react';
 import { Box, Typography, Link } from '@mui/material';
+import uruguay from '../assets/index/uruguay.png';
 
 const Footer: React.FC = () => {
   return (
@@ -15,9 +16,19 @@ const Footer: React.FC = () => {
         textAlign: 'center',
       }}
     >
-      <Typography variant="body2" color="text.secondary">
-        © 2024 Checklist de Aves de Uruguay
-      </Typography>
+             <Typography variant="body2" color="text.secondary" sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 1 }}>
+         © 2025 Checklist de Aves de Uruguay 
+         <img 
+           src={uruguay} 
+           alt="Uruguay" 
+           style={{ 
+             width: '20px', 
+             height: '20px',
+             objectFit: 'contain',
+             verticalAlign: 'middle'
+           }}
+         />
+       </Typography>
       <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
         Desarrollado por{' '}
         <Link

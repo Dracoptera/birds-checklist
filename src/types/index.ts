@@ -31,6 +31,7 @@ export interface FilterOptions {
   habitat: string;
   departamento: string;
   commonness: string;
+  status: string;
   searchTerm: string;
 }
 
