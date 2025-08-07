@@ -104,7 +104,7 @@ const BirdDetail: React.FC = () => {
       </Button>
 
       <Card sx={{ mb: 3 }}>
-        <BirdImage bird={bird} height={550} compact={false} />
+        <BirdImage bird={bird} height={600} compact={false} />
         <CardContent>
           <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', mb: 3 }}>
             <Box>
@@ -257,7 +257,7 @@ const BirdDetail: React.FC = () => {
         <Paper sx={{ p: 2, mb: 3, mt: 3 }}>
           <BirdVariations 
             variations={bird.variations} 
-            height={400}
+            height={500}
             onVariationChange={(variation) => {
               console.log('Selected variation:', variation);
               // Here you could track which variation was viewed

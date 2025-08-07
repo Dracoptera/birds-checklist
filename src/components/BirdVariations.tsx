@@ -19,7 +19,7 @@ interface BirdVariationsProps {
 const BirdVariations: React.FC<BirdVariationsProps> = ({ 
   variations, 
   onVariationChange,
-  height = 400 
+  height = 500 
 }) => {
   return (
     <Box>
