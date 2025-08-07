@@ -22,6 +22,7 @@ export interface Bird {
   departamentos?: string[];
   imageUrl?: string;
   ebirdEmbedUrl?: string;
+  soundUrl?: string;
   variations?: BirdVariation[];
   // Detailed information for bird detail page
   description?: {
@@ -62,6 +63,7 @@ export const uruguayBirds: Bird[] = [
     size: '15-17 cm',
     departamentos: ['Montevideo', 'Canelones', 'San José', 'Colonia', 'Soriano', 'Río Negro', 'Paysandú', 'Salto', 'Artigas', 'Rivera', 'Tacuarembó', 'Durazno', 'Flores', 'Florida', 'Lavalleja', 'Maldonado', 'Rocha', 'Treinta y Tres', 'Cerro Largo'],
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/314971271/embed',
+    soundUrl: 'https://macaulaylibrary.org/asset/639562380/embed',
     description: {
       general: 'El Hornero es una de las aves más emblemáticas de Uruguay, conocida por construir nidos de barro en forma de horno. Su plumaje es principalmente rufo (rojizo-marrón) con partes inferiores más claras. Es un ave territorial y muy vocal, especialmente durante la época reproductiva.',
       behavior: {
@@ -110,6 +112,7 @@ export const uruguayBirds: Bird[] = [
     commonness: 'abundante',
     departamentos: ['Montevideo', 'Canelones', 'San José', 'Colonia', 'Soriano', 'Río Negro', 'Paysandú', 'Salto', 'Artigas', 'Rivera', 'Tacuarembó', 'Durazno', 'Flores', 'Florida', 'Lavalleja', 'Maldonado', 'Rocha', 'Treinta y Tres', 'Cerro Largo'],
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/638497654/embed',
+    soundUrl: 'https://macaulaylibrary.org/asset/638497654/embed',
     description: {
       general: 'La Calandria es un ave muy común en Uruguay, conocida por su habilidad para imitar el canto de otras aves. Su plumaje es principalmente gris y blanco, con un pico largo y negro.',
       behavior: {

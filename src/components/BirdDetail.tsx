@@ -104,16 +104,67 @@ const BirdDetail: React.FC = () => {
       </Button>
 
       <Card sx={{ mb: 3 }}>
-        <Box sx={{ 
-          height: { xs: 300, sm: 400, md: 500, lg: 600 },
-          '& .MuiBox-root': {
-            height: '100% !important'
-          }
-        }}>
-          <BirdImage bird={bird} height="100%" compact={false} />
+        <Box sx={{ position: 'relative' }}>
+          <Box sx={{ 
+            height: { xs: 300, sm: 400, md: 500, lg: 600 },
+            '& .MuiBox-root': {
+              height: '100% !important'
+            }
+          }}>
+            <BirdImage bird={bird} height="100%" compact={false} />
+          </Box>
+          <Box
+            sx={{
+              position: 'absolute',
+              top: 8,
+              right: 8,
+              display: 'flex',
+              gap: 0.5,
+            }}
+          >
+            <Tooltip title={observation?.seen ? 'Marcar como no visto' : 'Marcar como visto'}>
+              <IconButton
+                size="small"
+                onClick={() => toggleSeen(birdId!)}
+                color={observation?.seen ? 'success' : 'default'}
+                sx={{ 
+                  backgroundColor: 'rgba(255,255,255,0.9)',
+                  '&:hover': { backgroundColor: 'rgba(255,255,255,1)' }
+                }}
+              >
+                <VisibilityIcon />
+              </IconButton>
+            </Tooltip>
+            <Tooltip title={
+              !observation?.seen 
+                ? 'Primero marca como visto' 
+                : observation?.hasPhoto 
+                  ? 'Marcar como sin foto' 
+                  : 'Marcar como con foto'
+            }>
+              <IconButton
+                size="small"
+                onClick={() => {
+                  // Only allow photo toggle if already seen
+                  if (observation?.seen) {
+                    togglePhoto(birdId!);
+                  }
+                }}
+                color={observation?.hasPhoto ? 'primary' : 'default'}
+                disabled={!observation?.seen}
+                sx={{ 
+                  backgroundColor: 'rgba(255,255,255,0.9)',
+                  '&:hover': { backgroundColor: 'rgba(255,255,255,1)' },
+                  opacity: !observation?.seen ? 0.5 : 1
+                }}
+              >
+                <PhotoCameraIcon />
+              </IconButton>
+            </Tooltip>
+          </Box>
         </Box>
         <CardContent>
-          <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, justifyContent: 'space-between', alignItems: { xs: 'flex-start', sm: 'flex-start' }, mb: 3 }}>
+          <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, justifyContent: 'space-between', alignItems: { xs: 'flex-start', sm: 'flex-start' }, mb: 2 }}>
             <Box>
               <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, alignItems: { xs: 'flex-start', sm: 'baseline' }, gap: { xs: 0, sm: 2 }, mb: 1 }}>
                 <Typography variant="h4">
@@ -123,45 +174,9 @@ const BirdDetail: React.FC = () => {
                   {bird.scientificName}
                 </Typography>
               </Box>
-              <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+              <Typography variant="body2" color="text.secondary">
                 {bird.size || 'Tamaño no especificado'}
               </Typography>
-            </Box>
-            
-            <Box sx={{ display: 'flex', gap: 1 }}>
-              <Tooltip title={observation?.seen ? 'Marcar como no visto' : 'Marcar como visto'}>
-                <IconButton
-                  size="large"
-                  onClick={() => toggleSeen(birdId!)}
-                  color={observation?.seen ? 'success' : 'default'}
-                >
-                  <VisibilityIcon />
-                </IconButton>
-              </Tooltip>
-              <Tooltip title={
-                !observation?.seen 
-                  ? 'Primero marca como visto' 
-                  : observation?.hasPhoto 
-                    ? 'Marcar como sin foto' 
-                    : 'Marcar como con foto'
-              }>
-                <IconButton
-                  size="large"
-                  onClick={() => {
-                    // Only allow photo toggle if already seen
-                    if (observation?.seen) {
-                      togglePhoto(birdId!);
-                    }
-                  }}
-                  color={observation?.hasPhoto ? 'primary' : 'default'}
-                  disabled={!observation?.seen}
-                  sx={{
-                    opacity: !observation?.seen ? 0.5 : 1
-                  }}
-                >
-                  <PhotoCameraIcon />
-                </IconButton>
-              </Tooltip>
             </Box>
           </Box>
 
@@ -285,6 +300,45 @@ const BirdDetail: React.FC = () => {
               // Here you could track which variation was viewed
             }}
           />
+        </Paper>
+      )}
+
+      {/* Sounds Section */}
+      {bird.soundUrl && (
+        <Paper sx={{ p: 2, mb: 3, mt: 3 }}>
+          <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+            <VolumeIcon sx={{ mr: 1, color: 'primary.main' }} />
+            <Typography variant="h6">Sonidos</Typography>
+          </Box>
+          <Box sx={{ 
+            display: 'flex', 
+            justifyContent: 'center',
+            width: '100%',
+            '& iframe': {
+              border: 'none',
+              borderRadius: '8px',
+              boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+              maxWidth: '100%',
+              height: 'auto',
+              aspectRatio: '800/431', // Maintain the original aspect ratio
+            }
+          }}>
+            <iframe 
+              src={bird.soundUrl} 
+              width="100%" 
+              height="431"
+              frameBorder="0" 
+              allowFullScreen
+              style={{ 
+                maxWidth: '800px',
+                minHeight: '300px',
+                width: '100%'
+              }}
+            />
+          </Box>
+          <Typography variant="body2" color="text.secondary" sx={{ mt: 2, textAlign: 'center' }}>
+            Grabación de sonido de {bird.commonName} - Macaulay Library
+          </Typography>
         </Paper>
       )}
 
