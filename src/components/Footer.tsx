@@ -41,6 +41,19 @@ const Footer: React.FC = () => {
           Alexa Brito
         </Link>
       </Typography>
+             <Typography variant="caption" color="text.secondary" sx={{ mt: 1, display: 'block' }}>
+         Logo: Great Kiskadee (Pitangus sulphuratus) - Imagen de{' '}
+         <Link
+           href="https://www.flaticon.com/"
+           target="_blank"
+           rel="noopener noreferrer"
+           color="primary"
+           sx={{ textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}
+         >
+           Flaticon
+         </Link>
+       </Typography>
+       
     </Box>
   );
 };

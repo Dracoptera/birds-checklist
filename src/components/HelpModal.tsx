@@ -301,6 +301,35 @@ const HelpModal: React.FC<HelpModalProps> = ({ open, onClose }) => {
             Nota: Esta aplicación es una herramienta educativa y de registro personal. Para identificaciones críticas o estudios científicos, se recomienda consultar guías de campo especializadas y expertos locales.
           </Typography>
         </Box>
+
+        <Divider sx={{ my: 2 }} />
+
+        <Box>
+          <Typography variant="h6" gutterBottom>
+            📧 Contacto
+          </Typography>
+          
+          <Typography variant="body2" paragraph>
+            Para consultas, sugerencias y correcciones, puedes contactarme por mail:
+          </Typography>
+          
+          <Typography variant="body1" sx={{ textAlign: 'center', mb: 2 }}>
+            <a 
+              href="mailto:dracoptera@gmail.com"
+              style={{ 
+                color: '#1976d2', 
+                textDecoration: 'underline',
+                fontWeight: 'bold'
+              }}
+            >
+              dracoptera@gmail.com
+            </a>
+          </Typography>
+          
+          <Typography variant="body2" color="text.secondary" sx={{ textAlign: 'center' }}>
+            Tu feedback es muy importante para mejorar esta aplicación.
+          </Typography>
+        </Box>
       </DialogContent>
       
       <DialogActions>
