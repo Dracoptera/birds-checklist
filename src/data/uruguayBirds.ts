@@ -62,27 +62,11 @@ export const uruguayBirds: Bird[] = [
     commonness: 'abundante',
     size: '15-17 cm',
     departamentos: ['Montevideo', 'Canelones', 'San José', 'Colonia', 'Soriano', 'Río Negro', 'Paysandú', 'Salto', 'Artigas', 'Rivera', 'Tacuarembó', 'Durazno', 'Flores', 'Florida', 'Lavalleja', 'Maldonado', 'Rocha', 'Treinta y Tres', 'Cerro Largo'],
-    ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/314971271/embed',
-    soundUrl: 'https://macaulaylibrary.org/asset/639562380/embed',
+    ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/70049451/embed',
+    soundUrl: 'https://macaulaylibrary.org/asset/203695301/embed',
     description: {
       general: 'El Hornero es una de las aves más emblemáticas de Uruguay, conocida por construir nidos de barro en forma de horno. Su plumaje es principalmente rufo (rojizo-marrón) con partes inferiores más claras. Es un ave territorial y muy vocal, especialmente durante la época reproductiva.',
-      behavior: {
-        feeding: 'Principalmente insectívoro, busca alimento en el suelo y en la vegetación baja. Consume insectos, arañas, larvas y ocasionalmente semillas pequeñas.',
-        reproduction: 'Construye nidos de barro en forma de horno, generalmente en postes, árboles o estructuras humanas. La época de cría se extiende de agosto a diciembre, con 2-3 nidadas por temporada.',
-        social: 'Generalmente en parejas territoriales durante la reproducción. Fuera de la época reproductiva puede formar pequeñas bandadas familiares.'
-      },
-      distribution: {
-        presence: 'Residente común en todo el territorio uruguayo, desde áreas ciudads hasta zonas sierraes.',
-        preferredHabitats: 'Se adapta a diversos hábitats: parques urbanos, campos abiertos, bordes de montes y áreas sierraes con árboles dispersos.',
-        conservation: 'Estado de conservación favorable. Es una especie abundante y bien adaptada a ambientes modificados por el hombre.'
-      },
-      curiosities: 'El Hornero es el ave nacional de Argentina y símbolo de la construcción y el trabajo. Su nido de barro puede tardar hasta 18 días en construirse y es tan resistente que puede durar varios años. Curiosamente, cada año construyen un nido nuevo, ya que nunca reutilizan el anterior. Su canto melodioso es considerado un presagio de buen tiempo por los pobladores rurales.',
-      seasonalPatterns: {
-        spring: 'Inicio de la época reproductiva, construcción de nidos, mayor actividad vocal y territorial.',
-        summer: 'Cría activa, alimentación de pichones, menor actividad vocal pero mayor presencia.',
-        autumn: 'Finalización de la reproducción, formación de bandadas familiares, preparación para el invierno.',
-        winter: 'Menor actividad vocal, concentración en áreas con recursos alimentarios, comportamiento más gregario.'
-      }
+      curiosities: 'El nido de los horneros dura aproximadamente un año y llega a ser utilizado por otras especies.',
     }
   },
   {

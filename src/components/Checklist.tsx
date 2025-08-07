@@ -19,6 +19,10 @@ import {
   useMediaQuery,
   useTheme,
   Icon,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
 } from '@mui/material';
 import {
   Visibility as VisibilityIcon,
@@ -29,6 +33,7 @@ import {
   ExpandLess as ExpandLessIcon,
   Nature as NatureIcon,
   ImportContacts as ImportContactsIcon,
+  KeyboardArrowUp as KeyboardArrowUpIcon,
 } from '@mui/icons-material';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { uruguayBirds, getBirdsByOrder } from '../data/uruguayBirds';
@@ -41,7 +46,18 @@ const Checklist: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
-  const { state, toggleSeen, togglePhoto } = useUserData();
+  const { state, toggleSeen, checkNeedsSeeingWarning, togglePhoto } = useUserData();
+  const [warningDialog, setWarningDialog] = useState<{
+    open: boolean;
+    birdId: string;
+    birdName: string;
+    observationCount: number;
+  }>({
+    open: false,
+    birdId: '',
+    birdName: '',
+    observationCount: 0
+  });
   
   // Initialize filters from URL parameters
   const initialFilters: FilterOptions = {
@@ -60,6 +76,7 @@ const Checklist: React.FC = () => {
   const [filters, setFilters] = useState<FilterOptions>(initialFilters);
   const [displayCount, setDisplayCount] = useState(9);
   const [filtersOpen, setFiltersOpen] = useState(!isMobile); // Open by default on desktop, closed on mobile
+  const [showBackToTop, setShowBackToTop] = useState(false);
 
   const birdsByOrder = useMemo(() => getBirdsByOrder(), []);
   // const birdsByFamily = useMemo(() => getBirdsByFamily(), []);
@@ -207,6 +224,24 @@ const Checklist: React.FC = () => {
       hasPhoto: false,
       observations: [],
     };
+  };
+
+  // Handle scroll to show/hide back to top button
+  React.useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      setShowBackToTop(scrollTop > 300);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const handleBackToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
   };
 
   return (
@@ -461,15 +496,27 @@ const Checklist: React.FC = () => {
                        </Box>
                        
                        <Box sx={{ display: 'flex', gap: 1, alignItems: 'flex-start' }}>
-                         <Tooltip title={observation.seen ? 'Marcar como no visto' : 'Marcar como visto'}>
-                           <IconButton
-                             size="small"
-                             onClick={() => toggleSeen(bird.id)}
-                             color={observation.seen ? 'success' : 'default'}
-                           >
-                             <VisibilityIcon />
-                           </IconButton>
-                         </Tooltip>
+                                                   <Tooltip title={observation.seen ? 'Marcar como no visto' : 'Marcar como visto'}>
+                            <IconButton
+                              size="small"
+                              onClick={() => {
+                                const warning = checkNeedsSeeingWarning(bird.id);
+                                if (warning) {
+                                  setWarningDialog({
+                                    open: true,
+                                    birdId: bird.id,
+                                    birdName: warning.birdName,
+                                    observationCount: warning.observationCount
+                                  });
+                                } else {
+                                  toggleSeen(bird.id);
+                                }
+                              }}
+                              color={observation.seen ? 'success' : 'default'}
+                            >
+                              <VisibilityIcon />
+                            </IconButton>
+                          </Tooltip>
                          <Tooltip title={
                            !observation.seen 
                              ? 'Primero marca como visto' 
@@ -569,6 +616,100 @@ const Checklist: React.FC = () => {
           <Typography variant="h6" color="text.secondary">
             No se encontraron aves con los filtros seleccionados
           </Typography>
+        </Box>
+      )}
+
+      {/* Warning Dialog */}
+      <Dialog
+        open={warningDialog.open}
+        onClose={() => setWarningDialog(prev => ({ ...prev, open: false }))}
+        maxWidth="sm"
+        fullWidth
+        PaperProps={{
+          sx: {
+            borderRadius: 2,
+            boxShadow: 3,
+          }
+        }}
+      >
+        <DialogTitle sx={{ 
+          pb: 1,
+          display: 'flex',
+          alignItems: 'center',
+          gap: 1,
+        }}>
+          <VisibilityIcon color="error" />
+          ¿Marcar como no vista?
+        </DialogTitle>
+        <DialogContent sx={{ pt: 2 }}>
+          <Box sx={{ mb: 3 }}>
+            <Typography variant="body1" gutterBottom>
+              ¿Estás seguro de que quieres marcar <strong>{warningDialog.birdName}</strong> como "no vista"?
+            </Typography>
+            <Paper 
+              elevation={0} 
+              sx={{ 
+                mt: 2,
+                p: 2,
+                backgroundColor: '#FFF4F4',
+                color: 'error.main',
+                borderRadius: 1
+              }}
+            >
+              <Typography variant="body2">
+                Se eliminarán {warningDialog.observationCount} observación{warningDialog.observationCount !== 1 ? 'es' : ''} detallada{warningDialog.observationCount !== 1 ? 's' : ''} que has registrado.
+              </Typography>
+            </Paper>
+          </Box>
+        </DialogContent>
+        <DialogActions sx={{ px: 3, pb: 3 }}>
+          <Button 
+            onClick={() => setWarningDialog(prev => ({ ...prev, open: false }))}
+            variant="outlined"
+          >
+            Cancelar
+          </Button>
+          <Button 
+            onClick={() => {
+              toggleSeen(warningDialog.birdId);
+              setWarningDialog(prev => ({ ...prev, open: false }));
+            }}
+            variant="contained"
+            color="error"
+          >
+            Marcar como no vista
+          </Button>
+        </DialogActions>
+      </Dialog>
+
+      {/* Back to Top Button */}
+      {showBackToTop && (
+        <Box
+          sx={{
+            position: 'fixed',
+            bottom: 20,
+            right: 20,
+            zIndex: 1000,
+          }}
+        >
+          <IconButton
+            onClick={handleBackToTop}
+            sx={{
+              backgroundColor: 'primary.main',
+              color: 'white',
+              width: 56,
+              height: 56,
+              boxShadow: 3,
+              '&:hover': {
+                backgroundColor: 'primary.dark',
+                transform: 'scale(1.1)',
+                transition: 'all 0.2s ease-in-out',
+              },
+            }}
+            aria-label="Volver arriba"
+          >
+            <KeyboardArrowUpIcon />
+          </IconButton>
         </Box>
       )}
     </Box>

@@ -46,7 +46,16 @@ import BirdVariations from './BirdVariations';
 const BirdDetail: React.FC = () => {
   const { birdId } = useParams<{ birdId: string }>();
   const navigate = useNavigate();
-  const { state, toggleSeen, togglePhoto, addObservation, removeObservation } = useUserData();
+  const { state, toggleSeen, checkNeedsSeeingWarning, togglePhoto, addObservation, removeObservation } = useUserData();
+  const [warningDialog, setWarningDialog] = useState<{
+    open: boolean;
+    birdName: string;
+    observationCount: number;
+  }>({
+    open: false,
+    birdName: '',
+    observationCount: 0
+  });
   
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
   const [newObservation, setNewObservation] = useState({
@@ -132,19 +141,30 @@ const BirdDetail: React.FC = () => {
                gap: 0.5,
              }}
            >
-             <Tooltip title={observation?.seen ? 'Marcar como no visto' : 'Marcar como visto'}>
-               <IconButton
-                 size="small"
-                 onClick={() => toggleSeen(birdId!)}
-                 color={observation?.seen ? 'success' : 'default'}
-                 sx={{ 
-                   backgroundColor: 'rgba(255,255,255,0.9)',
-                   '&:hover': { backgroundColor: 'rgba(255,255,255,1)' }
-                 }}
-               >
-                 <VisibilityIcon />
-               </IconButton>
-             </Tooltip>
+                           <Tooltip title={observation?.seen ? 'Marcar como no visto' : 'Marcar como visto'}>
+                <IconButton
+                  size="small"
+                  onClick={() => {
+                    const warning = checkNeedsSeeingWarning(birdId!);
+                    if (warning) {
+                      setWarningDialog({
+                        open: true,
+                        birdName: warning.birdName,
+                        observationCount: warning.observationCount
+                      });
+                    } else {
+                      toggleSeen(birdId!);
+                    }
+                  }}
+                  color={observation?.seen ? 'success' : 'default'}
+                  sx={{ 
+                    backgroundColor: 'rgba(255,255,255,0.9)',
+                    '&:hover': { backgroundColor: 'rgba(255,255,255,1)' }
+                  }}
+                >
+                  <VisibilityIcon />
+                </IconButton>
+              </Tooltip>
              <Tooltip title={
                !observation?.seen 
                  ? 'Primero marca como visto' 
@@ -481,6 +501,69 @@ const BirdDetail: React.FC = () => {
           </Box>
         )}
       </Paper>
+
+      {/* Warning Dialog */}
+      <Dialog
+        open={warningDialog.open}
+        onClose={() => setWarningDialog(prev => ({ ...prev, open: false }))}
+        maxWidth="sm"
+        fullWidth
+        PaperProps={{
+          sx: {
+            borderRadius: 2,
+            boxShadow: 3,
+          }
+        }}
+      >
+        <DialogTitle sx={{ 
+          pb: 1,
+          display: 'flex',
+          alignItems: 'center',
+          gap: 1,
+        }}>
+          <VisibilityIcon color="error" />
+          ¿Marcar como no vista?
+        </DialogTitle>
+        <DialogContent sx={{ pt: 2 }}>
+          <Box sx={{ mb: 3 }}>
+            <Typography variant="body1" gutterBottom>
+              ¿Estás seguro de que quieres marcar <strong>{warningDialog.birdName}</strong> como "no vista"?
+            </Typography>
+                          <Paper 
+              elevation={0} 
+              sx={{ 
+                mt: 2,
+                p: 2,
+                backgroundColor: '#FFF4F4',
+                color: 'error.main',
+                borderRadius: 1
+              }}
+            >
+              <Typography variant="body2">
+                Se eliminarán {warningDialog.observationCount} observación{warningDialog.observationCount !== 1 ? 'es' : ''} detallada{warningDialog.observationCount !== 1 ? 's' : ''} que has registrado.
+              </Typography>
+            </Paper>
+          </Box>
+        </DialogContent>
+        <DialogActions sx={{ px: 3, pb: 3 }}>
+          <Button 
+            onClick={() => setWarningDialog(prev => ({ ...prev, open: false }))}
+            variant="outlined"
+          >
+            Cancelar
+          </Button>
+          <Button 
+            onClick={() => {
+              toggleSeen(birdId!);
+              setWarningDialog(prev => ({ ...prev, open: false }));
+            }}
+            variant="contained"
+            color="error"
+          >
+            Marcar como no vista
+          </Button>
+        </DialogActions>
+      </Dialog>
 
       {/* Add Observation Dialog */}
       <Dialog open={isAddDialogOpen} onClose={() => setIsAddDialogOpen(false)} maxWidth="sm" fullWidth>

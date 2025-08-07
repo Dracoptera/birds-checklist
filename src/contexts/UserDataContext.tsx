@@ -39,8 +39,8 @@ function userDataReducer(state: UserDataState, action: UserDataAction): UserData
           birdId: action.birdId,
           bird,
           seen: newSeen,
-          hasPhoto: existingObservation?.hasPhoto || false,
-          observations: existingObservation?.observations || [],
+          hasPhoto: newSeen ? (existingObservation?.hasPhoto || false) : false, // Reset photo status when marking as not seen
+          observations: newSeen ? (existingObservation?.observations || []) : [], // Clear observations when marking as not seen
         },
       };
 
@@ -135,6 +135,7 @@ interface UserDataContextType {
   state: UserDataState;
   dispatch: React.Dispatch<UserDataAction>;
   toggleSeen: (birdId: string) => void;
+  checkNeedsSeeingWarning: (birdId: string) => { needsWarning: boolean; birdName: string; observationCount: number } | null;
   togglePhoto: (birdId: string) => void;
   addObservation: (birdId: string, observation: Omit<ObservationDetail, 'id'>) => void;
   removeObservation: (birdId: string, observationId: string) => void;
@@ -181,6 +182,27 @@ export function UserDataProvider({ children }: { children: React.ReactNode }) {
 
   const toggleSeen = (birdId: string) => {
     dispatch({ type: 'TOGGLE_SEEN', birdId });
+  };
+
+  const checkNeedsSeeingWarning = (birdId: string) => {
+    const existingObservation = state.observations[birdId];
+    const hasObservations = existingObservation?.observations && existingObservation.observations.length > 0;
+    const isCurrentlySeen = existingObservation?.seen;
+    
+    // If bird is currently seen and has observations, needs warning
+    if (isCurrentlySeen && hasObservations) {
+      const bird = uruguayBirds.find(b => b.id === birdId);
+      const birdName = bird?.commonName || 'esta ave';
+      const observationCount = existingObservation.observations.length;
+      
+      return {
+        needsWarning: true,
+        birdName,
+        observationCount
+      };
+    }
+    
+    return null; // No warning needed
   };
 
   const togglePhoto = (birdId: string) => {
@@ -284,6 +306,7 @@ export function UserDataProvider({ children }: { children: React.ReactNode }) {
     state,
     dispatch,
     toggleSeen,
+    checkNeedsSeeingWarning,
     togglePhoto,
     addObservation,
     removeObservation,
