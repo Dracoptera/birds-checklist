@@ -32,7 +32,7 @@ const Footer: React.FC = () => {
       <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
         Desarrollado por{' '}
         <Link
-          href="https://github.com/Dracoptera"
+          href="https://www.linkedin.com/in/alexabv/"
           target="_blank"
           rel="noopener noreferrer"
           color="primary"

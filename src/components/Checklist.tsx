@@ -126,11 +126,17 @@ const Checklist: React.FC = () => {
       
       // Filter by search term
       if (filters.searchTerm) {
-        const searchLower = filters.searchTerm.toLowerCase();
+        const normalizeText = (text: string) => {
+          return text.toLowerCase()
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '');
+        };
+        
+        const searchNormalized = normalizeText(filters.searchTerm);
         const matchesSearch = 
-          bird.commonName.toLowerCase().includes(searchLower) ||
-          bird.scientificName.toLowerCase().includes(searchLower) ||
-          bird.family.toLowerCase().includes(searchLower);
+          normalizeText(bird.commonName).includes(searchNormalized) ||
+          normalizeText(bird.scientificName).includes(searchNormalized) ||
+          normalizeText(bird.family).includes(searchNormalized);
         if (!matchesSearch) return false;
       }
       

@@ -36,9 +36,19 @@ const DataManager: React.FC = () => {
     exportData();
   };
 
+  const validateEmail = (email: string) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
   const handleEmailBackup = () => {
     if (!emailAddress.trim()) {
       setEmailError('Por favor ingresa una dirección de email');
+      return;
+    }
+
+    if (!validateEmail(emailAddress.trim())) {
+      setEmailError('Por favor ingresa una dirección de email válida');
       return;
     }
 
@@ -215,10 +225,16 @@ const DataManager: React.FC = () => {
               label="Dirección de Email"
               type="email"
               value={emailAddress}
-              onChange={(e) => setEmailAddress(e.target.value)}
+              onChange={(e) => {
+                setEmailAddress(e.target.value);
+                // Clear error when user starts typing
+                if (emailError) setEmailError('');
+              }}
               placeholder="tu@email.com"
               variant="outlined"
               size="small"
+              error={emailError.includes('válida')}
+              helperText={emailError.includes('válida') ? emailError : ''}
               sx={{ mb: 2 }}
             />
             
