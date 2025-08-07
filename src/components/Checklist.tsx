@@ -146,6 +146,13 @@ const Checklist: React.FC = () => {
       if (filters.sortBy === 'alphabetical') {
         // Sort alphabetically by common name
         return a.commonName.localeCompare(b.commonName, 'es');
+      } else if (filters.sortBy === 'order') {
+        // Sort by order, then by common name within each order
+        const orderComparison = a.order.localeCompare(b.order, 'es');
+        if (orderComparison !== 0) {
+          return orderComparison;
+        }
+        return a.commonName.localeCompare(b.commonName, 'es');
       } else {
         // Sort by commonness (most common first)
         const commonnessOrder = ['abundante', 'común', 'poco común', 'rara', 'muy rara'];
@@ -356,6 +363,7 @@ const Checklist: React.FC = () => {
               >
                 <MenuItem value="commonness">Por abundancia</MenuItem>
                 <MenuItem value="alphabetical">Alfabéticamente</MenuItem>
+                <MenuItem value="order">Por orden taxonómico</MenuItem>
               </Select>
             </FormControl>
           </Grid>
@@ -490,8 +498,8 @@ const Checklist: React.FC = () => {
                   </Box>
                   
                   <Box sx={{ display: 'flex', gap: 1, mb: 2, flexWrap: 'wrap' }}>
-                    <Chip label={bird.family} size="small" variant="outlined" />
                     <Chip label={bird.order} size="small" variant="outlined" />
+                    <Chip label={bird.family} size="small" variant="outlined" />
                   </Box>
                   
                   <Box sx={{ display: 'flex', gap: 1, mb: 2, flexWrap: 'wrap' }}>

@@ -168,8 +168,8 @@ const BirdDetail: React.FC = () => {
           {/* Family/Order and Habitat row */}
           <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, justifyContent: 'space-between', alignItems: { xs: 'flex-start', sm: 'center' }, mb: 2, gap: { xs: 2, sm: 0 } }}>
             <Box sx={{ display: 'flex', gap: 1 }}>
-              <Chip label={bird.family} color="primary" variant="outlined" />
-              <Chip label={bird.order} color="secondary" variant="outlined" />
+              <Chip label={bird.order} color="primary" variant="outlined" />
+              <Chip label={bird.family} color="secondary" variant="outlined" />
             </Box>
             <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
               {bird.habitat.map(habitat => (
