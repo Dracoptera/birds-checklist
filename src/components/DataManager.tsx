@@ -10,11 +10,13 @@ import {
   Alert,
   TextField,
   Paper,
+  Divider,
 } from '@mui/material';
 import {
   Download as DownloadIcon,
   Upload as UploadIcon,
   Settings as SettingsIcon,
+  Email as EmailIcon,
 } from '@mui/icons-material';
 import { useUserData } from '../contexts/UserDataContext';
 import { UserData } from '../types';
@@ -25,10 +27,65 @@ const DataManager: React.FC = () => {
   const [importText, setImportText] = useState('');
   const [importError, setImportError] = useState('');
   const [importSuccess, setImportSuccess] = useState(false);
+  const [emailAddress, setEmailAddress] = useState('');
+  const [emailSuccess, setEmailSuccess] = useState(false);
+  const [emailError, setEmailError] = useState('');
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleExport = () => {
     exportData();
+  };
+
+  const handleEmailBackup = () => {
+    if (!emailAddress.trim()) {
+      setEmailError('Por favor ingresa una dirección de email');
+      return;
+    }
+
+    try {
+      // Create the data to export directly from state
+      const dataToExport = {
+        ...state,
+        exportDate: new Date().toISOString(),
+        version: '1.0',
+      };
+      
+      const jsonData = JSON.stringify(dataToExport, null, 2);
+      
+      // Create the email content
+      const subject = encodeURIComponent('Respaldo de Checklist de Aves - Uruguay Birding');
+      const body = encodeURIComponent(
+        `Hola,\n\nAdjunto encontrarás el respaldo de tu checklist de aves de Uruguay.\n\n` +
+        `Estadísticas:\n` +
+        `- Aves vistas: ${state.totalSeen}\n` +
+        `- Con fotos: ${state.totalWithPhotos}\n` +
+        `- Última actualización: ${new Date(state.lastUpdated).toLocaleString('es-ES')}\n\n` +
+        `Para restaurar estos datos, simplemente importa el archivo JSON adjunto en la aplicación.\n\n` +
+        `Saludos,\nUruguay Birding Checklist`
+      );
+
+      // Include the JSON data in the email body
+      const bodyWithData = body + '\n\n' + encodeURIComponent(
+        `DATOS JSON (copia y pega en la aplicación para restaurar):\n\n${jsonData}`
+      );
+
+      const mailtoLink = `mailto:${emailAddress}?subject=${subject}&body=${bodyWithData}`;
+      
+      // Open the default email client
+      window.open(mailtoLink);
+      
+      setEmailSuccess(true);
+      setEmailError('');
+      
+      // Reset success message after 3 seconds
+      setTimeout(() => {
+        setEmailSuccess(false);
+      }, 3000);
+      
+    } catch (error) {
+      setEmailError('Error al preparar el email. Por favor intenta de nuevo.');
+      console.error('Email backup error:', error);
+    }
   };
 
   const handleImportFromText = () => {
@@ -142,6 +199,53 @@ const DataManager: React.FC = () => {
               Exportar Checklist
             </Button>
           </Box>
+
+          <Divider sx={{ my: 2 }} />
+
+          <Box sx={{ mb: 3 }}>
+            <Typography variant="h6" gutterBottom>
+              Respaldo por Email
+            </Typography>
+            <Typography variant="body2" color="text.secondary" paragraph>
+              Envía una copia de tus datos por email para respaldo o compartir con otros.
+            </Typography>
+            
+            <TextField
+              fullWidth
+              label="Dirección de Email"
+              type="email"
+              value={emailAddress}
+              onChange={(e) => setEmailAddress(e.target.value)}
+              placeholder="tu@email.com"
+              variant="outlined"
+              size="small"
+              sx={{ mb: 2 }}
+            />
+            
+            <Button
+              variant="contained"
+              startIcon={<EmailIcon />}
+              onClick={handleEmailBackup}
+              disabled={!emailAddress.trim()}
+              fullWidth
+            >
+              Enviar por Email
+            </Button>
+
+            {emailError && (
+              <Alert severity="error" sx={{ mt: 2 }}>
+                {emailError}
+              </Alert>
+            )}
+
+            {emailSuccess && (
+              <Alert severity="success" sx={{ mt: 2 }}>
+                Email preparado exitosamente. Se abrirá tu cliente de email predeterminado.
+              </Alert>
+            )}
+          </Box>
+
+          <Divider sx={{ my: 2 }} />
 
           <Box sx={{ mb: 3 }}>
             <Typography variant="h6" gutterBottom>

@@ -21,6 +21,7 @@ import {
   Sort as SortIcon,
   Download as DownloadIcon,
   Upload as UploadIcon,
+  Email as EmailIcon,
 } from '@mui/icons-material';
 
 interface HelpModalProps {
@@ -112,8 +113,8 @@ const HelpModal: React.FC<HelpModalProps> = ({ open, onClose }) => {
                 <FilterIcon />
               </ListItemIcon>
               <ListItemText 
-                primary="Filtros múltiples" 
-                secondary="Filtra por estado (visto/no visto), fotos, orden, familia, hábitat, departamento y abundancia"
+                primary="Filtros avanzados" 
+                secondary="Filtra por familia, hábitat, departamento, abundancia y estado de observación"
               />
             </ListItem>
             
@@ -144,6 +145,16 @@ const HelpModal: React.FC<HelpModalProps> = ({ open, onClose }) => {
               <ListItemText 
                 primary="Exportar datos" 
                 secondary="Guarda tu checklist en un archivo JSON para respaldo o transferencia"
+              />
+            </ListItem>
+            
+            <ListItem>
+              <ListItemIcon>
+                <EmailIcon />
+              </ListItemIcon>
+              <ListItemText 
+                primary="Respaldo por email" 
+                secondary="Envía una copia de tus datos por email para respaldo o compartir con otros"
               />
             </ListItem>
             
