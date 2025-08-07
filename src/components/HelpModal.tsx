@@ -45,26 +45,28 @@ const HelpModal: React.FC<HelpModalProps> = ({ open, onClose }) => {
     >
       <DialogTitle sx={{ pb: 1 }}>
         <Typography variant="h5" component="div">
-          ¿Cómo funciona esta aplicación?
+          🐧 ¿Cómo funciona esta página? 🦢
         </Typography>
       </DialogTitle>
       
       <DialogContent>
         <Box sx={{ mb: 3 }}>
           <Typography variant="h6" gutterBottom>
-            🎯 Propósito
+           Objetivo
           </Typography>
           <Typography variant="body1" paragraph>
-            Esta aplicación te permite mantener un registro personal de las aves que has observado en Uruguay. 
-            Puedes marcar las especies que has visto, las que has fotografiado, y agregar observaciones detalladas.
-          </Typography>
+            El objetivo principal de esta página es poder llevar un registro personal de aves vistas y/o fotografiadas en Uruguay sin necesidad de crear cuentas ni proporcionar datos personales.
+            </Typography>
+            <Typography variant="h6" gutterBottom> ¡Importante!        </Typography>
+              Esta página no respalda tus datos automáticamente. Es necesario que los guardes si vas a utilizar otros dispositivos o navegadores. Más abajo encontrarás instrucciones.
+
         </Box>
 
         <Divider sx={{ my: 2 }} />
 
-        <Box sx={{ mb: 3 }}>
+        <Box sx={{ mb: 3 }}> 
           <Typography variant="h6" gutterBottom>
-            📋 Funcionalidades principales
+            Funcionalidades principales 
           </Typography>
           
           <List>
@@ -84,19 +86,10 @@ const HelpModal: React.FC<HelpModalProps> = ({ open, onClose }) => {
               </ListItemIcon>
               <ListItemText 
                 primary="Marcar con foto" 
-                secondary="Haz clic en el ícono de la cámara para indicar que tienes fotos de la especie"
+                secondary="Haz clic en el ícono de la cámara para indicar que tienes fotos de la especie. Primero debe estar marcada como vista."
               />
             </ListItem>
-            
-            <ListItem>
-              <ListItemIcon>
-                <AddIcon color="action" />
-              </ListItemIcon>
-              <ListItemText 
-                primary="Agregar observación" 
-                secondary="Haz clic en el ícono + para agregar detalles de tu observación"
-              />
-            </ListItem>
+
           </List>
         </Box>
 
@@ -104,7 +97,7 @@ const HelpModal: React.FC<HelpModalProps> = ({ open, onClose }) => {
 
         <Box sx={{ mb: 3 }}>
           <Typography variant="h6" gutterBottom>
-            🔍 Filtros y búsqueda
+            Filtros y búsqueda
           </Typography>
           
           <List>
@@ -114,7 +107,7 @@ const HelpModal: React.FC<HelpModalProps> = ({ open, onClose }) => {
               </ListItemIcon>
               <ListItemText 
                 primary="Filtros avanzados" 
-                secondary="Filtra por familia, hábitat, departamento, abundancia y estado de observación"
+                secondary="Filtra por orden, hábitat, departamento, abundancia y estado de observación"
               />
             </ListItem>
             
@@ -124,7 +117,7 @@ const HelpModal: React.FC<HelpModalProps> = ({ open, onClose }) => {
               </ListItemIcon>
               <ListItemText 
                 primary="Ordenamiento automático" 
-                secondary="Las aves se ordenan automáticamente por abundancia (más comunes primero)"
+                secondary="Las aves se ordenan automáticamente por abundancia (más comunes primero). Esta decisión se tomó para poder encontrar más rápido las especies que es más probable hayas observado."
               />
             </ListItem>
           </List>
@@ -217,6 +210,96 @@ const HelpModal: React.FC<HelpModalProps> = ({ open, onClose }) => {
               />
             </ListItem>
           </List>
+        </Box>
+
+        <Box>
+          <Typography variant="h6" gutterBottom>
+            📚 Bibliografía y fuentes
+          </Typography>
+          
+          <Typography variant="body2" paragraph>
+            Esta aplicación utiliza información de las siguientes fuentes:
+          </Typography>
+
+          <List dense>
+            <ListItem>
+              <ListItemText 
+                primary={
+                  <Typography component="span">
+                    • Aves del Uruguay -{' '}
+                    <a 
+                      href="https://www.bandaoriental.com.uy/libro/aves-del-uruguay-guia-completa-para-conocer/" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      style={{ color: '#1976d2', textDecoration: 'underline' }}
+                    >
+                      Guía completa para conocer Aves del Uruguay
+                    </a>
+                  </Typography>
+                }
+                secondary="Gabriel Rocha (2024). Ediciones de la Banda Oriental."
+              />
+            </ListItem>
+            <ListItem>
+              <ListItemText 
+                primary={
+                  <Typography component="span">
+                    • eBird -{' '}
+                    <a 
+                      href="https://ebird.org" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      style={{ color: '#1976d2', textDecoration: 'underline' }}
+                    >
+                      Macaulay Library
+                    </a>
+                  </Typography>
+                }
+                secondary="Imágenes de alta calidad de Cornell Lab of Ornithology"
+              />
+            </ListItem>
+            <ListItem>
+              <ListItemText 
+                primary={
+                  <Typography component="span">
+                    •{' '}
+                    <a 
+                      href="https://birdsoftheworld.org/" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      style={{ color: '#1976d2', textDecoration: 'underline' }}
+                    >
+                      Birds of the World
+                    </a>
+                    {' '}- Cornell Lab of Ornithology
+                  </Typography>
+                }
+                secondary="Base de datos completa de aves del mundo"
+              />
+            </ListItem>
+            <ListItem>
+              <ListItemText 
+                primary={
+                  <Typography component="span">
+                    •{' '}
+                    <a 
+                      href="https://es.wikipedia.org/wiki/Aves_de_Uruguay" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      style={{ color: '#1976d2', textDecoration: 'underline' }}
+                    >
+                      Wikipedia - Aves de Uruguay
+                    </a>
+                  </Typography>
+                }
+                secondary="Información general sobre aves de Uruguay"
+              />
+            </ListItem>
+          </List>
+
+          <Typography variant="body2" sx={{ mt: 2, fontStyle: 'italic' }}>
+            Nota: Esta aplicación es una herramienta educativa y de registro personal. Para identificaciones críticas o estudios científicos, se recomienda consultar guías de campo especializadas y expertos locales.
+          </Typography>
         </Box>
       </DialogContent>
       

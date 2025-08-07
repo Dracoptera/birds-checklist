@@ -33,6 +33,7 @@ export interface FilterOptions {
   commonness: string;
   status: string;
   searchTerm: string;
+  sortBy: 'commonness' | 'alphabetical';
 }
 
 export interface Statistics {

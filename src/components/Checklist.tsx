@@ -51,6 +51,7 @@ const Checklist: React.FC = () => {
     commonness: '',
     status: '',
     searchTerm: '',
+    sortBy: 'commonness',
   });
   const [displayCount, setDisplayCount] = useState(9);
   const [filtersOpen, setFiltersOpen] = useState(!isMobile); // Open by default on desktop, closed on mobile
@@ -142,11 +143,16 @@ const Checklist: React.FC = () => {
       
       return true;
     }).sort((a, b) => {
-      // Sort by commonness (most common first)
-      const commonnessOrder = ['abundante', 'común', 'poco común', 'rara', 'muy rara'];
-      const aIndex = commonnessOrder.indexOf(a.commonness);
-      const bIndex = commonnessOrder.indexOf(b.commonness);
-      return aIndex - bIndex;
+      if (filters.sortBy === 'alphabetical') {
+        // Sort alphabetically by common name
+        return a.commonName.localeCompare(b.commonName, 'es');
+      } else {
+        // Sort by commonness (most common first)
+        const commonnessOrder = ['abundante', 'común', 'poco común', 'rara', 'muy rara'];
+        const aIndex = commonnessOrder.indexOf(a.commonness);
+        const bIndex = commonnessOrder.indexOf(b.commonness);
+        return aIndex - bIndex;
+      }
     });
   }, [state.observations, filters]);
 
@@ -166,6 +172,7 @@ const Checklist: React.FC = () => {
       commonness: '',
       status: '',
       searchTerm: '',
+      sortBy: 'commonness',
     });
     setDisplayCount(9);
   };
@@ -332,11 +339,25 @@ const Checklist: React.FC = () => {
             <TextField
               fullWidth
               size="small"
-              label="Buscar"
+              label="Buscar 🔎"
               value={filters.searchTerm}
               onChange={(e) => handleFilterChange('searchTerm', e.target.value)}
               placeholder="Nombre, científico o familia..."
             />
+          </Grid>
+          
+          <Grid item xs={12} sm={6} md={3}>
+            <FormControl fullWidth size="small">
+              <InputLabel>Ordenar por</InputLabel>
+              <Select
+                value={filters.sortBy}
+                label="Ordenar por"
+                onChange={(e) => handleFilterChange('sortBy', e.target.value)}
+              >
+                <MenuItem value="commonness">Por abundancia</MenuItem>
+                <MenuItem value="alphabetical">Alfabéticamente</MenuItem>
+              </Select>
+            </FormControl>
           </Grid>
           
           <Grid item xs={12}>
