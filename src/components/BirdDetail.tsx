@@ -114,7 +114,7 @@ const BirdDetail: React.FC = () => {
               right: 0,
               background: 'linear-gradient(transparent, rgba(255,255,255,0.9) 20%, rgba(255,255,255,1) 40%)',
               paddingTop: '0px',
-              paddingBottom: '0px',
+              paddingBottom: '10px',
               paddingLeft: '16px',
               paddingRight: '16px',
             }}
@@ -215,24 +215,7 @@ const BirdDetail: React.FC = () => {
             />
           </Box>
 
-          {bird.departamentos && bird.departamentos.length > 0 && (
-            <Box sx={{ mb: 2 }}>
-              <Typography variant="subtitle2" gutterBottom>
-                Departamentos:
-              </Typography>
-              <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
-                {bird.departamentos.map(departamento => (
-                  <Chip 
-                    key={departamento} 
-                    label={departamento} 
-                    size="small" 
-                    color="info" 
-                    variant="outlined"
-                  />
-                ))}
-              </Box>
-            </Box>
-          )}
+          
 
           <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
             <Chip 
@@ -248,10 +231,31 @@ const BirdDetail: React.FC = () => {
           </Box>
         </Box>
       </Box>
-      </Card>
+             </Card>
 
-            {/* Simplified Information Sections */}
-      <Grid container spacing={3} sx={{ mt: 2 }}>
+       {/* Departamentos Section */}
+       {bird.departamentos && bird.departamentos.length > 0 && (
+         <Paper sx={{ p: 2, mb: 3 }}>
+           <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+             <MapIcon sx={{ mr: 1, color: 'primary.main' }} />
+             <Typography variant="h6">Departamentos</Typography>
+           </Box>
+           <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
+             {bird.departamentos.map(departamento => (
+               <Chip 
+                 key={departamento} 
+                 label={departamento} 
+                 size="medium" 
+                 color="info" 
+                 variant="outlined"
+               />
+             ))}
+           </Box>
+         </Paper>
+       )}
+
+       {/* Simplified Information Sections */}
+       <Grid container spacing={3} sx={{ mt: 2 }}>
         {/* Description Section */}
         <Grid item xs={12} md={6}>
           <Paper sx={{ p: 2 }}>
