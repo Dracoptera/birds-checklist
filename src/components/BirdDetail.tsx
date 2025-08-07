@@ -106,13 +106,18 @@ const BirdDetail: React.FC = () => {
       <Card sx={{ mb: 3 }}>
         <BirdImage bird={bird} height={550} compact={false} />
         <CardContent>
-          <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', mb: 2 }}>
+          <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', mb: 3 }}>
             <Box>
-              <Typography variant="h4" gutterBottom>
-                {bird.commonName}
-              </Typography>
-              <Typography variant="h6" color="text.secondary" sx={{ fontStyle: 'italic', mb: 2 }}>
-                {bird.scientificName}
+              <Box sx={{ display: 'flex', alignItems: 'baseline', gap: 2, mb: 1 }}>
+                <Typography variant="h4">
+                  {bird.commonName}
+                </Typography>
+                <Typography variant="h6" color="text.secondary" sx={{ fontStyle: 'italic' }}>
+                  {bird.scientificName}
+                </Typography>
+              </Box>
+              <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+                {bird.size || 'Tamaño no especificado'}
               </Typography>
             </Box>
             
@@ -138,24 +143,41 @@ const BirdDetail: React.FC = () => {
             </Box>
           </Box>
 
-          <Box sx={{ display: 'flex', gap: 1, mb: 2, flexWrap: 'wrap' }}>
-            <Chip label={bird.family} color="primary" variant="outlined" />
-            <Chip label={bird.order} color="secondary" variant="outlined" />
-            {bird.habitat.map(habitat => (
+          {/* Family/Order and Habitat row */}
+          <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
+            <Box sx={{ display: 'flex', gap: 1 }}>
+              <Chip label={bird.family} color="primary" variant="outlined" />
+              <Chip label={bird.order} color="secondary" variant="outlined" />
+            </Box>
+            <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
+              {bird.habitat.map(habitat => (
+                <Chip 
+                  key={habitat} 
+                  label={habitat} 
+                  size="small" 
+                  color="primary" 
+                  variant="outlined"
+                />
+              ))}
+            </Box>
+          </Box>
+
+          {/* Commonness, Status and Origin row */}
+          <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
+            <Box sx={{ display: 'flex', gap: 1 }}>
               <Chip 
-                key={habitat} 
-                label={habitat} 
+                label={bird.commonness} 
                 size="small" 
-                color="primary" 
-                variant="outlined"
+                color="secondary" 
+                variant="filled"
               />
-            ))}
-            <Chip 
-              label={bird.size || 'Tamaño no especificado'}
-              size="small" 
-              color="info" 
-              variant="filled"
-            />
+              <Chip 
+                label={bird.status}
+                size="small" 
+                color="info" 
+                variant="filled"
+              />
+            </Box>
             <Chip 
               label={bird.origin}
               size="small" 

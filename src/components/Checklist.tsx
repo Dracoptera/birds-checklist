@@ -457,6 +457,12 @@ const Checklist: React.FC = () => {
                       variant="filled"
                     />
                     <Chip 
+                      label={bird.status}
+                      size="small" 
+                      color="info" 
+                      variant="filled"
+                    />
+                    <Chip 
                       label={bird.origin}
                       size="small" 
                       color={bird.origin === 'autóctona' ? 'success' : 'error'}
