@@ -48,6 +48,11 @@ const BirdDetail: React.FC = () => {
   const { birdId } = useParams<{ birdId: string }>();
   const navigate = useNavigate();
   const { state, toggleSeen, checkNeedsSeeingWarning, togglePhoto, addObservation, removeObservation } = useUserData();
+  
+  // Scroll to top when component mounts
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [birdId]);
   const [warningDialog, setWarningDialog] = useState<{
     open: boolean;
     birdName: string;
