@@ -79,7 +79,7 @@ const Checklist: React.FC = () => {
   
   const [filters, setFilters] = useState<FilterOptions>(initialFilters);
   const [displayCount, setDisplayCount] = useState(9);
-  const [filtersOpen, setFiltersOpen] = useState(!isMobile); // Open by default on desktop, closed on mobile
+  const [filtersOpen, setFiltersOpen] = useState(true); // Open by default on all screen sizes
   const [showBackToTop, setShowBackToTop] = useState(false);
 
   const birdsByOrder = useMemo(() => getBirdsByOrder(), []);
@@ -373,33 +373,32 @@ const Checklist: React.FC = () => {
         <Box 
           sx={{ 
             p: 2, 
-            cursor: isMobile ? 'pointer' : 'default',
+            cursor: 'pointer',
             display: 'flex', 
             alignItems: 'center', 
             justifyContent: 'space-between',
-            borderBottom: isMobile ? '1px solid' : 'none',
-            borderColor: 'divider'
+            borderBottom: '1px solid',
+            borderColor: 'divider',
+            '&:hover': {
+              backgroundColor: 'rgba(0, 0, 0, 0.04)',
+            }
           }}
-          onClick={() => isMobile && setFiltersOpen(!filtersOpen)}
+          onClick={() => setFiltersOpen(!filtersOpen)}
         >
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
             <FilterIcon />
             <Typography variant="h6">
               Filtros
             </Typography>
-            {isMobile && (
-              <Typography variant="body2" color="text.secondary">
-                ({Object.entries(filters)
-                  .filter(([key, value]) => key !== 'sortBy' && value && value !== 'all')
-                  .length} activos)
-              </Typography>
-            )}
+            <Typography variant="body2" color="text.secondary">
+              ({Object.entries(filters)
+                .filter(([key, value]) => key !== 'sortBy' && value && value !== 'all')
+                .length} activos)
+            </Typography>
           </Box>
-          {isMobile && (
-            <IconButton size="small">
-              {filtersOpen ? <ExpandLessIcon /> : <ExpandMoreIcon />}
-            </IconButton>
-          )}
+          <IconButton size="small">
+            {filtersOpen ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+          </IconButton>
         </Box>
         <Collapse in={filtersOpen}>
           <Box sx={{ p: 2, pt: isMobile ? 1 : 2 }}>

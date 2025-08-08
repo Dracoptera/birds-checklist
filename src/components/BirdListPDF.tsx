@@ -248,20 +248,14 @@ const BirdListPDF: React.FC<BirdListPDFProps> = ({ birds, filters, totalCount, o
                       <Text style={styles.scientificName}>{bird.scientificName}</Text>
                       
                       <Text style={styles.birdInfo}>
-                        {bird.family} • {bird.size || 'Tamaño no especificado'}
+                        {bird.order.split(' (')[0]} • {bird.family} • {bird.size || 'Tamaño no especificado'}
                       </Text>
-                      
-                      {bird.habitat && bird.habitat.length > 0 && (
-                        <Text style={styles.birdInfo}>
-                          Hábitat: {bird.habitat.join(', ')}
-                        </Text>
-                      )}
                       
                       <View style={styles.birdTags}>
                         <Text style={styles.statusTag}>{commonness}</Text>
-                        <Text style={styles.tag}>{bird.status}</Text>
-                        {observation?.seen && <Text style={styles.statusTag}>✓ Visto</Text>}
-                        {observation?.hasPhoto && <Text style={styles.statusTag}>📷 Foto</Text>}
+                        <Text style={styles.tag}>{bird.status.replace(/[🏠🔄❄️🌸]/g, '').trim()}</Text>
+                        {observation?.seen && <Text style={styles.statusTag}>Visto</Text>}
+                        {observation?.hasPhoto && <Text style={styles.statusTag}>Foto</Text>}
                       </View>
                     </View>
                   </View>
