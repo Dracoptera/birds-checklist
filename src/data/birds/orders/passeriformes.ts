@@ -16,13 +16,22 @@ export const passeriformes: Bird[] = [
     size: '15-17 cm',
     characteristics: ['nido de barro', 'vocal'],
     departamentos: ['Montevideo', 'Canelones', 'San José', 'Colonia', 'Soriano', 'Río Negro', 'Paysandú', 'Salto', 'Artigas', 'Rivera', 'Tacuarembó', 'Durazno', 'Flores', 'Florida', 'Lavalleja', 'Maldonado', 'Rocha', 'Treinta y Tres', 'Cerro Largo'],
-    ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/70049451/embed',
+    ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/627304644/embed',
     soundUrl: 'https://macaulaylibrary.org/asset/203695301/embed',
     cardHeight: { xs: 710, lg: 780, xl: 780 },
     description: {
       general: 'El Hornero es una de las aves más emblemáticas de Uruguay, conocida por construir nidos de barro en forma de horno. Su plumaje es principalmente rufo (rojizo-marrón) con partes inferiores más claras. Es un ave territorial y muy vocal, especialmente durante la época reproductiva.',
       curiosities: 'El nido de los horneros dura aproximadamente un año y llega a ser utilizado por otras especies.',
-    }
+    },
+    gallery: [
+      {
+        id: 'nido',
+        title: 'Nido de Hornero',
+        description: 'Nido característico en forma de horno.',
+        ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/70049451/embed',
+        cardHeight: { xs: 380, lg: 550, xl: 550 }
+      }
+    ]
   },
   {
     id: 'ratonera',
@@ -77,7 +86,26 @@ export const passeriformes: Bird[] = [
     commonness: 'abundante',
     characteristics: ['amarillo', 'pico negro', 'vocal'],
     departamentos: ['Montevideo', 'Canelones', 'San José', 'Colonia', 'Soriano', 'Río Negro', 'Paysandú', 'Salto', 'Artigas', 'Rivera', 'Tacuarembó', 'Durazno', 'Flores', 'Florida', 'Lavalleja', 'Maldonado', 'Rocha', 'Treinta y Tres', 'Cerro Largo'],
-    ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/638497636/embed'
+    ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/638497636/embed',
+    soundUrl: 'https://macaulaylibrary.org/asset/310087131/embed',
+    description: {
+      general: 'Un ave muy común y altamente vocal. Muy territorial; cuando se enfrenta a alguna amenaza, expone una cresta color amarillo. Se enfrenta a otras aves y animales para defender su nido, incluso aves de mucho mayor tamaño y parásitos de cría como el Tordo Común. Su alimentación es omnívora y variada: se le puede ver pescando y hasta azotando pequeños animales contra el piso. También come insectos y frutas.',
+      curiosities: 'En otros países tiene nombres como Bienteveo, Bichofue, Pitogüé y Cristofué: todos hacen referencia a su canto. En Uruguay también lo llaman "Bicho Feo" por este mismo motivo.',
+    },
+    gallery: [
+      {
+        id: 'cresta',
+        title: 'Cresta amarilla visible',
+        ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/258297611/embed',
+        cardHeight: { xs: 380, lg: 550, xl: 550 }
+      },
+      {
+        id: 'presa',
+        title: 'Depredando un murciélago',
+        ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/204565011/embed',
+        cardHeight: { xs: 380, lg: 550, xl: 550 }
+      } 
+    ]
   },
   {
     id: 'gorrión',

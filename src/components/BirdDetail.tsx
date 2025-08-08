@@ -37,12 +37,14 @@ import {
   Timeline as TimelineIcon,
   ImportContacts as ImportContactsIcon,
   Straighten as RulerIcon,
+  KeyboardArrowUp as KeyboardArrowUpIcon,
 } from '@mui/icons-material';
 import { useParams, useNavigate } from 'react-router-dom';
 import { uruguayBirds, getCommonnessForDepartment, getDepartamentosForBird } from '../data/birds';
 import { useUserData } from '../contexts/UserDataContext';
 import BirdImage from './BirdImage';
 import BirdVariations from './BirdVariations';
+import Gallery from './Gallery';
 
 const BirdDetail: React.FC = () => {
   const { birdId } = useParams<{ birdId: string }>();
@@ -53,6 +55,24 @@ const BirdDetail: React.FC = () => {
   React.useEffect(() => {
     window.scrollTo(0, 0);
   }, [birdId]);
+
+  // Handle scroll to show/hide back to top button
+  React.useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      setShowBackToTop(scrollTop > 300);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const handleBackToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
   const [warningDialog, setWarningDialog] = useState<{
     open: boolean;
     birdName: string;
@@ -70,6 +90,7 @@ const BirdDetail: React.FC = () => {
     notes: '',
     photoUrl: '',
   });
+  const [showBackToTop, setShowBackToTop] = useState(false);
 
   const bird = uruguayBirds.find((b: any) => b.id === birdId);
   const observation = state.observations[birdId!];
@@ -395,6 +416,20 @@ const BirdDetail: React.FC = () => {
         </Paper>
       )}
 
+      {/* Gallery Section */}
+      {bird.gallery && bird.gallery.length > 0 && (
+        <Paper sx={{ p: 2, mb: 3, mt: 3 }}>
+          <Gallery 
+            images={bird.gallery} 
+            height={500}
+            onImageClick={(image) => {
+              console.log('Selected gallery image:', image);
+              // Here you could track which gallery image was viewed
+            }}
+          />
+        </Paper>
+      )}
+
       {/* Sounds Section */}
       {bird.soundUrl && (
         <Paper sx={{ p: 2, mb: 3, mt: 3 }}>
@@ -651,10 +686,41 @@ const BirdDetail: React.FC = () => {
           >
             Agregar
           </Button>
-        </DialogActions>
-      </Dialog>
-    </Box>
-  );
-};
+                 </DialogActions>
+       </Dialog>
+
+       {/* Back to Top Button */}
+       {showBackToTop && (
+         <Box
+           sx={{
+             position: 'fixed',
+             bottom: 20,
+             right: 20,
+             zIndex: 1000,
+           }}
+         >
+           <IconButton
+             onClick={handleBackToTop}
+             sx={{
+               backgroundColor: 'primary.main',
+               color: 'white',
+               width: 56,
+               height: 56,
+               boxShadow: 3,
+               '&:hover': {
+                 backgroundColor: 'primary.dark',
+                 transform: 'scale(1.1)',
+                 transition: 'all 0.2s ease-in-out',
+               },
+             }}
+             aria-label="Volver arriba"
+           >
+             <KeyboardArrowUpIcon />
+           </IconButton>
+         </Box>
+       )}
+     </Box>
+   );
+ };
 
 export default BirdDetail; 

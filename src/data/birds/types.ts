@@ -8,6 +8,15 @@ export interface BirdVariation {
   cardHeight?: number | { xs: number; lg: number; xl: number };
 }
 
+export interface GalleryImage {
+  id: string;
+  title: string;
+  description?: string;
+  imageUrl?: string;
+  ebirdEmbedUrl?: string;
+  cardHeight?: number | { xs: number; lg: number; xl: number };
+}
+
 export interface Bird {
   id: string;
   commonName: string;
@@ -27,6 +36,7 @@ export interface Bird {
   ebirdEmbedUrl?: string;
   soundUrl?: string;
   variations?: BirdVariation[];
+  gallery?: GalleryImage[];
   cardHeight?: number | { xs: number; lg: number; xl: number };
   // Detailed information for bird detail page
   description?: {
