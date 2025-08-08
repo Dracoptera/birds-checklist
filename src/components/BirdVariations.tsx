@@ -7,7 +7,7 @@ import {
   Chip,
   Grid,
 } from '@mui/material';
-import { BirdVariation } from '../data/uruguayBirds';
+import { BirdVariation } from '../data/birds';
 import BirdImage from './BirdImage';
 
 interface BirdVariationsProps {

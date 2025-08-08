@@ -39,7 +39,7 @@ import {
   Straighten as RulerIcon,
 } from '@mui/icons-material';
 import { useParams, useNavigate } from 'react-router-dom';
-import { uruguayBirds, getCommonnessForDepartment, getDepartamentosForBird } from '../data/uruguayBirds';
+import { uruguayBirds, getCommonnessForDepartment, getDepartamentosForBird } from '../data/birds';
 import { useUserData } from '../contexts/UserDataContext';
 import BirdImage from './BirdImage';
 import BirdVariations from './BirdVariations';

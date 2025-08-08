@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Typography, Skeleton } from '@mui/material';
 import { Image as ImageIcon } from '@mui/icons-material';
-import { Bird, uruguayBirds } from '../data/uruguayBirds';
+import { Bird } from '../data/birds';
 import EbirdEmbed from './EbirdEmbed';
+import { useLazyLoad } from '../hooks/useLazyLoad';
 
 // Create a cache to store preloaded images
 const imageCache = new Map<string, boolean>();
@@ -25,23 +26,6 @@ const preloadImage = (src: string): Promise<void> => {
   });
 };
 
-// Function to preload the next batch of images
-const preloadNextImages = (currentBirdId: string) => {
-  const allBirds = uruguayBirds;
-  const currentIndex = allBirds.findIndex((b: Bird) => b.id === currentBirdId);
-  if (currentIndex === -1) return;
-
-  // Preload next 5 images
-  const nextBirds = allBirds.slice(currentIndex + 1, currentIndex + 6);
-  nextBirds.forEach((bird: Bird) => {
-    if (bird.imageUrl) {
-      preloadImage(bird.imageUrl).catch(() => {
-        // Silently handle preload errors
-      });
-    }
-  });
-};
-
 interface BirdImageProps {
   bird: Bird;
   height?: number | string;
@@ -55,10 +39,11 @@ const BirdImage: React.FC<BirdImageProps> = ({
   showPlaceholder = true,
   compact = true
 }) => {
-  const [isLoading, setIsLoading] = useState(!bird.imageUrl || !imageCache.has(bird.imageUrl));
+  const { elementRef, isVisible, isLoaded, handleLoad } = useLazyLoad();
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    if (!bird.imageUrl) return;
+    if (!bird.imageUrl || !isVisible) return;
 
     // If image is not cached, show loading state
     if (!imageCache.has(bird.imageUrl)) {
@@ -66,16 +51,12 @@ const BirdImage: React.FC<BirdImageProps> = ({
       preloadImage(bird.imageUrl)
         .then(() => {
           setIsLoading(false);
-          // Preload next images after current one loads
-          preloadNextImages(bird.id);
         })
         .catch(() => setIsLoading(false));
     } else {
       setIsLoading(false);
-      // If image is cached, still preload next images
-      preloadNextImages(bird.id);
     }
-  }, [bird.imageUrl, bird.id]);
+  }, [bird.imageUrl, isVisible]);
 
   // Priority: eBird embed > regular image > placeholder
   if (bird.ebirdEmbedUrl) {
@@ -85,6 +66,7 @@ const BirdImage: React.FC<BirdImageProps> = ({
   if (bird.imageUrl) {
     return (
       <Box
+        ref={elementRef}
         sx={{
           height,
           position: 'relative',
@@ -92,7 +74,7 @@ const BirdImage: React.FC<BirdImageProps> = ({
           backgroundColor: '#f5f5f5',
         }}
       >
-        {isLoading && (
+        {(!isVisible || isLoading) && (
           <Skeleton 
             variant="rectangular" 
             width="100%" 
@@ -100,22 +82,25 @@ const BirdImage: React.FC<BirdImageProps> = ({
             animation="wave"
           />
         )}
-        <Box
-          component="img"
-          src={bird.imageUrl}
-          alt={bird.commonName}
-          loading="lazy"
-          sx={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '100%',
-            objectFit: 'cover',
-            opacity: isLoading ? 0 : 1,
-            transition: 'opacity 0.3s ease-in-out',
-          }}
-        />
+        {isVisible && (
+          <Box
+            component="img"
+            src={bird.imageUrl}
+            alt={bird.commonName}
+            loading="lazy"
+            onLoad={handleLoad}
+            sx={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              opacity: isLoaded && !isLoading ? 1 : 0,
+              transition: 'opacity 0.3s ease-in-out',
+            }}
+          />
+        )}
       </Box>
     );
   }

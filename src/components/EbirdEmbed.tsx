@@ -1,5 +1,42 @@
 import React, { useState, useEffect } from 'react';
 import { Box, CircularProgress } from '@mui/material';
+import { useLazyLoad } from '../hooks/useLazyLoad';
+
+// Improved cache with size limits and better memory management
+class EmbedCache {
+  private cache = new Map<string, boolean>();
+  private maxSize = 100; // Limit cache to 100 entries
+  private accessOrder: string[] = []; // Track access order for LRU
+
+  has(url: string): boolean {
+    return this.cache.has(url);
+  }
+
+  set(url: string, value: boolean): void {
+    // If cache is full, remove least recently used entry
+    if (this.cache.size >= this.maxSize) {
+      const oldestUrl = this.accessOrder.shift();
+      if (oldestUrl) {
+        this.cache.delete(oldestUrl);
+      }
+    }
+
+    // Add new entry
+    this.cache.set(url, value);
+    this.accessOrder.push(url);
+  }
+
+  clear(): void {
+    this.cache.clear();
+    this.accessOrder = [];
+  }
+
+  get size(): number {
+    return this.cache.size;
+  }
+}
+
+const embedCache = new EmbedCache();
 
 interface EbirdEmbedProps {
   embedUrl: string;
@@ -14,18 +51,30 @@ const EbirdEmbed: React.FC<EbirdEmbedProps> = ({
   width = '100%',
   compact = true
 }) => {
-  const [isLoading, setIsLoading] = useState(true);
+  const { elementRef, isVisible, isLoaded, handleLoad } = useLazyLoad();
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    setIsLoading(true);
-  }, [embedUrl]);
+    if (!isVisible) return;
+
+    // If embed is not cached, show loading state
+    if (!embedCache.has(embedUrl)) {
+      setIsLoading(true);
+    } else {
+      setIsLoading(false);
+    }
+  }, [embedUrl, isVisible]);
 
   const handleIframeLoad = () => {
     setIsLoading(false);
+    handleLoad();
+    // Cache the loaded embed
+    embedCache.set(embedUrl, true);
   };
 
   return (
     <Box
+      ref={elementRef}
       sx={{
         width,
         height,
@@ -47,24 +96,26 @@ const EbirdEmbed: React.FC<EbirdEmbedProps> = ({
         })
       }}
     >
-      {isLoading && (
+      {(!isVisible || isLoading) && (
         <CircularProgress size={40} />
       )}
-      <iframe
-        src={embedUrl}
-        height="100%"
-        width="100%"
-        frameBorder="0"
-        allowFullScreen
-        style={{
-          border: 'none',
-          borderRadius: '4px',
-          opacity: isLoading ? 0 : 1,
-          transition: 'opacity 0.3s ease',
-        }}
-        title="eBird Bird Image"
-        onLoad={handleIframeLoad}
-      />
+      {isVisible && (
+        <iframe
+          src={embedUrl}
+          height="100%"
+          width="100%"
+          frameBorder="0"
+          allowFullScreen
+          style={{
+            border: 'none',
+            borderRadius: '4px',
+            opacity: isLoaded && !isLoading ? 1 : 0,
+            transition: 'opacity 0.3s ease',
+          }}
+          title="eBird Bird Image"
+          onLoad={handleIframeLoad}
+        />
+      )}
     </Box>
   );
 };
