@@ -34,12 +34,16 @@ import {
   Nature as NatureIcon,
   ImportContacts as ImportContactsIcon,
   KeyboardArrowUp as KeyboardArrowUpIcon,
+  PictureAsPdf as PdfIcon,
+  Download as DownloadIcon,
 } from '@mui/icons-material';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { uruguayBirds, getBirdsByOrder, getCommonnessForDepartment, getAllCommonnessLevels, getDepartamentosForBird } from '../data/birds';
 import { useUserData } from '../contexts/UserDataContext';
 import { FilterOptions } from '../types';
 import BirdImage from './BirdImage';
+import BirdListPDF from './BirdListPDF';
+import { pdf } from '@react-pdf/renderer';
 
 const Checklist: React.FC = () => {
   const navigate = useNavigate();
@@ -320,6 +324,46 @@ const Checklist: React.FC = () => {
     });
   };
 
+  const handleExportPDF = async () => {
+    try {
+      const doc = (
+        <BirdListPDF 
+          birds={filteredBirds} 
+          filters={filters}
+          totalCount={uruguayBirds.length}
+          observations={state.observations}
+        />
+      );
+      
+      const asPdf = pdf(doc);
+      const blob = await asPdf.toBlob();
+      
+      // Create download link
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      
+      // Generate filename based on filters
+      const activeFilters = Object.entries(filters)
+        .filter(([key, value]) => key !== 'sortBy' && value && value !== 'all')
+        .map(([key, value]) => `${key}-${value}`)
+        .join('_');
+      
+      const filename = activeFilters 
+        ? `aves_uruguay_${activeFilters}.pdf`
+        : 'aves_uruguay.pdf';
+      
+      link.download = filename;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error('Error generating PDF:', error);
+      alert('Error al generar el PDF. Por favor, inténtalo de nuevo.');
+    }
+  };
+
   return (
     <Box>
 
@@ -551,7 +595,19 @@ const Checklist: React.FC = () => {
             </Select>
           </FormControl>
 
-
+          <Button
+            variant="outlined"
+            startIcon={<PdfIcon />}
+            onClick={handleExportPDF}
+            size="small"
+            sx={{ 
+              width: { xs: '100%', sm: 'auto' },
+              height: '40px',
+              minWidth: { xs: 'auto', sm: '140px' }
+            }}
+          >
+            Exportar PDF
+          </Button>
         </Box>
       </Box>
 
