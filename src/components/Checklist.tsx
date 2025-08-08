@@ -70,7 +70,7 @@ const Checklist: React.FC = () => {
     status: searchParams.get('status') || '',
     conservationStatus: searchParams.get('conservationStatus') || '',
     searchTerm: searchParams.get('searchTerm') || '',
-    sortBy: (searchParams.get('sortBy') as 'commonness' | 'alphabetical' | 'order') || 'order',
+    sortBy: (searchParams.get('sortBy') as 'commonness' | 'alphabetical' | 'order') || 'commonness',
   };
   
   const [filters, setFilters] = useState<FilterOptions>(initialFilters);
@@ -249,7 +249,7 @@ const Checklist: React.FC = () => {
       status: '',
       conservationStatus: '',
       searchTerm: '',
-      sortBy: 'order',
+      sortBy: 'commonness',
     });
     setDisplayCount(9);
     setSearchParams({}); // Clear all URL parameters
