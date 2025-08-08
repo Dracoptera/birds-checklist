@@ -5,6 +5,7 @@ export interface BirdVariation {
   imageUrl?: string;
   ebirdEmbedUrl?: string;
   characteristics?: string[];
+  cardHeight?: number | { xs: number; lg: number; xl: number };
 }
 
 export interface Bird {
@@ -26,6 +27,7 @@ export interface Bird {
   ebirdEmbedUrl?: string;
   soundUrl?: string;
   variations?: BirdVariation[];
+  cardHeight?: number | { xs: number; lg: number; xl: number };
   // Detailed information for bird detail page
   description?: {
     general?: string;
@@ -68,6 +70,7 @@ export const uruguayBirds: Bird[] = [
     departamentos: ['Montevideo', 'Canelones', 'San José', 'Colonia', 'Soriano', 'Río Negro', 'Paysandú', 'Salto', 'Artigas', 'Rivera', 'Tacuarembó', 'Durazno', 'Flores', 'Florida', 'Lavalleja', 'Maldonado', 'Rocha', 'Treinta y Tres', 'Cerro Largo'],
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/70049451/embed',
     soundUrl: 'https://macaulaylibrary.org/asset/203695301/embed',
+    cardHeight: { xs: 710, lg: 780, xl: 780 },
     description: {
       general: 'El Hornero es una de las aves más emblemáticas de Uruguay, conocida por construir nidos de barro en forma de horno. Su plumaje es principalmente rufo (rojizo-marrón) con partes inferiores más claras. Es un ave territorial y muy vocal, especialmente durante la época reproductiva.',
       curiosities: 'El nido de los horneros dura aproximadamente un año y llega a ser utilizado por otras especies.',
@@ -334,11 +337,13 @@ export const uruguayBirds: Bird[] = [
         id: 'adult',
         name: 'Adulto',
         ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/612501251/embed',
+        cardHeight: { xs: 600, lg: 650, xl: 700 },
       },
       {
         id: 'juvenile',
         name: 'Juvenil',
         ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/448561191/embed',
+        cardHeight: { xs: 550, lg: 600, xl: 650 },
       }
     ]
   },
