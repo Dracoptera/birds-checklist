@@ -317,27 +317,33 @@ const BirdDetail: React.FC = () => {
        {/* Departamentos Section */}
        {(() => {
          const departamentos = getDepartamentosForBird(bird);
-         return departamentos.length > 0 ? (
+         return (
            <Paper sx={{ p: 2, mb: 3 }}>
              <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
                <MapIcon sx={{ mr: 1, color: 'primary.main' }} />
                <Typography variant="h6">Departamentos</Typography>
              </Box>
-             <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
-               {departamentos.map(departamento => (
-                 <Chip 
-                   key={departamento} 
-                   label={departamento} 
-                   size="medium" 
-                   color="info" 
-                   variant="outlined"
-                   onClick={() => handleChipClick('departamento', departamento)}
-                   sx={clickableChipStyle}
-                 />
-               ))}
-             </Box>
+             {departamentos.length > 0 ? (
+               <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
+                 {departamentos.map(departamento => (
+                   <Chip 
+                     key={departamento} 
+                     label={departamento} 
+                     size="medium" 
+                     color="info" 
+                     variant="outlined"
+                     onClick={() => handleChipClick('departamento', departamento)}
+                     sx={clickableChipStyle}
+                   />
+                 ))}
+               </Box>
+             ) : (
+               <Typography variant="body2" color="text.secondary" sx={{ fontStyle: 'italic' }}>
+                 No hay información especificada sobre la abundancia por departamentos para esta ave.
+               </Typography>
+             )}
            </Paper>
-         ) : null;
+         );
        })()}
 
        {/* Simplified Information Sections */}

@@ -169,7 +169,25 @@ export const uruguayBirds: Bird[] = [
     status: '🏠 residente',
     origin: 'introducida',
     commonness: 'común',
-    ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/158542881/embed'
+    departamentos: ['Montevideo', 'Canelones', 'San José', 'Colonia', 'Soriano', 'Río Negro', 'Paysandú', 'Salto', 'Artigas', 'Rivera', 'Tacuarembó', 'Durazno', 'Flores', 'Florida', 'Lavalleja', 'Maldonado', 'Rocha', 'Treinta y Tres', 'Cerro Largo'],
+    ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/158542881/embed',
+    variations: [
+      {
+        id: 'adult',
+        name: 'Adulto - Plumaje Nupcial',
+        ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/205138871/embed',
+      },
+      {
+        id: 'adult',
+        name: 'Adulto - Plumaje no reproductivo',
+        ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/39278421/embed',
+      },
+      {
+        id: 'juvenile',
+        name: 'Juvenil',
+        ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/171399331/embed',
+      },
+    ],
   },
 
   // Anseriformes - Waterfowl
@@ -214,14 +232,53 @@ export const uruguayBirds: Bird[] = [
     commonName: 'Coscoroba',
     englishName: 'Coscoroba Swan',
     scientificName: 'Coscoroba coscoroba',
+    size: '80 cm ♂️ | 62 cm ♀️',
     family: 'Anatidae',
     order: 'Anseriformes (Patos, Cisnes y Chajás)',
     habitat: ['bañado 💧', 'costa 🌊'],
     status: '🏠 residente',
-    origin: 'introducida',
-    commonness: 'rara',
-    conservationStatus: 'Casi amenazada',
-    ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/259009971/embed'
+    origin: 'autóctona',
+    commonness: {
+      'Rocha': 'común',
+      'Maldonado': 'común',
+      'Treinta y Tres': 'común',
+      'Cerro Largo': 'común',
+      'Lavalleja': 'poco común',
+      'Montevideo': 'poco común',
+      'Canelones': 'poco común',
+      'San José': 'poco común',
+      'Colonia': 'poco común',
+      'Soriano': 'poco común',
+      'Río Negro': 'poco común',
+      'Paysandú': 'poco común',
+      'Salto': 'poco común',
+      'Artigas': 'poco común',
+      'Rivera': 'poco común',
+      'Tacuarembó': 'poco común',
+      'Durazno': 'poco común',
+      'Flores': 'poco común',
+      'Florida': 'poco común',
+    },    
+    conservationStatus: 'Preocupación menor',
+    characteristics: ['cisne', 'blanco', 'grande'],
+    ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/259009971/embed',
+    description: {
+      general: 'Cisne de plumaje blanco. En vuelo son visibles las puntas negras de sus alas.',
+      curiosities: 'Su nombre es una onomatopeya que hace referencia a su sonido.',
+    }, 
+    variations: [
+      {
+        id: 'adult',
+        name: 'Adulto',
+        ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/105365391/embed',
+        characteristics: ['blanco', 'grande'],
+      },
+      {
+        id: 'juvenile',
+        name: 'Juvenil',
+        ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/259009971/embed',
+      },
+    ]
   },
   {
     id: 'pato-barcino',
@@ -234,7 +291,11 @@ export const uruguayBirds: Bird[] = [
     status: '🏠 residente',
     origin: 'introducida',
     commonness: 'común',
-    ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/620010230/embed'
+    ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/620010230/embed',
+    description: {
+      general: 'El Pato Barcino es una ave acuática común en Uruguay, conocida por su plumaje verde y blanco.',
+      curiosities: 'Es una de las aves más comunes en Uruguay.',
+    }
   },
 
   // Ciconiiformes - Storks and Herons

@@ -19,7 +19,7 @@ interface BirdVariationsProps {
 const BirdVariations: React.FC<BirdVariationsProps> = ({ 
   variations, 
   onVariationChange,
-  height = 500 
+  height = 560 
 }) => {
   return (
     <Box>
@@ -46,10 +46,12 @@ const BirdVariations: React.FC<BirdVariationsProps> = ({
           };
 
           return (
-            <Grid item xs={12} sm={6} md={variations.length === 2 ? 6 : 4} key={variation.id}>
-              <Card sx={{ height: '100%' }}>
-                <BirdImage bird={mockBird} height={height} compact={false} />
-                <CardContent>
+                         <Grid item xs={12} sm={6} md={variations.length === 2 ? 6 : 4} key={variation.id}>
+               <Card sx={{ height: '100%' }}>
+                                   <Box sx={{ position: 'relative' }}>
+                    <BirdImage bird={mockBird} height={500} compact={true} />
+                  </Box>
+                 <CardContent>
                   <Typography variant="h6" gutterBottom>
                     {variation.name}
                   </Typography>
