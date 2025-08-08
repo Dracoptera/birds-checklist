@@ -65,7 +65,6 @@ const Checklist: React.FC = () => {
     hasPhoto: (searchParams.get('hasPhoto') as 'all' | 'with-photo' | 'without-photo') || 'all',
     order: searchParams.get('order') || '',
     family: searchParams.get('family') || '',
-    habitat: searchParams.get('habitat') || '',
     departamento: searchParams.get('departamento') || '',
     commonness: searchParams.get('commonness') || '',
     status: searchParams.get('status') || '',
@@ -83,13 +82,7 @@ const Checklist: React.FC = () => {
   
   const uniqueOrders = useMemo(() => Object.keys(birdsByOrder), [birdsByOrder]);
   // const uniqueFamilies = useMemo(() => Object.keys(birdsByFamily), [birdsByFamily]);
-  const uniqueHabitats = useMemo(() => {
-    const habitats = new Set<string>();
-    uruguayBirds.forEach(bird => {
-      bird.habitat.forEach(h => habitats.add(h));
-    });
-    return Array.from(habitats).sort();
-  }, []);
+
 
   const uniqueDepartamentos = useMemo(() => {
     const departamentos = new Set<string>();
@@ -135,8 +128,7 @@ const Checklist: React.FC = () => {
       // Filter by order
       if (filters.order && bird.order !== filters.order) return false;
       
-      // Filter by habitat
-      if (filters.habitat && !bird.habitat.includes(filters.habitat)) return false;
+
       
       // Filter by departamento
       if (filters.departamento && (!bird.departamentos || !bird.departamentos.includes(filters.departamento))) return false;
@@ -205,7 +197,6 @@ const Checklist: React.FC = () => {
       hasPhoto: 'all',
       order: '',
       family: '',
-      habitat: '',
       departamento: '',
       commonness: '',
       status: '',
@@ -328,21 +319,7 @@ const Checklist: React.FC = () => {
             </FormControl>
           </Grid>
           
-          <Grid item xs={12} sm={6} md={3}>
-            <FormControl fullWidth size="small">
-              <InputLabel>Hábitat</InputLabel>
-              <Select
-                value={filters.habitat}
-                label="Hábitat"
-                onChange={(e) => handleFilterChange('habitat', e.target.value)}
-              >
-                <MenuItem value="">Todos</MenuItem>
-                {uniqueHabitats.map(habitat => (
-                  <MenuItem key={habitat} value={habitat}>{habitat}</MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-          </Grid>
+
           
           <Grid item xs={12} sm={6} md={3}>
             <FormControl fullWidth size="small">
@@ -556,17 +533,7 @@ const Checklist: React.FC = () => {
                        <Chip label={bird.family} size="small" variant="outlined" />
                      </Box>
                      
-                     <Box sx={{ display: 'flex', gap: 1, mb: 2, flexWrap: 'wrap' }}>
-                       {bird.habitat.map(habitat => (
-                         <Chip 
-                           key={habitat} 
-                           label={habitat} 
-                           size="small" 
-                           color="primary" 
-                           variant="outlined"
-                         />
-                       ))}
-                     </Box>
+
                      
                      <Box sx={{ display: 'flex', gap: 1, mb: 2, flexWrap: 'wrap' }}>
                        <Chip 

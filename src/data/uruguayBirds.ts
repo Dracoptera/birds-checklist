@@ -98,24 +98,8 @@ export const uruguayBirds: Bird[] = [
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/638497654/embed',
     soundUrl: 'https://macaulaylibrary.org/asset/638497654/embed',
     description: {
-      general: 'La Calandria es un ave muy común en Uruguay, conocida por su habilidad para imitar el canto de otras aves. Su plumaje es principalmente gris y blanco, con un pico largo y negro.',
-      behavior: {
-        feeding: 'Omnívora, consume insectos, semillas, frutas y ocasionalmente pichones y huevos de otras aves.',
-        reproduction: 'Monógama. Pone 3 a 4 huevos.',
-        social: 'Generalmente en parejas territoriales durante la reproducción. Fuera de la época reproductiva puede formar pequeñas bandadas familiares.'
-      },
-      distribution: {
-        presence: 'Residente común en todo el territorio uruguayo, desde áreas ciudads hasta zonas sierraes.',
-        preferredHabitats: 'Se adapta a diversos hábitats: parques urbanos, campos abiertos, bordes de montes y áreas sierraes con árboles dispersos.',
-        conservation: 'Estado de conservación favorable. Es una especie abundante y bien adaptada a ambientes modificados por el hombre.'
-      },
-      curiosities: 'Es comúnmente parastada por el Tordo Común.',
-      seasonalPatterns: {
-        spring: 'Inicio de la época reproductiva. Nidificación.',
-        summer: 'Nidificación.',
-        autumn: 'Finalización de la reproducción, formación de bandadas familiares, preparación para el invierno.',
-        winter: 'Menor actividad vocal, concentración en áreas con recursos alimentarios, comportamiento más gregario.'
-      }
+      general: 'La Calandria es un ave muy común en Uruguay, conocida por su habilidad para imitar el canto de otras aves. Su plumaje es principalmente gris y blanco, con un pico y negro.',
+      curiosities: 'Es frecuentemente parasitada por el Tordo Común.',
     }
   },
   {

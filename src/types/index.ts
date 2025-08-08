@@ -28,7 +28,6 @@ export interface FilterOptions {
   hasPhoto: 'all' | 'with-photo' | 'without-photo';
   order: string;
   family: string;
-  habitat: string;
   departamento: string;
   commonness: string;
   status: string;
