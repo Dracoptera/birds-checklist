@@ -274,14 +274,18 @@ export const uruguayBirds: Bird[] = [
         id: 'adult',
         name: 'Adulto',
         ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/105365391/embed',
-        characteristics: ['blanco', 'grande'],
+        cardHeight: { xs: 350, lg: 450, xl: 450 },
+        description: 'El plumaje del adulto es completamente blanco, con pico rosado brillante y patas rosadas. En vuelo se pueden ver las puntas negras de las alas.',
       },
       {
         id: 'juvenile',
         name: 'Juvenil',
-        ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/259009971/embed',
+        ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/284400701/embed',
+        cardHeight: { xs: 350, lg: 450, xl: 450 },
+        description: 'Los juveniles tienen un plumaje marrón.',
       },
-    ]
+    ],
+    soundUrl: 'https://macaulaylibrary.org/asset/42753221/embed',
   },
   {
     id: 'pato-barcino',

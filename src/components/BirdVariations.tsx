@@ -47,9 +47,9 @@ const BirdVariations: React.FC<BirdVariationsProps> = ({
 
           return (
                          <Grid item xs={12} sm={6} md={variations.length === 2 ? 6 : 4} key={variation.id}>
-               <Card sx={{ height: '100%' }}>
-                                   <Box sx={{ position: 'relative' }}>
-                    <BirdImage bird={mockBird} height={typeof variation.cardHeight === 'object' ? variation.cardHeight.xs : (variation.cardHeight || 500)} compact={true} />
+               <Card>
+                                   <Box sx={{ position: 'relative', height: variation.cardHeight || 500 }}>
+                    <BirdImage bird={mockBird} height="100%" compact={true} />
                   </Box>
                  <CardContent>
                   <Typography variant="h6" gutterBottom>
