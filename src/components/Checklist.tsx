@@ -86,7 +86,7 @@ const Checklist: React.FC = () => {
   const uniqueFamiliesForOrder = useMemo(() => {
     if (!filters.order) return [];
     const families = new Set<string>();
-    uruguayBirds.forEach(bird => {
+    uruguayBirds.forEach((bird: any) => {
       if (bird.order === filters.order) {
         families.add(bird.family);
       }
@@ -97,20 +97,20 @@ const Checklist: React.FC = () => {
 
   const uniqueDepartamentos = useMemo(() => {
     const departamentos = new Set<string>();
-    uruguayBirds.forEach(bird => {
+    uruguayBirds.forEach((bird: any) => {
       const birdDepartamentos = getDepartamentosForBird(bird);
-      birdDepartamentos.forEach(d => departamentos.add(d));
+      birdDepartamentos.forEach((d: string) => departamentos.add(d));
     });
     return Array.from(departamentos).sort();
   }, []);
 
   const uniqueCommonness = useMemo(() => {
     const commonness = new Set<string>();
-    uruguayBirds.forEach(bird => {
+    uruguayBirds.forEach((bird: any) => {
       const levels = getAllCommonnessLevels(bird);
-      levels.forEach(level => commonness.add(level));
+      levels.forEach((level: string) => commonness.add(level));
     });
-    return Array.from(commonness).sort((a, b) => {
+    return Array.from(commonness).sort((a: string, b: string) => {
       const order = ['abundante', 'común', 'poco común', 'rara', 'muy rara'];
       return order.indexOf(a) - order.indexOf(b);
     });
@@ -118,7 +118,7 @@ const Checklist: React.FC = () => {
 
   const uniqueStatuses = useMemo(() => {
     const statuses = new Set<string>();
-    uruguayBirds.forEach(bird => {
+    uruguayBirds.forEach((bird: any) => {
       statuses.add(bird.status);
     });
     return Array.from(statuses).sort();
@@ -126,19 +126,19 @@ const Checklist: React.FC = () => {
 
   const uniqueConservationStatuses = useMemo(() => {
     const conservationStatuses = new Set<string>();
-    uruguayBirds.forEach(bird => {
+    uruguayBirds.forEach((bird: any) => {
       if (bird.conservationStatus) {
         conservationStatuses.add(bird.conservationStatus);
       }
     });
-    return Array.from(conservationStatuses).sort((a, b) => {
+    return Array.from(conservationStatuses).sort((a: string, b: string) => {
       const order = ['Preocupación menor', 'Casi amenazada', 'Vulnerable', 'En peligro', 'Peligro crítico'];
       return order.indexOf(a) - order.indexOf(b);
     });
   }, []);
 
   const filteredBirds = useMemo(() => {
-    return uruguayBirds.filter(bird => {
+    return uruguayBirds.filter((bird: any) => {
       const observation = state.observations[bird.id];
       
       // Filter by seen status
@@ -190,7 +190,7 @@ const Checklist: React.FC = () => {
       }
       
       return true;
-    }).sort((a, b) => {
+    }).sort((a: any, b: any) => {
       if (filters.sortBy === 'alphabetical') {
         // Sort alphabetically by common name
         return a.commonName.localeCompare(b.commonName, 'es');
@@ -258,7 +258,7 @@ const Checklist: React.FC = () => {
   const getBirdObservation = (birdId: string) => {
     return state.observations[birdId] || {
       birdId,
-      bird: uruguayBirds.find(b => b.id === birdId)!,
+      bird: uruguayBirds.find((b: any) => b.id === birdId)!,
       seen: false,
       hasPhoto: false,
       observations: [],
@@ -534,7 +534,7 @@ const Checklist: React.FC = () => {
 
       {/* Bird list */}
       <Grid container spacing={2}>
-        {filteredBirds.slice(0, displayCount).map(bird => {
+        {filteredBirds.slice(0, displayCount).map((bird: any) => {
           const observation = getBirdObservation(bird.id);
           
           return (

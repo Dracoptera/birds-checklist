@@ -56,7 +56,7 @@ export const passeriformes: Bird[] = [
     characteristics: ['mimético', 'pico negro'],
     departamentos: ['Montevideo', 'Canelones', 'San José', 'Colonia', 'Soriano', 'Río Negro', 'Paysandú', 'Salto', 'Artigas', 'Rivera', 'Tacuarembó', 'Durazno', 'Flores', 'Florida', 'Lavalleja', 'Maldonado', 'Rocha', 'Treinta y Tres', 'Cerro Largo'],
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/638497654/embed',
-    soundUrl: 'https://macaulaylibrary.org/asset/638497654/embed',
+    soundUrl: 'https://macaulaylibrary.org/asset/310087131/embed',
     description: {
       general: 'La Calandria es un ave muy común en Uruguay, conocida por su habilidad para imitar el canto de otras aves. Su plumaje es principalmente gris y blanco, con un pico y negro.',
       curiosities: 'Es frecuentemente parasitada por el Tordo Común.',

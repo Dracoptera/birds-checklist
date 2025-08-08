@@ -71,7 +71,7 @@ const BirdDetail: React.FC = () => {
     photoUrl: '',
   });
 
-  const bird = uruguayBirds.find(b => b.id === birdId);
+  const bird = uruguayBirds.find((b: any) => b.id === birdId);
   const observation = state.observations[birdId!];
 
   if (!bird) {
@@ -329,7 +329,7 @@ const BirdDetail: React.FC = () => {
              </Box>
              {departamentos.length > 0 ? (
                <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
-                 {departamentos.map(departamento => (
+                 {departamentos.map((departamento: string) => (
                    <Chip 
                      key={departamento} 
                      label={departamento} 

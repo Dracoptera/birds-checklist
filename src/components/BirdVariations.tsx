@@ -68,7 +68,7 @@ const BirdVariations: React.FC<BirdVariationsProps> = ({
                         Características:
                       </Typography>
                       <Grid container spacing={1}>
-                        {variation.characteristics.map((characteristic, index) => (
+                        {variation.characteristics.map((characteristic: string, index: number) => (
                           <Grid item key={index}>
                             <Chip 
                               label={characteristic} 
