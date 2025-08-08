@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useReducer, useEffect, useState } from 'react';
-import { uruguayBirds } from '../data/uruguayBirds';
+import { uruguayBirds } from '../data/birds';
 import { UserData, BirdObservation, ObservationDetail } from '../types';
 
 interface UserDataState {
