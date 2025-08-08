@@ -36,7 +36,7 @@ import {
   KeyboardArrowUp as KeyboardArrowUpIcon,
 } from '@mui/icons-material';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { uruguayBirds, getBirdsByOrder, getCommonnessForDepartment, getAllCommonnessLevels } from '../data/uruguayBirds';
+import { uruguayBirds, getBirdsByOrder, getCommonnessForDepartment, getAllCommonnessLevels, getDepartamentosForBird } from '../data/uruguayBirds';
 import { useUserData } from '../contexts/UserDataContext';
 import { FilterOptions } from '../types';
 import BirdImage from './BirdImage';
@@ -98,9 +98,8 @@ const Checklist: React.FC = () => {
   const uniqueDepartamentos = useMemo(() => {
     const departamentos = new Set<string>();
     uruguayBirds.forEach(bird => {
-      if (bird.departamentos) {
-        bird.departamentos.forEach(d => departamentos.add(d));
-      }
+      const birdDepartamentos = getDepartamentosForBird(bird);
+      birdDepartamentos.forEach(d => departamentos.add(d));
     });
     return Array.from(departamentos).sort();
   }, []);
@@ -156,8 +155,11 @@ const Checklist: React.FC = () => {
       // Filter by family
       if (filters.family && bird.family !== filters.family) return false;
       
-      // Filter by departamento
-      if (filters.departamento && (!bird.departamentos || !bird.departamentos.includes(filters.departamento))) return false;
+             // Filter by departamento
+       if (filters.departamento) {
+         const birdDepartamentos = getDepartamentosForBird(bird);
+         if (!birdDepartamentos.includes(filters.departamento)) return false;
+       }
       
       // Filter by commonness
       if (filters.commonness) {
@@ -247,7 +249,7 @@ const Checklist: React.FC = () => {
       status: '',
       conservationStatus: '',
       searchTerm: '',
-      sortBy: 'commonness',
+      sortBy: 'order',
     });
     setDisplayCount(9);
     setSearchParams({}); // Clear all URL parameters

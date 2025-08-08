@@ -102,7 +102,7 @@ export const uruguayBirds: Bird[] = [
     status: '🏠 residente',
     origin: 'autóctona',
     commonness: 'abundante',
-    characteristics: ['mimético', 'gris y blanco', 'pico negro'],
+    characteristics: ['mimético', 'pico negro'],
     departamentos: ['Montevideo', 'Canelones', 'San José', 'Colonia', 'Soriano', 'Río Negro', 'Paysandú', 'Salto', 'Artigas', 'Rivera', 'Tacuarembó', 'Durazno', 'Flores', 'Florida', 'Lavalleja', 'Maldonado', 'Rocha', 'Treinta y Tres', 'Cerro Largo'],
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/638497654/embed',
     soundUrl: 'https://macaulaylibrary.org/asset/638497654/embed',
@@ -189,10 +189,23 @@ export const uruguayBirds: Bird[] = [
     commonness: {
       'Rocha': 'abundante',
       'Maldonado': 'común',
-      'Treinta y Tres': 'poco común',
-      'Lavalleja': 'rara',
-      'Montevideo': 'rara',
-      'Canelones': 'poco común'
+      'Treinta y Tres': 'común',
+      'Cerro Largo': 'común',
+      'Lavalleja': 'poco común',
+      'Montevideo': 'poco común',
+      'Canelones': 'poco común',
+      'San José': 'poco común',
+      'Colonia': 'poco común',
+      'Soriano': 'poco común',
+      'Río Negro': 'poco común',
+      'Paysandú': 'poco común',
+      'Salto': 'poco común',
+      'Artigas': 'poco común',
+      'Rivera': 'poco común',
+      'Tacuarembó': 'poco común',
+      'Durazno': 'poco común',
+      'Flores': 'poco común',
+      'Florida': 'poco común',
     },
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/548065331/embed'
   },
@@ -357,7 +370,6 @@ export const uruguayBirds: Bird[] = [
     habitat: ['bañado 💧', 'costa 🌊'],
     status: '🏠 residente',
     origin: 'autóctona',
-    departamentos: ['Rocha', 'Maldonado', 'Treinta y Tres', 'Lavalleja', 'Rivera', 'Artigas'],
     commonness: {
       'Rocha': 'abundante',
       'Maldonado': 'común',
@@ -399,13 +411,27 @@ export const getCommonnessForDepartment = (bird: Bird, departamento?: string): s
   }
   
   if (!departamento) {
-    // If no department specified, return the most common level or first available
+    // If no department specified, calculate the most common (majority) level
     const levels = Object.values(bird.commonness);
-    if (levels.includes('abundante')) return 'abundante';
-    if (levels.includes('común')) return 'común';
-    if (levels.includes('poco común')) return 'poco común';
-    if (levels.includes('rara')) return 'rara';
-    return levels[0] || 'rara';
+    const levelCounts: { [key: string]: number } = {};
+    
+    // Count occurrences of each level
+    levels.forEach(level => {
+      levelCounts[level] = (levelCounts[level] || 0) + 1;
+    });
+    
+    // Find the level with the highest count
+    let mostCommonLevel = 'rara'; // default fallback
+    let maxCount = 0;
+    
+    Object.entries(levelCounts).forEach(([level, count]) => {
+      if (count > maxCount) {
+        maxCount = count;
+        mostCommonLevel = level;
+      }
+    });
+    
+    return mostCommonLevel;
   }
   
   return bird.commonness[departamento] || 'rara';
@@ -418,4 +444,20 @@ export const getAllCommonnessLevels = (bird: Bird): string[] => {
   }
   
   return Array.from(new Set(Object.values(bird.commonness)));
+};
+
+// Utility function to get departments for a bird
+export const getDepartamentosForBird = (bird: Bird): string[] => {
+  // If bird has explicit departamentos array, use it
+  if (bird.departamentos) {
+    return bird.departamentos;
+  }
+  
+  // If bird has department-specific commonness, derive departments from it
+  if (typeof bird.commonness === 'object') {
+    return Object.keys(bird.commonness);
+  }
+  
+  // If bird has single commonness, it's found in all departments (or we don't have specific data)
+  return [];
 }; 

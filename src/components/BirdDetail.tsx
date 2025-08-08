@@ -39,7 +39,7 @@ import {
   Straighten as RulerIcon,
 } from '@mui/icons-material';
 import { useParams, useNavigate } from 'react-router-dom';
-import { uruguayBirds, getCommonnessForDepartment } from '../data/uruguayBirds';
+import { uruguayBirds, getCommonnessForDepartment, getDepartamentosForBird } from '../data/uruguayBirds';
 import { useUserData } from '../contexts/UserDataContext';
 import BirdImage from './BirdImage';
 import BirdVariations from './BirdVariations';
@@ -315,27 +315,30 @@ const BirdDetail: React.FC = () => {
              </Card>
 
        {/* Departamentos Section */}
-       {bird.departamentos && bird.departamentos.length > 0 && (
-         <Paper sx={{ p: 2, mb: 3 }}>
-           <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-             <MapIcon sx={{ mr: 1, color: 'primary.main' }} />
-             <Typography variant="h6">Departamentos</Typography>
-           </Box>
-           <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
-             {bird.departamentos.map(departamento => (
-               <Chip 
-                 key={departamento} 
-                 label={departamento} 
-                 size="medium" 
-                 color="info" 
-                 variant="outlined"
-                 onClick={() => handleChipClick('departamento', departamento)}
-                 sx={clickableChipStyle}
-               />
-             ))}
-           </Box>
-         </Paper>
-       )}
+       {(() => {
+         const departamentos = getDepartamentosForBird(bird);
+         return departamentos.length > 0 ? (
+           <Paper sx={{ p: 2, mb: 3 }}>
+             <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+               <MapIcon sx={{ mr: 1, color: 'primary.main' }} />
+               <Typography variant="h6">Departamentos</Typography>
+             </Box>
+             <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
+               {departamentos.map(departamento => (
+                 <Chip 
+                   key={departamento} 
+                   label={departamento} 
+                   size="medium" 
+                   color="info" 
+                   variant="outlined"
+                   onClick={() => handleChipClick('departamento', departamento)}
+                   sx={clickableChipStyle}
+                 />
+               ))}
+             </Box>
+           </Paper>
+         ) : null;
+       })()}
 
        {/* Simplified Information Sections */}
        <Grid container spacing={3} sx={{ mt: 2 }}>
