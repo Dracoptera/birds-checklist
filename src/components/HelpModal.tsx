@@ -107,7 +107,7 @@ const HelpModal: React.FC<HelpModalProps> = ({ open, onClose }) => {
               </ListItemIcon>
               <ListItemText 
                 primary="Filtros avanzados" 
-                secondary="Filtra por orden, hábitat, departamento, abundancia y estado de observación"
+                secondary="Filtra por orden, familia, departamento, abundancia (algunas aves solo tienen abundancia en algunos departamentos), estado de conservación y estado de observación"
               />
             </ListItem>
             
@@ -117,7 +117,7 @@ const HelpModal: React.FC<HelpModalProps> = ({ open, onClose }) => {
               </ListItemIcon>
               <ListItemText 
                 primary="Ordenamiento automático" 
-                secondary="Las aves se ordenan automáticamente por abundancia (más comunes primero). Esta decisión se tomó para poder encontrar más rápido las especies que es más probable hayas observado."
+                secondary="Las aves se ordenan automáticamente por orden taxonómico."
               />
             </ListItem>
           </List>

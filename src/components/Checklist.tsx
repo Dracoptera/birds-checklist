@@ -70,7 +70,7 @@ const Checklist: React.FC = () => {
     status: searchParams.get('status') || '',
     conservationStatus: searchParams.get('conservationStatus') || '',
     searchTerm: searchParams.get('searchTerm') || '',
-    sortBy: (searchParams.get('sortBy') as 'commonness' | 'alphabetical' | 'order') || 'commonness',
+    sortBy: (searchParams.get('sortBy') as 'commonness' | 'alphabetical' | 'order') || 'order',
   };
   
   const [filters, setFilters] = useState<FilterOptions>(initialFilters);
@@ -261,6 +261,22 @@ const Checklist: React.FC = () => {
       hasPhoto: false,
       observations: [],
     };
+  };
+
+  // Helper function to check if commonness varies by department
+  const shouldShowCommonness = (bird: any) => {
+    // If a department is selected, always show commonness
+    if (filters.departamento) {
+      return true;
+    }
+    
+    // If commonness is a string (not varying by department), always show it
+    if (typeof bird.commonness === 'string') {
+      return true;
+    }
+    
+    // If commonness is an object (varying by department) and no department is selected, don't show it
+    return false;
   };
 
   // Handle scroll to show/hide back to top button
@@ -618,12 +634,14 @@ const Checklist: React.FC = () => {
 
                      
                                            <Box sx={{ display: 'flex', gap: 1, mb: 2, flexWrap: 'wrap' }}>
-                        <Chip 
-                          label={getCommonnessForDepartment(bird, filters.departamento)} 
-                          size="small" 
-                          color="secondary" 
-                          variant="filled"
-                        />
+                        {shouldShowCommonness(bird) && (
+                          <Chip 
+                            label={getCommonnessForDepartment(bird, filters.departamento)} 
+                            size="small" 
+                            color="secondary" 
+                            variant="filled"
+                          />
+                        )}
                         <Chip 
                           label={bird.status}
                           size="small" 

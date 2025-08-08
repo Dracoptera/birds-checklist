@@ -21,6 +21,7 @@ export interface Bird {
   size?: string;
   origin: 'autóctona' | 'introducida';
   departamentos?: string[];
+  characteristics?: string[];
   imageUrl?: string;
   ebirdEmbedUrl?: string;
   soundUrl?: string;
@@ -63,6 +64,7 @@ export const uruguayBirds: Bird[] = [
     commonness: 'abundante',
     conservationStatus: 'Preocupación menor',
     size: '15-17 cm',
+    characteristics: ['nido de barro', 'vocal'],
     departamentos: ['Montevideo', 'Canelones', 'San José', 'Colonia', 'Soriano', 'Río Negro', 'Paysandú', 'Salto', 'Artigas', 'Rivera', 'Tacuarembó', 'Durazno', 'Flores', 'Florida', 'Lavalleja', 'Maldonado', 'Rocha', 'Treinta y Tres', 'Cerro Largo'],
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/70049451/embed',
     soundUrl: 'https://macaulaylibrary.org/asset/203695301/embed',
@@ -100,6 +102,7 @@ export const uruguayBirds: Bird[] = [
     status: '🏠 residente',
     origin: 'autóctona',
     commonness: 'abundante',
+    characteristics: ['mimético', 'gris y blanco', 'pico negro'],
     departamentos: ['Montevideo', 'Canelones', 'San José', 'Colonia', 'Soriano', 'Río Negro', 'Paysandú', 'Salto', 'Artigas', 'Rivera', 'Tacuarembó', 'Durazno', 'Flores', 'Florida', 'Lavalleja', 'Maldonado', 'Rocha', 'Treinta y Tres', 'Cerro Largo'],
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/638497654/embed',
     soundUrl: 'https://macaulaylibrary.org/asset/638497654/embed',
@@ -121,6 +124,7 @@ export const uruguayBirds: Bird[] = [
     status: '🏠 residente',
     origin: 'autóctona',
     commonness: 'abundante',
+    characteristics: ['amarillo', 'pico negro', 'vocal'],
     departamentos: ['Montevideo', 'Canelones', 'San José', 'Colonia', 'Soriano', 'Río Negro', 'Paysandú', 'Salto', 'Artigas', 'Rivera', 'Tacuarembó', 'Durazno', 'Flores', 'Florida', 'Lavalleja', 'Maldonado', 'Rocha', 'Treinta y Tres', 'Cerro Largo'],
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/638497636/embed'
   },
@@ -181,6 +185,7 @@ export const uruguayBirds: Bird[] = [
     habitat: ['bañado 💧', 'costa 🌊'],
     status: '🏠 residente',
     origin: 'autóctona',
+    characteristics: ['cuello negro', 'blanco', 'grande'],
     commonness: {
       'Rocha': 'abundante',
       'Maldonado': 'común',
@@ -243,6 +248,7 @@ export const uruguayBirds: Bird[] = [
     scientificName: 'Rupornis magnirostris',
     family: 'Accipitridae',
     order: 'Accipitriformes (Águilas y Gavilanes)',
+    characteristics: ['pico curvo', 'rapaz', 'marrón'],
     habitat: ['ciudad 🌆', 'sierra 🏔️', 'monte 🌲'],
     status: '🏠 residente',
     origin: 'autóctona',
