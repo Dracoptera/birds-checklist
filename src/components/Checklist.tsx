@@ -499,17 +499,23 @@ const Checklist: React.FC = () => {
           Mostrando {Math.min(displayCount, filteredBirds.length)} de {filteredBirds.length} especies
         </Typography>
 
-        <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
+        <Box sx={{ 
+          display: 'flex', 
+          gap: 2, 
+          alignItems: 'center',
+          flexDirection: { xs: 'column', sm: 'row' },
+          width: { xs: '100%', sm: 'auto' }
+        }}>
           <TextField
             size="small"
             label="Buscar 🔎"
             value={filters.searchTerm}
             onChange={(e) => handleFilterChange('searchTerm', e.target.value)}
             placeholder="Nombre, científico o familia..."
-            sx={{ width: 250 }}
+            sx={{ width: { xs: '100%', sm: 250 } }}
           />
 
-          <FormControl size="small" sx={{ width: 200 }}>
+          <FormControl size="small" sx={{ width: { xs: '100%', sm: 200 } }}>
             <InputLabel>Ordenar por</InputLabel>
             <Select
               value={filters.sortBy}
