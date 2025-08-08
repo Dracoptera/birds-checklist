@@ -36,6 +36,7 @@ import {
   VolumeUp as VolumeIcon,
   Timeline as TimelineIcon,
   ImportContacts as ImportContactsIcon,
+  Straighten as RulerIcon,
 } from '@mui/icons-material';
 import { useParams, useNavigate } from 'react-router-dom';
 import { uruguayBirds } from '../data/uruguayBirds';
@@ -215,9 +216,22 @@ const BirdDetail: React.FC = () => {
                      {bird.scientificName}
                    </Typography>
                  </Box>
-                 <Typography variant="body2" color="text.secondary">
-                   {bird.size || 'Tamaño no especificado'}
-                 </Typography>
+                                   <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mt: 1 }}>
+                    <RulerIcon sx={{ fontSize: 20, color: 'text.secondary' }} />
+                    <Typography 
+                      variant="body2" 
+                      color="text.secondary"
+                      sx={{ 
+                        fontWeight: 500,
+                        backgroundColor: 'rgba(0,0,0,0.04)',
+                        px: 1.5,
+                        py: 0.5,
+                        borderRadius: 1,
+                      }}
+                    >
+                      {bird.size || 'Tamaño no especificado'}
+                    </Typography>
+                  </Box>
                </Box>
              </Box>
 
