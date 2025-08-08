@@ -324,7 +324,9 @@ const Checklist: React.FC = () => {
             </Typography>
             {isMobile && (
               <Typography variant="body2" color="text.secondary">
-                ({Object.values(filters).filter(v => v && v !== 'all').length} activos)
+                ({Object.entries(filters)
+                  .filter(([key, value]) => key !== 'sortBy' && value && value !== 'all')
+                  .length} activos)
               </Typography>
             )}
           </Box>
