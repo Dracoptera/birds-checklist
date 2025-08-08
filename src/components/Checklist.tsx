@@ -281,6 +281,27 @@ const Checklist: React.FC = () => {
     return false;
   };
 
+  // Restore scroll position when returning from bird detail
+  React.useEffect(() => {
+    const savedScrollPosition = sessionStorage.getItem('checklistScrollPosition');
+    const savedSearchParams = sessionStorage.getItem('checklistSearchParams');
+    
+    if (savedScrollPosition && savedSearchParams) {
+      // Restore URL parameters if they match what we saved
+      const currentParams = window.location.search;
+      if (currentParams === savedSearchParams) {
+        // Small delay to ensure content is rendered before scrolling
+        setTimeout(() => {
+          window.scrollTo(0, parseInt(savedScrollPosition, 10));
+        }, 100);
+      }
+      
+      // Clear saved data after restoration
+      sessionStorage.removeItem('checklistScrollPosition');
+      sessionStorage.removeItem('checklistSearchParams');
+    }
+  }, []);
+
   // Handle scroll to show/hide back to top button
   React.useEffect(() => {
     const handleScroll = () => {
@@ -580,7 +601,12 @@ const Checklist: React.FC = () => {
                               textDecoration: 'underline'
                             }
                           }}
-                          onClick={() => navigate(`/bird/${bird.id}`)}
+                          onClick={() => {
+                            // Save current state before navigation
+                            sessionStorage.setItem('checklistScrollPosition', window.pageYOffset.toString());
+                            sessionStorage.setItem('checklistSearchParams', window.location.search);
+                            navigate(`/bird/${bird.id}`);
+                          }}
                         >
                           {bird.commonName}
                         </Typography>

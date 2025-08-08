@@ -101,8 +101,11 @@ const BirdDetail: React.FC = () => {
         <Typography variant="h6" color="error">
           Ave no encontrada
         </Typography>
-        <Button onClick={() => navigate('/')} sx={{ mt: 2 }}>
-          Volver al checklist
+        <Button onClick={() => {
+          const savedParams = sessionStorage.getItem('checklistSearchParams') || '';
+          navigate(`/${savedParams}`);
+        }} sx={{ mt: 2 }}>
+          Volver a la lista
         </Button>
       </Box>
     );
@@ -136,6 +139,9 @@ const BirdDetail: React.FC = () => {
   const handleChipClick = (filterType: string, value: string) => {
     const params = new URLSearchParams();
     params.set(filterType, value);
+    // Clear saved session data since we're navigating with new filters
+    sessionStorage.removeItem('checklistScrollPosition');
+    sessionStorage.removeItem('checklistSearchParams');
     navigate(`/?${params.toString()}`);
   };
 
@@ -149,8 +155,11 @@ const BirdDetail: React.FC = () => {
 
   return (
     <Box>
-      <Button onClick={() => navigate('/')} sx={{ mb: 2 }}>
-        ← Volver al checklist
+      <Button onClick={() => {
+        const savedParams = sessionStorage.getItem('checklistSearchParams') || '';
+        navigate(`/${savedParams}`);
+      }} sx={{ mb: 2 }}>
+        ← Volver a la lista
       </Button>
 
              <Card sx={{ mb: 3 }}>
@@ -450,7 +459,7 @@ const BirdDetail: React.FC = () => {
               boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
               maxWidth: '100%',
               height: 'auto',
-              aspectRatio: '800/431', // Maintain the original aspect ratio
+              aspectRatio: { xs: '16/12', sm: '800/431' }, // Taller aspect ratio on mobile
             }
           }}>
             <iframe 
@@ -462,7 +471,7 @@ const BirdDetail: React.FC = () => {
               title={`Grabación de sonido de ${bird.commonName}`}
               style={{ 
                 maxWidth: '800px',
-                minHeight: '300px',
+                minHeight: '460px', // Increased minimum height for mobile
                 width: '100%'
               }}
             />

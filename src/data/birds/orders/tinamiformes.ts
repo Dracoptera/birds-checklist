@@ -16,6 +16,7 @@ export const tinamiformes: Bird[] = [
     conservationStatus: 'Preocupación menor',
     departamentos: ['Cerro Largo'],
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/624223349/embed',
+    cardHeight: { xs: 715, lg: 780, xl: 780 },
     soundUrl: 'https://macaulaylibrary.org/asset/164251/embed',
   },
 ];
