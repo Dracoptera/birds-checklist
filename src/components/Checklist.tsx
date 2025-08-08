@@ -36,7 +36,7 @@ import {
   KeyboardArrowUp as KeyboardArrowUpIcon,
 } from '@mui/icons-material';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { uruguayBirds, getBirdsByOrder } from '../data/uruguayBirds';
+import { uruguayBirds, getBirdsByOrder, getCommonnessForDepartment, getAllCommonnessLevels } from '../data/uruguayBirds';
 import { useUserData } from '../contexts/UserDataContext';
 import { FilterOptions } from '../types';
 import BirdImage from './BirdImage';
@@ -108,7 +108,8 @@ const Checklist: React.FC = () => {
   const uniqueCommonness = useMemo(() => {
     const commonness = new Set<string>();
     uruguayBirds.forEach(bird => {
-      commonness.add(bird.commonness);
+      const levels = getAllCommonnessLevels(bird);
+      levels.forEach(level => commonness.add(level));
     });
     return Array.from(commonness).sort((a, b) => {
       const order = ['abundante', 'común', 'poco común', 'rara', 'muy rara'];
@@ -159,7 +160,10 @@ const Checklist: React.FC = () => {
       if (filters.departamento && (!bird.departamentos || !bird.departamentos.includes(filters.departamento))) return false;
       
       // Filter by commonness
-      if (filters.commonness && bird.commonness !== filters.commonness) return false;
+      if (filters.commonness) {
+        const birdCommonness = getCommonnessForDepartment(bird, filters.departamento);
+        if (birdCommonness !== filters.commonness) return false;
+      }
       
       // Filter by status
       if (filters.status && bird.status !== filters.status) return false;
@@ -198,8 +202,10 @@ const Checklist: React.FC = () => {
       } else {
         // Sort by commonness (most common first)
         const commonnessOrder = ['abundante', 'común', 'poco común', 'rara', 'muy rara'];
-        const aIndex = commonnessOrder.indexOf(a.commonness);
-        const bIndex = commonnessOrder.indexOf(b.commonness);
+        const aCommonness = getCommonnessForDepartment(a, filters.departamento);
+        const bCommonness = getCommonnessForDepartment(b, filters.departamento);
+        const aIndex = commonnessOrder.indexOf(aCommonness);
+        const bIndex = commonnessOrder.indexOf(bCommonness);
         return aIndex - bIndex;
       }
     });
@@ -613,7 +619,7 @@ const Checklist: React.FC = () => {
                      
                                            <Box sx={{ display: 'flex', gap: 1, mb: 2, flexWrap: 'wrap' }}>
                         <Chip 
-                          label={bird.commonness} 
+                          label={getCommonnessForDepartment(bird, filters.departamento)} 
                           size="small" 
                           color="secondary" 
                           variant="filled"

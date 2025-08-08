@@ -16,7 +16,7 @@ export interface Bird {
   order: string;
   habitat: string[];
   status: '🏠 residente' | 'migratoria invernal ❄️' | 'migratoria estival 🌞' | '🌍 visitante ocasional';
-  commonness: 'abundante' | 'común' | 'poco común' | 'rara' | 'muy rara';
+  commonness: 'abundante' | 'común' | 'poco común' | 'rara' | 'muy rara' | { [departamento: string]: 'abundante' | 'común' | 'poco común' | 'rara' | 'muy rara' };
   conservationStatus?: 'Preocupación menor' | 'Vulnerable' | 'En peligro' | 'Casi amenazada' | 'Peligro crítico';
   size?: string;
   origin: 'autóctona' | 'introducida';
@@ -137,7 +137,20 @@ export const uruguayBirds: Bird[] = [
     status: '🏠 residente',
     origin: 'introducida',
     commonness: 'abundante',
-    ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/191279631/embed'
+    departamentos: ['Montevideo', 'Canelones', 'San José', 'Colonia', 'Soriano', 'Río Negro', 'Paysandú', 'Salto', 'Artigas', 'Rivera', 'Tacuarembó', 'Durazno', 'Flores', 'Florida', 'Lavalleja', 'Maldonado', 'Rocha', 'Treinta y Tres', 'Cerro Largo'],
+    ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/191279631/embed',
+    variations: [
+      {
+        id: 'male',
+        name: 'Macho ♂️',
+        ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/600854461/embed',
+      },
+      {
+        id: 'female',
+        name: 'Hembra ♀️',
+        ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/428388731/embed',
+      },
+    ]
   },
   {
     id: 'estornino-pinto',
@@ -168,7 +181,14 @@ export const uruguayBirds: Bird[] = [
     habitat: ['bañado 💧', 'costa 🌊'],
     status: '🏠 residente',
     origin: 'autóctona',
-    commonness: 'poco común',
+    commonness: {
+      'Rocha': 'abundante',
+      'Maldonado': 'común',
+      'Treinta y Tres': 'poco común',
+      'Lavalleja': 'rara',
+      'Montevideo': 'rara',
+      'Canelones': 'poco común'
+    },
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/548065331/embed'
   },
   {
@@ -331,7 +351,15 @@ export const uruguayBirds: Bird[] = [
     habitat: ['bañado 💧', 'costa 🌊'],
     status: '🏠 residente',
     origin: 'autóctona',
-    commonness: 'poco común',
+    departamentos: ['Rocha', 'Maldonado', 'Treinta y Tres', 'Lavalleja', 'Rivera', 'Artigas'],
+    commonness: {
+      'Rocha': 'abundante',
+      'Maldonado': 'común',
+      'Treinta y Tres': 'común',
+      'Lavalleja': 'poco común',
+      'Rivera': 'rara',
+      'Artigas': 'muy rara'
+    },
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/174809481/embed'
   },
 ];
@@ -356,4 +384,32 @@ export const getBirdsByFamily = () => {
     birdsByFamily[bird.family].push(bird);
   });
   return birdsByFamily;
+};
+
+// Utility function to get commonness for a specific department
+export const getCommonnessForDepartment = (bird: Bird, departamento?: string): string => {
+  if (typeof bird.commonness === 'string') {
+    return bird.commonness;
+  }
+  
+  if (!departamento) {
+    // If no department specified, return the most common level or first available
+    const levels = Object.values(bird.commonness);
+    if (levels.includes('abundante')) return 'abundante';
+    if (levels.includes('común')) return 'común';
+    if (levels.includes('poco común')) return 'poco común';
+    if (levels.includes('rara')) return 'rara';
+    return levels[0] || 'rara';
+  }
+  
+  return bird.commonness[departamento] || 'rara';
+};
+
+// Utility function to get all unique commonness levels from a bird
+export const getAllCommonnessLevels = (bird: Bird): string[] => {
+  if (typeof bird.commonness === 'string') {
+    return [bird.commonness];
+  }
+  
+  return Array.from(new Set(Object.values(bird.commonness)));
 }; 

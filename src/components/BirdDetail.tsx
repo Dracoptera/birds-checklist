@@ -39,7 +39,7 @@ import {
   Straighten as RulerIcon,
 } from '@mui/icons-material';
 import { useParams, useNavigate } from 'react-router-dom';
-import { uruguayBirds } from '../data/uruguayBirds';
+import { uruguayBirds, getCommonnessForDepartment } from '../data/uruguayBirds';
 import { useUserData } from '../contexts/UserDataContext';
 import BirdImage from './BirdImage';
 import BirdVariations from './BirdVariations';
@@ -257,11 +257,11 @@ const BirdDetail: React.FC = () => {
           <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, justifyContent: 'space-between', alignItems: { xs: 'flex-start', sm: 'center' }, mb: 2, gap: { xs: 2, sm: 0 } }}>
             <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
               <Chip 
-                label={bird.commonness} 
+                label={getCommonnessForDepartment(bird)} 
                 size="small" 
                 color="secondary" 
                 variant="filled"
-                onClick={() => handleChipClick('commonness', bird.commonness)}
+                onClick={() => handleChipClick('commonness', getCommonnessForDepartment(bird))}
                 sx={clickableChipStyle}
               />
               <Chip 
