@@ -272,16 +272,12 @@ export const uruguayBirds: Bird[] = [
       {
         id: 'adult',
         name: 'Adulto',
-        description: 'Plumaje completo del adulto',
         ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/612501251/embed',
-        characteristics: ['Plumaje rufo uniforme', 'Pico negro', 'Patas grises']
       },
       {
         id: 'juvenile',
         name: 'Juvenil',
-        description: 'Plumaje juvenil más pálido',
         ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/448561191/embed',
-        characteristics: ['Plumaje más pálido', 'Pico más claro', 'Menos contraste']
       }
     ]
   },
