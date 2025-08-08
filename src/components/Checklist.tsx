@@ -81,7 +81,17 @@ const Checklist: React.FC = () => {
   // const birdsByFamily = useMemo(() => getBirdsByFamily(), []);
   
   const uniqueOrders = useMemo(() => Object.keys(birdsByOrder), [birdsByOrder]);
-  // const uniqueFamilies = useMemo(() => Object.keys(birdsByFamily), [birdsByFamily]);
+  
+  const uniqueFamiliesForOrder = useMemo(() => {
+    if (!filters.order) return [];
+    const families = new Set<string>();
+    uruguayBirds.forEach(bird => {
+      if (bird.order === filters.order) {
+        families.add(bird.family);
+      }
+    });
+    return Array.from(families).sort();
+  }, [filters.order]);
 
 
   const uniqueDepartamentos = useMemo(() => {
@@ -125,10 +135,11 @@ const Checklist: React.FC = () => {
       if (filters.hasPhoto === 'with-photo' && !observation?.hasPhoto) return false;
       if (filters.hasPhoto === 'without-photo' && observation?.hasPhoto) return false;
       
-      // Filter by order
+            // Filter by order
       if (filters.order && bird.order !== filters.order) return false;
       
-
+      // Filter by family
+      if (filters.family && bird.family !== filters.family) return false;
       
       // Filter by departamento
       if (filters.departamento && (!bird.departamentos || !bird.departamentos.includes(filters.departamento))) return false;
@@ -181,6 +192,11 @@ const Checklist: React.FC = () => {
     setFilters(prev => ({ ...prev, [field]: value }));
     setDisplayCount(9); // Reset to show first 9 birds when filters change
     
+    // Clear family filter when order changes
+    if (field === 'order') {
+      setFilters(prev => ({ ...prev, family: '' }));
+    }
+    
     // Update URL parameters
     const newSearchParams = new URLSearchParams(searchParams);
     if (value && value !== 'all') {
@@ -188,6 +204,12 @@ const Checklist: React.FC = () => {
     } else {
       newSearchParams.delete(field);
     }
+    
+    // Clear family parameter when order changes
+    if (field === 'order') {
+      newSearchParams.delete('family');
+    }
+    
     setSearchParams(newSearchParams);
   };
 
@@ -314,6 +336,23 @@ const Checklist: React.FC = () => {
                 <MenuItem value="">Todos</MenuItem>
                 {uniqueOrders.map(order => (
                   <MenuItem key={order} value={order}>{order}</MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          </Grid>
+          
+          <Grid item xs={12} sm={6} md={3}>
+            <FormControl fullWidth size="small">
+              <InputLabel>Familia</InputLabel>
+              <Select
+                value={filters.family}
+                label="Familia"
+                onChange={(e) => handleFilterChange('family', e.target.value)}
+                disabled={!filters.order}
+              >
+                <MenuItem value="">Todas</MenuItem>
+                {uniqueFamiliesForOrder.map(family => (
+                  <MenuItem key={family} value={family}>{family}</MenuItem>
                 ))}
               </Select>
             </FormControl>
