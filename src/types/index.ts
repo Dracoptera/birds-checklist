@@ -31,6 +31,7 @@ export interface FilterOptions {
   departamento: string;
   commonness: string;
   status: string;
+  conservationStatus: string;
   searchTerm: string;
   sortBy: 'commonness' | 'alphabetical' | 'order';
 }

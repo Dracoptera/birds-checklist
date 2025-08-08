@@ -15,8 +15,9 @@ export interface Bird {
   family: string;
   order: string;
   habitat: string[];
-  status: '🏠 residente' | 'migratoria invernal ❄️' | 'migratoria estival 🌞' | 'visitante 🌍';
+  status: '🏠 residente' | 'migratoria invernal ❄️' | 'migratoria estival 🌞' | '🌍 visitante ocasional';
   commonness: 'abundante' | 'común' | 'poco común' | 'rara' | 'muy rara';
+  conservationStatus?: 'Preocupación menor' | 'Vulnerable' | 'En peligro' | 'Casi amenazada' | 'Peligro crítico';
   size?: string;
   origin: 'autóctona' | 'introducida';
   departamentos?: string[];
@@ -60,6 +61,7 @@ export const uruguayBirds: Bird[] = [
     status: '🏠 residente',
     origin: 'autóctona',
     commonness: 'abundante',
+    conservationStatus: 'Preocupación menor',
     size: '15-17 cm',
     departamentos: ['Montevideo', 'Canelones', 'San José', 'Colonia', 'Soriano', 'Río Negro', 'Paysandú', 'Salto', 'Artigas', 'Rivera', 'Tacuarembó', 'Durazno', 'Flores', 'Florida', 'Lavalleja', 'Maldonado', 'Rocha', 'Treinta y Tres', 'Cerro Largo'],
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/70049451/embed',
@@ -90,6 +92,7 @@ export const uruguayBirds: Bird[] = [
     scientificName: 'Mimus saturninus',
     family: 'Mimidae',
     order: 'Passeriformes (Pájaros)',
+    conservationStatus: 'Preocupación menor',
     habitat: ['ciudad 🌆', 'sierra 🏔️', 'pradera 🌿'],
     status: '🏠 residente',
     origin: 'autóctona',
@@ -168,6 +171,7 @@ export const uruguayBirds: Bird[] = [
     status: '🏠 residente',
     origin: 'introducida',
     commonness: 'rara',
+    conservationStatus: 'Casi amenazada',
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/259009971/embed'
   },
   {
@@ -212,6 +216,7 @@ export const uruguayBirds: Bird[] = [
     status: '🏠 residente',
     origin: 'autóctona',
     commonness: 'común',
+    conservationStatus: 'Preocupación menor',
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/568347481/embed',
     variations: [
       {

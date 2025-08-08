@@ -68,6 +68,7 @@ const Checklist: React.FC = () => {
     departamento: searchParams.get('departamento') || '',
     commonness: searchParams.get('commonness') || '',
     status: searchParams.get('status') || '',
+    conservationStatus: searchParams.get('conservationStatus') || '',
     searchTerm: searchParams.get('searchTerm') || '',
     sortBy: (searchParams.get('sortBy') as 'commonness' | 'alphabetical' | 'order') || 'commonness',
   };
@@ -123,6 +124,19 @@ const Checklist: React.FC = () => {
     return Array.from(statuses).sort();
   }, []);
 
+  const uniqueConservationStatuses = useMemo(() => {
+    const conservationStatuses = new Set<string>();
+    uruguayBirds.forEach(bird => {
+      if (bird.conservationStatus) {
+        conservationStatuses.add(bird.conservationStatus);
+      }
+    });
+    return Array.from(conservationStatuses).sort((a, b) => {
+      const order = ['Preocupación menor', 'Casi amenazada', 'Vulnerable', 'En peligro', 'Peligro crítico'];
+      return order.indexOf(a) - order.indexOf(b);
+    });
+  }, []);
+
   const filteredBirds = useMemo(() => {
     return uruguayBirds.filter(bird => {
       const observation = state.observations[bird.id];
@@ -149,6 +163,9 @@ const Checklist: React.FC = () => {
       
       // Filter by status
       if (filters.status && bird.status !== filters.status) return false;
+      
+      // Filter by conservation status
+      if (filters.conservationStatus && bird.conservationStatus !== filters.conservationStatus) return false;
       
       // Filter by search term
       if (filters.searchTerm) {
@@ -222,6 +239,7 @@ const Checklist: React.FC = () => {
       departamento: '',
       commonness: '',
       status: '',
+      conservationStatus: '',
       searchTerm: '',
       sortBy: 'commonness',
     });
@@ -409,15 +427,22 @@ const Checklist: React.FC = () => {
           </Grid>
           
           <Grid item xs={12} sm={6} md={3}>
-            <TextField
-              fullWidth
-              size="small"
-              label="Buscar 🔎"
-              value={filters.searchTerm}
-              onChange={(e) => handleFilterChange('searchTerm', e.target.value)}
-              placeholder="Nombre, científico o familia..."
-            />
+            <FormControl fullWidth size="small">
+              <InputLabel>Conservación</InputLabel>
+              <Select
+                value={filters.conservationStatus}
+                label="Conservación"
+                onChange={(e) => handleFilterChange('conservationStatus', e.target.value)}
+              >
+                <MenuItem value="">Todas</MenuItem>
+                {uniqueConservationStatuses.map(conservationStatus => (
+                  <MenuItem key={conservationStatus} value={conservationStatus}>{conservationStatus}</MenuItem>
+                ))}
+              </Select>
+            </FormControl>
           </Grid>
+          
+
           
 
           
@@ -438,29 +463,41 @@ const Checklist: React.FC = () => {
         </Collapse>
       </Paper>
 
-      {/* Results count and Sort */}
+      {/* Results count, Search and Sort */}
       <Box sx={{ 
         display: 'flex', 
         justifyContent: 'space-between', 
         alignItems: 'center',
-        mb: 2
+        mb: 2,
+        gap: 2
       }}>
         <Typography variant="body2" color="text.secondary">
           Mostrando {Math.min(displayCount, filteredBirds.length)} de {filteredBirds.length} especies
         </Typography>
 
-        <FormControl size="small" sx={{ width: 200 }}>
-          <InputLabel>Ordenar por</InputLabel>
-          <Select
-            value={filters.sortBy}
-            label="Ordenar por"
-            onChange={(e) => handleFilterChange('sortBy', e.target.value)}
-          >
-            <MenuItem value="commonness">Por abundancia</MenuItem>
-            <MenuItem value="alphabetical">Alfabéticamente</MenuItem>
-            <MenuItem value="order">Por orden taxonómico</MenuItem>
-          </Select>
-        </FormControl>
+        <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
+          <TextField
+            size="small"
+            label="Buscar 🔎"
+            value={filters.searchTerm}
+            onChange={(e) => handleFilterChange('searchTerm', e.target.value)}
+            placeholder="Nombre, científico o familia..."
+            sx={{ width: 250 }}
+          />
+
+          <FormControl size="small" sx={{ width: 200 }}>
+            <InputLabel>Ordenar por</InputLabel>
+            <Select
+              value={filters.sortBy}
+              label="Ordenar por"
+              onChange={(e) => handleFilterChange('sortBy', e.target.value)}
+            >
+              <MenuItem value="commonness">Por abundancia</MenuItem>
+              <MenuItem value="alphabetical">Alfabéticamente</MenuItem>
+              <MenuItem value="order">Por orden taxonómico</MenuItem>
+            </Select>
+          </FormControl>
+        </Box>
       </Box>
 
       {/* Bird list */}
@@ -574,27 +611,41 @@ const Checklist: React.FC = () => {
                      
 
                      
-                     <Box sx={{ display: 'flex', gap: 1, mb: 2, flexWrap: 'wrap' }}>
-                       <Chip 
-                         label={bird.commonness} 
-                         size="small" 
-                         color="secondary" 
-                         variant="filled"
-                       />
-                       <Chip 
-                         label={bird.status}
-                         size="small" 
-                         color="info" 
-                         variant="filled"
-                       />
-                       <Chip 
-                         label={bird.origin}
-                         size="small" 
-                         color={bird.origin === 'autóctona' ? 'success' : 'error'}
-                         variant="filled"
-                         icon={bird.origin === 'autóctona' ? <NatureIcon /> : <ImportContactsIcon />}
-                       />
-                     </Box>
+                                           <Box sx={{ display: 'flex', gap: 1, mb: 2, flexWrap: 'wrap' }}>
+                        <Chip 
+                          label={bird.commonness} 
+                          size="small" 
+                          color="secondary" 
+                          variant="filled"
+                        />
+                        <Chip 
+                          label={bird.status}
+                          size="small" 
+                          color="info" 
+                          variant="filled"
+                        />
+                        <Chip 
+                          label={bird.origin}
+                          size="small" 
+                          color={bird.origin === 'autóctona' ? 'success' : 'error'}
+                          variant="filled"
+                          icon={bird.origin === 'autóctona' ? <NatureIcon /> : <ImportContactsIcon />}
+                        />
+                        {bird.conservationStatus && (
+                          <Chip 
+                            label={bird.conservationStatus}
+                            size="small" 
+                            color={
+                              bird.conservationStatus === 'Preocupación menor' ? 'success' :
+                              bird.conservationStatus === 'Casi amenazada' ? 'warning' :
+                              bird.conservationStatus === 'Vulnerable' ? 'error' :
+                              bird.conservationStatus === 'En peligro' ? 'error' :
+                              bird.conservationStatus === 'Peligro crítico' ? 'error' : 'default'
+                            }
+                            variant="filled"
+                          />
+                        )}
+                      </Box>
                      
                      {observation.observations.length > 0 && (
                        <Box sx={{ mt: 2 }}>

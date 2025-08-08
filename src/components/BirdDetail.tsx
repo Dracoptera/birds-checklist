@@ -266,6 +266,20 @@ const BirdDetail: React.FC = () => {
               variant="filled"
               icon={bird.origin === 'autóctona' ? <NatureIcon /> : <ImportContactsIcon />}
             />
+            {bird.conservationStatus && (
+              <Chip 
+                label={bird.conservationStatus}
+                size="small" 
+                color={
+                  bird.conservationStatus === 'Preocupación menor' ? 'success' :
+                  bird.conservationStatus === 'Casi amenazada' ? 'warning' :
+                  bird.conservationStatus === 'Vulnerable' ? 'error' :
+                  bird.conservationStatus === 'En peligro' ? 'error' :
+                  bird.conservationStatus === 'Peligro crítico' ? 'error' : 'default'
+                }
+                variant="filled"
+              />
+            )}
           </Box>
 
           
