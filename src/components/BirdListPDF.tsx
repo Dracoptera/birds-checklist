@@ -1,8 +1,10 @@
 import React from 'react';
-import { Document, Page, Text, View, StyleSheet, pdf } from '@react-pdf/renderer';
+import { Document, Page, Text, View, StyleSheet, pdf, Image } from '@react-pdf/renderer';
 import { Bird } from '../data/birds/types';
 import { FilterOptions } from '../types';
 import { getCommonnessForDepartment } from '../data/birds';
+import eyeIcon from '../assets/eye-icon.png';
+import cameraIcon from '../assets/camera-icon.png';
 
 // Create styles
 const styles = StyleSheet.create({
@@ -88,6 +90,13 @@ const styles = StyleSheet.create({
     marginRight: 5,
     marginBottom: 2,
     borderRadius: 2,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  statusIcon: {
+    width: 10,
+    height: 10,
+    marginRight: 3,
   },
   checkbox: {
     width: 10,
@@ -248,14 +257,23 @@ const BirdListPDF: React.FC<BirdListPDFProps> = ({ birds, filters, totalCount, o
                       <Text style={styles.scientificName}>{bird.scientificName}</Text>
                       
                       <Text style={styles.birdInfo}>
-                        {bird.order.split(' (')[0]} • {bird.family} • {bird.size || 'Tamaño no especificado'}
+                        {bird.order.split(' (')[0]} • {bird.family} • {bird.conservationStatus || 'Estado no especificado'}
                       </Text>
                       
                       <View style={styles.birdTags}>
-                        <Text style={styles.statusTag}>{commonness}</Text>
                         <Text style={styles.tag}>{bird.status.replace(/[🏠🔄❄️🌸]/g, '').trim()}</Text>
-                        {observation?.seen && <Text style={styles.statusTag}>Visto</Text>}
-                        {observation?.hasPhoto && <Text style={styles.statusTag}>Foto</Text>}
+                        {observation?.seen && (
+                          <View style={styles.statusTag}>
+                            <Image style={styles.statusIcon} src={eyeIcon} />
+                            <Text>Visto</Text>
+                          </View>
+                        )}
+                        {observation?.hasPhoto && (
+                          <View style={styles.statusTag}>
+                            <Image style={styles.statusIcon} src={cameraIcon} />
+                            <Text>Foto</Text>
+                          </View>
+                        )}
                       </View>
                     </View>
                   </View>
