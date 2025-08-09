@@ -3,7 +3,7 @@ import { Bird } from '../types';
 export const pelecaniformes: Bird[] = [
   {
     id: 'garza-mora',
-    commonName: 'Garza mora',
+    commonName: 'Garza Mora',
     englishName: 'Cocoi Heron',
     scientificName: 'Ardea cocoi',
     size: '75 cm',

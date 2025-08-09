@@ -3,7 +3,7 @@ import { Bird } from '../types';
 export const coraciiformes: Bird[] = [
   {
     id: 'martin-pescador-grande',
-    commonName: 'Martín pescador grande',
+    commonName: 'Martín Pescador Grande',
     englishName: 'Ringed Kingfisher',
     scientificName: 'Megaceryle torquata',
     size: '36 cm',

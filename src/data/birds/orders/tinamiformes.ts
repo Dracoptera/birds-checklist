@@ -39,7 +39,7 @@ export const tinamiformes: Bird[] = [
   },
   {
     id: 'perdiz-comun',
-    commonName: 'Perdiz común',
+    commonName: 'Perdiz Común',
     englishName: 'Spotted Nothura',
     scientificName: 'Nothura maculosa',
     size: '25 cm',

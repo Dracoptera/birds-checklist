@@ -3,7 +3,7 @@ import { Bird } from '../types';
 export const piciformes: Bird[] = [
   {
     id: 'carpintero-de-campo',
-    commonName: 'Carpintero de campo',
+    commonName: 'Carpintero de Campo',
     englishName: 'Campo Flicker',
     scientificName: 'Colaptes campestris',
     size: '27 cm',

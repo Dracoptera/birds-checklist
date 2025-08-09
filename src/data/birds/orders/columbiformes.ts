@@ -3,7 +3,7 @@ import { Bird } from '../types';
 export const columbiformes: Bird[] = [
   {
     id: 'paloma-ala-manchada',
-    commonName: 'Paloma ala manchada',
+    commonName: 'Paloma Ala Manchada',
     englishName: 'Spot-Winged Pigeon',
     size: '33 cm',
     scientificName: 'Patagioenas maculosa',

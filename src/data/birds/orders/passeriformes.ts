@@ -137,7 +137,7 @@ export const passeriformes: Bird[] = [
   },
   {
     id: 'estornino-pinto',
-    commonName: 'Estornino pinto',
+    commonName: 'Estornino Pinto',
     englishName: 'European Starling',
     scientificName: 'Sturnus vulgaris',
     family: 'Sturnidae',
