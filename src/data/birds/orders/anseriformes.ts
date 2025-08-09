@@ -158,4 +158,27 @@ export const anseriformes: Bird[] = [
     },
     soundUrl: 'https://macaulaylibrary.org/asset/212823/embed',
   },
+
+  {
+    id: 'aruco',
+    commonName: 'Aruco | Chajá Cornudo',
+    englishName: 'Brazilian Teal',
+    scientificName: 'Anhima cornuta',
+    size: '84 cm',
+    family: 'Anhimidae',
+    order: 'Anseriformes (Patos, Cisnes y Chajás)',
+    habitat: ['bañado 💧', 'costa 🌊'],
+    status: '🌍 visitante ocasional',
+    origin: 'autóctona',
+    commonness: 'muy rara',
+    conservationStatus: 'Preocupación menor',
+    departamentos: ['Maldonado'],
+    ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/393676001/embed',
+    cardHeight: { xs: 750, lg: 760, xl: 760 },
+    soundUrl: 'https://macaulaylibrary.org/asset/58926/embed',
+    description: {
+      general: 'Posee un copete blanco con aspecto de cuerno, el cual le da su nombre común.',
+      curiosities: 'Hay un únco registro en Uruguay, en San Carlos, Maldonado. El registro es de Agosto del 2016.',
+    }
+  },
 ];
