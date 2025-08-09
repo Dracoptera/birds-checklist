@@ -98,7 +98,7 @@ export const anseriformes: Bird[] = [
     id: 'pato-barcino',
     commonName: 'Pato Barcino',
     englishName: 'Brazilian Teal',
-    scientificName: 'Amazonetta brasiliensis',
+    scientificName: 'Anas flavirostris',
     size: '36 cm ♂️ | 33 cm ♀️',
     family: 'Anatidae',
     order: 'Anseriformes (Patos, Cisnes y Chajás)',
@@ -114,6 +114,41 @@ export const anseriformes: Bird[] = [
       general: 'Pato muy similar al Pato Maicero. Nótese el ojo con apariencia "rasgada" de este, a diferencia del Maicero.',
       curiosities: 'Es uno de los patos más comunes en Uruguay.',
     }
+  },
+
+  {
+    id: 'pato-brasilero',
+    commonName: 'Pato Brasilero',
+    englishName: 'Brazilian Teal',
+    scientificName: 'Amazonetta brasiliensis',
+    size: '36 cm',
+    family: 'Anatidae',
+    order: 'Anseriformes (Patos, Cisnes y Chajás)',
+    habitat: ['bañado 💧', 'costa 🌊'],
+    status: '🏠 residente',
+    origin: 'autóctona',
+    commonness: 'abundante',
+    conservationStatus: 'Preocupación menor',
+    departamentos: ['Montevideo', 'Canelones', 'San José', 'Colonia', 'Soriano', 'Río Negro', 'Paysandú', 'Salto', 'Artigas', 'Rivera', 'Tacuarembó', 'Durazno', 'Flores', 'Florida', 'Lavalleja', 'Maldonado', 'Rocha', 'Treinta y Tres', 'Cerro Largo'],
+    ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/77538281/embed',
+    cardHeight: { xs: 710, lg: 780, xl: 780 },
+    variations: [
+      {
+        id: 'male',
+        name: 'Macho',
+        ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/285131101/embed',
+        description: 'Pico rojo.',
+        cardHeight: { xs: 300, lg: 400, xl: 400 },
+      },
+      {
+        id: 'female',
+        name: 'Hembra',
+        ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/317289341/embed',
+        cardHeight: { xs: 300, lg: 400, xl: 400 },
+        description: 'Pico oscuro.',
+      },
+    ],  
+    soundUrl: 'https://macaulaylibrary.org/asset/177511/embed',
   },
 
   {
