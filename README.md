@@ -173,25 +173,13 @@ https://macaulaylibrary.org/asset/ASSET_ID/embed
 2. **URL de imagen regular** (segunda prioridad)
 3. **Placeholder** (cuando no hay imagen)
 
-## Contribuir
-
-Este es un proyecto personal, pero las sugerencias son bienvenidas. Si quieres contribuir:
-
-1. Fork el proyecto
-2. Crea una rama para tu feature
-3. Commit tus cambios
-4. Push a la rama
-5. Abre un Pull Request
-
 ## Licencia
 
 Este proyecto es de uso personal y educativo.
 
 ### Bugs conocidos
 
-- Dar click en el icono de Cámara (Visto con foto) no auto-selecciona el "Visto". Tampoco dentro de la página del ave.
 - No es posible agregar Observaciones detalladas en la página del ave si no se dio click al icono de "Visto" antes.
-- Al tener ambos checks, se puede remover el de "Visto" que es pre-requisito de "Con Foto"
 - El calendario elige el día previo al seleccionado; y deja elegir fechas futuras
 
 ### Futuras funcionalidades
@@ -199,12 +187,6 @@ Este proyecto es de uso personal y educativo.
 - Agregar mapas de distribución por especie
 - Agregar filtros por temporada para aves migratorias
 - Mejorar las Variaciones dentro de cada especie
-- Agregar estatus de conservación y filtros acordes
-
-## Contacto
-
-Para preguntas o sugerencias sobre la aplicación, puedes contactar al desarrollador.
-
----
+- Agregar secciones en PDF por orden taxonómico
 
 **¡Disfruta observando las aves de Uruguay! 🦅** 
