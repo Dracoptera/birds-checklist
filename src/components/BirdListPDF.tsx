@@ -68,6 +68,23 @@ const styles = StyleSheet.create({
     color: '#333333',
     marginBottom: 2,
   },
+  orderText: {
+    fontSize: 8,
+    color: '#1976D2',
+    fontWeight: 'bold',
+    backgroundColor: '#E3F2FD',
+    padding: 2,
+    borderRadius: 2,
+    marginRight: 5,
+  },
+  familyText: {
+    fontSize: 8,
+    color: '#7B1FA2',
+    fontWeight: 'bold',
+    backgroundColor: '#F3E5F5',
+    padding: 2,
+    borderRadius: 2,
+  },
   birdTags: {
     flexDirection: 'row',
     flexWrap: 'wrap',
@@ -98,6 +115,37 @@ const styles = StyleSheet.create({
     height: 10,
     marginRight: 3,
   },
+  conservationTag: {
+    fontSize: 8,
+    fontWeight: 'bold',
+    padding: 3,
+    borderRadius: 3,
+    marginLeft: 5,
+  },
+  conservationLC: {
+    backgroundColor: '#4CAF50',
+    color: '#FFFFFF',
+  },
+  conservationNT: {
+    backgroundColor: '#8BC34A',
+    color: '#FFFFFF',
+  },
+  conservationVU: {
+    backgroundColor: '#FFC107',
+    color: '#000000',
+  },
+  conservationEN: {
+    backgroundColor: '#FF9800',
+    color: '#FFFFFF',
+  },
+  conservationCR: {
+    backgroundColor: '#F44336',
+    color: '#FFFFFF',
+  },
+  conservationDefault: {
+    backgroundColor: '#9E9E9E',
+    color: '#FFFFFF',
+  },
   checkbox: {
     width: 10,
     height: 10,
@@ -106,6 +154,23 @@ const styles = StyleSheet.create({
     borderColor: '#666666',
     marginRight: 8,
     marginTop: 2,
+  },
+  checkboxChecked: {
+    width: 10,
+    height: 10,
+    borderWidth: 1,
+    borderStyle: 'solid',
+    borderColor: '#4CAF50',
+    backgroundColor: '#4CAF50',
+    marginRight: 8,
+    marginTop: 2,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  checkmark: {
+    fontSize: 6,
+    color: '#FFFFFF',
+    fontWeight: 'bold',
   },
   checkboxRow: {
     flexDirection: 'row',
@@ -161,6 +226,25 @@ interface BirdListPDFProps {
 }
 
 const BirdListPDF: React.FC<BirdListPDFProps> = ({ birds, filters, totalCount, observations }) => {
+  const getConservationStyle = (status: string) => {
+    const baseStyle = styles.conservationTag;
+    
+    switch (status) {
+      case 'Preocupación menor':
+        return [baseStyle, styles.conservationLC];
+      case 'Casi amenazada':
+        return [baseStyle, styles.conservationNT];
+      case 'Vulnerable':
+        return [baseStyle, styles.conservationVU];
+      case 'En peligro':
+        return [baseStyle, styles.conservationEN];
+      case 'Peligro crítico':
+        return [baseStyle, styles.conservationCR];
+      default:
+        return [baseStyle, styles.conservationDefault];
+    }
+  };
+
   const getActiveFilters = () => {
     const activeFilters: string[] = [];
     
@@ -251,14 +335,30 @@ const BirdListPDF: React.FC<BirdListPDFProps> = ({ birds, filters, totalCount, o
               return (
                 <View key={bird.id} style={styles.birdCard}>
                   <View style={styles.checkboxRow}>
-                    <View style={styles.checkbox} />
+                    {observation?.seen ? (
+                      <View style={styles.checkboxChecked}>
+                        <Text style={styles.checkmark}>✓</Text>
+                      </View>
+                    ) : (
+                      <View style={styles.checkbox} />
+                    )}
                     <View style={{ flex: 1 }}>
                       <Text style={styles.birdName}>{bird.commonName}</Text>
                       <Text style={styles.scientificName}>{bird.scientificName}</Text>
                       
-                      <Text style={styles.birdInfo}>
-                        {bird.order.split(' (')[0]} • {bird.family} • {bird.conservationStatus || 'Estado no especificado'}
-                      </Text>
+                      <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 5, flexWrap: 'wrap' }}>
+                        <Text style={styles.orderText}>
+                          {bird.order.split(' (')[0]}
+                        </Text>
+                        <Text style={styles.familyText}>
+                          {bird.family}
+                        </Text>
+                        {bird.conservationStatus && (
+                          <Text style={getConservationStyle(bird.conservationStatus)}>
+                            {bird.conservationStatus}
+                          </Text>
+                        )}
+                      </View>
                       
                       <View style={styles.birdTags}>
                         <Text style={styles.tag}>{bird.status.replace(/[🏠🔄❄️🌸]/g, '').trim()}</Text>
