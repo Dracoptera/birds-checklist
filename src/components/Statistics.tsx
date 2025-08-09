@@ -20,7 +20,7 @@ import {
   CalendarToday as CalendarIcon,
 } from '@mui/icons-material';
 import { useUserData } from '../contexts/UserDataContext';
-import { uruguayBirds, getBirdsByOrder, getBirdsByFamily } from '../data/uruguayBirds';
+import { uruguayBirds, getBirdsByOrder, getBirdsByFamily } from '../data/birds';
 import { Statistics as StatisticsType } from '../types';
 
 const Statistics: React.FC = () => {
@@ -201,17 +201,17 @@ const Statistics: React.FC = () => {
                       </Box>
                     }
                     secondary={
-                      <Box sx={{ mt: 1 }}>
+                      <React.Fragment>
                         <LinearProgress 
                           variant="determinate" 
                           value={orderStat.seenPercentage} 
-                          sx={{ height: 6, borderRadius: 3 }}
+                          sx={{ height: 6, borderRadius: 3, mt: 1 }}
                           color={orderStat.seenPercentage > 50 ? 'success' : 'primary'}
                         />
-                        <Typography variant="caption" color="text.secondary">
+                        <Typography variant="caption" color="text.secondary" component="span" sx={{ display: 'block' }}>
                           {orderStat.seenPercentage}% completado
                         </Typography>
-                      </Box>
+                      </React.Fragment>
                     }
                   />
                 </ListItem>
@@ -243,17 +243,17 @@ const Statistics: React.FC = () => {
                       </Box>
                     }
                     secondary={
-                      <Box sx={{ mt: 1 }}>
+                      <React.Fragment>
                         <LinearProgress 
                           variant="determinate" 
                           value={familyStat.seenPercentage} 
-                          sx={{ height: 6, borderRadius: 3 }}
+                          sx={{ height: 6, borderRadius: 3, mt: 1 }}
                           color={familyStat.seenPercentage > 50 ? 'success' : 'primary'}
                         />
-                        <Typography variant="caption" color="text.secondary">
+                        <Typography variant="caption" color="text.secondary" component="span" sx={{ display: 'block' }}>
                           {familyStat.seenPercentage}% completado
                         </Typography>
-                      </Box>
+                      </React.Fragment>
                     }
                   />
                 </ListItem>
@@ -278,16 +278,16 @@ const Statistics: React.FC = () => {
                     <ListItemText
                       primary={observation.birdName}
                       secondary={
-                        <Box>
-                          <Typography variant="body2">
+                        <React.Fragment>
+                          <Typography variant="body2" component="span" sx={{ display: 'block' }}>
                             {new Date(observation.date).toLocaleDateString('es-ES')} - {observation.location}
                           </Typography>
                           {observation.notes && (
-                            <Typography variant="body2" color="text.secondary">
+                            <Typography variant="body2" color="text.secondary" component="span" sx={{ display: 'block' }}>
                               {observation.notes}
                             </Typography>
                           )}
-                        </Box>
+                        </React.Fragment>
                       }
                     />
                   </ListItem>
