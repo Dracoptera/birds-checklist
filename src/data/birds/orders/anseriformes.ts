@@ -219,10 +219,6 @@ export const anseriformes: Bird[] = [
     departamentos: ['Montevideo', 'Canelones', 'San José', 'Colonia', 'Soriano', 'Río Negro', 'Paysandú', 'Salto', 'Artigas', 'Rivera', 'Tacuarembó', 'Durazno', 'Flores', 'Florida', 'Lavalleja', 'Maldonado', 'Rocha', 'Treinta y Tres', 'Cerro Largo'],
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/625270782/embed',
     cardHeight: { xs: 700, lg: 780, xl: 780 },
-    description: {
-      general: 'Pato muy similar al Pato Maicero. Nótese el ojo con apariencia "rasgada" de este, a diferencia del Maicero.',
-      curiosities: 'Es uno de los patos más comunes en Uruguay.',
-    },
     soundUrl: 'https://macaulaylibrary.org/asset/275089/embed',
   },
 ];
