@@ -79,7 +79,7 @@ const Checklist: React.FC = () => {
   
   const [filters, setFilters] = useState<FilterOptions>(initialFilters);
   const [displayCount, setDisplayCount] = useState(9);
-  const [filtersOpen, setFiltersOpen] = useState(true); // Open by default on all screen sizes
+  const [filtersOpen, setFiltersOpen] = useState(!isMobile); // Closed on mobile, open on desktop
   const [showBackToTop, setShowBackToTop] = useState(false);
 
   const birdsByOrder = useMemo(() => getBirdsByOrder(), []);
