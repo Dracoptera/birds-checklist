@@ -5,6 +5,7 @@ import { FilterOptions } from '../types';
 import { getCommonnessForDepartment } from '../data/birds';
 import eyeIcon from '../assets/eye-icon.png';
 import cameraIcon from '../assets/camera-icon.png';
+import greatKiskadeeIcon from '../assets/index/great-kiskadee.png';
 
 // Create styles
 const styles = StyleSheet.create({
@@ -26,6 +27,13 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#2E7D32',
     marginBottom: 5,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  titleIcon: {
+    width: 24,
+    height: 24,
+    marginRight: 10,
   },
   subtitle: {
     fontSize: 12,
@@ -215,6 +223,14 @@ const styles = StyleSheet.create({
     borderTopStyle: 'solid',
     borderTopColor: '#E0E0E0',
     paddingTop: 10,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  footerIcon: {
+    width: 16,
+    height: 16,
+    marginRight: 5,
   },
 });
 
@@ -301,11 +317,22 @@ const BirdListPDF: React.FC<BirdListPDFProps> = ({ birds, filters, totalCount, o
   });
 
   // Split birds into chunks for pagination
-  const birdsPerPage = 12;
+  const birdsPerPage = 10; // Reduced to avoid layout issues
   const chunks: Bird[][] = [];
   for (let i = 0; i < birds.length; i += birdsPerPage) {
-    chunks.push(birds.slice(i, i + birdsPerPage));
+    const chunk = birds.slice(i, i + birdsPerPage);
+    if (chunk.length > 0) { // Only add non-empty chunks
+      chunks.push(chunk);
+    }
   }
+
+  // Debug info
+  console.log('PDF Debug Info:', {
+    totalBirds: birds.length,
+    birdsPerPage,
+    totalChunks: chunks.length,
+    chunkSizes: chunks.map(chunk => chunk.length)
+  });
 
   return (
     <Document>
@@ -314,7 +341,10 @@ const BirdListPDF: React.FC<BirdListPDFProps> = ({ birds, filters, totalCount, o
           {/* Header - only on first page */}
           {pageIndex === 0 && (
             <View style={styles.header}>
-              <Text style={styles.title}>Lista de Aves de Uruguay</Text>
+              <View style={styles.title}>
+                <Image style={styles.titleIcon} src={greatKiskadeeIcon} />
+                <Text>Lista de Aves de Uruguay</Text>
+              </View>
               <Text style={styles.subtitle}>
                 Generado el {currentDate} • {birds.length} de {totalCount} especies
               </Text>
@@ -326,8 +356,20 @@ const BirdListPDF: React.FC<BirdListPDFProps> = ({ birds, filters, totalCount, o
             </View>
           )}
 
+          {/* Simple header for non-first pages */}
+          {pageIndex > 0 && (
+            <View style={{ marginBottom: 20, paddingBottom: 10, borderBottomWidth: 1, borderBottomStyle: 'solid', borderBottomColor: '#E0E0E0' }}>
+              <Text style={{ fontSize: 16, color: '#2E7D32', fontWeight: 'bold', textAlign: 'center' }}>
+                Lista de Aves de Uruguay - Página {pageIndex + 1}
+              </Text>
+              <Text style={{ fontSize: 8, color: '#999', textAlign: 'center', marginTop: 5 }}>
+                {chunk.length} especies en esta página
+              </Text>
+            </View>
+          )}
+
           {/* Birds Grid */}
-          <View style={styles.birdGrid}>
+          <View style={[styles.birdGrid, pageIndex > 0 ? { marginTop: 30 } : {}]}>
             {chunk.map((bird) => {
               const observation = observations[bird.id];
               const commonness = getCommonnessForDepartment(bird, filters.departamento);
@@ -382,32 +424,58 @@ const BirdListPDF: React.FC<BirdListPDFProps> = ({ birds, filters, totalCount, o
             })}
           </View>
 
-          {/* Stats - only on first page */}
-          {pageIndex === 0 && (
-            <View style={styles.stats}>
-              <Text style={styles.statsTitle}>Estadísticas</Text>
-              <View style={styles.statsRow}>
-                <Text style={styles.statsLabel}>Total de especies mostradas:</Text>
-                <Text style={styles.statsValue}>{stats.total}</Text>
-              </View>
-              <View style={styles.statsRow}>
-                <Text style={styles.statsLabel}>Especies vistas:</Text>
-                <Text style={styles.statsValue}>{stats.seen} ({stats.seenPercentage}%)</Text>
-              </View>
-              <View style={styles.statsRow}>
-                <Text style={styles.statsLabel}>Con fotografías:</Text>
-                <Text style={styles.statsValue}>{stats.withPhotos} ({stats.photoPercentage}%)</Text>
-              </View>
-            </View>
-          )}
-
           {/* Footer */}
-          <Text style={styles.footer}>
-            Lista de Aves de Uruguay • Página {pageIndex + 1} de {chunks.length} • 
-            Generado el {currentDate}
-          </Text>
+          <View style={styles.footer}>
+            <Image style={styles.footerIcon} src={greatKiskadeeIcon} />
+            <Text>
+              Mi Lista de Aves - Uruguay • Página {pageIndex + 1} de {chunks.length + 1} • 
+              Generado el {currentDate}
+            </Text>
+          </View>
         </Page>
       ))}
+      
+      {/* Statistics Page - Always last */}
+      <Page size="A4" style={styles.page}>
+        <View style={styles.header}>
+          <View style={styles.title}>
+            <Image style={styles.titleIcon} src={greatKiskadeeIcon} />
+            <Text>Estadísticas - Lista de Aves de Uruguay</Text>
+          </View>
+          <Text style={styles.subtitle}>
+            Generado el {currentDate} • {birds.length} de {totalCount} especies
+          </Text>
+        </View>
+
+        <View style={styles.stats}>
+          <Text style={styles.statsTitle}>Resumen de Observaciones</Text>
+          <View style={styles.statsRow}>
+            <Text style={styles.statsLabel}>Total de especies mostradas:</Text>
+            <Text style={styles.statsValue}>{stats.total}</Text>
+          </View>
+          <View style={styles.statsRow}>
+            <Text style={styles.statsLabel}>Especies vistas:</Text>
+            <Text style={styles.statsValue}>{stats.seen} ({stats.seenPercentage}%)</Text>
+          </View>
+          <View style={styles.statsRow}>
+            <Text style={styles.statsLabel}>Con fotografías:</Text>
+            <Text style={styles.statsValue}>{stats.withPhotos} ({stats.photoPercentage}%)</Text>
+          </View>
+          <View style={styles.statsRow}>
+            <Text style={styles.statsLabel}>Pendientes por observar:</Text>
+            <Text style={styles.statsValue}>{stats.total - stats.seen}</Text>
+          </View>
+        </View>
+
+        {/* Footer for stats page */}
+        <View style={styles.footer}>
+          <Image style={styles.footerIcon} src={greatKiskadeeIcon} />
+          <Text>
+            Mi Lista de Aves - Uruguay • Página {chunks.length + 1} de {chunks.length + 1} • 
+            Generado el {currentDate}
+          </Text>
+        </View>
+      </Page>
     </Document>
   );
 };
