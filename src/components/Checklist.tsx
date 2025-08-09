@@ -741,13 +741,15 @@ const Checklist: React.FC = () => {
                         color="info" 
                         variant="filled"
                       />
-                      <Chip 
-                        label={bird.origin}
-                        size="small" 
-                        color={bird.origin === 'autóctona' ? 'success' : 'error'}
-                        variant="filled"
-                        icon={bird.origin === 'autóctona' ? <NatureIcon /> : <ImportContactsIcon />}
-                      />
+                      {bird.status !== '🌍 visitante ocasional' && (
+                        <Chip 
+                          label={bird.origin}
+                          size="small" 
+                          color={bird.origin === 'autóctona' ? 'success' : 'error'}
+                          variant="filled"
+                          icon={bird.origin === 'autóctona' ? <NatureIcon /> : <ImportContactsIcon />}
+                        />
+                      )}
                       {bird.conservationStatus && (
                         <Chip 
                           label={bird.conservationStatus}
