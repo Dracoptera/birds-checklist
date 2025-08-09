@@ -162,7 +162,7 @@ export const anseriformes: Bird[] = [
   {
     id: 'aruco',
     commonName: 'Aruco | Chajá Cornudo',
-    englishName: 'Brazilian Teal',
+    englishName: 'Horned Screamer',
     scientificName: 'Anhima cornuta',
     size: '84 cm',
     family: 'Anhimidae',
@@ -178,7 +178,29 @@ export const anseriformes: Bird[] = [
     soundUrl: 'https://macaulaylibrary.org/asset/58926/embed',
     description: {
       general: 'Posee un copete blanco con aspecto de cuerno, el cual le da su nombre común.',
-      curiosities: 'Hay un únco registro en Uruguay, en San Carlos, Maldonado. El registro es de Agosto del 2016.',
+      curiosities: 'Hay un único registro en Uruguay, en San Carlos, Maldonado. El registro es de Agosto del 2016.',
     }
+  },
+  {
+    id: 'pato-canela',
+    commonName: 'Pato canela',
+    englishName: 'Fulvous Whistling-Duck',
+    scientificName: 'Dendrocygna bicolor',
+    size: '46 cm ♂️ | 36 cm ♀️',
+    family: 'Anatidae',
+    order: 'Anseriformes (Patos, Cisnes y Chajás)',
+    habitat: ['bañado 💧', 'costa 🌊'],
+    status: '🏠 residente',
+    origin: 'autóctona',
+    commonness: 'común',
+    conservationStatus: 'Preocupación menor',
+    departamentos: ['Montevideo', 'Canelones', 'San José', 'Colonia', 'Soriano', 'Río Negro', 'Paysandú', 'Salto', 'Artigas', 'Rivera', 'Tacuarembó', 'Durazno', 'Flores', 'Florida', 'Lavalleja', 'Maldonado', 'Rocha', 'Treinta y Tres', 'Cerro Largo'],
+    ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/89961651/embed',
+    cardHeight: { xs: 700, lg: 780, xl: 780 },
+    description: {
+      general: 'Pato muy similar al Pato Maicero. Nótese el ojo con apariencia "rasgada" de este, a diferencia del Maicero.',
+      curiosities: 'Es uno de los patos más comunes en Uruguay.',
+    },
+    soundUrl: 'https://macaulaylibrary.org/asset/97450/embed',
   },
 ];
