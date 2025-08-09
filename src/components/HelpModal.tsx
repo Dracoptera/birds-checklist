@@ -244,6 +244,24 @@ const HelpModal: React.FC<HelpModalProps> = ({ open, onClose }) => {
               <ListItemText 
                 primary={
                   <Typography component="span">
+                    • Birds of Argentina and the South-west Atlantic -{' '}
+                    <a 
+                      href="https://press.princeton.edu/books/paperback/9780691147697/birds-of-argentina-and-the-south-west-atlantic" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      style={{ color: '#1976d2', textDecoration: 'underline' }}
+                    >
+                      The ultimate illustrated field guide to the birds of Argentina and the islands of the South-west Atlantic
+                    </a>
+                  </Typography>
+                }
+                secondary="Mark Pearman & Juan Ignacio Areta (2020). Princeton Field Guides."
+              />
+            </ListItem>
+            <ListItem>
+              <ListItemText 
+                primary={
+                  <Typography component="span">
                     • eBird -{' '}
                     <a 
                       href="https://ebird.org" 
