@@ -87,7 +87,7 @@ export const passeriformes: Bird[] = [
     characteristics: ['amarillo', 'pico negro', 'vocal'],
     departamentos: ['Montevideo', 'Canelones', 'San José', 'Colonia', 'Soriano', 'Río Negro', 'Paysandú', 'Salto', 'Artigas', 'Rivera', 'Tacuarembó', 'Durazno', 'Flores', 'Florida', 'Lavalleja', 'Maldonado', 'Rocha', 'Treinta y Tres', 'Cerro Largo'],
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/638497636/embed',
-    soundUrl: 'https://macaulaylibrary.org/asset/310087131/embed',
+    soundUrl: 'https://macaulaylibrary.org/asset/208140991/embed',
     description: {
       general: 'Un ave muy común y altamente vocal. Muy territorial; cuando se enfrenta a alguna amenaza, expone una cresta color amarillo. Se enfrenta a otras aves y animales para defender su nido, incluso aves de mucho mayor tamaño y parásitos de cría como el Tordo Común. Su alimentación es omnívora y variada: se le puede ver pescando y hasta azotando pequeños animales contra el piso. También come insectos y frutas.',
       curiosities: 'En otros países tiene nombres como Bienteveo, Bichofue, Pitogüé y Cristofué: todos hacen referencia a su canto. En Uruguay también lo llaman "Bicho Feo" por este mismo motivo.',
@@ -127,11 +127,13 @@ export const passeriformes: Bird[] = [
         id: 'male',
         name: 'Macho ♂️',
         ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/600854461/embed',
+        cardHeight: { xs: 360, lg: 450, xl: 450 },
       },
       {
         id: 'female',
         name: 'Hembra ♀️',
         ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/428388731/embed',
+        cardHeight: { xs: 380, lg: 450, xl: 450 },
       },
     ]
   },
