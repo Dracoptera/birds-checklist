@@ -3,7 +3,7 @@ import { Bird } from '../types';
 export const accipitriformes: Bird[] = [
   {
     id: 'gavilan-comun',
-    commonName: 'Gavilán común',
+    commonName: 'Gavilán Común',
     englishName: 'Roadside Hawk',
     scientificName: 'Rupornis magnirostris',
     size: '38 cm',

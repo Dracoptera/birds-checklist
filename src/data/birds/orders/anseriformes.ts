@@ -3,7 +3,7 @@ import { Bird } from '../types';
 export const anseriformes: Bird[] = [
   {
     id: 'cisne-cuello-negro',
-    commonName: 'Cisne cuello negro',
+    commonName: 'Cisne Cuello Negro',
     englishName: 'Black-Necked Swan',
     scientificName: 'Cygnus melancoryphus',
     family: 'Anatidae',
@@ -96,7 +96,7 @@ export const anseriformes: Bird[] = [
   },
   {
     id: 'pato-barcino',
-    commonName: 'Pato barcino',
+    commonName: 'Pato Barcino',
     englishName: 'Brazilian Teal',
     scientificName: 'Amazonetta brasiliensis',
     size: '36 cm ♂️ | 33 cm ♀️',
@@ -183,7 +183,7 @@ export const anseriformes: Bird[] = [
   },
   {
     id: 'pato-canela',
-    commonName: 'Pato canela',
+    commonName: 'Pato Canela',
     englishName: 'Fulvous Whistling-Duck',
     scientificName: 'Dendrocygna bicolor',
     size: '46 cm ♂️ | 36 cm ♀️',
@@ -205,7 +205,7 @@ export const anseriformes: Bird[] = [
   },
   {
     id: 'pato-cara-blanca',
-    commonName: 'Pato cara blanca',
+    commonName: 'Pato Cara Blanca',
     englishName: 'White-faced Whistling-Duck',
     scientificName: 'Dendrocygna viduata',
     size: '46 cm ♂️ | 38 cm ♀️',
@@ -223,7 +223,7 @@ export const anseriformes: Bird[] = [
   },
   {
     id: 'siriri-vientre-negro',
-    commonName: 'Siriri vientre negro',
+    commonName: 'Siriri Vientre Negro',
     englishName: 'Black-bellied Whistling-Duck',
     scientificName: 'Dendrocygna autumnalis',
     size: '46 cm ♂️ | 36 cm ♀️',
@@ -238,5 +238,37 @@ export const anseriformes: Bird[] = [
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/283101121/embed',
     cardHeight: { xs: 700, lg: 780, xl: 780 },
     soundUrl: 'https://macaulaylibrary.org/asset/130907/embed',
+  },
+  {
+    id: 'cauquen-comun',
+    commonName: 'Cauquén Común',
+    englishName: 'Upland Goose',
+    scientificName: 'Chloephaga picta',
+    size: '70 cm',
+    family: 'Anatidae',
+    order: 'Anseriformes (Patos, Cisnes y Chajás)',
+    habitat: ['bañado 💧', 'costa 🌊'],
+    status: '🌍 visitante ocasional',
+    origin: 'autóctona',
+    commonness: 'muy rara',
+    conservationStatus: 'Preocupación menor',
+    departamentos: ['Rocha', 'Treinta y Tres'],
+    ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/611584636/embed',
+    cardHeight: { xs: 700, lg: 780, xl: 780 },
+    soundUrl: 'https://macaulaylibrary.org/asset/112855061/embed',
+    variations: [
+      {
+        id: 'male',
+        name: 'Macho',
+        ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/61068951/embed',
+        cardHeight: { xs: 320, lg: 400, xl: 400 },
+      },
+      {
+        id: 'female',
+        name: 'Hembra',
+        ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/53602011/embed',
+        cardHeight: { xs: 380, lg: 450, xl: 450 },
+      },
+    ],
   },
 ];
