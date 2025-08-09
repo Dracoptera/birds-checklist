@@ -699,22 +699,24 @@ const Checklist: React.FC = () => {
                               ? 'Marcar como sin foto' 
                               : 'Marcar como con foto'
                         }>
-                          <IconButton
-                            size="small"
-                            onClick={() => {
-                              // Only allow photo toggle if already seen
-                              if (observation.seen) {
-                                togglePhoto(bird.id);
-                              }
-                            }}
-                            color={observation.hasPhoto ? 'primary' : 'default'}
-                            disabled={!observation.seen}
-                            sx={{
-                              opacity: !observation.seen ? 0.5 : 1
-                            }}
-                          >
-                            <PhotoCameraIcon />
-                          </IconButton>
+                          <span>
+                            <IconButton
+                              size="small"
+                              onClick={() => {
+                                // Only allow photo toggle if already seen
+                                if (observation.seen) {
+                                  togglePhoto(bird.id);
+                                }
+                              }}
+                              color={observation.hasPhoto ? 'primary' : 'default'}
+                              disabled={!observation.seen}
+                              sx={{
+                                opacity: !observation.seen ? 0.5 : 1
+                              }}
+                            >
+                              <PhotoCameraIcon />
+                            </IconButton>
+                          </span>
                         </Tooltip>
                       </Box>
                     </Box>
