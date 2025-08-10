@@ -735,4 +735,36 @@ export const anseriformes: Bird[] = [
       },
     ],
   },
+
+  {
+    id: 'pato-zambullidor',
+    commonName: 'Pato Zambullidor',
+    englishName: 'Lake Duck',
+    scientificName: 'Oxyura vittata',
+    size: '38 cm ♂️ | 31 cm ♀️',
+    family: 'Anatidae',
+    order: 'Anseriformes (Patos, Cisnes y Chajás)',
+    habitat: ['bañado 💧', 'costa 🌊'],
+    status: '🏠 residente',
+    origin: 'autóctona',
+    conservationStatus: 'Preocupación menor',
+    departamentos: ["Montevideo", "Canelones", "Lavalleja", "San José", "Colonia", "Soriano","Maldonado", "Rocha", "Treinta y Tres"],
+    commonness: 'poco común',  
+    ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/184809591/embed',
+    cardHeight: { xs: 690, lg: 760, xl: 760 },
+    variations: [
+      {
+        id: 'male',
+        name: 'Macho',
+        ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/69748391/embed',
+        cardHeight: { xs: 370, lg: 500, xl: 500 },
+      },
+      {
+        id: 'female',
+        name: 'Hembra',
+        ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/34297641/embed',
+        cardHeight: { xs: 320, lg: 420, xl: 420 },
+      },
+    ],
+  },
 ];
