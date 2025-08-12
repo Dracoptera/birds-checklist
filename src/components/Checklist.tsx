@@ -271,18 +271,8 @@ const Checklist: React.FC = () => {
 
   // Helper function to check if commonness varies by department
   const shouldShowCommonness = (bird: any) => {
-    // If a department is selected, always show commonness
-    if (filters.departamento) {
-      return true;
-    }
-    
-    // If commonness is a string (not varying by department), always show it
-    if (typeof bird.commonness === 'string') {
-      return true;
-    }
-    
-    // If commonness is an object (varying by department) and no department is selected, don't show it
-    return false;
+    // Always show commonness for all birds
+    return true;
   };
 
   // Restore scroll position when returning from bird detail

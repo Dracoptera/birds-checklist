@@ -79,4 +79,23 @@ export const podicipediformes: Bird[] = [
     cardHeight: { xs: 710, lg: 770, xl: 770 },
     soundUrl: 'https://macaulaylibrary.org/asset/88866851/embed',
   },
+
+  {
+    id: 'maca-plateado',
+    commonName: 'Macá Plateado',
+    englishName: 'Silvery Grebe',
+    scientificName: 'Podiceps occipitalis',
+    size: '26 cm',
+    family: 'Podicipedidae',
+    order: 'Podicipediformes (Macáes)',
+    habitat: ['bañado 💧'],
+    status: '🌍 visitante ocasional',
+    origin: 'autóctona',
+    commonness: 'muy rara',
+    departamentos: ['Rocha'],  
+    conservationStatus: 'Preocupación menor',
+    ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/178515951/embed',
+    cardHeight: { xs: 710, lg: 770, xl: 770 },
+    soundUrl: 'https://macaulaylibrary.org/asset/197233/embed',
+  },
 ];
