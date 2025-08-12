@@ -11,6 +11,7 @@ import { coraciiformes } from './orders/coraciiformes';
 import { rheiformes } from './orders/rheiformes';
 import {tinamiformes} from './orders/tinamiformes';
 import {galliformes} from './orders/galliformes';
+import {podicipediformes} from './orders/podicipediformes';
 // All order files are properly imported and available
 
 // Combine all birds from different orders
@@ -27,4 +28,5 @@ export const uruguayBirds: Bird[] = [
   ...rheiformes,
   ...tinamiformes,
   ...galliformes,
+  ...podicipediformes,
 ];
