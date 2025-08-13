@@ -1,4 +1,4 @@
-import { Bird } from '../data/uruguayBirds';
+import { Bird } from '../data/birds/types';
 
 export interface BirdObservation {
   birdId: string;
@@ -34,6 +34,7 @@ export interface FilterOptions {
   conservationStatus: string;
   searchTerm: string;
   sortBy: 'commonness' | 'alphabetical' | 'order';
+  excludeOccasionalVisitors: boolean;
 }
 
 export interface Statistics {

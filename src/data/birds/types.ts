@@ -25,7 +25,7 @@ export interface Bird {
   family: string;
   order: string;
   habitat: string[];
-  status: '🏠 residente' | 'migratoria invernal ❄️' | 'migratoria estival 🌞' | '🌍 visitante ocasional';
+  status: '🏠 residente' | '❄️ visitante invernal' | '🌞 visitante estival' | '🌍 visitante ocasional';
   commonness: 'abundante' | 'común' | 'poco común' | 'rara' | 'muy rara' | { [departamento: string]: 'abundante' | 'común' | 'poco común' | 'rara' | 'muy rara' };
   conservationStatus?: 'Preocupación menor' | 'Vulnerable' | 'En peligro' | 'Casi amenazada' | 'Peligro crítico';
   uruguayConservationStatus?: 'Amenazada' | 'En peligro' | 'Casi amenazada' | 'Peligro crítico';

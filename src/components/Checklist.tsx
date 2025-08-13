@@ -75,6 +75,7 @@ const Checklist: React.FC = () => {
     conservationStatus: searchParams.get('conservationStatus') || '',
     searchTerm: searchParams.get('searchTerm') || '',
     sortBy: (searchParams.get('sortBy') as 'commonness' | 'alphabetical' | 'order') || 'commonness',
+    excludeOccasionalVisitors: searchParams.get('excludeOccasionalVisitors') === 'true',
   };
   
   const [filters, setFilters] = useState<FilterOptions>(initialFilters);
@@ -177,6 +178,9 @@ const Checklist: React.FC = () => {
       // Filter by conservation status
       if (filters.conservationStatus && bird.conservationStatus !== filters.conservationStatus) return false;
       
+      // Filter by occasional visitors
+      if (filters.excludeOccasionalVisitors && bird.status === '🌍 visitante ocasional') return false;
+      
       // Filter by search term
       if (filters.searchTerm) {
         const normalizeText = (text: string) => {
@@ -218,7 +222,9 @@ const Checklist: React.FC = () => {
   }, [state.observations, filters]);
 
   const handleFilterChange = (field: keyof FilterOptions, value: string) => {
-    setFilters(prev => ({ ...prev, [field]: value }));
+    // Handle boolean values for checkbox
+    const filterValue = field === 'excludeOccasionalVisitors' ? value === 'true' : value;
+    setFilters(prev => ({ ...prev, [field]: filterValue }));
     setDisplayCount(9); // Reset to show first 9 birds when filters change
     
     // Clear family filter when order changes
@@ -228,7 +234,13 @@ const Checklist: React.FC = () => {
     
     // Update URL parameters
     const newSearchParams = new URLSearchParams(searchParams);
-    if (value && value !== 'all') {
+    if (field === 'excludeOccasionalVisitors') {
+      if (filterValue) {
+        newSearchParams.set(field, 'true');
+      } else {
+        newSearchParams.delete(field);
+      }
+    } else if (value && value !== 'all') {
       newSearchParams.set(field, value);
     } else {
       newSearchParams.delete(field);
@@ -254,6 +266,7 @@ const Checklist: React.FC = () => {
       conservationStatus: '',
       searchTerm: '',
       sortBy: 'commonness',
+      excludeOccasionalVisitors: false,
     });
     setDisplayCount(9);
     setSearchParams({}); // Clear all URL parameters
@@ -335,7 +348,11 @@ const Checklist: React.FC = () => {
       
       // Generate filename based on filters
       const activeFilters = Object.entries(filters)
-        .filter(([key, value]) => key !== 'sortBy' && value && value !== 'all')
+        .filter(([key, value]) => {
+          if (key === 'sortBy') return false;
+          if (key === 'excludeOccasionalVisitors') return value === true;
+          return value && value !== 'all';
+        })
         .map(([key, value]) => `${key}-${value}`)
         .join('_');
       
@@ -382,7 +399,11 @@ const Checklist: React.FC = () => {
             </Typography>
             <Typography variant="body2" color="text.secondary">
               ({Object.entries(filters)
-                .filter(([key, value]) => key !== 'sortBy' && value && value !== 'all')
+                .filter(([key, value]) => {
+                  if (key === 'sortBy') return false;
+                  if (key === 'excludeOccasionalVisitors') return value === true;
+                  return value && value !== 'all';
+                })
                 .length} activos)
             </Typography>
           </Box>
@@ -522,12 +543,20 @@ const Checklist: React.FC = () => {
             </FormControl>
           </Grid>
           
-
-          
-
-          
           <Grid item xs={12}>
-            <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+            <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 2 }}>
+              <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                <input
+                  type="checkbox"
+                  id="excludeOccasionalVisitors"
+                  checked={filters.excludeOccasionalVisitors}
+                  onChange={(e) => handleFilterChange('excludeOccasionalVisitors', e.target.checked.toString())}
+                  style={{ marginRight: '8px' }}
+                />
+                <label htmlFor="excludeOccasionalVisitors" style={{ fontSize: '14px', cursor: 'pointer' }}>
+                  Excluir visitantes ocasionales
+                </label>
+              </Box>
               <Button
                 variant="outlined"
                 onClick={handleClearFilters}
