@@ -14,6 +14,7 @@ import {galliformes} from './orders/galliformes';
 import {podicipediformes} from './orders/podicipediformes';
 import {phoenicopteriformes} from './orders/phoenicopteriformes';
 import {sphenisciformes} from './orders/sphenisciformes';
+import {procellariiformes} from './orders/procellariiformes';
 
 // All order files are properly imported and available
 
@@ -34,4 +35,5 @@ export const uruguayBirds: Bird[] = [
   ...podicipediformes,
   ...phoenicopteriformes,
   ...sphenisciformes,
+  ...procellariiformes,
 ];
