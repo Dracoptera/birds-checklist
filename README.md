@@ -188,5 +188,7 @@ Este proyecto es de uso personal y educativo.
 - Agregar filtros por temporada para aves migratorias
 - Mejorar las Variaciones dentro de cada especie
 - Agregar secciones en PDF por orden taxonómico
+- Agregar filtro "Visible esta época del año"
+- Agregar "excluir" del filtro - por ejemplo, excluir aves muy raras
 
 **¡Disfruta observando las aves de Uruguay! 🦅** 
