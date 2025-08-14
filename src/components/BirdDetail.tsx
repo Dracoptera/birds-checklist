@@ -38,6 +38,8 @@ import {
   ImportContacts as ImportContactsIcon,
   Straighten as RulerIcon,
   KeyboardArrowUp as KeyboardArrowUpIcon,
+  KeyboardArrowLeft as KeyboardArrowLeftIcon,
+  KeyboardArrowRight as KeyboardArrowRightIcon,
 } from '@mui/icons-material';
 import { useParams, useNavigate } from 'react-router-dom';
 import { uruguayBirds, getCommonnessForDepartment, getDepartamentosForBird } from '../data/birds';
@@ -51,9 +53,20 @@ const BirdDetail: React.FC = () => {
   const navigate = useNavigate();
   const { state, toggleSeen, checkNeedsSeeingWarning, togglePhoto, addObservation, removeObservation } = useUserData();
   
-  // Scroll to top when component mounts
+  // Scroll to top when component mounts, or restore previous scroll position
   React.useEffect(() => {
-    window.scrollTo(0, 0);
+    const savedScrollPosition = sessionStorage.getItem('birdDetailScrollPosition');
+    if (savedScrollPosition) {
+      // Small delay to ensure content is rendered before scrolling
+      setTimeout(() => {
+        window.scrollTo(0, parseInt(savedScrollPosition, 10));
+      }, 100);
+      // Clear saved scroll position after restoration
+      sessionStorage.removeItem('birdDetailScrollPosition');
+    } else {
+      // If no saved position, scroll to top
+      window.scrollTo(0, 0);
+    }
   }, [birdId]);
 
   // Handle scroll to show/hide back to top button
@@ -94,6 +107,114 @@ const BirdDetail: React.FC = () => {
 
   const bird = uruguayBirds.find((b: any) => b.id === birdId);
   const observation = state.observations[birdId!];
+
+  // Get the filtered bird list from session storage to determine navigation order
+  const getFilteredBirdList = () => {
+    const savedSearchParams = sessionStorage.getItem('checklistSearchParams') || '';
+    if (!savedSearchParams) return uruguayBirds;
+    
+    // Parse the saved search params to recreate the filter state
+    const params = new URLSearchParams(savedSearchParams);
+    const filters = {
+      seen: params.get('seen') || 'all',
+      hasPhoto: params.get('hasPhoto') || 'all',
+      order: params.get('order') || '',
+      family: params.get('family') || '',
+      departamento: params.get('departamento') || '',
+      commonness: params.get('commonness') || '',
+      status: params.get('status') || '',
+      conservationStatus: params.get('conservationStatus') || '',
+      searchTerm: params.get('searchTerm') || '',
+      sortBy: params.get('sortBy') || 'commonness',
+      excludeOccasionalVisitors: params.get('excludeOccasionalVisitors') === 'true',
+    };
+
+    // Apply the same filtering logic as in Checklist component
+    let filteredBirds = uruguayBirds.filter((b: any) => {
+      const obs = state.observations[b.id];
+      
+      // Filter by seen status
+      if (filters.seen === 'seen' && !obs?.seen) return false;
+      if (filters.seen === 'not-seen' && obs?.seen) return false;
+      
+      // Filter by photo status
+      if (filters.hasPhoto === 'with-photo' && !obs?.hasPhoto) return false;
+      if (filters.hasPhoto === 'without-photo' && obs?.hasPhoto) return false;
+      
+      // Filter by order
+      if (filters.order && b.order !== filters.order) return false;
+      
+      // Filter by family
+      if (filters.family && b.family !== filters.family) return false;
+      
+      // Filter by departamento
+      if (filters.departamento) {
+        const birdDepartamentos = getDepartamentosForBird(b);
+        if (!birdDepartamentos.includes(filters.departamento)) return false;
+      }
+      
+      // Filter by commonness
+      if (filters.commonness) {
+        const birdCommonness = getCommonnessForDepartment(b, filters.departamento);
+        if (birdCommonness !== filters.commonness) return false;
+      }
+      
+      // Filter by status
+      if (filters.status && b.status !== filters.status) return false;
+      
+      // Filter by conservation status
+      if (filters.conservationStatus && b.conservationStatus !== filters.conservationStatus) return false;
+      
+      // Filter by occasional visitors
+      if (filters.excludeOccasionalVisitors && b.status === '🌍 visitante ocasional') return false;
+      
+      // Filter by search term
+      if (filters.searchTerm) {
+        const normalizeText = (text: string) => {
+          return text.toLowerCase()
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '');
+        };
+        
+        const searchNormalized = normalizeText(filters.searchTerm);
+        const matchesSearch = 
+          normalizeText(b.commonName).includes(searchNormalized) ||
+          normalizeText(b.scientificName).includes(searchNormalized) ||
+          normalizeText(b.family).includes(searchNormalized);
+        if (!matchesSearch) return false;
+      }
+      
+      return true;
+    });
+
+    // Apply the same sorting logic as in Checklist component
+    filteredBirds.sort((a: any, b: any) => {
+      if (filters.sortBy === 'alphabetical') {
+        return a.commonName.localeCompare(b.commonName, 'es');
+      } else if (filters.sortBy === 'order') {
+        const orderComparison = a.order.localeCompare(b.order, 'es');
+        if (orderComparison !== 0) {
+          return orderComparison;
+        }
+        return a.commonName.localeCompare(b.commonName, 'es');
+      } else {
+        // Sort by commonness (most common first)
+        const commonnessOrder = ['abundante', 'común', 'poco común', 'rara', 'muy rara'];
+        const aCommonness = getCommonnessForDepartment(a, filters.departamento);
+        const bCommonness = getCommonnessForDepartment(b, filters.departamento);
+        const aIndex = commonnessOrder.indexOf(aCommonness);
+        const bIndex = commonnessOrder.indexOf(bCommonness);
+        return aIndex - bIndex;
+      }
+    });
+
+    return filteredBirds;
+  };
+
+  const filteredBirdList = getFilteredBirdList();
+  const currentIndex = filteredBirdList.findIndex((b: any) => b.id === birdId);
+  const previousBird = currentIndex > 0 ? filteredBirdList[currentIndex - 1] : null;
+  const nextBird = currentIndex < filteredBirdList.length - 1 ? filteredBirdList[currentIndex + 1] : null;
 
   if (!bird) {
     return (
@@ -155,12 +276,67 @@ const BirdDetail: React.FC = () => {
 
   return (
     <Box>
-      <Button onClick={() => {
-        const savedParams = sessionStorage.getItem('checklistSearchParams') || '';
-        navigate(`/${savedParams}`);
-      }} sx={{ mb: 2 }}>
-        ← Volver a la lista
-      </Button>
+      <Box sx={{ display: 'flex', gap: 2, mb: 2, alignItems: 'center', flexWrap: 'wrap' }}>
+        <Button onClick={() => {
+          const savedParams = sessionStorage.getItem('checklistSearchParams') || '';
+          navigate(`/${savedParams}`);
+        }}>
+          ← Volver a la lista
+        </Button>
+        
+        {/* Previous/Next Navigation */}
+        <Box sx={{ display: 'flex', gap: 1, ml: 'auto' }}>
+          <Tooltip title={previousBird ? `Anterior: ${previousBird.commonName}` : 'No hay ave anterior'}>
+            <span>
+              <IconButton
+                disabled={!previousBird}
+                onClick={() => {
+                  if (previousBird) {
+                    // Save current scroll position before navigation
+                    sessionStorage.setItem('birdDetailScrollPosition', window.pageYOffset.toString());
+                    navigate(`/bird/${previousBird.id}`);
+                  }
+                }}
+                sx={{ 
+                  border: '1px solid',
+                  borderColor: 'divider',
+                  '&:disabled': { opacity: 0.3 },
+                  '&:hover': {
+                    backgroundColor: 'rgba(0, 0, 0, 0.04)',
+                  }
+                }}
+              >
+                <KeyboardArrowLeftIcon />
+              </IconButton>
+            </span>
+          </Tooltip>
+          
+          <Tooltip title={nextBird ? `Siguiente: ${nextBird.commonName}` : 'No hay ave siguiente'}>
+            <span>
+              <IconButton
+                disabled={!nextBird}
+                onClick={() => {
+                  if (nextBird) {
+                    // Save current scroll position before navigation
+                    sessionStorage.setItem('birdDetailScrollPosition', window.pageYOffset.toString());
+                    navigate(`/bird/${nextBird.id}`);
+                  }
+                }}
+                sx={{ 
+                  border: '1px solid',
+                  borderColor: 'divider',
+                  '&:disabled': { opacity: 0.3 },
+                  '&:hover': {
+                    backgroundColor: 'rgba(0, 0, 0, 0.04)',
+                  }
+                }}
+              >
+                <KeyboardArrowRightIcon />
+              </IconButton>
+            </span>
+          </Tooltip>
+        </Box>
+      </Box>
 
              <Card sx={{ mb: 3 }}>
          <Box sx={{ position: 'relative' }}>
@@ -422,6 +598,7 @@ const BirdDetail: React.FC = () => {
           <BirdVariations 
             variations={bird.variations} 
             height={500}
+            birdId={bird.id}
             onVariationChange={(variation) => {
               console.log('Selected variation:', variation);
               // Here you could track which variation was viewed

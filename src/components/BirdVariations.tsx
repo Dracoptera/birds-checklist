@@ -14,12 +14,14 @@ interface BirdVariationsProps {
   variations: BirdVariation[];
   onVariationChange?: (variation: BirdVariation) => void;
   height?: number;
+  birdId?: string; // Add birdId to make keys unique
 }
 
 const BirdVariations: React.FC<BirdVariationsProps> = ({ 
   variations, 
   onVariationChange,
-  height = 560 
+  height = 560,
+  birdId = 'unknown'
 }) => {
   return (
     <Box>
@@ -46,7 +48,7 @@ const BirdVariations: React.FC<BirdVariationsProps> = ({
           };
 
           return (
-                         <Grid item xs={12} sm={6} md={variations.length === 2 ? 6 : 4} key={variation.id}>
+                         <Grid item xs={12} sm={6} md={variations.length === 2 ? 6 : 4} key={`${birdId}-${variation.id}`}>
                <Card>
                                    <Box sx={{ position: 'relative', height: variation.cardHeight || 500 }}>
                     <BirdImage bird={mockBird} height="100%" compact={true} />
