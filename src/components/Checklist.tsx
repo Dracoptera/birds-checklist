@@ -183,7 +183,7 @@ const Checklist: React.FC = () => {
       if (filters.excludeOccasionalVisitors && bird.status === '🌍 visitante ocasional') return false;
       
       // Filter by pelagic seabirds
-      if (filters.excludePelagicSeabirds && bird.habitat.includes('mar 🌊')) return false;
+      if (filters.excludePelagicSeabirds && bird.habitat && bird.habitat.some((hab: string) => hab.includes('mar 🌊'))) return false;
 
       // Filter by search term
       if (filters.searchTerm) {
@@ -227,7 +227,7 @@ const Checklist: React.FC = () => {
 
   const handleFilterChange = (field: keyof FilterOptions, value: string) => {
     // Handle boolean values for checkbox
-    const filterValue = field === 'excludeOccasionalVisitors' ? value === 'true' : value;
+    const filterValue = field === 'excludeOccasionalVisitors' || field === 'excludePelagicSeabirds' ? value === 'true' : value;
     setFilters(prev => ({ ...prev, [field]: filterValue }));
     setDisplayCount(9); // Reset to show first 9 birds when filters change
     
@@ -803,15 +803,14 @@ const Checklist: React.FC = () => {
                         color="info" 
                         variant="filled"
                       />
-                      {bird.status !== '🌍 visitante ocasional' && (
-                        <Chip 
-                          label={bird.habitat.includes('mar 🌊') ? '🌊 pelágica' : bird.origin}
-                          size="small" 
-                          color={bird.habitat.includes('mar 🌊') ? 'info' : (bird.origin === 'autóctona' ? 'success' : 'error')}
-                          variant="filled"
-                          icon={bird.habitat.includes('mar 🌊') ? undefined : (bird.origin === 'autóctona' ? <NatureIcon /> : <ImportContactsIcon />)}
-                        />
-                      )}
+                       {/* Show origin/pelagic chip for all birds */}
+                       <Chip 
+                         label={bird.habitat && bird.habitat.some((hab: string) => hab.includes('mar 🌊')) ? '🌊 pelágica' : bird.origin}
+                         size="small" 
+                         color={bird.habitat && bird.habitat.some((hab: string) => hab.includes('mar 🌊')) ? 'info' : (bird.origin === 'autóctona' ? 'success' : 'error')}
+                         variant="filled"
+                         icon={bird.habitat && bird.habitat.some((hab: string) => hab.includes('mar 🌊')) ? undefined : (bird.origin === 'autóctona' ? <NatureIcon /> : <ImportContactsIcon />)}
+                       />
                       {bird.conservationStatus && (
                         <Chip 
                           label={bird.conservationStatus}
