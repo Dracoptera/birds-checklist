@@ -291,6 +291,12 @@ const BirdListPDF: React.FC<BirdListPDFProps> = ({ birds, filters, totalCount, o
     if (filters.searchTerm) {
       activeFilters.push(`Búsqueda: "${filters.searchTerm}"`);
     }
+    if (filters.excludeOccasionalVisitors) {
+      activeFilters.push(`Excluir visitantes ocasionales`);
+    }
+    if (filters.excludePelagicSeabirds) {
+      activeFilters.push(`Excluir aves pelágicas`);
+    }
     
     return activeFilters;
   };

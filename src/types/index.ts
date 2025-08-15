@@ -35,6 +35,7 @@ export interface FilterOptions {
   searchTerm: string;
   sortBy: 'commonness' | 'alphabetical' | 'order';
   excludeOccasionalVisitors: boolean;
+  excludePelagicSeabirds: boolean;
 }
 
 export interface Statistics {

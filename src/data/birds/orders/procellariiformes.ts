@@ -180,4 +180,22 @@ export const procellariiformes: Bird[] = [
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/246063231/embed',
     cardHeight: { xs: 610, lg: 760, xl: 760 },
   },
+
+  {
+    id: 'petrel-gigante-comun',
+    commonName: 'Petrel Gigante Común',
+    englishName: 'Southern Giant-Petrel',
+    scientificName: 'Macronectes giganteus',
+    size: '95 cm | 🪽 205 cm',
+    family: 'Procellariidae',
+    order: 'Procellariiformes (Albatroses y Petreles)',
+    habitat: ['mar 🌊'],
+    status: '🏠 residente',
+    origin: 'autóctona',
+    commonness: 'común',
+    departamentos: ['Montevideo', 'Canelones', 'Rocha', 'Maldonado'],  
+    conservationStatus: 'Preocupación menor',
+    ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/246063231/embed',
+    cardHeight: { xs: 610, lg: 760, xl: 760 },
+  },
 ];

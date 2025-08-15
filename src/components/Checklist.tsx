@@ -76,6 +76,7 @@ const Checklist: React.FC = () => {
     searchTerm: searchParams.get('searchTerm') || '',
     sortBy: (searchParams.get('sortBy') as 'commonness' | 'alphabetical' | 'order') || 'commonness',
     excludeOccasionalVisitors: searchParams.get('excludeOccasionalVisitors') === 'true',
+    excludePelagicSeabirds: searchParams.get('excludePelagicSeabirds') === 'true',
   };
   
   const [filters, setFilters] = useState<FilterOptions>(initialFilters);
@@ -181,6 +182,9 @@ const Checklist: React.FC = () => {
       // Filter by occasional visitors
       if (filters.excludeOccasionalVisitors && bird.status === '🌍 visitante ocasional') return false;
       
+      // Filter by pelagic seabirds
+      if (filters.excludePelagicSeabirds && bird.habitat.includes('mar 🌊')) return false;
+
       // Filter by search term
       if (filters.searchTerm) {
         const normalizeText = (text: string) => {
@@ -234,7 +238,7 @@ const Checklist: React.FC = () => {
     
     // Update URL parameters
     const newSearchParams = new URLSearchParams(searchParams);
-    if (field === 'excludeOccasionalVisitors') {
+    if (field === 'excludeOccasionalVisitors' || field === 'excludePelagicSeabirds') {
       if (filterValue) {
         newSearchParams.set(field, 'true');
       } else {
@@ -267,6 +271,7 @@ const Checklist: React.FC = () => {
       searchTerm: '',
       sortBy: 'commonness',
       excludeOccasionalVisitors: false,
+      excludePelagicSeabirds: false,
     });
     setDisplayCount(9);
     setSearchParams({}); // Clear all URL parameters
@@ -350,7 +355,7 @@ const Checklist: React.FC = () => {
       const activeFilters = Object.entries(filters)
         .filter(([key, value]) => {
           if (key === 'sortBy') return false;
-          if (key === 'excludeOccasionalVisitors') return value === true;
+          if (key === 'excludeOccasionalVisitors' || key === 'excludePelagicSeabirds') return value === true;
           return value && value !== 'all';
         })
         .map(([key, value]) => `${key}-${value}`)
@@ -401,7 +406,7 @@ const Checklist: React.FC = () => {
               ({Object.entries(filters)
                 .filter(([key, value]) => {
                   if (key === 'sortBy') return false;
-                  if (key === 'excludeOccasionalVisitors') return value === true;
+                  if (key === 'excludeOccasionalVisitors' || key === 'excludePelagicSeabirds') return value === true;
                   return value && value !== 'all';
                 })
                 .length} activos)
@@ -542,6 +547,8 @@ const Checklist: React.FC = () => {
               </Select>
             </FormControl>
           </Grid>
+
+
           
           <Grid item xs={12}>
             <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 2 }}>
@@ -555,6 +562,18 @@ const Checklist: React.FC = () => {
                 />
                 <label htmlFor="excludeOccasionalVisitors" style={{ fontSize: '14px', cursor: 'pointer' }}>
                   Excluir visitantes ocasionales
+                </label>
+              </Box>
+              <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                <input
+                  type="checkbox"
+                  id="excludePelagicSeabirds"
+                  checked={filters.excludePelagicSeabirds}
+                  onChange={(e) => handleFilterChange('excludePelagicSeabirds', e.target.checked.toString())}
+                  style={{ marginRight: '8px' }}
+                />
+                <label htmlFor="excludePelagicSeabirds" style={{ fontSize: '14px', cursor: 'pointer' }}>
+                  Excluir aves pelágicas (mar abierto)
                 </label>
               </Box>
               <Button
@@ -571,6 +590,30 @@ const Checklist: React.FC = () => {
           </Box>
         </Collapse>
       </Paper>
+
+      {/* Pelagic Seabird Information */}
+      {filters.order === 'Procellariiformes (Albatroses y Petreles)' && (
+        <Paper 
+          sx={{ 
+            mb: 3, 
+            p: 2, 
+            backgroundColor: '#E3F2FD', 
+            border: '1px solid #2196F3',
+            borderRadius: 2
+          }}
+        >
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
+            <Typography variant="h6" color="primary" sx={{ fontWeight: 'bold' }}>
+              🌊 Aves Pelágicas
+            </Typography>
+          </Box>
+          <Typography variant="body2" color="text.secondary">
+            <strong>Nota importante:</strong> Las aves pelágicas (albatroses, petreles) son especies marinas que viven en mar abierto y raramente se observan desde la costa. 
+            Su presencia en Uruguay se registra principalmente en aguas territoriales durante expediciones marítimas o desde embarcaciones. 
+            Para observarlas, se recomienda realizar salidas en barco o participar en tours de observación de aves marinas.
+          </Typography>
+        </Paper>
+      )}
 
       {/* Results count, Search and Sort */}
       <Box sx={{ 
@@ -762,11 +805,11 @@ const Checklist: React.FC = () => {
                       />
                       {bird.status !== '🌍 visitante ocasional' && (
                         <Chip 
-                          label={bird.origin}
+                          label={bird.habitat.includes('mar 🌊') ? '🌊 pelágica' : bird.origin}
                           size="small" 
-                          color={bird.origin === 'autóctona' ? 'success' : 'error'}
+                          color={bird.habitat.includes('mar 🌊') ? 'info' : (bird.origin === 'autóctona' ? 'success' : 'error')}
                           variant="filled"
-                          icon={bird.origin === 'autóctona' ? <NatureIcon /> : <ImportContactsIcon />}
+                          icon={bird.habitat.includes('mar 🌊') ? undefined : (bird.origin === 'autóctona' ? <NatureIcon /> : <ImportContactsIcon />)}
                         />
                       )}
                       {bird.conservationStatus && (
