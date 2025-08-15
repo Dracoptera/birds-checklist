@@ -604,11 +604,11 @@ const Checklist: React.FC = () => {
         >
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
             <Typography variant="h6" color="primary" sx={{ fontWeight: 'bold' }}>
-              🌊 Aves Pelágicas
+              🌊 Nota: Aves Pelágicas
             </Typography>
           </Box>
           <Typography variant="body2" color="text.secondary">
-            <strong>Nota importante:</strong> Las aves pelágicas (albatroses, petreles) son especies marinas que viven en mar abierto y raramente se observan desde la costa. 
+            Las aves pelágicas son especies marinas que viven en mar abierto y raramente se observan desde la costa, salvo algunas especies. 
             Su presencia en Uruguay se registra principalmente en aguas territoriales durante expediciones marítimas o desde embarcaciones. 
             Para observarlas, se recomienda realizar salidas en barco o participar en tours de observación de aves marinas.
           </Typography>
