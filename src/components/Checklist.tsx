@@ -44,6 +44,7 @@ import { FilterOptions } from '../types';
 import BirdImage from './BirdImage';
 import BirdListPDF from './BirdListPDF';
 import { pdf } from '@react-pdf/renderer';
+import { getStatusChipColors, getPelagicChipProps, getConservationStatusColor } from '../utils/statusChipColors';
 
 const Checklist: React.FC = () => {
   const navigate = useNavigate();
@@ -801,39 +802,25 @@ const Checklist: React.FC = () => {
                         label={bird.status}
                         size="small" 
                         sx={{
-                          backgroundColor: 
-                            bird.status === '🌍 visitante ocasional' ? undefined :
-                            bird.status === '❄️ visitante invernal' ? '#255F85' :
-                            bird.status === '🌞 visitante estival' ? '#FFD700' :
-                            bird.status === '🏠 residente' ? '#BB6653' : undefined,
-                          color: 
-                            bird.status === '🌍 visitante ocasional' ? undefined :
-                            bird.status === '❄️ visitante invernal' ? 'white' :
-                            bird.status === '🌞 visitante estival' ? 'black' :
-                            bird.status === '🏠 residente' ? 'white' : undefined
+                          backgroundColor: getStatusChipColors(bird.status).backgroundColor,
+                          color: getStatusChipColors(bird.status).color
                         }}
-                        color={bird.status === '🌍 visitante ocasional' ? 'info' : undefined}
+                        color={getStatusChipColors(bird.status).chipColor}
                         variant="filled"
                       />
                        {/* Show origin/pelagic chip for all birds */}
                        <Chip 
-                         label={bird.habitat && bird.habitat.some((hab: string) => hab.includes('mar 🌊')) ? '🌊 pelágica' : bird.origin}
+                         label={getPelagicChipProps(bird).label}
                          size="small" 
-                         color={bird.habitat && bird.habitat.some((hab: string) => hab.includes('mar 🌊')) ? 'info' : (bird.origin === 'autóctona' ? 'success' : 'error')}
+                         color={getPelagicChipProps(bird).color}
                          variant="filled"
-                         icon={bird.habitat && bird.habitat.some((hab: string) => hab.includes('mar 🌊')) ? undefined : (bird.origin === 'autóctona' ? <NatureIcon /> : <ImportContactsIcon />)}
+                         icon={getPelagicChipProps(bird).icon === 'NatureIcon' ? <NatureIcon /> : getPelagicChipProps(bird).icon === 'ImportContactsIcon' ? <ImportContactsIcon /> : undefined}
                        />
                       {bird.conservationStatus && (
                         <Chip 
                           label={bird.conservationStatus}
                           size="small" 
-                          color={
-                            bird.conservationStatus === 'Preocupación menor' ? 'success' :
-                            bird.conservationStatus === 'Casi amenazada' ? 'warning' :
-                            bird.conservationStatus === 'Vulnerable' ? 'error' :
-                            bird.conservationStatus === 'En peligro' ? 'error' :
-                            bird.conservationStatus === 'Peligro crítico' ? 'error' : 'default'
-                          }
+                          color={getConservationStatusColor(bird.conservationStatus)}
                           variant="filled"
                         />
                       )}
