@@ -1,5 +1,7 @@
 import { Bird } from '../types';
 
+const ORDER_NAME = 'Phoenicopteriformes (Flamencos)';
+
 export const phoenicopteriformes: Bird[] = [
   {
     id: 'flamenco-austral',
@@ -8,7 +10,7 @@ export const phoenicopteriformes: Bird[] = [
     scientificName: 'Phoenicopterus chilensis',
     size: '75 cm',
     family: 'Phoenicopteridae',
-    order: 'Phoenicopteriformes (Flamencos)',
+    order: ORDER_NAME,
     habitat: ['bañado 💧'],
     status: '🏠 residente',
     origin: 'autóctona',
@@ -27,7 +29,7 @@ export const phoenicopteriformes: Bird[] = [
     scientificName: 'Phoenicopterus andinus',
     size: '75 cm',
     family: 'Phoenicopteridae',
-    order: 'Phoenicopteriformes (Flamencos)',
+    order: ORDER_NAME,
     habitat: ['bañado 💧'],
     status: '🌍 visitante ocasional',
     origin: 'autóctona',

@@ -1,5 +1,7 @@
 import { Bird } from '../types';
 
+const ORDER_NAME = 'Accipitriformes (Águilas y Gavilanes)';
+
 export const accipitriformes: Bird[] = [
   {
     id: 'gavilan-comun',
@@ -8,7 +10,7 @@ export const accipitriformes: Bird[] = [
     scientificName: 'Rupornis magnirostris',
     size: '38 cm',
     family: 'Accipitridae',
-    order: 'Accipitriformes (Águilas y Gavilanes)',
+    order: ORDER_NAME,
     characteristics: ['rapaz', 'marrón'],
     habitat: ['ciudad 🌆', 'sierra 🏔️', 'monte 🌲'],
     status: '🏠 residente',

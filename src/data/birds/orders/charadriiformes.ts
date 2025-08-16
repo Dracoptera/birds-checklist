@@ -1,5 +1,7 @@
 import { Bird } from '../types';
 
+const ORDER_NAME = 'Charadriiformes (Playeras)';
+
 export const charadriiformes: Bird[] = [
   {
     id: 'tero',
@@ -8,7 +10,7 @@ export const charadriiformes: Bird[] = [
     scientificName: 'Vanellus chilensis',
     size: '32 cm',
     family: 'Charadriidae',
-    order: 'Charadriiformes (Playeras)',
+    order: ORDER_NAME,
     habitat: ['pradera 🌿', 'sierra 🏔️', 'ciudad 🌆'],
     status: '🏠 residente',
     origin: 'autóctona',

@@ -1,5 +1,7 @@
 import { Bird } from '../types';
 
+const ORDER_NAME = 'Rheiformes (Ñandúes)';
+
 export const rheiformes: Bird[] = [
   {
     id: 'ñandu',
@@ -8,7 +10,7 @@ export const rheiformes: Bird[] = [
     scientificName: 'Rhea americana',
     size: '150 cm ♂️ | 130 cm ♀️',
     family: 'Rheidae',
-    order: 'Rheiformes (Ñandúes)',
+    order: ORDER_NAME,
     habitat: ['sierra 🏔️', 'monte 🌲', 'pradera 🌿'],
     status: '🏠 residente',
     origin: 'autóctona',

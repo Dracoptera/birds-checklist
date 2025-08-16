@@ -1,5 +1,7 @@
 import { Bird } from '../types';
 
+const ORDER_NAME = 'Pelecaniformes (Garzas, Cuervillos y Espátulas)';
+
 export const pelecaniformes: Bird[] = [
   {
     id: 'garza-mora',
@@ -8,7 +10,7 @@ export const pelecaniformes: Bird[] = [
     scientificName: 'Ardea cocoi',
     size: '75 cm',
     family: 'Ardeidae',
-    order: 'Pelecaniformes (Garzas, Cuervillos y Espátulas)',
+    order: ORDER_NAME,
     habitat: ['bañado 💧', 'costa 🌊'],
     status: '🏠 residente',
     origin: 'autóctona',

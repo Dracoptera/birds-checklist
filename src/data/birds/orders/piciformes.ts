@@ -1,5 +1,7 @@
 import { Bird } from '../types';
 
+const ORDER_NAME = 'Piciformes (Carpinteros)';
+
 export const piciformes: Bird[] = [
   {
     id: 'carpintero-de-campo',
@@ -8,7 +10,7 @@ export const piciformes: Bird[] = [
     scientificName: 'Colaptes campestris',
     size: '27 cm',
     family: 'Picidae',
-    order: 'Piciformes (Carpinteros)',
+    order: ORDER_NAME,
     habitat: ['pradera 🌿', 'sierra 🏔️'],
     status: '🏠 residente',
     origin: 'autóctona',

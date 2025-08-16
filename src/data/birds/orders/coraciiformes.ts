@@ -1,5 +1,7 @@
 import { Bird } from '../types';
 
+const ORDER_NAME = 'Coraciiformes (Martín pescador)';
+
 export const coraciiformes: Bird[] = [
   {
     id: 'martin-pescador-grande',
@@ -8,7 +10,7 @@ export const coraciiformes: Bird[] = [
     scientificName: 'Megaceryle torquata',
     size: '36 cm',
     family: 'Alcedinidae',
-    order: 'Coraciiformes (Martín pescador)',
+    order: ORDER_NAME,
     habitat: ['bañado 💧', 'costa 🌊'],
     status: '🏠 residente',
     origin: 'autóctona',

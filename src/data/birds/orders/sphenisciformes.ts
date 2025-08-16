@@ -1,5 +1,7 @@
 import { Bird } from '../types';
 
+const ORDER_NAME = 'Sphenisciformes (Pingüinos)';
+
 export const sphenisciformes: Bird[] = [
   {
     id: 'pinguino-rey',
@@ -8,7 +10,7 @@ export const sphenisciformes: Bird[] = [
     scientificName: 'Aptenodytes patagonicus',
     size: '75 cm',
     family: 'Spheniscidae',
-    order: 'Sphenisciformes (Pingüinos)',
+    order: ORDER_NAME,
     habitat: ['costa 🌊'],
     status: '🌍 visitante ocasional',
     origin: 'autóctona',
@@ -26,7 +28,7 @@ export const sphenisciformes: Bird[] = [
     scientificName: 'Spheniscus magellanicus',
     size: '47 cm',
     family: 'Spheniscidae',
-    order: 'Sphenisciformes (Pingüinos)',
+    order: ORDER_NAME,
     habitat: ['costa 🌊'],
     status: '❄️ visitante invernal',
     origin: 'autóctona',
@@ -62,7 +64,7 @@ export const sphenisciformes: Bird[] = [
     scientificName: 'Eudyptes chrysocome',
     size: '42 cm',
     family: 'Spheniscidae',
-    order: 'Sphenisciformes (Pingüinos)',
+    order: ORDER_NAME,
     habitat: ['costa 🌊'],
     status: '🌍 visitante ocasional',
     origin: 'autóctona',

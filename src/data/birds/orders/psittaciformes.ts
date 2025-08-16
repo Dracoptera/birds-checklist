@@ -1,5 +1,7 @@
 import { Bird } from '../types';
 
+const ORDER_NAME = 'Psittaciformes (Loros)';
+
 export const psittaciformes: Bird[] = [
   {
     id: 'cotorra',
@@ -8,7 +10,7 @@ export const psittaciformes: Bird[] = [
     scientificName: 'Myiopsitta monachus',
     size: '27 cm',
     family: 'Psittacidae',
-    order: 'Psittaciformes (Loros)',
+    order: ORDER_NAME,
     habitat: ['ciudad 🌆', 'sierra 🏔️', 'monte 🌲'],
     status: '🏠 residente',
     origin: 'autóctona',

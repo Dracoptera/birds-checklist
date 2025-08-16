@@ -1,5 +1,7 @@
 import { Bird } from '../types';
 
+const ORDER_NAME = 'Columbiformes (Palomas)';
+
 export const columbiformes: Bird[] = [
   {
     id: 'paloma-ala-manchada',
@@ -8,7 +10,7 @@ export const columbiformes: Bird[] = [
     size: '33 cm',
     scientificName: 'Patagioenas maculosa',
     family: 'Columbidae',
-    order: 'Columbiformes (Palomas)',
+    order: ORDER_NAME,
     habitat: ['monte 🌲', 'sierra 🏔️'],
     status: '🏠 residente',
     origin: 'autóctona',
@@ -29,7 +31,7 @@ export const columbiformes: Bird[] = [
     size: '22-28 cm',
     scientificName: 'Zenaida auriculata',
     family: 'Columbidae',
-    order: 'Columbiformes (Palomas)',
+    order: ORDER_NAME,
     habitat: ['ciudad 🌆', 'sierra 🏔️', 'pradera 🌿'],
     status: '🏠 residente',
     origin: 'autóctona',

@@ -1,5 +1,7 @@
 import { Bird } from '../types';
 
+const ORDER_NAME = 'Podicipediformes (Macáes)';
+
 export const podicipediformes: Bird[] = [
   {
     id: 'maca-comun',
@@ -8,7 +10,7 @@ export const podicipediformes: Bird[] = [
     scientificName: 'Rollandia rolland',
     size: '25 cm',
     family: 'Podicipedidae',
-    order: 'Podicipediformes (Macáes)',
+    order: ORDER_NAME,
     habitat: ['bañado 💧'],
     status: '🏠 residente',
     origin: 'autóctona',
@@ -27,7 +29,7 @@ export const podicipediformes: Bird[] = [
     scientificName: 'Tachybaptus dominicus',
     size: '21 cm',
     family: 'Podicipedidae',
-    order: 'Podicipediformes (Macáes)',
+    order: ORDER_NAME,
     habitat: ['bañado 💧'],
     status: '🏠 residente',
     origin: 'autóctona',
@@ -68,7 +70,7 @@ export const podicipediformes: Bird[] = [
     scientificName: 'Podiceps major',
     size: '56 cm ♂️ | 45 cm ♀️',
     family: 'Podicipedidae',
-    order: 'Podicipediformes (Macáes)',
+    order: ORDER_NAME,
     habitat: ['bañado 💧'],
     status: '🏠 residente',
     origin: 'autóctona',
@@ -87,7 +89,7 @@ export const podicipediformes: Bird[] = [
     scientificName: 'Podiceps occipitalis',
     size: '26 cm',
     family: 'Podicipedidae',
-    order: 'Podicipediformes (Macáes)',
+    order: ORDER_NAME,
     habitat: ['bañado 💧'],
     status: '🌍 visitante ocasional',
     origin: 'autóctona',

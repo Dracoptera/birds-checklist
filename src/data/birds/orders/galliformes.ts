@@ -1,5 +1,7 @@
 import { Bird } from '../types';
 
+const ORDER_NAME = 'Galliformes (Gallináceas)';
+
 export const galliformes: Bird[] = [
   {
     id: 'charata',
@@ -8,7 +10,7 @@ export const galliformes: Bird[] = [
     scientificName: 'Ortalis canicollis',
     size: '55 cm',
     family: 'Cracidae',
-    order: 'Galliformes (Gallináceas)',
+    order: ORDER_NAME,
     habitat: ['monte 🌲'],
     status: '🏠 residente',
     origin: 'introducida',
@@ -31,7 +33,7 @@ export const galliformes: Bird[] = [
     scientificName: 'Penelope obscura',
     size: '69 cm',
     family: 'Cracidae',
-    order: 'Galliformes (Gallináceas)',
+    order: ORDER_NAME,
     habitat: ['monte 🌲'],
     status: '🏠 residente',
     origin: 'autóctona',

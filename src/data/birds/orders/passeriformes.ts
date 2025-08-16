@@ -1,5 +1,7 @@
 import { Bird } from '../types';
 
+const ORDER_NAME = 'Passeriformes (Pájaros)';
+
 export const passeriformes: Bird[] = [
   {
     id: 'hornero',
@@ -7,7 +9,7 @@ export const passeriformes: Bird[] = [
     englishName: 'Rufous Hornero',
     scientificName: 'Furnarius rufus',
     family: 'Furnariidae',
-    order: 'Passeriformes (Pájaros)',
+    order: ORDER_NAME,
     habitat: ['ciudad 🌆', 'monte 🌲', 'pradera 🌿'],
     status: '🏠 residente',
     origin: 'autóctona',
@@ -39,7 +41,7 @@ export const passeriformes: Bird[] = [
     englishName: 'Southern House Wren',
     scientificName: 'Troglodytes musculus',
     family: 'Troglodytidae',
-    order: 'Passeriformes (Pájaros)',
+    order: ORDER_NAME,
     conservationStatus: 'Preocupación menor',
     size: '11-13 cm',
     habitat: ['ciudad 🌆', 'pradera 🌿', 'monte 🌲'],
@@ -55,7 +57,7 @@ export const passeriformes: Bird[] = [
     englishName: 'Chalk-Browed Mockingbird',
     scientificName: 'Mimus saturninus',
     family: 'Mimidae',
-    order: 'Passeriformes (Pájaros)',
+    order: ORDER_NAME,
     conservationStatus: 'Preocupación menor',
     size: '23-26 cm',
     habitat: ['ciudad 🌆', 'sierra 🏔️', 'pradera 🌿'],
@@ -77,7 +79,7 @@ export const passeriformes: Bird[] = [
     englishName: 'Great Kiskadee',
     scientificName: 'Pitangus sulphuratus',
     family: 'Tyrannidae',
-    order: 'Passeriformes (Pájaros)',
+    order: ORDER_NAME,
     conservationStatus: 'Preocupación menor',
     size: '24 cm',
     habitat: ['ciudad 🌆', 'sierra 🏔️', 'monte 🌲', 'bañado 💧'],
@@ -113,7 +115,7 @@ export const passeriformes: Bird[] = [
     englishName: 'House Sparrow',
     scientificName: 'Passer domesticus',
     family: 'Passeridae',
-    order: 'Passeriformes (Pájaros)',
+    order: ORDER_NAME,
     conservationStatus: 'Preocupación menor',
     size: '15-17 cm',
     habitat: ['ciudad 🌆', 'sierra 🏔️'],
@@ -143,7 +145,7 @@ export const passeriformes: Bird[] = [
     englishName: 'European Starling',
     scientificName: 'Sturnus vulgaris',
     family: 'Sturnidae',
-    order: 'Passeriformes (Pájaros)',
+    order: ORDER_NAME,
     conservationStatus: 'Preocupación menor',
     size: '20-31 cm',
     habitat: ['ciudad 🌆', 'sierra 🏔️'],

@@ -1,5 +1,7 @@
 import { Bird } from '../types';
 
+const ORDER_NAME = 'Tinamiformes (Perdices)';
+
 export const tinamiformes: Bird[] = [
   {
     id: 'perdiz-de-monte',
@@ -8,7 +10,7 @@ export const tinamiformes: Bird[] = [
     scientificName: 'Crypturellus obsoletus',
     size: '30 cm',
     family: 'Tinamidae',
-    order: 'Tinamiformes (Perdices)',
+    order: ORDER_NAME,
     habitat: ['monte 🌲'],
     status: '🏠 residente',
     origin: 'autóctona',
@@ -26,7 +28,7 @@ export const tinamiformes: Bird[] = [
     scientificName: 'Rhynchotus rufescens',
     size: '41 cm',
     family: 'Tinamidae',
-    order: 'Tinamiformes (Perdices)',
+    order: ORDER_NAME,
     habitat: ['monte 🌲'],
     status: '🏠 residente',
     origin: 'autóctona',
@@ -44,7 +46,7 @@ export const tinamiformes: Bird[] = [
     scientificName: 'Nothura maculosa',
     size: '25 cm',
     family: 'Tinamidae',
-    order: 'Tinamiformes (Perdices)',
+    order: ORDER_NAME,
     habitat: ['monte 🌲'],
     status: '🏠 residente',
     origin: 'autóctona',
