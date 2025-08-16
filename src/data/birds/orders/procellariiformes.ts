@@ -16,7 +16,7 @@ export const procellariiformes: Bird[] = [
     departamentos: ['Rocha', 'Maldonado'],  
     conservationStatus: 'En peligro',
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/248284451/embed',
-    cardHeight: { xs: 600, lg: 770, xl: 770 },
+    cardHeight: { xs: 680, lg: 770, xl: 770 },
   },
 
   {
@@ -34,7 +34,7 @@ export const procellariiformes: Bird[] = [
     departamentos: ['Montevideo', 'Rocha', 'Maldonado'],  
     conservationStatus: 'En peligro',
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/35210441/embed',
-    cardHeight: { xs: 730, lg: 770, xl: 770 },
+    cardHeight: { xs: 770, lg: 770, xl: 770 },
   },
 
   {
@@ -52,7 +52,7 @@ export const procellariiformes: Bird[] = [
     departamentos: ['Montevideo', 'Rocha', 'Maldonado'],  
     conservationStatus: 'Preocupación menor',
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/385481071/embed',
-    cardHeight: { xs: 710, lg: 770, xl: 770 },
+    cardHeight: { xs: 740, lg: 770, xl: 770 },
   },
 
   {
@@ -70,7 +70,7 @@ export const procellariiformes: Bird[] = [
     departamentos: ['Rocha', 'Maldonado'],  
     conservationStatus: 'En peligro',
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/192361601/embed',
-    cardHeight: { xs: 660, lg: 770, xl: 770 },
+    cardHeight: { xs: 730, lg: 770, xl: 770 },
   },
 
   {
@@ -88,7 +88,7 @@ export const procellariiformes: Bird[] = [
     departamentos: ['Rocha', 'Maldonado'],  
     conservationStatus: 'Vulnerable',
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/192901021/embed',
-    cardHeight: { xs: 680, lg: 770, xl: 770 },
+    cardHeight: { xs: 740, lg: 770, xl: 770 },
   },
 
   {
@@ -106,7 +106,7 @@ export const procellariiformes: Bird[] = [
     departamentos: ['Rocha', 'Maldonado'],  
     conservationStatus: 'Casi amenazada',
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/472162241/embed',
-    cardHeight: { xs: 745, lg: 770, xl: 770 },
+    cardHeight: { xs: 780, lg: 770, xl: 770 },
   },
 
   {
@@ -124,7 +124,7 @@ export const procellariiformes: Bird[] = [
     departamentos: ['Rocha', 'Maldonado'],  
     conservationStatus: 'Vulnerable',
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/283394091/embed',
-    cardHeight: { xs: 700, lg: 770, xl: 770 },
+    cardHeight: { xs: 740, lg: 770, xl: 770 },
   },
 
   {
@@ -142,7 +142,7 @@ export const procellariiformes: Bird[] = [
     departamentos: ['Rocha', 'Maldonado'],  
     conservationStatus: 'En peligro',
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/61072671/embed',
-    cardHeight: { xs: 700, lg: 740, xl: 740 },
+    cardHeight: { xs: 740, lg: 740, xl: 740 },
   },
 
   {
@@ -160,7 +160,7 @@ export const procellariiformes: Bird[] = [
     departamentos: ['Rocha', 'Maldonado'],  
     conservationStatus: 'Vulnerable',
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/397795171/embed',
-    cardHeight: { xs: 680, lg: 760, xl: 760 },
+    cardHeight: { xs: 710, lg: 760, xl: 760 },
   },
 
   {
@@ -178,7 +178,7 @@ export const procellariiformes: Bird[] = [
     departamentos: ['Rocha', 'Maldonado'],  
     conservationStatus: 'Peligro crítico',
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/246063231/embed',
-    cardHeight: { xs: 610, lg: 760, xl: 760 },
+    cardHeight: { xs: 680, lg: 760, xl: 760 },
   },
 
   {
@@ -196,6 +196,42 @@ export const procellariiformes: Bird[] = [
     departamentos: ['Montevideo', 'Canelones', 'Rocha', 'Maldonado'],  
     conservationStatus: 'Preocupación menor',
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/454677231/embed',
-    cardHeight: { xs: 610, lg: 760, xl: 760 },
+    cardHeight: { xs: 720, lg: 760, xl: 760 },
+  },
+
+  {
+    id: 'petrel-gigante-oscuro',
+    commonName: 'Petrel Gigante Oscuro',
+    englishName: 'Northern Giant-Petrel',
+    scientificName: 'Macronectes halli',
+    size: '90 cm | 🪽 180-200 cm',
+    family: 'Procellariidae',
+    order: 'Procellariiformes (Albatroses y Petreles)',
+    habitat: ['mar 🌊'],
+    status: '❄️ visitante invernal',
+    origin: 'autóctona',
+    commonness: 'común',
+    departamentos: ['Montevideo', 'Canelones', 'Rocha', 'Maldonado'],  
+    conservationStatus: 'Preocupación menor',
+    ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/109830361/embed',
+    cardHeight: { xs: 760, lg: 760, xl: 760 },
+  },
+
+  {
+    id: 'petrel-plateado',
+    commonName: 'Petrel Plateado',
+    englishName: 'Southern Fulmar',
+    scientificName: 'Fulmarus glacialoides',
+    size: '40-50 cm | 🪽 114-120 cm',
+    family: 'Procellariidae',
+    order: 'Procellariiformes (Albatroses y Petreles)',
+    habitat: ['mar 🌊'],
+    status: '❄️ visitante invernal',
+    origin: 'autóctona',
+    commonness: 'común',
+    departamentos: ['Montevideo', 'Canelones', 'Rocha', 'Maldonado'],  
+    conservationStatus: 'Preocupación menor',
+    ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/472163351/embed',
+    cardHeight: { xs: 740, lg: 760, xl: 760 },
   },
 ];
