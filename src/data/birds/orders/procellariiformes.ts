@@ -308,4 +308,22 @@ export const procellariiformes: Bird[] = [
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/397796531/embed',
     cardHeight: { xs: 660, lg: 760, xl: 760 },
   },
+
+  {
+    id: 'petrel-de-trindade',
+    commonName: 'Petrel de Trindade',
+    englishName: 'Trindade Petrel',
+    scientificName: 'Petrel de Trindade',
+    size: '35 cm | 🪽 88-102 cm',
+    family: 'Procellariidae',
+    order: ORDER_NAME,
+    habitat: ['mar 🌊'],
+    status: '🌍 visitante ocasional',
+    origin: 'autóctona',
+    commonness: 'muy rara',
+    departamentos: ['Rocha'],  
+    conservationStatus: 'Vulnerable',
+    ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/111706541/embed',
+    cardHeight: { xs: 680, lg: 760, xl: 760 },
+  },
   ];
