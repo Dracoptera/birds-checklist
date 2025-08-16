@@ -1,6 +1,6 @@
 import { Bird } from '../types';
 
-const ORDER_NAME = 'Procellariiformes (Pelágicas)';
+export const ORDER_NAME = 'Procellariiformes (Pelágicas)';
 
 export const procellariiformes: Bird[] = [
   {

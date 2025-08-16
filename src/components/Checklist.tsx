@@ -45,6 +45,7 @@ import BirdImage from './BirdImage';
 import BirdListPDF from './BirdListPDF';
 import { pdf } from '@react-pdf/renderer';
 import { getStatusChipColors, getPelagicChipProps, getConservationStatusColor } from '../utils/statusChipColors';
+import { procellariiformes, ORDER_NAME } from '../data/birds/orders/procellariiformes';
 
 const Checklist: React.FC = () => {
   const navigate = useNavigate();
@@ -593,7 +594,7 @@ const Checklist: React.FC = () => {
       </Paper>
 
       {/* Pelagic Seabird Information */}
-      {filters.order === 'Procellariiformes (Pelágicas)' && (
+      {filters.order === ORDER_NAME && (
         <Paper 
           sx={{ 
             mb: 3, 
