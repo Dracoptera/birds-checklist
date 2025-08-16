@@ -612,7 +612,7 @@ const Checklist: React.FC = () => {
           <Typography variant="body2" color="text.secondary">
             Las aves pelágicas son especies marinas que viven en mar abierto y raramente se observan desde la costa, salvo algunas especies. 
             Su presencia en Uruguay se registra principalmente en aguas territoriales durante expediciones marítimas o desde embarcaciones. 
-            Para observarlas, se recomienda realizar salidas en barco o participar en tours de observación de aves marinas.
+            Aquellas que están marcadas como "residente" son aves que se encuentran durante todo el año en territorio marítimo.
           </Typography>
         </Paper>
       )}
