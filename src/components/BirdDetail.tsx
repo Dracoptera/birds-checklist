@@ -480,10 +480,22 @@ const BirdDetail: React.FC = () => {
               <Chip 
                 label={bird.status}
                 size="small" 
-                color="info" 
+                sx={{
+                  ...clickableChipStyle,
+                  backgroundColor: 
+                    bird.status === '🌍 visitante ocasional' ? undefined :
+                    bird.status === '❄️ visitante invernal' ? '#255F85' :
+                    bird.status === '🌞 visitante estival' ? '#FFDF00' :
+                    bird.status === '🏠 residente' ? '#BB6653' : undefined,
+                  color: 
+                    bird.status === '🌍 visitante ocasional' ? undefined :
+                    bird.status === '❄️ visitante invernal' ? 'white' :
+                    bird.status === '🌞 visitante estival' ? 'black' :
+                    bird.status === '🏠 residente' ? 'white' : undefined
+                }}
+                color={bird.status === '🌍 visitante ocasional' ? 'info' : undefined}
                 variant="filled"
                 onClick={() => handleChipClick('status', bird.status)}
-                sx={clickableChipStyle}
               />
             </Box>
             <Chip 
