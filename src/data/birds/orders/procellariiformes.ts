@@ -195,7 +195,7 @@ export const procellariiformes: Bird[] = [
     commonness: 'común',
     departamentos: ['Montevideo', 'Canelones', 'Rocha', 'Maldonado'],  
     conservationStatus: 'Preocupación menor',
-    ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/246063231/embed',
+    ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/454677231/embed',
     cardHeight: { xs: 610, lg: 760, xl: 760 },
   },
 ];

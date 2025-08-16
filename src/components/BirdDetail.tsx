@@ -486,15 +486,13 @@ const BirdDetail: React.FC = () => {
                 sx={clickableChipStyle}
               />
             </Box>
-            {bird.status !== '🌍 visitante ocasional' && (
-              <Chip 
-                label={bird.origin}
-                size="small" 
-                color={bird.origin === 'autóctona' ? 'success' : 'error'}
-                variant="filled"
-                icon={bird.origin === 'autóctona' ? <NatureIcon /> : <ImportContactsIcon />}
-              />
-            )}
+            <Chip 
+              label={bird.habitat && bird.habitat.some((hab: string) => hab.includes('mar 🌊')) ? '🌊 pelágica' : bird.origin}
+              size="small" 
+              color={bird.habitat && bird.habitat.some((hab: string) => hab.includes('mar 🌊')) ? 'info' : (bird.origin === 'autóctona' ? 'success' : 'error')}
+              variant="filled"
+              icon={bird.habitat && bird.habitat.some((hab: string) => hab.includes('mar 🌊')) ? undefined : (bird.origin === 'autóctona' ? <NatureIcon /> : <ImportContactsIcon />)}
+            />
             {bird.conservationStatus && (
               <Chip 
                 label={bird.conservationStatus}
