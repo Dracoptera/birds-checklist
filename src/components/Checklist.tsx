@@ -593,7 +593,7 @@ const Checklist: React.FC = () => {
       </Paper>
 
       {/* Pelagic Seabird Information */}
-      {filters.order === 'Procellariiformes (Albatroses y Petreles)' && (
+      {filters.order === 'Procellariiformes (Pelágicas)' && (
         <Paper 
           sx={{ 
             mb: 3, 
