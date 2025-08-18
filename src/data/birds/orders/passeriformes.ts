@@ -18,7 +18,7 @@ export const passeriformes: Bird[] = [
     size: '15-17 cm',
     characteristics: ['nido de barro', 'vocal'],
     departamentos: ['Montevideo', 'Canelones', 'San José', 'Colonia', 'Soriano', 'Río Negro', 'Paysandú', 'Salto', 'Artigas', 'Rivera', 'Tacuarembó', 'Durazno', 'Flores', 'Florida', 'Lavalleja', 'Maldonado', 'Rocha', 'Treinta y Tres', 'Cerro Largo'],
-    ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/627304644/embed',
+    ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/640065072/embed',
     soundUrl: 'https://macaulaylibrary.org/asset/203695301/embed',
     cardHeight: { xs: 710, lg: 780, xl: 780 },
     description: {
@@ -123,7 +123,7 @@ export const passeriformes: Bird[] = [
     origin: 'introducida',
     commonness: 'abundante',
     departamentos: ['Montevideo', 'Canelones', 'San José', 'Colonia', 'Soriano', 'Río Negro', 'Paysandú', 'Salto', 'Artigas', 'Rivera', 'Tacuarembó', 'Durazno', 'Flores', 'Florida', 'Lavalleja', 'Maldonado', 'Rocha', 'Treinta y Tres', 'Cerro Largo'],
-    ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/191279631/embed',
+    ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/640064928/embed',
     variations: [
       {
         id: 'male',

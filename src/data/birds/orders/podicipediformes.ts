@@ -77,7 +77,7 @@ export const podicipediformes: Bird[] = [
     commonness: 'común',
     departamentos: ['Montevideo', 'Canelones', 'San José', 'Colonia', 'Soriano', 'Río Negro', 'Paysandú', 'Salto', 'Artigas', 'Rivera', 'Tacuarembó', 'Durazno', 'Flores', 'Florida', 'Lavalleja', 'Maldonado', 'Rocha', 'Treinta y Tres', 'Cerro Largo'],  
     conservationStatus: 'Preocupación menor',
-    ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/75146471/embed',
+    ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/640244674/embed',
     cardHeight: { xs: 710, lg: 770, xl: 770 },
     soundUrl: 'https://macaulaylibrary.org/asset/88866851/embed',
   },
