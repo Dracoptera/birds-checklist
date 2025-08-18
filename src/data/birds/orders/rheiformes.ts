@@ -1,4 +1,5 @@
 import { Bird } from '../types';
+import { BIRD_STATUS, COMMONNESS, CONSERVATION_STATUS, ORIGIN } from '../../constants';
 
 const ORDER_NAME = 'Rheiformes (Ñandúes)';
 
@@ -12,10 +13,10 @@ export const rheiformes: Bird[] = [
     family: 'Rheidae',
     order: ORDER_NAME,
     habitat: ['sierra 🏔️', 'monte 🌲', 'pradera 🌿'],
-    status: '🏠 residente',
-    origin: 'autóctona',
-    commonness: 'común',
-    conservationStatus: 'Casi amenazada',
+    status: BIRD_STATUS.RESIDENTE,
+    origin: ORIGIN.AUTOCTONA,
+    commonness: COMMONNESS.COMUN,
+    conservationStatus: CONSERVATION_STATUS.CASI_AMENAZADA,
     departamentos: ['Canelones', 'San José', 'Colonia', 'Soriano', 'Río Negro', 'Paysandú', 'Salto', 'Artigas', 'Rivera', 'Tacuarembó', 'Durazno', 'Flores', 'Florida', 'Lavalleja', 'Maldonado', 'Rocha', 'Treinta y Tres', 'Cerro Largo'],
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/627311300/embed',
     cardHeight: { xs: 690, lg: 780, xl: 780 },

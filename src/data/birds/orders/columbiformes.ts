@@ -1,3 +1,4 @@
+import { BIRD_STATUS, COMMONNESS, CONSERVATION_STATUS, ORIGIN } from '../../constants';
 import { Bird } from '../types';
 
 const ORDER_NAME = 'Columbiformes (Palomas)';
@@ -12,10 +13,10 @@ export const columbiformes: Bird[] = [
     family: 'Columbidae',
     order: ORDER_NAME,
     habitat: ['monte 🌲', 'sierra 🏔️'],
-    status: '🏠 residente',
-    origin: 'autóctona',
-    commonness: 'común',
-    conservationStatus: 'Preocupación menor',
+    status: BIRD_STATUS.RESIDENTE,
+    origin: ORIGIN.AUTOCTONA,
+    commonness: COMMONNESS.COMUN,
+    conservationStatus: CONSERVATION_STATUS.PREOCUPACION_MENOR,
     departamentos: ['Montevideo', 'Canelones', 'San José', 'Colonia', 'Soriano', 'Río Negro', 'Paysandú', 'Salto', 'Artigas', 'Rivera', 'Tacuarembó', 'Durazno', 'Flores', 'Florida', 'Lavalleja', 'Maldonado', 'Rocha', 'Treinta y Tres', 'Cerro Largo'],
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/617404122/embed',
     soundUrl: 'https://macaulaylibrary.org/asset/212950/embed',
@@ -33,10 +34,10 @@ export const columbiformes: Bird[] = [
     family: 'Columbidae',
     order: ORDER_NAME,
     habitat: ['ciudad 🌆', 'sierra 🏔️', 'pradera 🌿'],
-    status: '🏠 residente',
-    origin: 'autóctona',
-    commonness: 'abundante',
-    conservationStatus: 'Preocupación menor',
+    status: BIRD_STATUS.RESIDENTE,
+    origin: ORIGIN.AUTOCTONA,
+    commonness: COMMONNESS.ABUNDANTE,
+    conservationStatus: CONSERVATION_STATUS.PREOCUPACION_MENOR,
     departamentos: ['Montevideo', 'Canelones', 'San José', 'Colonia', 'Soriano', 'Río Negro', 'Paysandú', 'Salto', 'Artigas', 'Rivera', 'Tacuarembó', 'Durazno', 'Flores', 'Florida', 'Lavalleja', 'Maldonado', 'Rocha', 'Treinta y Tres', 'Cerro Largo'],
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/617987187/embed',
     soundUrl: 'https://macaulaylibrary.org/asset/212919/embed',

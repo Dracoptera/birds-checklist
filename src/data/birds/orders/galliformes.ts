@@ -1,4 +1,6 @@
 import { Bird } from '../types';
+import { BIRD_STATUS, COMMONNESS, CONSERVATION_STATUS, ORIGIN } from '../../constants';
+
 
 const ORDER_NAME = 'Galliformes (Gallináceas)';
 
@@ -12,11 +14,11 @@ export const galliformes: Bird[] = [
     family: 'Cracidae',
     order: ORDER_NAME,
     habitat: ['monte 🌲'],
-    status: '🏠 residente',
-    origin: 'introducida',
-    commonness: 'común',
+    status: BIRD_STATUS.RESIDENTE,
+    origin: ORIGIN.INTRODUCIDA,
+    commonness: COMMONNESS.COMUN,
     departamentos: ['Colonia'],  
-    conservationStatus: 'Preocupación menor',
+    conservationStatus: CONSERVATION_STATUS.PREOCUPACION_MENOR,
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/630282346/embed',
     cardHeight: { xs: 690, lg: 770, xl: 770 },
     description: {
@@ -35,11 +37,11 @@ export const galliformes: Bird[] = [
     family: 'Cracidae',
     order: ORDER_NAME,
     habitat: ['monte 🌲'],
-    status: '🏠 residente',
-    origin: 'autóctona',
-    commonness: 'común',
+    status: BIRD_STATUS.RESIDENTE,
+    origin: ORIGIN.AUTOCTONA,
+    commonness: COMMONNESS.COMUN,
     departamentos: ['Montevideo', 'Canelones', 'San José', 'Río Negro', 'Paysandú', 'Salto', 'Artigas', 'Rivera', 'Tacuarembó', 'Durazno', 'Flores', 'Florida', 'Lavalleja', 'Maldonado', 'Rocha', 'Treinta y Tres', 'Cerro Largo'],  
-    conservationStatus: 'Preocupación menor',
+    conservationStatus: CONSERVATION_STATUS.PREOCUPACION_MENOR,
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/608986444/embed',
     cardHeight: { xs: 690, lg: 770, xl: 770 },
     description: {

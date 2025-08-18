@@ -1,3 +1,4 @@
+import { BIRD_STATUS, COMMONNESS, CONSERVATION_STATUS, ORIGIN } from '../../constants';
 import { Bird } from '../types';
 
 const ORDER_NAME = 'Charadriiformes (Playeras)';
@@ -12,10 +13,10 @@ export const charadriiformes: Bird[] = [
     family: 'Charadriidae',
     order: ORDER_NAME,
     habitat: ['pradera 🌿', 'sierra 🏔️', 'ciudad 🌆'],
-    status: '🏠 residente',
-    origin: 'autóctona',
-    commonness: 'abundante',
-    conservationStatus: 'Preocupación menor',
+    status: BIRD_STATUS.RESIDENTE,
+    origin: ORIGIN.AUTOCTONA,
+    commonness: COMMONNESS.ABUNDANTE,
+    conservationStatus: CONSERVATION_STATUS.PREOCUPACION_MENOR,
     departamentos: ['Montevideo', 'Canelones', 'San José', 'Colonia', 'Soriano', 'Río Negro', 'Paysandú', 'Salto', 'Artigas', 'Rivera', 'Tacuarembó', 'Durazno', 'Flores', 'Florida', 'Lavalleja', 'Maldonado', 'Rocha', 'Treinta y Tres', 'Cerro Largo'],
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/442325471/embed',
     cardHeight: { xs: 680, lg: 780, xl: 780 },
