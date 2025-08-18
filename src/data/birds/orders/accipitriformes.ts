@@ -1,3 +1,4 @@
+import { BIRD_STATUS, COMMONNESS, CONSERVATION_STATUS, ORIGIN } from '../../constants';
 import { Bird } from '../types';
 
 const ORDER_NAME = 'Accipitriformes (Águilas y Gavilanes)';
@@ -13,11 +14,11 @@ export const accipitriformes: Bird[] = [
     order: ORDER_NAME,
     characteristics: ['rapaz', 'marrón'],
     habitat: ['ciudad 🌆', 'sierra 🏔️', 'monte 🌲'],
-    status: '🏠 residente',
-    origin: 'autóctona',
-    commonness: 'común',
+    status: BIRD_STATUS.RESIDENTE,
+    origin: ORIGIN.AUTOCTONA,
+    commonness: COMMONNESS.COMUN,
     departamentos: ['Montevideo', 'Canelones', 'San José', 'Colonia', 'Soriano', 'Río Negro', 'Paysandú', 'Salto', 'Artigas', 'Rivera', 'Tacuarembó', 'Durazno', 'Flores', 'Florida', 'Lavalleja', 'Maldonado', 'Rocha', 'Treinta y Tres', 'Cerro Largo'],  
-    conservationStatus: 'Preocupación menor',
+    conservationStatus: CONSERVATION_STATUS.PREOCUPACION_MENOR,
     ebirdEmbedUrl: 'https://macaulaylibrary.org/asset/568347481/embed',
     cardHeight: { xs: 750, lg: 780, xl: 780 },
     variations: [
