@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   AppBar,
   Toolbar,
@@ -8,8 +8,8 @@ import {
   Chip,
   IconButton,
   Tooltip,
-} from '@mui/material';
-import kiskadeeImage from '../assets/index/great-kiskadee.png';
+} from "@mui/material";
+import kiskadeeImage from "../assets/index/great-kiskadee.png";
 import {
   List as ListIcon,
   BarChart as BarChartIcon,
@@ -17,12 +17,12 @@ import {
   DarkMode as DarkModeIcon,
   LightMode as LightModeIcon,
   Help as HelpIcon,
-} from '@mui/icons-material';
-import { useNavigate, useLocation } from 'react-router-dom';
-import { useUserData } from '../contexts/UserDataContext';
-import { useTheme } from '../contexts/ThemeContext';
-import DataManager from './DataManager';
-import HelpModal from './HelpModal';
+} from "@mui/icons-material";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useUserData } from "../contexts/UserDataContext";
+import { useTheme } from "../contexts/ThemeContext";
+import DataManager from "./DataManager";
+import HelpModal from "./HelpModal";
 
 const Header: React.FC = () => {
   const navigate = useNavigate();
@@ -32,7 +32,11 @@ const Header: React.FC = () => {
   const [helpModalOpen, setHelpModalOpen] = useState(false);
 
   const handleReset = () => {
-    if (window.confirm('¿Estás seguro de que quieres reiniciar todos tus datos? Esta acción no se puede deshacer.')) {
+    if (
+      window.confirm(
+        "¿Estás seguro de que quieres reiniciar todos tus datos? Esta acción no se puede deshacer."
+      )
+    ) {
       resetData();
     }
   };
@@ -49,62 +53,64 @@ const Header: React.FC = () => {
     <AppBar position="static" elevation={2}>
       <Toolbar>
         <Box
-          sx={{ 
-            flexGrow: 1, 
-            cursor: 'pointer',
-            display: 'flex',
-            alignItems: 'center',
-            gap: 1
+          sx={{
+            flexGrow: 1,
+            cursor: "pointer",
+            display: "flex",
+            alignItems: "center",
+            gap: 1,
           }}
-          onClick={() => navigate('/')}
+          onClick={() => navigate("/")}
         >
-          <img 
-            src={kiskadeeImage} 
-            alt="Benteveo" 
-            style={{ 
-              width: '32px', 
-              height: '32px',
-              objectFit: 'contain'
-            }} 
+          <img
+            src={kiskadeeImage}
+            alt="Benteveo"
+            style={{
+              width: "32px",
+              height: "32px",
+              objectFit: "contain",
+            }}
           />
-          <Typography 
-            variant="h6" 
+          <Typography
+            variant="h6"
             component="div"
-            sx={{ 
-              display: { xs: 'none', sm: 'block' } // Hide on mobile, show on small screens and up
+            sx={{
+              display: { xs: "none", sm: "block" }, // Hide on mobile, show on small screens and up
             }}
           >
             Mi Lista de Aves - Uruguay
           </Typography>
         </Box>
 
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-
-
+        <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
           <Button
             color="inherit"
             startIcon={<ListIcon />}
-            onClick={() => navigate('/')}
-            variant={location.pathname === '/' ? 'contained' : 'text'}
-            sx={{ 
-              backgroundColor: location.pathname === '/' ? 'rgba(255,255,255,0.1)' : 'transparent'
+            onClick={() => navigate("/")}
+            variant={location.pathname === "/" ? "contained" : "text"}
+            sx={{
+              backgroundColor:
+                location.pathname === "/"
+                  ? "rgba(255,255,255,0.1)"
+                  : "transparent",
             }}
           >
-            <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
-              Checklist
-            </Box>
+            <Box sx={{ display: { xs: "none", sm: "block" } }}>Checklist</Box>
           </Button>
 
           <Button
             color="inherit"
             startIcon={<BarChartIcon />}
-            onClick={() => navigate('/statistics')}
-            variant={location.pathname === '/statistics' ? 'contained' : 'text'}
-            sx={{ 
-              backgroundColor: location.pathname === '/statistics' ? 'rgba(255,255,255,0.1)' : 'transparent'
+            onClick={() => navigate("/statistics")}
+            variant={location.pathname === "/statistics" ? "contained" : "text"}
+            sx={{
+              backgroundColor:
+                location.pathname === "/statistics"
+                  ? "rgba(255,255,255,0.1)"
+                  : "transparent",
             }}
           >
-            <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+            <Box sx={{ display: { xs: "none", sm: "block" } }}>
               Estadísticas
             </Box>
           </Button>
@@ -122,30 +128,22 @@ const Header: React.FC = () => {
           <DataManager />
 
           <Tooltip title="Reiniciar datos">
-            <IconButton
-              color="inherit"
-              onClick={handleReset}
-              size="small"
-            >
+            <IconButton color="inherit" onClick={handleReset} size="small">
               <RefreshIcon />
             </IconButton>
           </Tooltip>
 
           <Tooltip title="Ayuda">
-            <IconButton
-              color="inherit"
-              onClick={handleHelpOpen}
-              size="small"
-            >
+            <IconButton color="inherit" onClick={handleHelpOpen} size="small">
               <HelpIcon />
             </IconButton>
           </Tooltip>
         </Box>
       </Toolbar>
-      
+
       <HelpModal open={helpModalOpen} onClose={handleHelpClose} />
     </AppBar>
   );
 };
 
-export default Header; 
+export default Header;

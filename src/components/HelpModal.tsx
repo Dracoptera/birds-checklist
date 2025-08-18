@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Dialog,
   DialogTitle,
@@ -12,7 +12,7 @@ import {
   ListItemIcon,
   ListItemText,
   Divider,
-} from '@mui/material';
+} from "@mui/material";
 import {
   Visibility as VisibilityIcon,
   PhotoCamera as PhotoCameraIcon,
@@ -22,7 +22,7 @@ import {
   Download as DownloadIcon,
   Upload as UploadIcon,
   Email as EmailIcon,
-} from '@mui/icons-material';
+} from "@mui/icons-material";
 
 interface HelpModalProps {
   open: boolean;
@@ -39,7 +39,7 @@ const HelpModal: React.FC<HelpModalProps> = ({ open, onClose }) => {
       PaperProps={{
         sx: {
           borderRadius: 2,
-          maxHeight: '80vh',
+          maxHeight: "80vh",
         },
       }}
     >
@@ -48,48 +48,53 @@ const HelpModal: React.FC<HelpModalProps> = ({ open, onClose }) => {
           🐧 ¿Cómo funciona esta página? 🦢
         </Typography>
       </DialogTitle>
-      
+
       <DialogContent>
         <Box sx={{ mb: 3 }}>
           <Typography variant="h6" gutterBottom>
-           Objetivo
+            Objetivo
           </Typography>
           <Typography variant="body1" paragraph>
-            El objetivo principal de esta página es poder llevar un registro personal de aves vistas y/o fotografiadas en Uruguay sin necesidad de crear cuentas ni proporcionar datos personales.
-            </Typography>
-            <Typography variant="h6" gutterBottom> ¡Importante!        </Typography>
-              Esta página no respalda tus datos automáticamente. Es necesario que los guardes si vas a utilizar otros dispositivos o navegadores. Más abajo encontrarás instrucciones.
-
+            El objetivo principal de esta página es poder llevar un registro
+            personal de aves vistas y/o fotografiadas en Uruguay sin necesidad
+            de crear cuentas ni proporcionar datos personales.
+          </Typography>
+          <Typography variant="h6" gutterBottom>
+            {" "}
+            ¡Importante!{" "}
+          </Typography>
+          Esta página no respalda tus datos automáticamente. Es necesario que
+          los guardes si vas a utilizar otros dispositivos o navegadores. Más
+          abajo encontrarás instrucciones.
         </Box>
 
         <Divider sx={{ my: 2 }} />
 
-        <Box sx={{ mb: 3 }}> 
+        <Box sx={{ mb: 3 }}>
           <Typography variant="h6" gutterBottom>
-            Funcionalidades principales 
+            Funcionalidades principales
           </Typography>
-          
+
           <List>
             <ListItem>
               <ListItemIcon>
                 <VisibilityIcon color="success" />
               </ListItemIcon>
-              <ListItemText 
-                primary="Marcar como visto" 
+              <ListItemText
+                primary="Marcar como visto"
                 secondary="Haz clic en el ícono del ojo para marcar una especie como observada"
               />
             </ListItem>
-            
+
             <ListItem>
               <ListItemIcon>
                 <PhotoCameraIcon color="primary" />
               </ListItemIcon>
-              <ListItemText 
-                primary="Marcar con foto" 
+              <ListItemText
+                primary="Marcar con foto"
                 secondary="Haz clic en el ícono de la cámara para indicar que tienes fotos de la especie. Primero debe estar marcada como vista."
               />
             </ListItem>
-
           </List>
         </Box>
 
@@ -99,24 +104,24 @@ const HelpModal: React.FC<HelpModalProps> = ({ open, onClose }) => {
           <Typography variant="h6" gutterBottom>
             Filtros y búsqueda
           </Typography>
-          
+
           <List>
             <ListItem>
               <ListItemIcon>
                 <FilterIcon />
               </ListItemIcon>
-              <ListItemText 
-                primary="Filtros avanzados" 
+              <ListItemText
+                primary="Filtros avanzados"
                 secondary="Filtra por orden, familia, departamento, abundancia (algunas aves solo tienen abundancia en algunos departamentos), estado de conservación y estado de observación"
               />
             </ListItem>
-            
+
             <ListItem>
               <ListItemIcon>
                 <SortIcon />
               </ListItemIcon>
-              <ListItemText 
-                primary="Ordenamiento automático" 
+              <ListItemText
+                primary="Ordenamiento automático"
                 secondary="Las aves se ordenan automáticamente por orden taxonómico."
               />
             </ListItem>
@@ -129,34 +134,34 @@ const HelpModal: React.FC<HelpModalProps> = ({ open, onClose }) => {
           <Typography variant="h6" gutterBottom>
             💾 Gestión de datos
           </Typography>
-          
+
           <List>
             <ListItem>
               <ListItemIcon>
                 <DownloadIcon />
               </ListItemIcon>
-              <ListItemText 
-                primary="Exportar datos" 
+              <ListItemText
+                primary="Exportar datos"
                 secondary="Guarda tu checklist en un archivo JSON para respaldo o transferencia"
               />
             </ListItem>
-            
+
             <ListItem>
               <ListItemIcon>
                 <EmailIcon />
               </ListItemIcon>
-              <ListItemText 
-                primary="Respaldo por email" 
+              <ListItemText
+                primary="Respaldo por email"
                 secondary="Envía una copia de tus datos por email para respaldo o compartir con otros"
               />
             </ListItem>
-            
+
             <ListItem>
               <ListItemIcon>
                 <UploadIcon />
               </ListItemIcon>
-              <ListItemText 
-                primary="Importar datos" 
+              <ListItemText
+                primary="Importar datos"
                 secondary="Carga datos previamente exportados para restaurar tu progreso"
               />
             </ListItem>
@@ -174,37 +179,37 @@ const HelpModal: React.FC<HelpModalProps> = ({ open, onClose }) => {
           </Typography>
           <List dense>
             <ListItem>
-              <ListItemText 
+              <ListItemText
                 primary="• Imágenes de alta calidad de eBird/Macaulay Library"
                 secondary=""
               />
             </ListItem>
             <ListItem>
-              <ListItemText 
+              <ListItemText
                 primary="• Información taxonómica (familia, orden)"
                 secondary=""
               />
             </ListItem>
             <ListItem>
-              <ListItemText 
+              <ListItemText
                 primary="• Hábitats donde se encuentra"
                 secondary=""
               />
             </ListItem>
             <ListItem>
-              <ListItemText 
+              <ListItemText
                 primary="• Departamentos de Uruguay donde está presente"
                 secondary=""
               />
             </ListItem>
             <ListItem>
-              <ListItemText 
+              <ListItemText
                 primary="• Nivel de abundancia (abundante, común, poco común, rara, muy rara)"
                 secondary=""
               />
             </ListItem>
             <ListItem>
-              <ListItemText 
+              <ListItemText
                 primary="• Variaciones (juvenil, adulto, macho, hembra) para algunas especies"
                 secondary=""
               />
@@ -216,22 +221,22 @@ const HelpModal: React.FC<HelpModalProps> = ({ open, onClose }) => {
           <Typography variant="h6" gutterBottom>
             📚 Bibliografía y fuentes
           </Typography>
-          
+
           <Typography variant="body2" paragraph>
             Esta aplicación utiliza información de las siguientes fuentes:
           </Typography>
 
           <List dense>
             <ListItem>
-              <ListItemText 
+              <ListItemText
                 primary={
                   <Typography component="span">
-                    • Aves del Uruguay -{' '}
-                    <a 
-                      href="https://www.bandaoriental.com.uy/libro/aves-del-uruguay-guia-completa-para-conocer/" 
-                      target="_blank" 
+                    • Aves del Uruguay -{" "}
+                    <a
+                      href="https://www.bandaoriental.com.uy/libro/aves-del-uruguay-guia-completa-para-conocer/"
+                      target="_blank"
                       rel="noopener noreferrer"
-                      style={{ color: '#1976d2', textDecoration: 'underline' }}
+                      style={{ color: "#1976d2", textDecoration: "underline" }}
                     >
                       Guía completa para conocer Aves del Uruguay
                     </a>
@@ -241,17 +246,18 @@ const HelpModal: React.FC<HelpModalProps> = ({ open, onClose }) => {
               />
             </ListItem>
             <ListItem>
-              <ListItemText 
+              <ListItemText
                 primary={
                   <Typography component="span">
-                    • Birds of Argentina and the South-west Atlantic -{' '}
-                    <a 
-                      href="https://press.princeton.edu/books/paperback/9780691147697/birds-of-argentina-and-the-south-west-atlantic" 
-                      target="_blank" 
+                    • Birds of Argentina and the South-west Atlantic -{" "}
+                    <a
+                      href="https://press.princeton.edu/books/paperback/9780691147697/birds-of-argentina-and-the-south-west-atlantic"
+                      target="_blank"
                       rel="noopener noreferrer"
-                      style={{ color: '#1976d2', textDecoration: 'underline' }}
+                      style={{ color: "#1976d2", textDecoration: "underline" }}
                     >
-                      The ultimate illustrated field guide to the birds of Argentina and the islands of the South-west Atlantic
+                      The ultimate illustrated field guide to the birds of
+                      Argentina and the islands of the South-west Atlantic
                     </a>
                   </Typography>
                 }
@@ -259,15 +265,15 @@ const HelpModal: React.FC<HelpModalProps> = ({ open, onClose }) => {
               />
             </ListItem>
             <ListItem>
-              <ListItemText 
+              <ListItemText
                 primary={
                   <Typography component="span">
-                    • eBird -{' '}
-                    <a 
-                      href="https://ebird.org" 
-                      target="_blank" 
+                    • eBird -{" "}
+                    <a
+                      href="https://ebird.org"
+                      target="_blank"
                       rel="noopener noreferrer"
-                      style={{ color: '#1976d2', textDecoration: 'underline' }}
+                      style={{ color: "#1976d2", textDecoration: "underline" }}
                     >
                       Macaulay Library
                     </a>
@@ -277,34 +283,34 @@ const HelpModal: React.FC<HelpModalProps> = ({ open, onClose }) => {
               />
             </ListItem>
             <ListItem>
-              <ListItemText 
+              <ListItemText
                 primary={
                   <Typography component="span">
-                    •{' '}
-                    <a 
-                      href="https://birdsoftheworld.org/" 
-                      target="_blank" 
+                    •{" "}
+                    <a
+                      href="https://birdsoftheworld.org/"
+                      target="_blank"
                       rel="noopener noreferrer"
-                      style={{ color: '#1976d2', textDecoration: 'underline' }}
+                      style={{ color: "#1976d2", textDecoration: "underline" }}
                     >
                       Birds of the World
-                    </a>
-                    {' '}- Cornell Lab of Ornithology
+                    </a>{" "}
+                    - Cornell Lab of Ornithology
                   </Typography>
                 }
                 secondary="Base de datos completa de aves del mundo"
               />
             </ListItem>
             <ListItem>
-              <ListItemText 
+              <ListItemText
                 primary={
                   <Typography component="span">
-                    •{' '}
-                    <a 
-                      href="https://es.wikipedia.org/wiki/Aves_de_Uruguay" 
-                      target="_blank" 
+                    •{" "}
+                    <a
+                      href="https://es.wikipedia.org/wiki/Aves_de_Uruguay"
+                      target="_blank"
                       rel="noopener noreferrer"
-                      style={{ color: '#1976d2', textDecoration: 'underline' }}
+                      style={{ color: "#1976d2", textDecoration: "underline" }}
                     >
                       Wikipedia - Aves de Uruguay
                     </a>
@@ -315,8 +321,11 @@ const HelpModal: React.FC<HelpModalProps> = ({ open, onClose }) => {
             </ListItem>
           </List>
 
-          <Typography variant="body2" sx={{ mt: 2, fontStyle: 'italic' }}>
-            Nota: Esta aplicación es una herramienta educativa y de registro personal. Para identificaciones críticas o estudios científicos, se recomienda consultar guías de campo especializadas y expertos locales.
+          <Typography variant="body2" sx={{ mt: 2, fontStyle: "italic" }}>
+            Nota: Esta aplicación es una herramienta educativa y de registro
+            personal. Para identificaciones críticas o estudios científicos, se
+            recomienda consultar guías de campo especializadas y expertos
+            locales.
           </Typography>
         </Box>
 
@@ -326,30 +335,35 @@ const HelpModal: React.FC<HelpModalProps> = ({ open, onClose }) => {
           <Typography variant="h6" gutterBottom>
             📧 Contacto
           </Typography>
-          
+
           <Typography variant="body2" paragraph>
-            Para consultas, sugerencias y correcciones, puedes contactarme por mail:
+            Para consultas, sugerencias y correcciones, puedes contactarme por
+            mail:
           </Typography>
-          
-          <Typography variant="body1" sx={{ textAlign: 'center', mb: 2 }}>
-            <a 
+
+          <Typography variant="body1" sx={{ textAlign: "center", mb: 2 }}>
+            <a
               href="mailto:dracoptera@gmail.com"
-              style={{ 
-                color: '#1976d2', 
-                textDecoration: 'underline',
-                fontWeight: 'bold'
+              style={{
+                color: "#1976d2",
+                textDecoration: "underline",
+                fontWeight: "bold",
               }}
             >
               dracoptera@gmail.com
             </a>
           </Typography>
-          
-          <Typography variant="body2" color="text.secondary" sx={{ textAlign: 'center' }}>
+
+          <Typography
+            variant="body2"
+            color="text.secondary"
+            sx={{ textAlign: "center" }}
+          >
             Tu feedback es muy importante para mejorar esta aplicación.
           </Typography>
         </Box>
       </DialogContent>
-      
+
       <DialogActions>
         <Button onClick={onClose} variant="contained">
           Entendido
@@ -359,4 +373,4 @@ const HelpModal: React.FC<HelpModalProps> = ({ open, onClose }) => {
   );
 };
 
-export default HelpModal; 
+export default HelpModal;

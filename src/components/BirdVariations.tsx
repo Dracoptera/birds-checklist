@@ -1,14 +1,7 @@
-import React from 'react';
-import {
-  Box,
-  Typography,
-  Card,
-  CardContent,
-  Chip,
-  Grid,
-} from '@mui/material';
-import { BirdVariation } from '../data/birds';
-import BirdImage from './BirdImage';
+import React from "react";
+import { Box, Typography, Card, CardContent, Chip, Grid } from "@mui/material";
+import { BirdVariation } from "../data/birds";
+import BirdImage from "./BirdImage";
 
 interface BirdVariationsProps {
   variations: BirdVariation[];
@@ -17,72 +10,90 @@ interface BirdVariationsProps {
   birdId?: string; // Add birdId to make keys unique
 }
 
-const BirdVariations: React.FC<BirdVariationsProps> = ({ 
-  variations, 
+const BirdVariations: React.FC<BirdVariationsProps> = ({
+  variations,
   onVariationChange,
   height = 560,
-  birdId = 'unknown'
+  birdId = "unknown",
 }) => {
   return (
     <Box>
       <Typography variant="h6" gutterBottom>
         Variaciones
       </Typography>
-      
+
       <Grid container spacing={2}>
         {variations.map((variation) => {
           // Create a mock bird object for the BirdImage component
           const mockBird = {
             id: `variation-${variation.id}`,
             commonName: variation.name,
-            englishName: '',
-            scientificName: '',
-            family: '',
-            order: '',
+            englishName: "",
+            scientificName: "",
+            family: "",
+            order: "",
             habitat: [],
-            status: '🏠 residente' as const,
-            commonness: 'común' as const,
-            origin: 'autóctona' as const,
+            status: "🏠 residente" as const,
+            commonness: "común" as const,
+            origin: "autóctona" as const,
             imageUrl: variation.imageUrl,
             ebirdEmbedUrl: variation.ebirdEmbedUrl,
           };
 
           return (
-                         <Grid item xs={12} sm={6} md={variations.length === 2 ? 6 : 4} key={`${birdId}-${variation.id}`}>
-               <Card>
-                                   <Box sx={{ position: 'relative', height: variation.cardHeight || 500 }}>
-                    <BirdImage bird={mockBird} height="100%" compact={true} />
-                  </Box>
-                 <CardContent>
+            <Grid
+              item
+              xs={12}
+              sm={6}
+              md={variations.length === 2 ? 6 : 4}
+              key={`${birdId}-${variation.id}`}
+            >
+              <Card>
+                <Box
+                  sx={{
+                    position: "relative",
+                    height: variation.cardHeight || 500,
+                  }}
+                >
+                  <BirdImage bird={mockBird} height="100%" compact={true} />
+                </Box>
+                <CardContent>
                   <Typography variant="h6" gutterBottom>
                     {variation.name}
                   </Typography>
-                  
+
                   {variation.description && (
-                    <Typography variant="body2" color="text.secondary" paragraph>
+                    <Typography
+                      variant="body2"
+                      color="text.secondary"
+                      paragraph
+                    >
                       {variation.description}
                     </Typography>
                   )}
 
-                  {variation.characteristics && variation.characteristics.length > 0 && (
-                    <Box sx={{ mt: 2 }}>
-                      <Typography variant="subtitle2" gutterBottom>
-                        Características:
-                      </Typography>
-                      <Grid container spacing={1}>
-                        {variation.characteristics.map((characteristic: string, index: number) => (
-                          <Grid item key={index}>
-                            <Chip 
-                              label={characteristic} 
-                              size="small" 
-                              variant="outlined"
-                              color="primary"
-                            />
-                          </Grid>
-                        ))}
-                      </Grid>
-                    </Box>
-                  )}
+                  {variation.characteristics &&
+                    variation.characteristics.length > 0 && (
+                      <Box sx={{ mt: 2 }}>
+                        <Typography variant="subtitle2" gutterBottom>
+                          Características:
+                        </Typography>
+                        <Grid container spacing={1}>
+                          {variation.characteristics.map(
+                            (characteristic: string, index: number) => (
+                              <Grid item key={index}>
+                                <Chip
+                                  label={characteristic}
+                                  size="small"
+                                  variant="outlined"
+                                  color="primary"
+                                />
+                              </Grid>
+                            )
+                          )}
+                        </Grid>
+                      </Box>
+                    )}
                 </CardContent>
               </Card>
             </Grid>
@@ -93,4 +104,4 @@ const BirdVariations: React.FC<BirdVariationsProps> = ({
   );
 };
 
-export default BirdVariations; 
+export default BirdVariations;

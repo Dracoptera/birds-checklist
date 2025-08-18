@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { Box, CircularProgress } from '@mui/material';
-import { useLazyLoad } from '../hooks/useLazyLoad';
+import React, { useState, useEffect } from "react";
+import { Box, CircularProgress } from "@mui/material";
+import { useLazyLoad } from "../hooks/useLazyLoad";
 
 // Improved cache with size limits and better memory management
 class EmbedCache {
@@ -45,11 +45,11 @@ interface EbirdEmbedProps {
   compact?: boolean;
 }
 
-const EbirdEmbed: React.FC<EbirdEmbedProps> = ({ 
-  embedUrl, 
-  height = 400, 
-  width = '100%',
-  compact = true
+const EbirdEmbed: React.FC<EbirdEmbedProps> = ({
+  embedUrl,
+  height = 400,
+  width = "100%",
+  compact = true,
 }) => {
   const { elementRef, isVisible, isLoaded, handleLoad } = useLazyLoad();
   const [isLoading, setIsLoading] = useState(false);
@@ -78,27 +78,25 @@ const EbirdEmbed: React.FC<EbirdEmbedProps> = ({
       sx={{
         width,
         height,
-        position: 'relative',
-        overflow: 'hidden',
+        position: "relative",
+        overflow: "hidden",
         borderRadius: 1,
-        backgroundColor: '#f5f5f5',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
+        backgroundColor: "#f5f5f5",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
         ...(compact && {
-          '& iframe': {
-            transform: 'scale(0.95)',
-            transformOrigin: 'center center',
-            width: '105.3%', // 100% / 0.95 to compensate for scale
-            height: '105.3%', // 100% / 0.95 to compensate for scale
-            objectFit: 'contain',
-          }
-        })
+          "& iframe": {
+            transform: "scale(0.95)",
+            transformOrigin: "center center",
+            width: "105.3%", // 100% / 0.95 to compensate for scale
+            height: "105.3%", // 100% / 0.95 to compensate for scale
+            objectFit: "contain",
+          },
+        }),
       }}
     >
-      {(!isVisible || isLoading) && (
-        <CircularProgress size={40} />
-      )}
+      {(!isVisible || isLoading) && <CircularProgress size={40} />}
       {isVisible && (
         <iframe
           src={embedUrl}
@@ -107,10 +105,10 @@ const EbirdEmbed: React.FC<EbirdEmbedProps> = ({
           frameBorder="0"
           allowFullScreen
           style={{
-            border: 'none',
-            borderRadius: '4px',
+            border: "none",
+            borderRadius: "4px",
             opacity: isLoaded && !isLoading ? 1 : 0,
-            transition: 'opacity 0.3s ease',
+            transition: "opacity 0.3s ease",
           }}
           title="eBird Bird Image"
           onLoad={handleIframeLoad}
@@ -120,4 +118,4 @@ const EbirdEmbed: React.FC<EbirdEmbedProps> = ({
   );
 };
 
-export default EbirdEmbed; 
+export default EbirdEmbed;

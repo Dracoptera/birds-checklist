@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { Box, Typography, Skeleton } from '@mui/material';
-import { Image as ImageIcon } from '@mui/icons-material';
-import { Bird } from '../data/birds';
-import EbirdEmbed from './EbirdEmbed';
-import { useLazyLoad } from '../hooks/useLazyLoad';
+import React, { useState, useEffect } from "react";
+import { Box, Typography, Skeleton } from "@mui/material";
+import { Image as ImageIcon } from "@mui/icons-material";
+import { Bird } from "../data/birds";
+import EbirdEmbed from "./EbirdEmbed";
+import { useLazyLoad } from "../hooks/useLazyLoad";
 
 // Create a cache to store preloaded images
 const imageCache = new Map<string, boolean>();
@@ -33,11 +33,11 @@ interface BirdImageProps {
   compact?: boolean;
 }
 
-const BirdImage: React.FC<BirdImageProps> = ({ 
-  bird, 
-  height = 315, 
+const BirdImage: React.FC<BirdImageProps> = ({
+  bird,
+  height = 315,
   showPlaceholder = true,
-  compact = true
+  compact = true,
 }) => {
   const { elementRef, isVisible, isLoaded, handleLoad } = useLazyLoad();
   const [isLoading, setIsLoading] = useState(false);
@@ -60,7 +60,13 @@ const BirdImage: React.FC<BirdImageProps> = ({
 
   // Priority: eBird embed > regular image > placeholder
   if (bird.ebirdEmbedUrl) {
-    return <EbirdEmbed embedUrl={bird.ebirdEmbedUrl} height={height} compact={compact} />;
+    return (
+      <EbirdEmbed
+        embedUrl={bird.ebirdEmbedUrl}
+        height={height}
+        compact={compact}
+      />
+    );
   }
 
   if (bird.imageUrl) {
@@ -69,16 +75,16 @@ const BirdImage: React.FC<BirdImageProps> = ({
         ref={elementRef}
         sx={{
           height,
-          position: 'relative',
-          overflow: 'hidden',
-          backgroundColor: '#f5f5f5',
+          position: "relative",
+          overflow: "hidden",
+          backgroundColor: "#f5f5f5",
         }}
       >
         {(!isVisible || isLoading) && (
-          <Skeleton 
-            variant="rectangular" 
-            width="100%" 
-            height="100%" 
+          <Skeleton
+            variant="rectangular"
+            width="100%"
+            height="100%"
             animation="wave"
           />
         )}
@@ -90,14 +96,14 @@ const BirdImage: React.FC<BirdImageProps> = ({
             loading="lazy"
             onLoad={handleLoad}
             sx={{
-              position: 'absolute',
+              position: "absolute",
               top: 0,
               left: 0,
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
               opacity: isLoaded && !isLoading ? 1 : 0,
-              transition: 'opacity 0.3s ease-in-out',
+              transition: "opacity 0.3s ease-in-out",
             }}
           />
         )}
@@ -106,20 +112,20 @@ const BirdImage: React.FC<BirdImageProps> = ({
   }
 
   if (!showPlaceholder) return null;
-  
+
   return (
     <Box
       sx={{
         height,
-        backgroundColor: '#f5f5f5',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        border: '1px dashed #ccc',
+        backgroundColor: "#f5f5f5",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        border: "1px dashed #ccc",
       }}
     >
-      <ImageIcon sx={{ fontSize: 48, color: '#ccc', mb: 1 }} />
+      <ImageIcon sx={{ fontSize: 48, color: "#ccc", mb: 1 }} />
       <Typography variant="body2" color="text.secondary" align="center">
         Sin imagen
       </Typography>
@@ -130,4 +136,4 @@ const BirdImage: React.FC<BirdImageProps> = ({
   );
 };
 
-export default BirdImage; 
+export default BirdImage;

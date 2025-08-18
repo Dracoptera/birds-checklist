@@ -1,34 +1,42 @@
-import React from 'react';
-import { Document, Page, Text, View, StyleSheet, pdf, Image } from '@react-pdf/renderer';
-import { Bird } from '../data/birds/types';
-import { FilterOptions } from '../types';
-import { getCommonnessForDepartment } from '../data/birds';
-import eyeIcon from '../assets/eye-icon.png';
-import cameraIcon from '../assets/camera-icon.png';
-import greatKiskadeeIcon from '../assets/index/great-kiskadee.png';
+import React from "react";
+import {
+  Document,
+  Page,
+  Text,
+  View,
+  StyleSheet,
+  pdf,
+  Image,
+} from "@react-pdf/renderer";
+import { Bird } from "../data/birds/types";
+import { FilterOptions } from "../types";
+import { getCommonnessForDepartment } from "../data/birds";
+import eyeIcon from "../assets/eye-icon.png";
+import cameraIcon from "../assets/camera-icon.png";
+import greatKiskadeeIcon from "../assets/index/great-kiskadee.png";
 
 // Create styles
 const styles = StyleSheet.create({
   page: {
-    flexDirection: 'column',
-    backgroundColor: '#FFFFFF',
+    flexDirection: "column",
+    backgroundColor: "#FFFFFF",
     padding: 30,
-    fontFamily: 'Helvetica',
+    fontFamily: "Helvetica",
   },
   header: {
     marginBottom: 20,
     borderBottomWidth: 2,
-    borderBottomStyle: 'solid',
-    borderBottomColor: '#2E7D32',
+    borderBottomStyle: "solid",
+    borderBottomColor: "#2E7D32",
     paddingBottom: 10,
   },
   title: {
     fontSize: 24,
-    fontWeight: 'bold',
-    color: '#2E7D32',
+    fontWeight: "bold",
+    color: "#2E7D32",
     marginBottom: 5,
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
   },
   titleIcon: {
     width: 24,
@@ -37,71 +45,71 @@ const styles = StyleSheet.create({
   },
   subtitle: {
     fontSize: 12,
-    color: '#666666',
+    color: "#666666",
     marginBottom: 5,
   },
   filterInfo: {
     fontSize: 10,
-    color: '#888888',
-    fontStyle: 'italic',
+    color: "#888888",
+    fontStyle: "italic",
   },
   birdGrid: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "space-between",
   },
   birdCard: {
-    width: '48%',
+    width: "48%",
     marginBottom: 15,
     borderWidth: 1,
-    borderStyle: 'solid',
-    borderColor: '#E0E0E0',
+    borderStyle: "solid",
+    borderColor: "#E0E0E0",
     borderRadius: 4,
     padding: 10,
   },
   birdName: {
     fontSize: 14,
-    fontWeight: 'bold',
-    color: '#1976D2',
+    fontWeight: "bold",
+    color: "#1976D2",
     marginBottom: 3,
   },
   scientificName: {
     fontSize: 10,
-    color: '#666666',
-    fontStyle: 'italic',
+    color: "#666666",
+    fontStyle: "italic",
     marginBottom: 5,
   },
   birdInfo: {
     fontSize: 9,
-    color: '#333333',
+    color: "#333333",
     marginBottom: 2,
   },
   orderText: {
     fontSize: 8,
-    color: '#1976D2',
-    fontWeight: 'bold',
-    backgroundColor: '#E3F2FD',
+    color: "#1976D2",
+    fontWeight: "bold",
+    backgroundColor: "#E3F2FD",
     padding: 2,
     borderRadius: 2,
     marginRight: 5,
   },
   familyText: {
     fontSize: 8,
-    color: '#7B1FA2',
-    fontWeight: 'bold',
-    backgroundColor: '#F3E5F5',
+    color: "#7B1FA2",
+    fontWeight: "bold",
+    backgroundColor: "#F3E5F5",
     padding: 2,
     borderRadius: 2,
   },
   birdTags: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
+    flexDirection: "row",
+    flexWrap: "wrap",
     marginTop: 5,
   },
   tag: {
     fontSize: 8,
-    backgroundColor: '#F5F5F5',
-    color: '#666666',
+    backgroundColor: "#F5F5F5",
+    color: "#666666",
     padding: 2,
     marginRight: 5,
     marginBottom: 2,
@@ -109,14 +117,14 @@ const styles = StyleSheet.create({
   },
   statusTag: {
     fontSize: 8,
-    backgroundColor: '#E3F2FD',
-    color: '#1976D2',
+    backgroundColor: "#E3F2FD",
+    color: "#1976D2",
     padding: 2,
     marginRight: 5,
     marginBottom: 2,
     borderRadius: 2,
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
   },
   statusIcon: {
     width: 10,
@@ -125,41 +133,41 @@ const styles = StyleSheet.create({
   },
   conservationTag: {
     fontSize: 8,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     padding: 3,
     borderRadius: 3,
     marginLeft: 5,
   },
   conservationLC: {
-    backgroundColor: '#4CAF50',
-    color: '#FFFFFF',
+    backgroundColor: "#4CAF50",
+    color: "#FFFFFF",
   },
   conservationNT: {
-    backgroundColor: '#8BC34A',
-    color: '#FFFFFF',
+    backgroundColor: "#8BC34A",
+    color: "#FFFFFF",
   },
   conservationVU: {
-    backgroundColor: '#FFC107',
-    color: '#000000',
+    backgroundColor: "#FFC107",
+    color: "#000000",
   },
   conservationEN: {
-    backgroundColor: '#FF9800',
-    color: '#FFFFFF',
+    backgroundColor: "#FF9800",
+    color: "#FFFFFF",
   },
   conservationCR: {
-    backgroundColor: '#F44336',
-    color: '#FFFFFF',
+    backgroundColor: "#F44336",
+    color: "#FFFFFF",
   },
   conservationDefault: {
-    backgroundColor: '#9E9E9E',
-    color: '#FFFFFF',
+    backgroundColor: "#9E9E9E",
+    color: "#FFFFFF",
   },
   checkbox: {
     width: 10,
     height: 10,
     borderWidth: 1,
-    borderStyle: 'solid',
-    borderColor: '#666666',
+    borderStyle: "solid",
+    borderColor: "#666666",
     marginRight: 8,
     marginTop: 2,
   },
@@ -167,65 +175,65 @@ const styles = StyleSheet.create({
     width: 10,
     height: 10,
     borderWidth: 1,
-    borderStyle: 'solid',
-    borderColor: '#4CAF50',
-    backgroundColor: '#4CAF50',
+    borderStyle: "solid",
+    borderColor: "#4CAF50",
+    backgroundColor: "#4CAF50",
     marginRight: 8,
     marginTop: 2,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
   checkmark: {
     fontSize: 6,
-    color: '#FFFFFF',
-    fontWeight: 'bold',
+    color: "#FFFFFF",
+    fontWeight: "bold",
   },
   checkboxRow: {
-    flexDirection: 'row',
-    alignItems: 'flex-start',
+    flexDirection: "row",
+    alignItems: "flex-start",
     marginBottom: 8,
   },
   stats: {
     marginTop: 20,
     padding: 15,
-    backgroundColor: '#F8F9FA',
+    backgroundColor: "#F8F9FA",
     borderRadius: 4,
   },
   statsTitle: {
     fontSize: 14,
-    fontWeight: 'bold',
-    color: '#2E7D32',
+    fontWeight: "bold",
+    color: "#2E7D32",
     marginBottom: 8,
   },
   statsRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    justifyContent: "space-between",
     marginBottom: 4,
   },
   statsLabel: {
     fontSize: 10,
-    color: '#666666',
+    color: "#666666",
   },
   statsValue: {
     fontSize: 10,
-    fontWeight: 'bold',
-    color: '#333333',
+    fontWeight: "bold",
+    color: "#333333",
   },
   footer: {
-    position: 'absolute',
+    position: "absolute",
     bottom: 30,
     left: 30,
     right: 30,
-    textAlign: 'center',
-    color: '#888888',
+    textAlign: "center",
+    color: "#888888",
     fontSize: 8,
     borderTopWidth: 1,
-    borderTopStyle: 'solid',
-    borderTopColor: '#E0E0E0',
+    borderTopStyle: "solid",
+    borderTopColor: "#E0E0E0",
     paddingTop: 10,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
   },
   footerIcon: {
     width: 16,
@@ -241,20 +249,25 @@ interface BirdListPDFProps {
   observations: { [key: string]: any };
 }
 
-const BirdListPDF: React.FC<BirdListPDFProps> = ({ birds, filters, totalCount, observations }) => {
+const BirdListPDF: React.FC<BirdListPDFProps> = ({
+  birds,
+  filters,
+  totalCount,
+  observations,
+}) => {
   const getConservationStyle = (status: string) => {
     const baseStyle = styles.conservationTag;
-    
+
     switch (status) {
-      case 'Preocupación menor':
+      case "Preocupación menor":
         return [baseStyle, styles.conservationLC];
-      case 'Casi amenazada':
+      case "Casi amenazada":
         return [baseStyle, styles.conservationNT];
-      case 'Vulnerable':
+      case "Vulnerable":
         return [baseStyle, styles.conservationVU];
-      case 'En peligro':
+      case "En peligro":
         return [baseStyle, styles.conservationEN];
-      case 'Peligro crítico':
+      case "Peligro crítico":
         return [baseStyle, styles.conservationCR];
       default:
         return [baseStyle, styles.conservationDefault];
@@ -263,12 +276,18 @@ const BirdListPDF: React.FC<BirdListPDFProps> = ({ birds, filters, totalCount, o
 
   const getActiveFilters = () => {
     const activeFilters: string[] = [];
-    
-    if (filters.seen !== 'all') {
-      activeFilters.push(`Estado: ${filters.seen === 'seen' ? 'Vistos' : 'No vistos'}`);
+
+    if (filters.seen !== "all") {
+      activeFilters.push(
+        `Estado: ${filters.seen === "seen" ? "Vistos" : "No vistos"}`
+      );
     }
-    if (filters.hasPhoto !== 'all') {
-      activeFilters.push(`Fotos: ${filters.hasPhoto === 'with-photo' ? 'Con fotos' : 'Sin fotos'}`);
+    if (filters.hasPhoto !== "all") {
+      activeFilters.push(
+        `Fotos: ${
+          filters.hasPhoto === "with-photo" ? "Con fotos" : "Sin fotos"
+        }`
+      );
     }
     if (filters.order) {
       activeFilters.push(`Orden: ${filters.order}`);
@@ -297,29 +316,32 @@ const BirdListPDF: React.FC<BirdListPDFProps> = ({ birds, filters, totalCount, o
     if (filters.excludePelagicSeabirds) {
       activeFilters.push(`Excluir aves pelágicas`);
     }
-    
+
     return activeFilters;
   };
 
   const getStats = () => {
-    const seen = birds.filter(bird => observations[bird.id]?.seen).length;
-    const withPhotos = birds.filter(bird => observations[bird.id]?.hasPhoto).length;
-    
+    const seen = birds.filter((bird) => observations[bird.id]?.seen).length;
+    const withPhotos = birds.filter(
+      (bird) => observations[bird.id]?.hasPhoto
+    ).length;
+
     return {
       total: birds.length,
       seen,
       withPhotos,
-      seenPercentage: birds.length > 0 ? Math.round((seen / birds.length) * 100) : 0,
+      seenPercentage:
+        birds.length > 0 ? Math.round((seen / birds.length) * 100) : 0,
       photoPercentage: seen > 0 ? Math.round((withPhotos / seen) * 100) : 0,
     };
   };
 
   const activeFilters = getActiveFilters();
   const stats = getStats();
-  const currentDate = new Date().toLocaleDateString('es-ES', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
+  const currentDate = new Date().toLocaleDateString("es-ES", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
   });
 
   // Split birds into chunks for pagination
@@ -327,17 +349,18 @@ const BirdListPDF: React.FC<BirdListPDFProps> = ({ birds, filters, totalCount, o
   const chunks: Bird[][] = [];
   for (let i = 0; i < birds.length; i += birdsPerPage) {
     const chunk = birds.slice(i, i + birdsPerPage);
-    if (chunk.length > 0) { // Only add non-empty chunks
+    if (chunk.length > 0) {
+      // Only add non-empty chunks
       chunks.push(chunk);
     }
   }
 
   // Debug info
-  console.log('PDF Debug Info:', {
+  console.log("PDF Debug Info:", {
     totalBirds: birds.length,
     birdsPerPage,
     totalChunks: chunks.length,
-    chunkSizes: chunks.map(chunk => chunk.length)
+    chunkSizes: chunks.map((chunk) => chunk.length),
   });
 
   return (
@@ -352,11 +375,12 @@ const BirdListPDF: React.FC<BirdListPDFProps> = ({ birds, filters, totalCount, o
                 <Text>Lista de Aves de Uruguay</Text>
               </View>
               <Text style={styles.subtitle}>
-                Generado el {currentDate} • {birds.length} de {totalCount} especies
+                Generado el {currentDate} • {birds.length} de {totalCount}{" "}
+                especies
               </Text>
               {activeFilters.length > 0 && (
                 <Text style={styles.filterInfo}>
-                  Filtros aplicados: {activeFilters.join(' • ')}
+                  Filtros aplicados: {activeFilters.join(" • ")}
                 </Text>
               )}
             </View>
@@ -364,22 +388,49 @@ const BirdListPDF: React.FC<BirdListPDFProps> = ({ birds, filters, totalCount, o
 
           {/* Simple header for non-first pages */}
           {pageIndex > 0 && (
-            <View style={{ marginBottom: 20, paddingBottom: 10, borderBottomWidth: 1, borderBottomStyle: 'solid', borderBottomColor: '#E0E0E0' }}>
-              <Text style={{ fontSize: 16, color: '#2E7D32', fontWeight: 'bold', textAlign: 'center' }}>
+            <View
+              style={{
+                marginBottom: 20,
+                paddingBottom: 10,
+                borderBottomWidth: 1,
+                borderBottomStyle: "solid",
+                borderBottomColor: "#E0E0E0",
+              }}
+            >
+              <Text
+                style={{
+                  fontSize: 16,
+                  color: "#2E7D32",
+                  fontWeight: "bold",
+                  textAlign: "center",
+                }}
+              >
                 Lista de Aves de Uruguay - Página {pageIndex + 1}
               </Text>
-              <Text style={{ fontSize: 8, color: '#999', textAlign: 'center', marginTop: 5 }}>
+              <Text
+                style={{
+                  fontSize: 8,
+                  color: "#999",
+                  textAlign: "center",
+                  marginTop: 5,
+                }}
+              >
                 {chunk.length} especies en esta página
               </Text>
             </View>
           )}
 
           {/* Birds Grid */}
-          <View style={[styles.birdGrid, pageIndex > 0 ? { marginTop: 30 } : {}]}>
+          <View
+            style={[styles.birdGrid, pageIndex > 0 ? { marginTop: 30 } : {}]}
+          >
             {chunk.map((bird) => {
               const observation = observations[bird.id];
-              const commonness = getCommonnessForDepartment(bird, filters.departamento);
-              
+              const commonness = getCommonnessForDepartment(
+                bird,
+                filters.departamento
+              );
+
               return (
                 <View key={bird.id} style={styles.birdCard}>
                   <View style={styles.checkboxRow}>
@@ -392,24 +443,37 @@ const BirdListPDF: React.FC<BirdListPDFProps> = ({ birds, filters, totalCount, o
                     )}
                     <View style={{ flex: 1 }}>
                       <Text style={styles.birdName}>{bird.commonName}</Text>
-                      <Text style={styles.scientificName}>{bird.scientificName}</Text>
-                      
-                      <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 5, flexWrap: 'wrap' }}>
+                      <Text style={styles.scientificName}>
+                        {bird.scientificName}
+                      </Text>
+
+                      <View
+                        style={{
+                          flexDirection: "row",
+                          alignItems: "center",
+                          marginBottom: 5,
+                          flexWrap: "wrap",
+                        }}
+                      >
                         <Text style={styles.orderText}>
-                          {bird.order.split(' (')[0]}
+                          {bird.order.split(" (")[0]}
                         </Text>
-                        <Text style={styles.familyText}>
-                          {bird.family}
-                        </Text>
+                        <Text style={styles.familyText}>{bird.family}</Text>
                         {bird.conservationStatus && (
-                          <Text style={getConservationStyle(bird.conservationStatus)}>
+                          <Text
+                            style={getConservationStyle(
+                              bird.conservationStatus
+                            )}
+                          >
                             {bird.conservationStatus}
                           </Text>
                         )}
                       </View>
-                      
+
                       <View style={styles.birdTags}>
-                        <Text style={styles.tag}>{bird.status.replace(/[🏠🔄❄️🌸]/g, '').trim()}</Text>
+                        <Text style={styles.tag}>
+                          {bird.status.replace(/[🏠🔄❄️🌸]/g, "").trim()}
+                        </Text>
                         {observation?.seen && (
                           <View style={styles.statusTag}>
                             <Image style={styles.statusIcon} src={eyeIcon} />
@@ -434,13 +498,13 @@ const BirdListPDF: React.FC<BirdListPDFProps> = ({ birds, filters, totalCount, o
           <View style={styles.footer}>
             <Image style={styles.footerIcon} src={greatKiskadeeIcon} />
             <Text>
-              Mi Lista de Aves - Uruguay • Página {pageIndex + 1} de {chunks.length + 1} • 
-              Generado el {currentDate}
+              Mi Lista de Aves - Uruguay • Página {pageIndex + 1} de{" "}
+              {chunks.length + 1} • Generado el {currentDate}
             </Text>
           </View>
         </Page>
       ))}
-      
+
       {/* Statistics Page - Always last */}
       <Page size="A4" style={styles.page}>
         <View style={styles.header}>
@@ -461,11 +525,15 @@ const BirdListPDF: React.FC<BirdListPDFProps> = ({ birds, filters, totalCount, o
           </View>
           <View style={styles.statsRow}>
             <Text style={styles.statsLabel}>Especies vistas:</Text>
-            <Text style={styles.statsValue}>{stats.seen} ({stats.seenPercentage}%)</Text>
+            <Text style={styles.statsValue}>
+              {stats.seen} ({stats.seenPercentage}%)
+            </Text>
           </View>
           <View style={styles.statsRow}>
             <Text style={styles.statsLabel}>Con fotografías:</Text>
-            <Text style={styles.statsValue}>{stats.withPhotos} ({stats.photoPercentage}%)</Text>
+            <Text style={styles.statsValue}>
+              {stats.withPhotos} ({stats.photoPercentage}%)
+            </Text>
           </View>
           <View style={styles.statsRow}>
             <Text style={styles.statsLabel}>Pendientes por observar:</Text>
@@ -477,8 +545,8 @@ const BirdListPDF: React.FC<BirdListPDFProps> = ({ birds, filters, totalCount, o
         <View style={styles.footer}>
           <Image style={styles.footerIcon} src={greatKiskadeeIcon} />
           <Text>
-            Mi Lista de Aves - Uruguay • Página {chunks.length + 1} de {chunks.length + 1} • 
-            Generado el {currentDate}
+            Mi Lista de Aves - Uruguay • Página {chunks.length + 1} de{" "}
+            {chunks.length + 1} • Generado el {currentDate}
           </Text>
         </View>
       </Page>

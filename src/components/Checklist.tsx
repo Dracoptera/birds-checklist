@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo } from "react";
 import {
   Box,
   Card,
@@ -23,7 +23,7 @@ import {
   DialogTitle,
   DialogContent,
   DialogActions,
-} from '@mui/material';
+} from "@mui/material";
 import {
   Visibility as VisibilityIcon,
   PhotoCamera as PhotoCameraIcon,
@@ -36,24 +36,38 @@ import {
   KeyboardArrowUp as KeyboardArrowUpIcon,
   PictureAsPdf as PdfIcon,
   Download as DownloadIcon,
-} from '@mui/icons-material';
-import { useNavigate, useSearchParams } from 'react-router-dom';
-import { uruguayBirds, getBirdsByOrder, getCommonnessForDepartment, getAllCommonnessLevels, getDepartamentosForBird } from '../data/birds';
-import { useUserData } from '../contexts/UserDataContext';
-import { FilterOptions } from '../types';
-import BirdImage from './BirdImage';
-import BirdListPDF from './BirdListPDF';
-import { pdf } from '@react-pdf/renderer';
-import { getStatusChipColors, getPelagicChipProps, getConservationStatusColor } from '../utils/statusChipColors';
-import { procellariiformes, ORDER_NAME } from '../data/birds/orders/procellariiformes';
-import { BIRD_STATUS } from '../data/constants';
+} from "@mui/icons-material";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import {
+  uruguayBirds,
+  getBirdsByOrder,
+  getCommonnessForDepartment,
+  getAllCommonnessLevels,
+  getDepartamentosForBird,
+} from "../data/birds";
+import { useUserData } from "../contexts/UserDataContext";
+import { FilterOptions } from "../types";
+import BirdImage from "./BirdImage";
+import BirdListPDF from "./BirdListPDF";
+import { pdf } from "@react-pdf/renderer";
+import {
+  getStatusChipColors,
+  getPelagicChipProps,
+  getConservationStatusColor,
+} from "../utils/statusChipColors";
+import {
+  procellariiformes,
+  ORDER_NAME,
+} from "../data/birds/orders/procellariiformes";
+import { BIRD_STATUS } from "../data/constants";
 
 const Checklist: React.FC = () => {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
-  const { state, toggleSeen, checkNeedsSeeingWarning, togglePhoto } = useUserData();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const { state, toggleSeen, checkNeedsSeeingWarning, togglePhoto } =
+    useUserData();
   const [warningDialog, setWarningDialog] = useState<{
     open: boolean;
     birdId: string;
@@ -61,27 +75,35 @@ const Checklist: React.FC = () => {
     observationCount: number;
   }>({
     open: false,
-    birdId: '',
-    birdName: '',
-    observationCount: 0
+    birdId: "",
+    birdName: "",
+    observationCount: 0,
   });
-  
+
   // Initialize filters from URL parameters
   const initialFilters: FilterOptions = {
-    seen: (searchParams.get('seen') as 'all' | 'seen' | 'not-seen') || 'all',
-    hasPhoto: (searchParams.get('hasPhoto') as 'all' | 'with-photo' | 'without-photo') || 'all',
-    order: searchParams.get('order') || '',
-    family: searchParams.get('family') || '',
-    departamento: searchParams.get('departamento') || '',
-    commonness: searchParams.get('commonness') || '',
-    status: searchParams.get('status') || '',
-    conservationStatus: searchParams.get('conservationStatus') || '',
-    searchTerm: searchParams.get('searchTerm') || '',
-    sortBy: (searchParams.get('sortBy') as 'commonness' | 'alphabetical' | 'order') || 'commonness',
-    excludeOccasionalVisitors: searchParams.get('excludeOccasionalVisitors') === 'true',
-    excludePelagicSeabirds: searchParams.get('excludePelagicSeabirds') === 'true',
+    seen: (searchParams.get("seen") as "all" | "seen" | "not-seen") || "all",
+    hasPhoto:
+      (searchParams.get("hasPhoto") as
+        | "all"
+        | "with-photo"
+        | "without-photo") || "all",
+    order: searchParams.get("order") || "",
+    family: searchParams.get("family") || "",
+    departamento: searchParams.get("departamento") || "",
+    commonness: searchParams.get("commonness") || "",
+    status: searchParams.get("status") || "",
+    conservationStatus: searchParams.get("conservationStatus") || "",
+    searchTerm: searchParams.get("searchTerm") || "",
+    sortBy:
+      (searchParams.get("sortBy") as "commonness" | "alphabetical" | "order") ||
+      "commonness",
+    excludeOccasionalVisitors:
+      searchParams.get("excludeOccasionalVisitors") === "true",
+    excludePelagicSeabirds:
+      searchParams.get("excludePelagicSeabirds") === "true",
   };
-  
+
   const [filters, setFilters] = useState<FilterOptions>(initialFilters);
   const [displayCount, setDisplayCount] = useState(9);
   const [filtersOpen, setFiltersOpen] = useState(!isMobile); // Closed on mobile, open on desktop
@@ -89,9 +111,9 @@ const Checklist: React.FC = () => {
 
   const birdsByOrder = useMemo(() => getBirdsByOrder(), []);
   // const birdsByFamily = useMemo(() => getBirdsByFamily(), []);
-  
+
   const uniqueOrders = useMemo(() => Object.keys(birdsByOrder), [birdsByOrder]);
-  
+
   const uniqueFamiliesForOrder = useMemo(() => {
     if (!filters.order) return [];
     const families = new Set<string>();
@@ -102,7 +124,6 @@ const Checklist: React.FC = () => {
     });
     return Array.from(families).sort();
   }, [filters.order]);
-
 
   const uniqueDepartamentos = useMemo(() => {
     const departamentos = new Set<string>();
@@ -120,7 +141,7 @@ const Checklist: React.FC = () => {
       levels.forEach((level: string) => commonness.add(level));
     });
     return Array.from(commonness).sort((a: string, b: string) => {
-      const order = ['abundante', 'común', 'poco común', 'rara', 'muy rara'];
+      const order = ["abundante", "común", "poco común", "rara", "muy rara"];
       return order.indexOf(a) - order.indexOf(b);
     });
   }, []);
@@ -141,138 +162,184 @@ const Checklist: React.FC = () => {
       }
     });
     return Array.from(conservationStatuses).sort((a: string, b: string) => {
-      const order = ['Preocupación menor', 'Casi amenazada', 'Vulnerable', 'En peligro', 'Peligro crítico'];
+      const order = [
+        "Preocupación menor",
+        "Casi amenazada",
+        "Vulnerable",
+        "En peligro",
+        "Peligro crítico",
+      ];
       return order.indexOf(a) - order.indexOf(b);
     });
   }, []);
 
   const filteredBirds = useMemo(() => {
-    return uruguayBirds.filter((bird: any) => {
-      const observation = state.observations[bird.id];
-      
-      // Filter by seen status
-      if (filters.seen === 'seen' && !observation?.seen) return false;
-      if (filters.seen === 'not-seen' && observation?.seen) return false;
-      
-      // Filter by photo status
-      if (filters.hasPhoto === 'with-photo' && !observation?.hasPhoto) return false;
-      if (filters.hasPhoto === 'without-photo' && observation?.hasPhoto) return false;
-      
-            // Filter by order
-      if (filters.order && bird.order !== filters.order) return false;
-      
-      // Filter by family
-      if (filters.family && bird.family !== filters.family) return false;
-      
-             // Filter by departamento
-       if (filters.departamento) {
-         const birdDepartamentos = getDepartamentosForBird(bird);
-         if (!birdDepartamentos.includes(filters.departamento)) return false;
-       }
-      
-      // Filter by commonness
-      if (filters.commonness) {
-        const birdCommonness = getCommonnessForDepartment(bird, filters.departamento);
-        if (birdCommonness !== filters.commonness) return false;
-      }
-      
-      // Filter by status
-      if (filters.status && bird.status !== filters.status) return false;
-      
-      // Filter by conservation status
-      if (filters.conservationStatus && bird.conservationStatus !== filters.conservationStatus) return false;
-      
-      // Filter by occasional visitors
-      if (filters.excludeOccasionalVisitors && bird.status === BIRD_STATUS.OCASIONAL) return false;
-      
-      // Filter by pelagic seabirds
-      if (filters.excludePelagicSeabirds && bird.habitat && bird.habitat.some((hab: string) => hab.includes('mar 🌊'))) return false;
+    return uruguayBirds
+      .filter((bird: any) => {
+        const observation = state.observations[bird.id];
 
-      // Filter by search term
-      if (filters.searchTerm) {
-        const normalizeText = (text: string) => {
-          return text.toLowerCase()
-            .normalize('NFD')
-            .replace(/[\u0300-\u036f]/g, '');
-        };
-        
-        const searchNormalized = normalizeText(filters.searchTerm);
-        const matchesSearch = 
-          normalizeText(bird.commonName).includes(searchNormalized) ||
-          normalizeText(bird.scientificName).includes(searchNormalized) ||
-          normalizeText(bird.family).includes(searchNormalized);
-        if (!matchesSearch) return false;
-      }
-      
-      return true;
-    }).sort((a: any, b: any) => {
-      if (filters.sortBy === 'alphabetical') {
-        // Sort alphabetically by common name
-        return a.commonName.localeCompare(b.commonName, 'es');
-      } else if (filters.sortBy === 'order') {
-        // Sort by order, then by common name within each order
-        const orderComparison = a.order.localeCompare(b.order, 'es');
-        if (orderComparison !== 0) {
-          return orderComparison;
+        // Filter by seen status
+        if (filters.seen === "seen" && !observation?.seen) return false;
+        if (filters.seen === "not-seen" && observation?.seen) return false;
+
+        // Filter by photo status
+        if (filters.hasPhoto === "with-photo" && !observation?.hasPhoto)
+          return false;
+        if (filters.hasPhoto === "without-photo" && observation?.hasPhoto)
+          return false;
+
+        // Filter by order
+        if (filters.order && bird.order !== filters.order) return false;
+
+        // Filter by family
+        if (filters.family && bird.family !== filters.family) return false;
+
+        // Filter by departamento
+        if (filters.departamento) {
+          const birdDepartamentos = getDepartamentosForBird(bird);
+          if (!birdDepartamentos.includes(filters.departamento)) return false;
         }
-        return a.commonName.localeCompare(b.commonName, 'es');
-      } else {
-        // Sort by commonness (most common first)
-        const commonnessOrder = ['abundante', 'común', 'poco común', 'rara', 'muy rara'];
-        const aCommonness = getCommonnessForDepartment(a, filters.departamento);
-        const bCommonness = getCommonnessForDepartment(b, filters.departamento);
-        const aIndex = commonnessOrder.indexOf(aCommonness);
-        const bIndex = commonnessOrder.indexOf(bCommonness);
-        return aIndex - bIndex;
-      }
-    });
+
+        // Filter by commonness
+        if (filters.commonness) {
+          const birdCommonness = getCommonnessForDepartment(
+            bird,
+            filters.departamento
+          );
+          if (birdCommonness !== filters.commonness) return false;
+        }
+
+        // Filter by status
+        if (filters.status && bird.status !== filters.status) return false;
+
+        // Filter by conservation status
+        if (
+          filters.conservationStatus &&
+          bird.conservationStatus !== filters.conservationStatus
+        )
+          return false;
+
+        // Filter by occasional visitors
+        if (
+          filters.excludeOccasionalVisitors &&
+          bird.status === BIRD_STATUS.OCASIONAL
+        )
+          return false;
+
+        // Filter by pelagic seabirds
+        if (
+          filters.excludePelagicSeabirds &&
+          bird.habitat &&
+          bird.habitat.some((hab: string) => hab.includes("mar 🌊"))
+        )
+          return false;
+
+        // Filter by search term
+        if (filters.searchTerm) {
+          const normalizeText = (text: string) => {
+            return text
+              .toLowerCase()
+              .normalize("NFD")
+              .replace(/[\u0300-\u036f]/g, "");
+          };
+
+          const searchNormalized = normalizeText(filters.searchTerm);
+          const matchesSearch =
+            normalizeText(bird.commonName).includes(searchNormalized) ||
+            normalizeText(bird.scientificName).includes(searchNormalized) ||
+            normalizeText(bird.family).includes(searchNormalized);
+          if (!matchesSearch) return false;
+        }
+
+        return true;
+      })
+      .sort((a: any, b: any) => {
+        if (filters.sortBy === "alphabetical") {
+          // Sort alphabetically by common name
+          return a.commonName.localeCompare(b.commonName, "es");
+        } else if (filters.sortBy === "order") {
+          // Sort by order, then by common name within each order
+          const orderComparison = a.order.localeCompare(b.order, "es");
+          if (orderComparison !== 0) {
+            return orderComparison;
+          }
+          return a.commonName.localeCompare(b.commonName, "es");
+        } else {
+          // Sort by commonness (most common first)
+          const commonnessOrder = [
+            "abundante",
+            "común",
+            "poco común",
+            "rara",
+            "muy rara",
+          ];
+          const aCommonness = getCommonnessForDepartment(
+            a,
+            filters.departamento
+          );
+          const bCommonness = getCommonnessForDepartment(
+            b,
+            filters.departamento
+          );
+          const aIndex = commonnessOrder.indexOf(aCommonness);
+          const bIndex = commonnessOrder.indexOf(bCommonness);
+          return aIndex - bIndex;
+        }
+      });
   }, [state.observations, filters]);
 
   const handleFilterChange = (field: keyof FilterOptions, value: string) => {
     // Handle boolean values for checkbox
-    const filterValue = field === 'excludeOccasionalVisitors' || field === 'excludePelagicSeabirds' ? value === 'true' : value;
-    setFilters(prev => ({ ...prev, [field]: filterValue }));
+    const filterValue =
+      field === "excludeOccasionalVisitors" ||
+      field === "excludePelagicSeabirds"
+        ? value === "true"
+        : value;
+    setFilters((prev) => ({ ...prev, [field]: filterValue }));
     setDisplayCount(9); // Reset to show first 9 birds when filters change
-    
+
     // Clear family filter when order changes
-    if (field === 'order') {
-      setFilters(prev => ({ ...prev, family: '' }));
+    if (field === "order") {
+      setFilters((prev) => ({ ...prev, family: "" }));
     }
-    
+
     // Update URL parameters
     const newSearchParams = new URLSearchParams(searchParams);
-    if (field === 'excludeOccasionalVisitors' || field === 'excludePelagicSeabirds') {
+    if (
+      field === "excludeOccasionalVisitors" ||
+      field === "excludePelagicSeabirds"
+    ) {
       if (filterValue) {
-        newSearchParams.set(field, 'true');
+        newSearchParams.set(field, "true");
       } else {
         newSearchParams.delete(field);
       }
-    } else if (value && value !== 'all') {
+    } else if (value && value !== "all") {
       newSearchParams.set(field, value);
     } else {
       newSearchParams.delete(field);
     }
-    
+
     // Clear family parameter when order changes
-    if (field === 'order') {
-      newSearchParams.delete('family');
+    if (field === "order") {
+      newSearchParams.delete("family");
     }
-    
+
     setSearchParams(newSearchParams);
   };
 
   const handleClearFilters = () => {
     setFilters({
-      seen: 'all',
-      hasPhoto: 'all',
-      order: '',
-      family: '',
-      departamento: '',
-      commonness: '',
-      status: '',
-      conservationStatus: '',
-      searchTerm: '',
-      sortBy: 'commonness',
+      seen: "all",
+      hasPhoto: "all",
+      order: "",
+      family: "",
+      departamento: "",
+      commonness: "",
+      status: "",
+      conservationStatus: "",
+      searchTerm: "",
+      sortBy: "commonness",
       excludeOccasionalVisitors: false,
       excludePelagicSeabirds: false,
     });
@@ -281,13 +348,15 @@ const Checklist: React.FC = () => {
   };
 
   const getBirdObservation = (birdId: string) => {
-    return state.observations[birdId] || {
-      birdId,
-      bird: uruguayBirds.find((b: any) => b.id === birdId)!,
-      seen: false,
-      hasPhoto: false,
-      observations: [],
-    };
+    return (
+      state.observations[birdId] || {
+        birdId,
+        bird: uruguayBirds.find((b: any) => b.id === birdId)!,
+        seen: false,
+        hasPhoto: false,
+        observations: [],
+      }
+    );
   };
 
   // Helper function to check if commonness varies by department
@@ -298,9 +367,11 @@ const Checklist: React.FC = () => {
 
   // Restore scroll position when returning from bird detail
   React.useEffect(() => {
-    const savedScrollPosition = sessionStorage.getItem('checklistScrollPosition');
-    const savedSearchParams = sessionStorage.getItem('checklistSearchParams');
-    
+    const savedScrollPosition = sessionStorage.getItem(
+      "checklistScrollPosition"
+    );
+    const savedSearchParams = sessionStorage.getItem("checklistSearchParams");
+
     if (savedScrollPosition && savedSearchParams) {
       // Restore URL parameters if they match what we saved
       const currentParams = window.location.search;
@@ -310,109 +381,116 @@ const Checklist: React.FC = () => {
           window.scrollTo(0, parseInt(savedScrollPosition, 10));
         }, 100);
       }
-      
+
       // Clear saved data after restoration
-      sessionStorage.removeItem('checklistScrollPosition');
-      sessionStorage.removeItem('checklistSearchParams');
+      sessionStorage.removeItem("checklistScrollPosition");
+      sessionStorage.removeItem("checklistSearchParams");
     }
   }, []);
 
   // Handle scroll to show/hide back to top button
   React.useEffect(() => {
     const handleScroll = () => {
-      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const scrollTop =
+        window.pageYOffset || document.documentElement.scrollTop;
       setShowBackToTop(scrollTop > 300);
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const handleBackToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth'
+      behavior: "smooth",
     });
   };
 
   const handleExportPDF = async () => {
     try {
       const doc = (
-        <BirdListPDF 
-          birds={filteredBirds} 
+        <BirdListPDF
+          birds={filteredBirds}
           filters={filters}
           totalCount={uruguayBirds.length}
           observations={state.observations}
         />
       );
-      
+
       const asPdf = pdf(doc);
       const blob = await asPdf.toBlob();
-      
+
       // Create download link
       const url = URL.createObjectURL(blob);
-      const link = document.createElement('a');
+      const link = document.createElement("a");
       link.href = url;
-      
+
       // Generate filename based on filters
       const activeFilters = Object.entries(filters)
         .filter(([key, value]) => {
-          if (key === 'sortBy') return false;
-          if (key === 'excludeOccasionalVisitors' || key === 'excludePelagicSeabirds') return value === true;
-          return value && value !== 'all';
+          if (key === "sortBy") return false;
+          if (
+            key === "excludeOccasionalVisitors" ||
+            key === "excludePelagicSeabirds"
+          )
+            return value === true;
+          return value && value !== "all";
         })
         .map(([key, value]) => `${key}-${value}`)
-        .join('_');
-      
-      const filename = activeFilters 
+        .join("_");
+
+      const filename = activeFilters
         ? `aves_uruguay_${activeFilters}.pdf`
-        : 'aves_uruguay.pdf';
-      
+        : "aves_uruguay.pdf";
+
       link.download = filename;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
       URL.revokeObjectURL(url);
     } catch (error) {
-      console.error('Error generating PDF:', error);
-      alert('Error al generar el PDF. Por favor, inténtalo de nuevo.');
+      console.error("Error generating PDF:", error);
+      alert("Error al generar el PDF. Por favor, inténtalo de nuevo.");
     }
   };
 
   return (
     <Box>
-
-      
       {/* Filters */}
       <Paper sx={{ mb: 3 }}>
-        <Box 
-          sx={{ 
-            p: 2, 
-            cursor: 'pointer',
-            display: 'flex', 
-            alignItems: 'center', 
-            justifyContent: 'space-between',
-            borderBottom: '1px solid',
-            borderColor: 'divider',
-            '&:hover': {
-              backgroundColor: 'rgba(0, 0, 0, 0.04)',
-            }
+        <Box
+          sx={{
+            p: 2,
+            cursor: "pointer",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            borderBottom: "1px solid",
+            borderColor: "divider",
+            "&:hover": {
+              backgroundColor: "rgba(0, 0, 0, 0.04)",
+            },
           }}
           onClick={() => setFiltersOpen(!filtersOpen)}
         >
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+          <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
             <FilterIcon />
-            <Typography variant="h6">
-              Filtros
-            </Typography>
+            <Typography variant="h6">Filtros</Typography>
             <Typography variant="body2" color="text.secondary">
-              ({Object.entries(filters)
-                .filter(([key, value]) => {
-                  if (key === 'sortBy') return false;
-                  if (key === 'excludeOccasionalVisitors' || key === 'excludePelagicSeabirds') return value === true;
-                  return value && value !== 'all';
-                })
-                .length} activos)
+              (
+              {
+                Object.entries(filters).filter(([key, value]) => {
+                  if (key === "sortBy") return false;
+                  if (
+                    key === "excludeOccasionalVisitors" ||
+                    key === "excludePelagicSeabirds"
+                  )
+                    return value === true;
+                  return value && value !== "all";
+                }).length
+              }{" "}
+              activos)
             </Typography>
           </Box>
           <IconButton size="small">
@@ -422,173 +500,221 @@ const Checklist: React.FC = () => {
         <Collapse in={filtersOpen}>
           <Box sx={{ p: 2, pt: isMobile ? 1 : 2 }}>
             <Grid container spacing={2}>
-          <Grid item xs={12} sm={6} md={3}>
-            <FormControl fullWidth size="small">
-              <InputLabel>Estado</InputLabel>
-              <Select
-                value={filters.seen}
-                label="Estado"
-                onChange={(e) => handleFilterChange('seen', e.target.value)}
-              >
-                <MenuItem value="all">Todos</MenuItem>
-                <MenuItem value="seen">Vistos</MenuItem>
-                <MenuItem value="not-seen">No vistos</MenuItem>
-              </Select>
-            </FormControl>
-          </Grid>
-          
-          <Grid item xs={12} sm={6} md={3}>
-            <FormControl fullWidth size="small">
-              <InputLabel>Fotos</InputLabel>
-              <Select
-                value={filters.hasPhoto}
-                label="Fotos"
-                onChange={(e) => handleFilterChange('hasPhoto', e.target.value)}
-              >
-                <MenuItem value="all">Todos</MenuItem>
-                <MenuItem value="with-photo">Con fotos</MenuItem>
-                <MenuItem value="without-photo">Sin fotos</MenuItem>
-              </Select>
-            </FormControl>
-          </Grid>
-          
-          <Grid item xs={12} sm={6} md={3}>
-            <FormControl fullWidth size="small">
-              <InputLabel>Orden</InputLabel>
-              <Select
-                value={filters.order}
-                label="Orden"
-                onChange={(e) => handleFilterChange('order', e.target.value)}
-              >
-                <MenuItem value="">Todos</MenuItem>
-                {uniqueOrders.map(order => (
-                  <MenuItem key={order} value={order}>{order}</MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-          </Grid>
-          
-          <Grid item xs={12} sm={6} md={3}>
-            <FormControl fullWidth size="small">
-              <InputLabel>Familia</InputLabel>
-              <Select
-                value={filters.family}
-                label="Familia"
-                onChange={(e) => handleFilterChange('family', e.target.value)}
-                disabled={!filters.order}
-              >
-                <MenuItem value="">Todas</MenuItem>
-                {uniqueFamiliesForOrder.map(family => (
-                  <MenuItem key={family} value={family}>{family}</MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-          </Grid>
-          
+              <Grid item xs={12} sm={6} md={3}>
+                <FormControl fullWidth size="small">
+                  <InputLabel>Estado</InputLabel>
+                  <Select
+                    value={filters.seen}
+                    label="Estado"
+                    onChange={(e) => handleFilterChange("seen", e.target.value)}
+                  >
+                    <MenuItem value="all">Todos</MenuItem>
+                    <MenuItem value="seen">Vistos</MenuItem>
+                    <MenuItem value="not-seen">No vistos</MenuItem>
+                  </Select>
+                </FormControl>
+              </Grid>
 
-          
-          <Grid item xs={12} sm={6} md={3}>
-            <FormControl fullWidth size="small">
-              <InputLabel>Departamento</InputLabel>
-              <Select
-                value={filters.departamento}
-                label="Departamento"
-                onChange={(e) => handleFilterChange('departamento', e.target.value)}
-              >
-                <MenuItem value="">Todos</MenuItem>
-                {uniqueDepartamentos.map(departamento => (
-                  <MenuItem key={departamento} value={departamento}>{departamento}</MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-          </Grid>
-          
-          <Grid item xs={12} sm={6} md={3}>
-            <FormControl fullWidth size="small">
-              <InputLabel>Abundancia</InputLabel>
-              <Select
-                value={filters.commonness}
-                label="Abundancia"
-                onChange={(e) => handleFilterChange('commonness', e.target.value)}
-              >
-                <MenuItem value="">Todas</MenuItem>
-                {uniqueCommonness.map(commonness => (
-                  <MenuItem key={commonness} value={commonness}>{commonness}</MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-          </Grid>
-          
-          <Grid item xs={12} sm={6} md={3}>
-            <FormControl fullWidth size="small">
-              <InputLabel>Estado</InputLabel>
-              <Select
-                value={filters.status}
-                label="Estado"
-                onChange={(e) => handleFilterChange('status', e.target.value)}
-              >
-                <MenuItem value="">Todos</MenuItem>
-                {uniqueStatuses.map(status => (
-                  <MenuItem key={status} value={status}>{status}</MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-          </Grid>
-          
-          <Grid item xs={12} sm={6} md={3}>
-            <FormControl fullWidth size="small">
-              <InputLabel>Conservación</InputLabel>
-              <Select
-                value={filters.conservationStatus}
-                label="Conservación"
-                onChange={(e) => handleFilterChange('conservationStatus', e.target.value)}
-              >
-                <MenuItem value="">Todas</MenuItem>
-                {uniqueConservationStatuses.map(conservationStatus => (
-                  <MenuItem key={conservationStatus} value={conservationStatus}>{conservationStatus}</MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-          </Grid>
+              <Grid item xs={12} sm={6} md={3}>
+                <FormControl fullWidth size="small">
+                  <InputLabel>Fotos</InputLabel>
+                  <Select
+                    value={filters.hasPhoto}
+                    label="Fotos"
+                    onChange={(e) =>
+                      handleFilterChange("hasPhoto", e.target.value)
+                    }
+                  >
+                    <MenuItem value="all">Todos</MenuItem>
+                    <MenuItem value="with-photo">Con fotos</MenuItem>
+                    <MenuItem value="without-photo">Sin fotos</MenuItem>
+                  </Select>
+                </FormControl>
+              </Grid>
 
+              <Grid item xs={12} sm={6} md={3}>
+                <FormControl fullWidth size="small">
+                  <InputLabel>Orden</InputLabel>
+                  <Select
+                    value={filters.order}
+                    label="Orden"
+                    onChange={(e) =>
+                      handleFilterChange("order", e.target.value)
+                    }
+                  >
+                    <MenuItem value="">Todos</MenuItem>
+                    {uniqueOrders.map((order) => (
+                      <MenuItem key={order} value={order}>
+                        {order}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+              </Grid>
 
-          
-          <Grid item xs={12}>
-            <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 2 }}>
-              <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                <input
-                  type="checkbox"
-                  id="excludeOccasionalVisitors"
-                  checked={filters.excludeOccasionalVisitors}
-                  onChange={(e) => handleFilterChange('excludeOccasionalVisitors', e.target.checked.toString())}
-                  style={{ marginRight: '8px' }}
-                />
-                <label htmlFor="excludeOccasionalVisitors" style={{ fontSize: '14px', cursor: 'pointer' }}>
-                  Excluir visitantes ocasionales
-                </label>
-              </Box>
-              <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                <input
-                  type="checkbox"
-                  id="excludePelagicSeabirds"
-                  checked={filters.excludePelagicSeabirds}
-                  onChange={(e) => handleFilterChange('excludePelagicSeabirds', e.target.checked.toString())}
-                  style={{ marginRight: '8px' }}
-                />
-                <label htmlFor="excludePelagicSeabirds" style={{ fontSize: '14px', cursor: 'pointer' }}>
-                  Excluir aves pelágicas
-                </label>
-              </Box>
-              <Button
-                variant="outlined"
-                onClick={handleClearFilters}
-                size="small"
-                sx={{ height: '40px', px: 4 }}
-              >
-                Limpiar filtros
-              </Button>
-            </Box>
-          </Grid>
+              <Grid item xs={12} sm={6} md={3}>
+                <FormControl fullWidth size="small">
+                  <InputLabel>Familia</InputLabel>
+                  <Select
+                    value={filters.family}
+                    label="Familia"
+                    onChange={(e) =>
+                      handleFilterChange("family", e.target.value)
+                    }
+                    disabled={!filters.order}
+                  >
+                    <MenuItem value="">Todas</MenuItem>
+                    {uniqueFamiliesForOrder.map((family) => (
+                      <MenuItem key={family} value={family}>
+                        {family}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+              </Grid>
+
+              <Grid item xs={12} sm={6} md={3}>
+                <FormControl fullWidth size="small">
+                  <InputLabel>Departamento</InputLabel>
+                  <Select
+                    value={filters.departamento}
+                    label="Departamento"
+                    onChange={(e) =>
+                      handleFilterChange("departamento", e.target.value)
+                    }
+                  >
+                    <MenuItem value="">Todos</MenuItem>
+                    {uniqueDepartamentos.map((departamento) => (
+                      <MenuItem key={departamento} value={departamento}>
+                        {departamento}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+              </Grid>
+
+              <Grid item xs={12} sm={6} md={3}>
+                <FormControl fullWidth size="small">
+                  <InputLabel>Abundancia</InputLabel>
+                  <Select
+                    value={filters.commonness}
+                    label="Abundancia"
+                    onChange={(e) =>
+                      handleFilterChange("commonness", e.target.value)
+                    }
+                  >
+                    <MenuItem value="">Todas</MenuItem>
+                    {uniqueCommonness.map((commonness) => (
+                      <MenuItem key={commonness} value={commonness}>
+                        {commonness}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+              </Grid>
+
+              <Grid item xs={12} sm={6} md={3}>
+                <FormControl fullWidth size="small">
+                  <InputLabel>Estado</InputLabel>
+                  <Select
+                    value={filters.status}
+                    label="Estado"
+                    onChange={(e) =>
+                      handleFilterChange("status", e.target.value)
+                    }
+                  >
+                    <MenuItem value="">Todos</MenuItem>
+                    {uniqueStatuses.map((status) => (
+                      <MenuItem key={status} value={status}>
+                        {status}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+              </Grid>
+
+              <Grid item xs={12} sm={6} md={3}>
+                <FormControl fullWidth size="small">
+                  <InputLabel>Conservación</InputLabel>
+                  <Select
+                    value={filters.conservationStatus}
+                    label="Conservación"
+                    onChange={(e) =>
+                      handleFilterChange("conservationStatus", e.target.value)
+                    }
+                  >
+                    <MenuItem value="">Todas</MenuItem>
+                    {uniqueConservationStatuses.map((conservationStatus) => (
+                      <MenuItem
+                        key={conservationStatus}
+                        value={conservationStatus}
+                      >
+                        {conservationStatus}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+              </Grid>
+
+              <Grid item xs={12}>
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    gap: 2,
+                  }}
+                >
+                  <Box sx={{ display: "flex", alignItems: "center" }}>
+                    <input
+                      type="checkbox"
+                      id="excludeOccasionalVisitors"
+                      checked={filters.excludeOccasionalVisitors}
+                      onChange={(e) =>
+                        handleFilterChange(
+                          "excludeOccasionalVisitors",
+                          e.target.checked.toString()
+                        )
+                      }
+                      style={{ marginRight: "8px" }}
+                    />
+                    <label
+                      htmlFor="excludeOccasionalVisitors"
+                      style={{ fontSize: "14px", cursor: "pointer" }}
+                    >
+                      Excluir visitantes ocasionales
+                    </label>
+                  </Box>
+                  <Box sx={{ display: "flex", alignItems: "center" }}>
+                    <input
+                      type="checkbox"
+                      id="excludePelagicSeabirds"
+                      checked={filters.excludePelagicSeabirds}
+                      onChange={(e) =>
+                        handleFilterChange(
+                          "excludePelagicSeabirds",
+                          e.target.checked.toString()
+                        )
+                      }
+                      style={{ marginRight: "8px" }}
+                    />
+                    <label
+                      htmlFor="excludePelagicSeabirds"
+                      style={{ fontSize: "14px", cursor: "pointer" }}
+                    >
+                      Excluir aves pelágicas
+                    </label>
+                  </Box>
+                  <Button
+                    variant="outlined"
+                    onClick={handleClearFilters}
+                    size="small"
+                    sx={{ height: "40px", px: 4 }}
+                  >
+                    Limpiar filtros
+                  </Button>
+                </Box>
+              </Grid>
             </Grid>
           </Box>
         </Collapse>
@@ -596,62 +722,74 @@ const Checklist: React.FC = () => {
 
       {/* Pelagic Seabird Information */}
       {filters.order === ORDER_NAME && (
-        <Paper 
-          sx={{ 
-            mb: 3, 
-            p: 2, 
-            backgroundColor: '#E3F2FD', 
-            border: '1px solid #2196F3',
-            borderRadius: 2
+        <Paper
+          sx={{
+            mb: 3,
+            p: 2,
+            backgroundColor: "#E3F2FD",
+            border: "1px solid #2196F3",
+            borderRadius: 2,
           }}
         >
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
-            <Typography variant="h6" color="primary" sx={{ fontWeight: 'bold' }}>
+          <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 1 }}>
+            <Typography
+              variant="h6"
+              color="primary"
+              sx={{ fontWeight: "bold" }}
+            >
               🌊 Nota: Aves Pelágicas
             </Typography>
           </Box>
           <Typography variant="body2" color="text.secondary">
-            Las aves pelágicas son especies marinas que viven en mar abierto y raramente se observan desde la costa, salvo algunas especies. 
-            Su presencia en Uruguay se registra principalmente en aguas territoriales durante expediciones marítimas o desde embarcaciones. 
-            Aquellas que están marcadas como "residente" son aves que se encuentran durante todo el año en territorio marítimo.
+            Las aves pelágicas son especies marinas que viven en mar abierto y
+            raramente se observan desde la costa, salvo algunas especies. Su
+            presencia en Uruguay se registra principalmente en aguas
+            territoriales durante expediciones marítimas o desde embarcaciones.
+            Aquellas que están marcadas como "residente" son aves que se
+            encuentran durante todo el año en territorio marítimo.
           </Typography>
         </Paper>
       )}
 
       {/* Results count, Search and Sort */}
-      <Box sx={{ 
-        display: 'flex', 
-        justifyContent: 'space-between', 
-        alignItems: 'center',
-        mb: 2,
-        gap: 2
-      }}>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          mb: 2,
+          gap: 2,
+        }}
+      >
         <Typography variant="body2" color="text.secondary">
-          Mostrando {Math.min(displayCount, filteredBirds.length)} de {filteredBirds.length} especies
+          Mostrando {Math.min(displayCount, filteredBirds.length)} de{" "}
+          {filteredBirds.length} especies
         </Typography>
 
-        <Box sx={{ 
-          display: 'flex', 
-          gap: 2, 
-          alignItems: 'center',
-          flexDirection: { xs: 'column', sm: 'row' },
-          width: { xs: '100%', sm: 'auto' }
-        }}>
+        <Box
+          sx={{
+            display: "flex",
+            gap: 2,
+            alignItems: "center",
+            flexDirection: { xs: "column", sm: "row" },
+            width: { xs: "100%", sm: "auto" },
+          }}
+        >
           <TextField
             size="small"
             label="Buscar 🔎"
             value={filters.searchTerm}
-            onChange={(e) => handleFilterChange('searchTerm', e.target.value)}
+            onChange={(e) => handleFilterChange("searchTerm", e.target.value)}
             placeholder="Nombre, científico o familia..."
-            sx={{ width: { xs: '100%', sm: 250 } }}
+            sx={{ width: { xs: "100%", sm: 250 } }}
           />
 
-          <FormControl size="small" sx={{ width: { xs: '100%', sm: 200 } }}>
+          <FormControl size="small" sx={{ width: { xs: "100%", sm: 200 } }}>
             <InputLabel>Ordenar por</InputLabel>
             <Select
               value={filters.sortBy}
               label="Ordenar por"
-              onChange={(e) => handleFilterChange('sortBy', e.target.value)}
+              onChange={(e) => handleFilterChange("sortBy", e.target.value)}
             >
               <MenuItem value="commonness">Por abundancia</MenuItem>
               <MenuItem value="alphabetical">Alfabéticamente</MenuItem>
@@ -664,10 +802,10 @@ const Checklist: React.FC = () => {
             startIcon={<PdfIcon />}
             onClick={handleExportPDF}
             size="small"
-            sx={{ 
-              width: { xs: '100%', sm: 'auto' },
-              height: '40px',
-              minWidth: { xs: 'auto', sm: '140px' }
+            sx={{
+              width: { xs: "100%", sm: "auto" },
+              height: "40px",
+              minWidth: { xs: "auto", sm: "140px" },
             }}
           >
             Exportar PDF
@@ -679,64 +817,96 @@ const Checklist: React.FC = () => {
       <Grid container spacing={2}>
         {filteredBirds.slice(0, displayCount).map((bird: any) => {
           const observation = getBirdObservation(bird.id);
-          
+
           return (
             <Grid item xs={12} sm={6} md={6} lg={4} key={bird.id}>
-              <Card 
-                sx={{ 
-                  height: '100%',
-                  border: observation.seen ? '4px solid #4caf50' : '1px solid #e0e0e0',
-                  '&:hover': {
+              <Card
+                sx={{
+                  height: "100%",
+                  border: observation.seen
+                    ? "4px solid #4caf50"
+                    : "1px solid #e0e0e0",
+                  "&:hover": {
                     boxShadow: 3,
-                    transform: 'translateY(-4px)',
-                    transition: 'all 0.2s ease-in-out',
-                  }
+                    transform: "translateY(-4px)",
+                    transition: "all 0.2s ease-in-out",
+                  },
                 }}
               >
-                <Box sx={{ position: 'relative' }}>
+                <Box sx={{ position: "relative" }}>
                   <BirdImage bird={bird} height={560} compact={true} />
                   <Box
                     sx={{
-                      position: 'absolute',
+                      position: "absolute",
                       bottom: 0,
                       left: 0,
                       right: 0,
-                      background: 'linear-gradient(transparent, rgba(255,255,255,0.9) 20%, rgba(255,255,255,1) 40%)',
-                      paddingTop: '0px',
-                      paddingBottom: '0px',
-                      paddingLeft: '16px',
-                      paddingRight: '16px',
+                      background:
+                        "linear-gradient(transparent, rgba(255,255,255,0.9) 20%, rgba(255,255,255,1) 40%)",
+                      paddingTop: "0px",
+                      paddingBottom: "0px",
+                      paddingLeft: "16px",
+                      paddingRight: "16px",
                     }}
                   >
-                    <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', mb: 2 }}>
+                    <Box
+                      sx={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        alignItems: "flex-start",
+                        mb: 2,
+                      }}
+                    >
                       <Box>
-                        <Typography 
-                          variant="h6" 
-                          component="div" 
-                          sx={{ 
-                            fontWeight: 'bold',
-                            cursor: 'pointer',
-                            '&:hover': {
-                              color: 'primary.main',
-                              textDecoration: 'underline'
-                            }
+                        <Typography
+                          variant="h6"
+                          component="div"
+                          sx={{
+                            fontWeight: "bold",
+                            cursor: "pointer",
+                            "&:hover": {
+                              color: "primary.main",
+                              textDecoration: "underline",
+                            },
                           }}
                           onClick={() => {
                             // Save current state before navigation
-                            sessionStorage.setItem('checklistScrollPosition', window.pageYOffset.toString());
-                            sessionStorage.setItem('checklistSearchParams', window.location.search);
+                            sessionStorage.setItem(
+                              "checklistScrollPosition",
+                              window.pageYOffset.toString()
+                            );
+                            sessionStorage.setItem(
+                              "checklistSearchParams",
+                              window.location.search
+                            );
                             navigate(`/bird/${bird.id}`);
                           }}
                         >
                           {bird.commonName}
                         </Typography>
-                        <Typography variant="body2" color="text.secondary" sx={{ fontStyle: 'italic' }}>
+                        <Typography
+                          variant="body2"
+                          color="text.secondary"
+                          sx={{ fontStyle: "italic" }}
+                        >
                           {bird.scientificName}
                         </Typography>
                       </Box>
-                      
-                      <Box sx={{ display: 'flex', gap: 1, alignItems: 'flex-start' }}>
-                        <Tooltip title={observation.seen ? 'Marcar como no visto' : 'Marcar como visto'}>
+
+                      <Box
+                        sx={{
+                          display: "flex",
+                          gap: 1,
+                          alignItems: "flex-start",
+                        }}
+                      >
+                        <Tooltip
+                          title={
+                            observation.seen
+                              ? "Marcar como no visto"
+                              : "Marcar como visto"
+                          }
+                        >
                           <IconButton
                             size="small"
                             onClick={() => {
@@ -746,24 +916,26 @@ const Checklist: React.FC = () => {
                                   open: true,
                                   birdId: bird.id,
                                   birdName: warning.birdName,
-                                  observationCount: warning.observationCount
+                                  observationCount: warning.observationCount,
                                 });
                               } else {
                                 toggleSeen(bird.id);
                               }
                             }}
-                            color={observation.seen ? 'success' : 'default'}
+                            color={observation.seen ? "success" : "default"}
                           >
                             <VisibilityIcon />
                           </IconButton>
                         </Tooltip>
-                        <Tooltip title={
-                          !observation.seen 
-                            ? 'Primero marca como visto' 
-                            : observation.hasPhoto 
-                              ? 'Marcar como sin foto' 
-                              : 'Marcar como con foto'
-                        }>
+                        <Tooltip
+                          title={
+                            !observation.seen
+                              ? "Primero marca como visto"
+                              : observation.hasPhoto
+                              ? "Marcar como sin foto"
+                              : "Marcar como con foto"
+                          }
+                        >
                           <span>
                             <IconButton
                               size="small"
@@ -773,10 +945,12 @@ const Checklist: React.FC = () => {
                                   togglePhoto(bird.id);
                                 }
                               }}
-                              color={observation.hasPhoto ? 'primary' : 'default'}
+                              color={
+                                observation.hasPhoto ? "primary" : "default"
+                              }
                               disabled={!observation.seen}
                               sx={{
-                                opacity: !observation.seen ? 0.5 : 1
+                                opacity: !observation.seen ? 0.5 : 1,
                               }}
                             >
                               <PhotoCameraIcon />
@@ -785,53 +959,79 @@ const Checklist: React.FC = () => {
                         </Tooltip>
                       </Box>
                     </Box>
-                    
-                    <Box sx={{ display: 'flex', gap: 1, mb: 2, flexWrap: 'wrap' }}>
-                      <Chip label={bird.order} size="small" variant="outlined" />
-                      <Chip label={bird.family} size="small" variant="outlined" />
+
+                    <Box
+                      sx={{ display: "flex", gap: 1, mb: 2, flexWrap: "wrap" }}
+                    >
+                      <Chip
+                        label={bird.order}
+                        size="small"
+                        variant="outlined"
+                      />
+                      <Chip
+                        label={bird.family}
+                        size="small"
+                        variant="outlined"
+                      />
                     </Box>
-                    
-                    <Box sx={{ display: 'flex', gap: 1, mb: 2, flexWrap: 'wrap' }}>
+
+                    <Box
+                      sx={{ display: "flex", gap: 1, mb: 2, flexWrap: "wrap" }}
+                    >
                       {shouldShowCommonness(bird) && (
-                        <Chip 
-                          label={getCommonnessForDepartment(bird, filters.departamento)} 
-                          size="small" 
-                          color="secondary" 
+                        <Chip
+                          label={getCommonnessForDepartment(
+                            bird,
+                            filters.departamento
+                          )}
+                          size="small"
+                          color="secondary"
                           variant="filled"
                         />
                       )}
-                      <Chip 
+                      <Chip
                         label={bird.status}
-                        size="small" 
+                        size="small"
                         sx={{
-                          backgroundColor: getStatusChipColors(bird.status).backgroundColor,
-                          color: getStatusChipColors(bird.status).color
+                          backgroundColor: getStatusChipColors(bird.status)
+                            .backgroundColor,
+                          color: getStatusChipColors(bird.status).color,
                         }}
                         color={getStatusChipColors(bird.status).chipColor}
                         variant="filled"
                       />
-                       {/* Show origin/pelagic chip for all birds */}
-                       <Chip 
-                         label={getPelagicChipProps(bird).label}
-                         size="small" 
-                         color={getPelagicChipProps(bird).color}
-                         variant="filled"
-                         icon={getPelagicChipProps(bird).icon === 'NatureIcon' ? <NatureIcon /> : getPelagicChipProps(bird).icon === 'ImportContactsIcon' ? <ImportContactsIcon /> : undefined}
-                       />
+                      {/* Show origin/pelagic chip for all birds */}
+                      <Chip
+                        label={getPelagicChipProps(bird).label}
+                        size="small"
+                        color={getPelagicChipProps(bird).color}
+                        variant="filled"
+                        icon={
+                          getPelagicChipProps(bird).icon === "NatureIcon" ? (
+                            <NatureIcon />
+                          ) : getPelagicChipProps(bird).icon ===
+                            "ImportContactsIcon" ? (
+                            <ImportContactsIcon />
+                          ) : undefined
+                        }
+                      />
                       {bird.conservationStatus && (
-                        <Chip 
+                        <Chip
                           label={bird.conservationStatus}
-                          size="small" 
-                          color={getConservationStatusColor(bird.conservationStatus)}
+                          size="small"
+                          color={getConservationStatusColor(
+                            bird.conservationStatus
+                          )}
                           variant="filled"
                         />
                       )}
                     </Box>
-                    
+
                     {observation.observations.length > 0 && (
                       <Box sx={{ mt: 2 }}>
                         <Typography variant="body2" color="text.secondary">
-                          {observation.observations.length} observación{observation.observations.length !== 1 ? 'es' : ''}
+                          {observation.observations.length} observación
+                          {observation.observations.length !== 1 ? "es" : ""}
                         </Typography>
                       </Box>
                     )}
@@ -842,22 +1042,22 @@ const Checklist: React.FC = () => {
           );
         })}
       </Grid>
-      
+
       {/* Show more button */}
       {displayCount < filteredBirds.length && (
-        <Box sx={{ textAlign: 'center', mt: 3 }}>
+        <Box sx={{ textAlign: "center", mt: 3 }}>
           <Button
             variant="outlined"
-            onClick={() => setDisplayCount(prev => prev + 9)}
+            onClick={() => setDisplayCount((prev) => prev + 9)}
             sx={{ px: 4, py: 1.5 }}
           >
             Mostrar más
           </Button>
         </Box>
       )}
-      
+
       {filteredBirds.length === 0 && (
-        <Box sx={{ textAlign: 'center', py: 4 }}>
+        <Box sx={{ textAlign: "center", py: 4 }}>
           <Typography variant="h6" color="text.secondary">
             No se encontraron aves con los filtros seleccionados
           </Typography>
@@ -867,57 +1067,65 @@ const Checklist: React.FC = () => {
       {/* Warning Dialog */}
       <Dialog
         open={warningDialog.open}
-        onClose={() => setWarningDialog(prev => ({ ...prev, open: false }))}
+        onClose={() => setWarningDialog((prev) => ({ ...prev, open: false }))}
         maxWidth="sm"
         fullWidth
         PaperProps={{
           sx: {
             borderRadius: 2,
             boxShadow: 3,
-          }
+          },
         }}
       >
-        <DialogTitle sx={{ 
-          pb: 1,
-          display: 'flex',
-          alignItems: 'center',
-          gap: 1,
-        }}>
+        <DialogTitle
+          sx={{
+            pb: 1,
+            display: "flex",
+            alignItems: "center",
+            gap: 1,
+          }}
+        >
           <VisibilityIcon color="error" />
           ¿Marcar como no vista?
         </DialogTitle>
         <DialogContent sx={{ pt: 2 }}>
           <Box sx={{ mb: 3 }}>
             <Typography variant="body1" gutterBottom>
-              ¿Estás seguro de que quieres marcar <strong>{warningDialog.birdName}</strong> como "no vista"?
+              ¿Estás seguro de que quieres marcar{" "}
+              <strong>{warningDialog.birdName}</strong> como "no vista"?
             </Typography>
-            <Paper 
-              elevation={0} 
-              sx={{ 
+            <Paper
+              elevation={0}
+              sx={{
                 mt: 2,
                 p: 2,
-                backgroundColor: '#FFF4F4',
-                color: 'error.main',
-                borderRadius: 1
+                backgroundColor: "#FFF4F4",
+                color: "error.main",
+                borderRadius: 1,
               }}
             >
               <Typography variant="body2">
-                Se eliminarán {warningDialog.observationCount} observación{warningDialog.observationCount !== 1 ? 'es' : ''} detallada{warningDialog.observationCount !== 1 ? 's' : ''} que has registrado.
+                Se eliminarán {warningDialog.observationCount} observación
+                {warningDialog.observationCount !== 1 ? "es" : ""} detallada
+                {warningDialog.observationCount !== 1 ? "s" : ""} que has
+                registrado.
               </Typography>
             </Paper>
           </Box>
         </DialogContent>
         <DialogActions sx={{ px: 3, pb: 3 }}>
-          <Button 
-            onClick={() => setWarningDialog(prev => ({ ...prev, open: false }))}
+          <Button
+            onClick={() =>
+              setWarningDialog((prev) => ({ ...prev, open: false }))
+            }
             variant="outlined"
           >
             Cancelar
           </Button>
-          <Button 
+          <Button
             onClick={() => {
               toggleSeen(warningDialog.birdId);
-              setWarningDialog(prev => ({ ...prev, open: false }));
+              setWarningDialog((prev) => ({ ...prev, open: false }));
             }}
             variant="contained"
             color="error"
@@ -931,7 +1139,7 @@ const Checklist: React.FC = () => {
       {showBackToTop && (
         <Box
           sx={{
-            position: 'fixed',
+            position: "fixed",
             bottom: 20,
             right: 20,
             zIndex: 1000,
@@ -940,15 +1148,15 @@ const Checklist: React.FC = () => {
           <IconButton
             onClick={handleBackToTop}
             sx={{
-              backgroundColor: 'primary.main',
-              color: 'white',
+              backgroundColor: "primary.main",
+              color: "white",
               width: 56,
               height: 56,
               boxShadow: 3,
-              '&:hover': {
-                backgroundColor: 'primary.dark',
-                transform: 'scale(1.1)',
-                transition: 'all 0.2s ease-in-out',
+              "&:hover": {
+                backgroundColor: "primary.dark",
+                transform: "scale(1.1)",
+                transition: "all 0.2s ease-in-out",
               },
             }}
             aria-label="Volver arriba"
@@ -961,4 +1169,4 @@ const Checklist: React.FC = () => {
   );
 };
 
-export default Checklist; 
+export default Checklist;
