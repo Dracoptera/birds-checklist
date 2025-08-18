@@ -404,4 +404,22 @@ export const procellariiformes: Bird[] = [
     ebirdEmbedUrl: "https://macaulaylibrary.org/asset/621732771/embed",
     cardHeight: { xs: 690, lg: 760, xl: 760 },
   },
+
+  {
+    id: "petrel-ceniciento",
+    commonName: "Petrel Ceniciento",
+    englishName: "Crested Petrel",
+    scientificName: "Fregata magnificens",
+    size: "48-50 cm | 🪽 115-130 cm",
+    family: "Procellariidae",
+    order: ORDER_NAME,
+    habitat: ["mar 🌊"],
+    status: BIRD_STATUS.OCASIONAL,
+    origin: ORIGIN.AUTOCTONA,
+    commonness: COMMONNESS.MUY_RARA,
+    departamentos: ["Rocha"],
+    conservationStatus: CONSERVATION_STATUS.CASI_AMENAZADA,
+    ebirdEmbedUrl: "https://macaulaylibrary.org/asset/220822901/embed",
+    cardHeight: { xs: 690, lg: 760, xl: 760 },
+  },
 ];
