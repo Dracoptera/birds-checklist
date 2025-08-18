@@ -46,6 +46,7 @@ import BirdListPDF from './BirdListPDF';
 import { pdf } from '@react-pdf/renderer';
 import { getStatusChipColors, getPelagicChipProps, getConservationStatusColor } from '../utils/statusChipColors';
 import { procellariiformes, ORDER_NAME } from '../data/birds/orders/procellariiformes';
+import { BIRD_STATUS } from '../data/constants';
 
 const Checklist: React.FC = () => {
   const navigate = useNavigate();
@@ -182,7 +183,7 @@ const Checklist: React.FC = () => {
       if (filters.conservationStatus && bird.conservationStatus !== filters.conservationStatus) return false;
       
       // Filter by occasional visitors
-      if (filters.excludeOccasionalVisitors && bird.status === '🌍 visitante ocasional') return false;
+      if (filters.excludeOccasionalVisitors && bird.status === BIRD_STATUS.OCASIONAL) return false;
       
       // Filter by pelagic seabirds
       if (filters.excludePelagicSeabirds && bird.habitat && bird.habitat.some((hab: string) => hab.includes('mar 🌊'))) return false;
@@ -575,7 +576,7 @@ const Checklist: React.FC = () => {
                   style={{ marginRight: '8px' }}
                 />
                 <label htmlFor="excludePelagicSeabirds" style={{ fontSize: '14px', cursor: 'pointer' }}>
-                  Excluir aves pelágicas (mar abierto)
+                  Excluir aves pelágicas
                 </label>
               </Box>
               <Button
