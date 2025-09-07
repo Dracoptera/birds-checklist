@@ -638,4 +638,22 @@ export const procellariiformes: Bird[] = [
     ebirdEmbedUrl: "https://macaulaylibrary.org/asset/413988131/embed",
     cardHeight: { xs: 690, lg: 760, xl: 760 },
   },
+
+  {
+    id: "paiño-de-leach",
+    commonName: "Paíño de Leach",
+    englishName: "Leach's Storm-Petrel",
+    scientificName: "Hydrobates leucorhous",
+    size: "21 cm | 🪽 45-48 cm",
+    family: "Hydrobatidae",
+    order: ORDER_NAME,
+    habitat: ["mar 🌊"],
+    status: BIRD_STATUS.OCASIONAL,
+    origin: ORIGIN.AUTOCTONA,
+    commonness: COMMONNESS.MUY_RARA,
+    departamentos: ["Rocha", "Maldonado"],
+    conservationStatus: CONSERVATION_STATUS.VULNERABLE,
+    ebirdEmbedUrl: "https://macaulaylibrary.org/asset/66162781/embed",
+    cardHeight: { xs: 690, lg: 760, xl: 760 },
+  },
 ];
