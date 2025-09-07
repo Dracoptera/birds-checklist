@@ -15,6 +15,7 @@ import { podicipediformes } from "./orders/podicipediformes";
 import { phoenicopteriformes } from "./orders/phoenicopteriformes";
 import { sphenisciformes } from "./orders/sphenisciformes";
 import { procellariiformes } from "./orders/procellariiformes";
+import { ciconiiformes } from "./orders/ciconiiformes";
 
 // All order files are properly imported and available
 
@@ -26,6 +27,7 @@ export const uruguayBirds: Bird[] = [
   ...accipitriformes,
   ...charadriiformes,
   ...columbiformes,
+  ...ciconiiformes,
   ...psittaciformes,
   ...piciformes,
   ...coraciiformes,
